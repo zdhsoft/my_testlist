@@ -1,2 +1,2 @@
-# my_testlist
-用于专门编写测试例子的集合
+# my_testlist/BASIC
+这里的代码，都是基于freebasic下运行的BASIC代码
