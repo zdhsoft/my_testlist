@@ -7,6 +7,38 @@ func main() { // main函数，是程序执行的入口
 	b := "aaaa"
 	fmt.Println(outstr) // 在终端打印 Hello World!
 	fmt.Println(b)
+
+	ten := 10
+	if ten > 10 {
+		fmt.Println(" > 10 very good!")
+	} else {
+		fmt.Println(" <= 10")
+	}
+
+	if seven := 7; seven < 10 {
+		fmt.Println("is < 10 nice!!!")
+	} else {
+		fmt.Println("is not nice!!!!!>>>>>>>")
+	}
+
+	for i := 0; i < 10; i++ {
+		fmt.Println(i)
+	}
+
+	i := 1
+	for {
+		if i < 10 {
+			fmt.Println("nice:", i)
+		} else {
+			fmt.Println("not nice", i)
+		}
+
+		i++
+		if i > 20 {
+			fmt.Println("bye bye!")
+			break
+		}
+	}
 }
 
 // Go语言的基本类型有：
