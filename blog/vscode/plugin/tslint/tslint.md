@@ -1,4 +1,4 @@
-# TSLINT
+# 插件之：TSLINT
 ## 概述
 - 现在开发后端主要的开发语言是Typescript，检查工具使用的是tslint。由于存在一些问题，tslint被弃用了，建议使用eslint。但是实际使用eslint的过程中，发现达不到之前使用tslint的效果。所有没有办法，还是一直使用tslint，但是每次需要手动开启。
 - 直到有一天，我再次安装插件的时候，发现了tslint有一个是新版本。全称是：ms-vscode.vscode-typescript-tslint-plugin，版本是1.3.3，是microsoft的官方版本插件。 这表示了众多使用tslint者的愿意。
