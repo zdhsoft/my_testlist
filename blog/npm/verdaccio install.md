@@ -112,7 +112,7 @@ npmjs:
   url: https://registry.npm.taobao.org/  #对于之外的库，使用什么源，我这里使用淘宝源
 
 packages:
-'@lr/*':  # @lr/ 开头的包 只有这里允许发布, 你可以改成自己的开头
+'@zdhsoft/*':  # @zdhsoft/ 开头的包 只有这里允许发布, 你可以改成自己的开头
   # scoped packages
   access: $all
   publish: $authenticated
