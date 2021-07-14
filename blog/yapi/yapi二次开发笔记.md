@@ -93,6 +93,42 @@ npm run dev-server
   },
 }
 ```
+
+### 配置nginx
+- 由于测试服务器启动的端口与测试前端启动的端口不同，结果相互无法访问, 在这里使用nginx对这两个端口做映射成同一个域名。下面是nginx配置
+- 实际调试效果，还是失败。
+```conf
+upstream yapi_dev_client{
+    server 127.0.0.1:4000;
+}
+
+server {
+    listen 80;
+    server_name yapidev.zdhsoft.cn; # 三级子域名会显示ERR_CERT_COMMON_NAME_INVALID
+    set $yapi_server_port 3000;
+
+    location ^~ /api/ {
+        proxy_http_version 1.1;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_pass http://127.0.0.1:$yapi_server_port$request_uri;
+        proxy_redirect off;
+    }
+
+
+    location / {
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_pass http://yapi_dev_client;
+    }
+}
+
+```
+
 ## 问与与修复
 ### 1、数据库用户名密码不正确
 - 将server\utils\db.js中的dbconfig注释
