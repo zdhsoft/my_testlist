@@ -49,10 +49,13 @@ function checkArgs() {
  * @param {string} paramOutFileName 目标文件名
  */
 function base2file(paramSrcFileName, paramOutFileName) {
+    console.log(`begin ${paramSrcFileName}==>`)
     let base64Data = fs.readFileSync(paramSrcFileName);
     let base64String = base64Data.toString('utf-8');
     let destData = Buffer.from(base64String, 'base64');
     fs.writeFileSync(paramOutFileName, destData);
+    console.log(`end!`)
+
 }
 
 function main() {
