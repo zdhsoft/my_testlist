@@ -3,3 +3,5 @@ go/bin
 basic/helloworld/hello.exe
 .vscode
 .idea
+node_modules
+package-lock.json
