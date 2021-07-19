@@ -1,3 +1,5 @@
 go/pkg
 go/bin
 basic/helloworld/hello.exe
+.vscode
+.idea
