@@ -1,3 +1,5 @@
+//  对应的博客地址 https://zdhsoft.blog.csdn.net/article/details/119023500
+
 let {datetimeUtils, codeUtils} = require('xmcommon');
 
 
