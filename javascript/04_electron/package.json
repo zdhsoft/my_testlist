@@ -1,0 +1,15 @@
+{
+  "name": "04_electron",
+  "version": "1.0.0",
+  "description": "hello electorn",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zdhsoft",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^13.1.9"
+  }
+}
