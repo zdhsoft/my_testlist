@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "elec", "elec.njsproj", "{0ACBCA2E-44D0-47C5-A2AA-FA11490A8F3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0ACBCA2E-44D0-47C5-A2AA-FA11490A8F3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ACBCA2E-44D0-47C5-A2AA-FA11490A8F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ACBCA2E-44D0-47C5-A2AA-FA11490A8F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ACBCA2E-44D0-47C5-A2AA-FA11490A8F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E750F17F-BD6E-4E5A-879D-B3646E562427}
+	EndGlobalSection
+EndGlobal

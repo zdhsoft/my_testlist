@@ -1,0 +1,23 @@
+{
+  "name": "elec",
+  "version": "0.0.0",
+  "description": "elec",
+  "main": "app.js",
+  "author": {
+    "name": ""
+  },
+  "scripts": {
+    "start": "electron ./app.js",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.1",
+    "electron": "^13.2.1",
+    "typescript": "^3.9.10",
+    "xmcommon": "^0.1.9"
+  },
+  "dependencies": {
+    "@types/electron": "^1.6.10"
+  }
+}
