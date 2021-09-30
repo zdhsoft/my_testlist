@@ -1,0 +1,16 @@
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data9
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data10
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data11
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data12
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data13
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data14
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data15
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data16
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data9
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data10
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data11
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data12
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data13
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data14
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data15
+nohup sshpass -p storage scp *.plot 192.168.1.11:/mnt/data16

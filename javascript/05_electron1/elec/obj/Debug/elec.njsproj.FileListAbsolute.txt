@@ -1,0 +1,3 @@
+D:\zdhsoft\github\my_testlist\javascript\05_electron1\elec\obj\Debug\elec.njsproj.AssemblyReference.cache
+D:\zdhsoft\github\my_testlist\javascript\05_electron1\elec\obj\Debug\elec.njsproj.CoreCompileInputs.cache
+D:\zdhsoft\github\my_testlist\javascript\05_electron1\elec\bin\Microsoft.NodejsTools.WebRole.dll
