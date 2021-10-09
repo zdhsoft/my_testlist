@@ -6,3 +6,7 @@ basic/helloworld/hello.exe
 node_modules
 package-lock.json
 javascript/08_dirlist/文件列表_*.xlsx
+*.~1~
+*.obj
+*.exe
+c++builder/01_typescript_template/Win32/Debug
