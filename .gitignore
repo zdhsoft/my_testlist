@@ -5,5 +5,4 @@ basic/helloworld/hello.exe
 .idea
 node_modules
 package-lock.json
-javascript/08_dirlist/backup_a.xlsx
-javascript/08_dirlist/a.xlsx
+javascript/08_dirlist/文件列表_*.xlsx

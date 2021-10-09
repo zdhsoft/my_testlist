@@ -1,9 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 const { exit } = require("process");
-const { utils } = require("xmcommon");
-const {DBTool} = require('./db');
-const {ExcelUtils} = require('./excelutils');
+const { utils, datetimeUtils } = require("xmcommon");
+const { DBTool } = require('./db');
+const { ExcelUtils } = require('./excelutils');
 
 
 const list = [];
@@ -117,9 +117,10 @@ async function main() {
     cols.push({ caption: '全称', type: 'string', width: 150 });
 
     let d = ExcelUtils.buildExcel('aaaaa', cols, last);
-    fs.writeFileSync('./a.xlsx', d);
+    fs.writeFileSync(`./文件列表_${datetimeUtils.dateStringByFile(new Date())}.xlsx`, d);
     console.log('执行完成！');
     await utils.sleep(500);
+    console.log('退出！');
     exit(0);
 }
 
