@@ -41,7 +41,7 @@ function listFile(dir){
 async function main() {
 
     let dblist = await DBTool.GetRecordListByQuery('select * from cmmifile where id > 0');
-
+    /** @type {Map<string, {id: string, full: string, exist: string}>} */
     let mmap = new Map();
     if (utils.isNotNull(dblist)) {
         dblist.forEach((item)=>{
@@ -91,7 +91,9 @@ async function main() {
         return [...item.dirpath, item.filename, code, item.full];
     });
 
+    let fullSet = new Set();
     for (let item of newres) {
+        fullSet.add(item.full);
         if (mmap.has(item.full)) {
             continue;
         }
@@ -99,13 +101,30 @@ async function main() {
             path     : path.dirname(item.full),
             filename : item.filename,
             full     : item.full,
+            exist    : '存在',
         };
         for(let i = 0; i < maxDep; i++) {
             obj['dir' + (i+1)] = item.dirpath[i];
         }
         let result = await DBTool.insertRecord('cmmifile', obj);
-        console.log(result);
+        console.log(JSON.stringify(result));
     }
+
+    for(let [_k,_v] of mmap) {
+        if (!fullSet.has(_k)) {
+            if (_v.exist !== '不存在') {
+                let result = await DBTool.updateRecord('cmmifile', {exist: '不存在'}, {id: _v.id});
+                console.log(JSON.stringify(result));
+            }
+        } else {
+            if (_v.exist !== '存在') {
+                let result = await DBTool.updateRecord('cmmifile', {exist: '存在'}, {id: _v.id});
+                console.log(JSON.stringify(result));
+            }
+        }
+    }
+
+
 
     /** @type {[string]} 表头 */
     let cols = [];

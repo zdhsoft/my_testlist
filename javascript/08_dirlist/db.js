@@ -108,7 +108,7 @@ class DBTool {
         let strSQL = `update ${paramTableName} set ${changes.join(", ")} where ${conds.join(" and ")};`;
         console.log("update:" + strSQL, "[", values.join(','), "]");
         let r = await this.query(strSQL, values);
-        if (ErrUtils.isOK(r.code) && utils.isNotNull(r.result)) {
+        if (r.code === 0 && utils.isNotNull(r.result)) {
             r.insertId = r.result.insertId;
         } else {
             // tslint:disable-next-line: max-line-length
