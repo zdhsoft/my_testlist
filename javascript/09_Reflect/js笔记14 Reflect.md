@@ -27,7 +27,11 @@
     interface PropertyDescriptor {
         /** 当定义的属性可以被更改或可以被删除时为true */
         configurable?: boolean;
-
+        /**
+         * 是否可枚举的
+         * 1、用for in这个循环以及Object.keys是访问不了enumerable = false的属性
+         * 2、但是Reflect.ownKeys可以取到
+         */
         enumerable?: boolean;
         /** 定义的属性值 */
         value?: any;
@@ -152,6 +156,6 @@ console.log(Reflect.apply(''.charAt, 'ponies', [3]));
 - [js笔记八:class](https://blog.csdn.net/zdhsoft/article/details/75221104)
 - [js笔记九:当运行脚本](https://blog.csdn.net/zdhsoft/article/details/78630854)
 - [js笔记十:vscode代码提示](https://blog.csdn.net/zdhsoft/article/details/79305847)
-- [js笔记十一:js监测变化并动态加载]()
-- [js笔记十二:利用await和async，将回调函数变成同步的处理的办法]()
-- [js笔记十三:nodejs 原生BigInt]()
+- [js笔记十一:js监测变化并动态加载](https://blog.csdn.net/zdhsoft/article/details/79469553)
+- [js笔记十二:利用await和async，将回调函数变成同步的处理的办法](https://blog.csdn.net/zdhsoft/article/details/79469622)
+- [js笔记十三:nodejs 原生BigInt](https://blog.csdn.net/zdhsoft/article/details/89670901)
