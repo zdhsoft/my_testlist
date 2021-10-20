@@ -2,6 +2,26 @@
 const {getLogger} = require('xmcommon');
 const log = getLogger(__filename);
 
+class testClass {
+    constructor() {
+        this.kkk = 999;
+    }
+    static getMMM(d) {
+        return testClass.mmm + d;
+    }
+
+    getKKK(s) {
+        return this.kkk * s;
+    }
+
+    async mm(...args) {
+        return 'mm:' + args.join();
+    }
+}
+
+testClass.mmm = 1999;
+
+
 
 function t1() {
     let obj = {};
@@ -11,6 +31,28 @@ function t1() {
     let str = '111';
 
     log.info(str.__proto__); // String {"", length: 0, constructor: ƒ, anchor: ƒ, big: ƒ, blink: ƒ, …}
+}
+
+async function t4() {
+    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/apply
+    log.info('验证：Reflect.apply');
+    log.info(Reflect.apply(testClass['getMMM'], undefined, [123]));
+
+    // expected output: 1
+
+    // log.info(Reflect.apply(String.fromCharCode, undefined, [104, 101, 108, 108, 111]));
+    // // expected output: "hello"
+
+    // log.info(Reflect.apply(RegExp.prototype.exec, /ab/, ['confabulation']).index);
+    // // expected output: 4
+
+    let j = new testClass();
+    log.info(Reflect.apply(j.getKKK,  j, [10]));
+    log.info(await Reflect.apply(j.mm,  j, [1,2,3,4,5,6]));
+
+    Reflect.set()
+    // expected output: "i"
+
 }
 
 function t3() {
@@ -91,7 +133,8 @@ function t2() {
     }
 }
 
-t2();
-t3();
+//t2();
+//t3();
+t4();
 // t1();
 // log.info('hello world');
