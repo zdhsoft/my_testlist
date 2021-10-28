@@ -1,8 +1,6 @@
-//
+//npm install xmcommon
 const {getLogger} = require('xmcommon');
-
 const log = getLogger(__filename);
-
 
 let handle  = {
     // 捕捉 defineProperty
