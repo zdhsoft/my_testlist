@@ -53,7 +53,7 @@ function t6() {
     let t = new testClass1();
     console.log(t.name); // 'testClass1'
 
-    Reflect.setPrototypeOf
+
     let t0 = Reflect.construct(testClass1, []);
     console.log(t0.name); // 'testClass1'
     // 创建一个对象:

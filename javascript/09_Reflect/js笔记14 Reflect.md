@@ -4,20 +4,21 @@
 
 - 从ES6开始，增加了Reflect
 - Reflect顾名思意，反射的意思。通过它可以取到对象所有的属性、方法等内全容。
-- Reflect 同Math一样，是一个内置的对象，它提供拦截 JavaScript 操作的方法。Reflect不是一个函数对象，因此它是不可构造的。Reflect对象是一个全局的普通的对象。Reflect的原型就是Object.。也就是Reflect是Object的简化版
+- Reflect 同Math一样，是一个内置的对象，它提供拦截 JavaScript 操作的方法。Reflect不是一个函数对象，因此它是不可构造的。Reflect对象是一个全局的普通的对象。
+- Reflect的原型就是Object.。也就是Reflect是Object的简化版。但是这些功能，都是反射意义上的，Object不能直接代表反射的意思，我想这是重新定义一个Reflect的主要原因吧。
 ### Reflect共有13个静态方法
 ```typescript
 	1：Reflect.get(target, name, receiver)
 	2：Reflect.set(target,name,value,receiver)
-	3：Reflect.apply(target,thisArg,args) ==>OK
+	3：Reflect.apply(target,thisArg,args)
 	4：Reflect.construct(target,args[, newTarget])
-	5：Reflect.defineProperty(target,name,desc) ==>OK
+	5：Reflect.defineProperty(target,name,desc)
 	6：Reflect.deleteProperty(target,name)
 	7：Reflect.has(target,name)
 	8：Reflect.ownKeys(target)
 	9：Reflect.preventExtensions(target)
 	10：Reflect.isExtensible(target)
-	11：Reflect.getOwnPropertyDescriptor(target, name) ==>OK
+	11：Reflect.getOwnPropertyDescriptor(target, name)
 	12：Reflect.getPrototypeOf(target)
 	13：Reflect.setPrototypeOf(target, prototype)
 ```
@@ -240,7 +241,7 @@ console.log(Reflect.apply(''.charAt, 'ponies', [3]));
 	目标对象。
 
   - propertyKey
-	要定义或修改的属性的名称
+	要定义或修改的属性的名称 属性的名称 类型只能是string | number | symbol这三种
   - attributes
 	要定义或修改的属性的描述。
 
@@ -255,6 +256,42 @@ console.log(Reflect.apply(''.charAt, 'ponies', [3]));
 	Reflect.defineProperty(obj, 'a', {value: '中国'})  // true
 	obj.x						   // 中国
 ```
+
+### Reflect.deleteProperty(target: object, propertyKey: PropertyKey): boolean; 删除指定名称的属性
+该方法用于删除一个对象上的属性，它和delete操作符类似的。
+- target: 表示要操作的对象。
+- propertyKey: 表示要删除该对象上的属性。 属性的名称 类型只能是string | number | symbol这三种
+该函数返回值是一个Boolean的值，如果成功的话，返回true，失败的话返回false
+
+比较简单，这里就不示例了
+
+### Reflect.has(target: object, propertyKey: PropertyKey): boolean; 判断指定的属性是否存在
+- target: 表示要操作的对象。
+- propertyKey: 表示要删除该对象上的属性。 属性的名称 类型只能是string | number | symbol这三种
+该函数返回值是一个boolean的值，如果成功的话，返回true，失败的话返回false。 这个函数与in操作相同
+
+### Reflect.ownKeys(target: object): Array<string>; 返回一个由目标对象自身的属性键组成的数组。
+- target: 获取自身属性键的目标对象。
+```typescript
+    Reflect.ownKeys({c: 9, h: 8, a: 7}); // [ "c", "h", "a" ]
+    Reflect.ownKeys([]); // ["length"]
+```
+
+### Reflect.preventExtensions(target: object): boolean; 阻止新属性添加到对象
+- target 阻止扩展的目标对象。
+```typescript
+// 默认情况下，对象是可扩展的。
+let o = {};
+Reflect.isExtensible(o); // === true
+
+// 设为不可扩展的
+Reflect.preventExtensions(o);
+Reflect.isExtensible(o); // === false
+```
+- 这个和Object的preventExtensions是有区别的，如果参数target不是object对象，这里会抛出异常。而Object则不会。它将把target变成一个对象
+
+### Reflect.isExtensible(target: object): boolean; 判断一个对象是否可扩展
+- target 检查是否可扩展的目标对象。
 
 ### Reflect.getOwnPropertyDescriptor(): PropertyDescriptor  取拥有属性的描述信息
 ```javascript
@@ -297,7 +334,16 @@ console.log(Reflect.apply(''.charAt, 'ponies', [3]));
     // testValue没有被删除 {value: 2021, writable: false, enumerable: false, configurable: false}
 
 ```
+### Reflect.getPrototypeOf(target: object): object | null; 返回指定对象的原型（即内部的 [[Prototype]] 属性的值）
+- target 获取原型的目标对象。
+- 返回值：给定对象的原型。如果给定对象没有继承的属性，则返回 null。
 
+### Reflect.setPrototypeOf(target: object, proto: object | null): boolean;
+- target 设置原型的目标对象。
+- prototype 对象的新原型（一个对象或 null）。
+- 返回值：返回一个 Boolean 值表明是否原型已经成功设置。
+它可设置对象的原型（即内部的 [[Prototype]] 属性）为另一个对象或 null，
+如果操作成功返回 true，否则返回 false。
 
 ## 历史笔记列表
 - [js笔记一:js中forEach，for in，for of循环的用法](https://blog.csdn.net/zdhsoft/article/details/54017183)
