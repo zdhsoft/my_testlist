@@ -20,7 +20,7 @@ class A {
   }
 }
 
-const objs = [A, new A, A.prototype]
+const objs = [A, new A(), A.prototype]
 const res = objs.map(obj => [
   Reflect.getMetadata('name', obj),
   Reflect.getMetadata('name', obj, 'hello'),

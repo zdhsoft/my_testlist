@@ -9,43 +9,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.HTTP_CODE_METADATA = void 0;
 require("reflect-metadata");
-let k = class k {
-    hello() {
-        return 'hello world';
+exports.HTTP_CODE_METADATA = '__httpCode__';
+function HttpCode(statusCode) {
+    return (target, key, descriptor) => {
+        Reflect.defineMetadata(exports.HTTP_CODE_METADATA, statusCode, descriptor.value);
+        return descriptor;
+    };
+}
+class aaa {
+    callWithClientUseFactory() {
+        return 100;
     }
-};
+    static mmm() {
+        return 999;
+    }
+}
 __decorate([
-    Reflect.metadata('inMethod', 'B'),
+    HttpCode(200),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], k.prototype, "hello", null);
-k = __decorate([
-    Reflect.metadata('aaa', 'bbb')
-], k);
-console.log(Reflect.getMetadata('aaa', k)); // 'A'
-console.log(Reflect.getMetadata('inMethod', new k(), 'hello')); // 'B'
-let A = class A {
-    hello() {
-        //
-    }
-};
+    __metadata("design:returntype", Number)
+], aaa.prototype, "callWithClientUseFactory", null);
 __decorate([
-    Reflect.metadata('name', 'hello'),
+    HttpCode(345),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], A.prototype, "hello", null);
-A = __decorate([
-    Reflect.metadata('name', 'A')
-], A);
-const objs = [A, new A(), A.prototype];
-const res = objs.map(obj => [
-    Reflect.getMetadata('name', obj),
-    Reflect.getMetadata('name', obj, 'hello'),
-    Reflect.getOwnMetadata('name', obj),
-    Reflect.getOwnMetadata('name', obj, 'hello')
-]);
-console.log(JSON.stringify(res, null, 2));
-//# sourceMappingURL=index.js.map
+    __metadata("design:returntype", Number)
+], aaa, "mmm", null);
+const b = new aaa();
+const code = Reflect.getMetadata(exports.HTTP_CODE_METADATA, b.callWithClientUseFactory);
+console.log(code);
+const ccc = Reflect.getMetadata(exports.HTTP_CODE_METADATA, aaa.mmm);
+console.log(ccc);
+b.callWithClientUseFactory();
+//# sourceMappingURL=aa.js.map
