@@ -89,8 +89,6 @@ log.info('======>3', JSON.stringify(v));
 // 输出: ======>3 {"kkkk":"kkkkkkkkkkkkkkkkkk"}
 
 ```
-
-
 ## 历史笔记列表
 - [js笔记一:js中forEach，for in，for of循环的用法](https://blog.csdn.net/zdhsoft/article/details/54017183)
 - [js笔记二:node.js的npm使用理解](https://blog.csdn.net/zdhsoft/article/details/54171647)
@@ -107,3 +105,4 @@ log.info('======>3', JSON.stringify(v));
 - [js笔记十三:nodejs 原生BigInt](https://blog.csdn.net/zdhsoft/article/details/89670901)
 - [js笔记十四:Reflect 反射](https://zdhsoft.blog.csdn.net/article/details/121014342)
 - [js笔记十五:Proxy 代理](https://zdhsoft.blog.csdn.net/article/details/121014342)
+- [js笔记十六:Weak对象](https://zdhsoft.blog.csdn.net/article/details/121144555)
