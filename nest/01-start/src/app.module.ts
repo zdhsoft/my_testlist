@@ -4,8 +4,8 @@ import { AppService } from './app.service';
 import { PedantsTypeModule } from './pedants-type/pedants-type.module';
 
 @Module({
-  imports: [PedantsTypeModule],
-  controllers: [AppController],
-  providers: [AppService],
+    imports: [PedantsTypeModule],
+    controllers: [AppController],
+    providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -37,17 +37,20 @@ memoryInfo("3>>>");
 let o = [];
 let weakObjList = [];
 function testFunciton() {
-    let a = {a:1};
-    let b = {b:2};
-    let c = {c:"999"};
-    o.push(c);
-    weakObjList.push([new WeakRef(a), "a"]);
-    weakObjList.push([new WeakRef(b), "b"]);
-    weakObjList.push([new WeakRef(c), "c"]);
-    delete a;
-    delete b;
-    a = null;
-    b = null;
+    let m  = {
+        a: { a:1 },
+        b: { b:2 },
+        c: { c: '999'}
+    };
+    o.push(m.c);
+    weakObjList.push([new WeakRef(m.a), "a"]);
+    weakObjList.push([new WeakRef(m.b), "b"]);
+    weakObjList.push([new WeakRef(m.c), "c"]);
+    delete m.a;
+    delete m.b;
+    // m.a = undefined;
+    // m.b = undefined;
+    global.gc();
 }
 
 function checkLeak() {

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node": "^14.17.32",
     "xmcommon": "^0.9.6"
   }
 }
