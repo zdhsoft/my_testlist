@@ -46,7 +46,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            // "port":9229,
             "type": "node",
             "request": "launch",
             "console":"integratedTerminal",  // 设成integratedTerminal后，就可以在vscode的调试控制台，显示nest的日志
@@ -56,9 +55,10 @@
             ],
             "autoAttachChildProcesses": true,
             "runtimeExecutable": "node",
-            "program": "${workspaceFolder}\\dist\\main.js",
+            "program": "${workspaceFolder}\\dist\\main.js", //这个是编译后的程序入口
             "preLaunchTask": "build",  // 在运行之间，会调用tasks.json中label为build的任务
             "outFiles": [
+                // 输出的文件
                 "${workspaceFolder}/dist/**/*.js"
             ]
         }

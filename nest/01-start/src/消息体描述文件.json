@@ -1,0 +1,35 @@
+{
+    "cmdId": 123,  // 请求服务器状态
+    "ver":0,
+    "desc": "请求服务器状态",
+    "type": "request", // 可以是 request, response, notice三种
+    "body": {
+        "serverId": "int8" // 服务器
+    }
+}
+
+{
+	"cmdId": 123,  // 请求服务器状态
+    "ver":0,
+    "desc": "响应服务器状态",
+    "type": "response", // 可以是 request, response, notice三种
+    "body": {
+        "serverId": "int8" // 服务器
+        "status": "int8",  // 服务器状态 0 正常，1告警，2无响应
+        "load": "number",  // 负载值： 40%
+        "memory": "int64", // 占用内存字节数
+    }
+}
+
+{
+    "cmdId":124,
+    "ver": 0,
+    "desc": "上报服务器状态",
+    "type": "notice",
+    "body": {
+        "serverId": "int8"， // 当前服务器Id
+        "status": "int8",  // 服务器状态 0 正常，1告警，2无响应
+        "time": "int64",   //上报时间戳
+    }
+
+}

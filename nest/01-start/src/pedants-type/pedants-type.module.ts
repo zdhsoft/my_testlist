@@ -4,4 +4,4 @@ import { PedantsTypeController } from './pedants-type.controller';
 @Module({
     controllers: [PedantsTypeController],
 })
-export class PedantsTypeModule { }
+export class PedantsTypeModule {}
