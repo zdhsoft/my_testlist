@@ -5,7 +5,9 @@ import { getLogger } from 'xmcommon';
 const log = getLogger(__filename);
 @Controller()
 export class AppController {
-    constructor(private readonly appService: AppService) { }
+    constructor(private readonly appService: AppService) {
+        log.info('------------AppController');
+    }
 
     @Get()
     getHello(): string {

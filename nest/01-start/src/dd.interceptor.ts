@@ -11,6 +11,9 @@ import { getLogger } from 'xmcommon';
 const log = getLogger(__filename);
 @Injectable()
 export class DdInterceptor implements NestInterceptor {
+    public constructor() {
+        log.info('---DdInterceptor');
+    }
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         const start = Date.now(); // 请求开始时间
         const host = context.switchToHttp();
