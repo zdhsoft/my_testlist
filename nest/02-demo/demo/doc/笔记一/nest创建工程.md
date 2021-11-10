@@ -30,11 +30,14 @@ code .
 ### 配置任务
 1.vscode 菜单->终端->运行任务
 ![运行任务](a1.png)
+
 2.在任务列表下拉框选择：配置任务
 ![配置任务](a2.png)
+
 3.在要选择的配置任务列表，我们这里选择npm: build
 注:这些都是package.json中script中的东西
 ![配置任务列表](a3.png)
+
 然后就会创建一个任务文件，在.vscode目录下录  tasks.json
 内容如下：
 ```json
@@ -56,10 +59,13 @@ code .
 ### 配置启动
 1.在左侧工具栏，选择调试
 ![选择调试](a4.png)
+
 2.选择创建launch.json
 ![luanch.json](a5.png)
+
 3.选择运行环境列表，选择node
 ![node](a6.png)
+
 4.然后如下配置
 ```js
 {
