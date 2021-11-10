@@ -12,11 +12,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
+const xmcommon_1 = require("xmcommon");
+const log = (0, xmcommon_1.getLogger)(__filename);
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
     getHello() {
+        log.info('getHello---->');
         return this.appService.getHello();
     }
 };

@@ -1,3 +1,3 @@
 export declare class PedantsTypeController {
-    getPedantsType(): string;
+    getPedantsType(): Promise<string>;
 }

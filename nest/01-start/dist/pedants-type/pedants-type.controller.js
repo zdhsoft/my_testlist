@@ -11,8 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PedantsTypeController = void 0;
 const common_1 = require("@nestjs/common");
+const xmcommon_1 = require("xmcommon");
+const log = (0, xmcommon_1.getLogger)(__filename);
 let PedantsTypeController = class PedantsTypeController {
-    getPedantsType() {
+    async getPedantsType() {
+        log.info('---->pedants-type/test111');
+        await xmcommon_1.utils.sleep(1000);
+        log.info('---->pedants-type/test222');
         return '获取所有的挂件类型';
     }
 };
@@ -20,7 +25,7 @@ __decorate([
     (0, common_1.Get)('test'),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
+    __metadata("design:returntype", Promise)
 ], PedantsTypeController.prototype, "getPedantsType", null);
 PedantsTypeController = __decorate([
     (0, common_1.Controller)('pedants-type')

@@ -11,7 +11,13 @@ const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const pedants_type_module_1 = require("./pedants-type/pedants-type.module");
+const logger_middleware_1 = require("./logger.middleware");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer
+            .apply(logger_middleware_1.LoggerMiddleware)
+            .forRoutes({ path: '*', method: common_1.RequestMethod.ALL });
+    }
 };
 AppModule = __decorate([
     (0, common_1.Module)({
