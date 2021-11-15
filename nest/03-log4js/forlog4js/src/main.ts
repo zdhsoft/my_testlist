@@ -1,8 +1,13 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import './log/log4js';
 
-async function bootstrap() {
-    const app = await NestFactory.create(AppModule);
-    await app.listen(3000);
-}
-bootstrap();
+import {getLogger} from 'xmcommon';
+const log = getLogger(__filename);
+log.info('hello world!');
+// import { NestFactory } from '@nestjs/core';
+// import { AppModule } from './app.module';
+
+// async function bootstrap() {
+//     const app = await NestFactory.create(AppModule);
+//     await app.listen(3000);
+// }
+// bootstrap();
