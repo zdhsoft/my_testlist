@@ -59,7 +59,7 @@ function colored(msg: {head: string, info: string}, paramColorStyle?: number[]):
  * @return
  */
 function buildLog(categoryName: string, level: string, ...data: any[]) {
-    return {head:`[${categoryName} ${datetimeUtils.nowDateString()} ${level}]`, info: util.format(...data)};
+    return {head:`[${datetimeUtils.nowDateString()} ${level}][${categoryName}]`, info: util.format(...data)};
 }
 
 
@@ -115,12 +115,9 @@ class XLogFor4js implements ILog{
 
         normalLog.warn(logMsg);
         errorLog.warn(logMsg)
-
         consoleLog.warn(colored(logInfo, styles.yellow));
     }
 }
-
-
 /**
  * 初始化日志
  * @param paramConfigName 配置文件名（js文件）
@@ -136,6 +133,15 @@ function InitLog(paramConfigName: string) {
     const LogManager = GetLogManager();
     LogManager.setCreateLog((paramTag:string) => new XLogFor4js(paramTag));
     LogManager.setDefaultLog(new XLogFor4js('default'));
+
+    const conLog = LogManager.getLogger('console');
+
+    // 绑定控制台的日志
+    console.log   = conLog.info.bind(conLog);
+    console.error = conLog.error.bind(conLog);
+    console.debug = conLog.debug.bind(conLog);
+    console.warn  = conLog.warn.bind(conLog);
+    console.trace = conLog.trace.bind(conLog);
 }
 
 /** 生成绝对配置文件路径 */

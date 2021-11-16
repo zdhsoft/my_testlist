@@ -4,11 +4,10 @@ import { AppModule } from './app.module';
 import { getLogger } from 'xmcommon';
 import { NestLogger } from './nest.logger';
 const log = getLogger(__filename);
-log.info('hello world!');
-
+log.info('程序开始启动...');
 async function bootstrap() {
     const app = await NestFactory.create(AppModule, { logger: new NestLogger() });
-    // const app = await NestFactory.create(AppModule);
     await app.listen(3000);
+    log.info('开始侦听:3000...')
 }
 bootstrap();
