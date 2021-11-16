@@ -30,7 +30,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0",
     "stacktrace-js": "^2.0.2",
-    "xmcommon": "^0.9.8"
+    "xmcommon": "^0.9.10"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.1.4",

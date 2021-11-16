@@ -3,19 +3,19 @@ import { getLogger } from 'xmcommon';
 
 const log = getLogger('nest');
 export class NestLogger implements LoggerService {
-    log(message: string) {
-        log.log(message);
+    log(message: string, ...opt: any[]) {
+        log.info(message, 'xxxx>', ...opt);
     }
-    error(message: string, trace: string) {
-        log.error(message);
+    error(message: string, ...opt: any[]) {
+        log.error(message, 'xxxx>', ...opt);
     }
-    warn(message: string) {
-        log.warn(message);
+    warn(message: string, ...opt: any[]) {
+        log.warn(message, 'xxxx>', ...opt);
     }
-    debug(message: string) {
-        log.debug(message);
+    debug(message: string, ...opt: any[]) {
+        log.debug(message, 'xxxx>', ...opt);
     }
-    verbose(message: string) {
-        log.trace(message);
+    verbose(message: string, ...opt: any[]) {
+        log.trace(message, 'xxxx>', ...opt);
     }
 }
