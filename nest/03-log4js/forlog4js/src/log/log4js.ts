@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as log4js from 'log4js';
 import * as util from 'util';
-import {GetLogManager, ILog, datetimeUtils, logPrefix} from 'xmcommon';
+import {GetLogManager, ILog, datetimeUtils} from 'xmcommon';
 
 /** 普通日志文件输出 */
 let normalLog : log4js.Logger;
