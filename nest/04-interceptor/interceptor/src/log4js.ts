@@ -1,21 +1,21 @@
 import * as path from 'path';
 import * as log4js from 'log4js';
 import * as util from 'util';
-import {GetLogManager, ILog, datetimeUtils} from 'xmcommon';
+import { GetLogManager, ILog, datetimeUtils } from 'xmcommon';
 
 /** 普通日志文件输出 */
-let normalLog : log4js.Logger;
+let normalLog: log4js.Logger;
 /** 错误日志文件输出 */
-let errorLog  : log4js.Logger;
+let errorLog: log4js.Logger;
 let consoleLog: log4js.Logger;
 /** 日志级别枚举 */
 export enum EnumLogLevel {
     TRACE = 'TRACE',
     DEBUG = 'DEBUG',
-    LOG   = '  LOG',
-    INFO  = ' INFO',
+    LOG = '  LOG',
+    INFO = ' INFO',
     ERROR = 'ERROR',
-    WARN  = ' WARN',
+    WARN = ' WARN',
 }
 /** 颜色样式 */
 const styles = {
@@ -34,7 +34,7 @@ const styles = {
     green: [32, 39],
     magenta: [35, 39],
     red: [91, 39],
-    yellow: [33, 39]
+    yellow: [33, 39],
 };
 
 /**
@@ -43,8 +43,11 @@ const styles = {
  * @param paramColorStyle 日志颜色
  * @return 上色后的日志
  */
-function colored(msg: {head: string, info: string}, paramColorStyle?: number[]): string {
-    if(paramColorStyle) {
+function colored(
+    msg: { head: string; info: string },
+    paramColorStyle?: number[],
+): string {
+    if (paramColorStyle) {
         return `\x1B[${paramColorStyle[0]}m${msg.head}\x1B[${paramColorStyle[1]}m ${msg.info}`;
     } else {
         return `${msg.head} ${msg.info}`;
@@ -59,15 +62,16 @@ function colored(msg: {head: string, info: string}, paramColorStyle?: number[]):
  * @return
  */
 function buildLog(categoryName: string, level: string, ...data: any[]) {
-    return {head:`[${datetimeUtils.nowDateString()} ${level}][${categoryName}]`, info: util.format(...data)};
+    return {
+        head: `[${datetimeUtils.nowDateString()} ${level}][${categoryName}]`,
+        info: util.format(...data),
+    };
 }
-
-
 
 /**
  * 基于Log4js实际日志
  */
-class XLogFor4js implements ILog{
+class XLogFor4js implements ILog {
     private m_name: string;
     public constructor(paramName: string) {
         this.m_name = paramName;
@@ -78,43 +82,43 @@ class XLogFor4js implements ILog{
     }
 
     public trace(...paramLog: any[]): void {
-        const logInfo = buildLog(this.name, EnumLogLevel.TRACE, ...paramLog)
+        const logInfo = buildLog(this.name, EnumLogLevel.TRACE, ...paramLog);
         normalLog.trace(colored(logInfo));
         consoleLog.trace(colored(logInfo, styles.blue));
     }
     public debug(...paramLog: any[]): void {
-        const logInfo = buildLog(this.name, EnumLogLevel.DEBUG, ...paramLog)
+        const logInfo = buildLog(this.name, EnumLogLevel.DEBUG, ...paramLog);
         normalLog.debug(colored(logInfo));
         consoleLog.debug(colored(logInfo, styles.cyan));
     }
     public log(...paramLog: any[]): void {
-        const logInfo = buildLog(this.name, EnumLogLevel.LOG, ...paramLog)
+        const logInfo = buildLog(this.name, EnumLogLevel.LOG, ...paramLog);
 
         normalLog.info(colored(logInfo));
         consoleLog.info(colored(logInfo, styles.magenta));
     }
     public info(...paramLog: any[]): void {
-        const logInfo = buildLog(this.name, EnumLogLevel.INFO, ...paramLog)
+        const logInfo = buildLog(this.name, EnumLogLevel.INFO, ...paramLog);
 
         normalLog.info(colored(logInfo));
         consoleLog.info(colored(logInfo, styles.green));
     }
     public error(...paramLog: any[]): void {
         const logInfo = buildLog(this.name, EnumLogLevel.ERROR, ...paramLog);
-        const logMsg  = colored(logInfo);
+        const logMsg = colored(logInfo);
 
         normalLog.error(logMsg);
-        errorLog.error(logMsg)
+        errorLog.error(logMsg);
 
         consoleLog.error(colored(logInfo, styles.red));
     }
 
     public warn(...paramLog: any[]): void {
-        const logInfo = buildLog(this.name, EnumLogLevel.WARN, ...paramLog)
-        const logMsg  = colored(logInfo);
+        const logInfo = buildLog(this.name, EnumLogLevel.WARN, ...paramLog);
+        const logMsg = colored(logInfo);
 
         normalLog.warn(logMsg);
-        errorLog.warn(logMsg)
+        errorLog.warn(logMsg);
         consoleLog.warn(colored(logInfo, styles.yellow));
     }
 }
@@ -126,21 +130,21 @@ function InitLog(paramConfigName: string) {
     const cfg = require(paramConfigName);
     log4js.configure(cfg);
 
-    normalLog  = log4js.getLogger('default');
-    errorLog   = log4js.getLogger('error');
+    normalLog = log4js.getLogger('default');
+    errorLog = log4js.getLogger('error');
     consoleLog = log4js.getLogger('console');
 
     const LogManager = GetLogManager();
-    LogManager.setCreateLog((paramTag:string) => new XLogFor4js(paramTag));
+    LogManager.setCreateLog((paramTag: string) => new XLogFor4js(paramTag));
     LogManager.setDefaultLog(new XLogFor4js('default'));
 
     const conLog = LogManager.getLogger('console');
 
     // 绑定控制台的日志
-    console.log   = conLog.info.bind(conLog);
+    console.log = conLog.info.bind(conLog);
     console.error = conLog.error.bind(conLog);
     console.debug = conLog.debug.bind(conLog);
-    console.warn  = conLog.warn.bind(conLog);
+    console.warn = conLog.warn.bind(conLog);
     console.trace = conLog.trace.bind(conLog);
 }
 
