@@ -1,0 +1,11 @@
+{
+    "dirList": [
+        "b",
+        "src",
+        ".vscode"
+    ],
+    "fileList": [
+        "package.json",
+        "b/b.txt"
+    ]
+}
