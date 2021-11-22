@@ -61,6 +61,9 @@ class XProjectConfig {
         if (utils.isNotNull(config?.info)) {
             utils.dataAssign(cfg.info, config.info);
         }
+        if (utils.isNotNull(config?.config)) {
+            utils.dataAssign(cfg.config, config.config);
+        }
         return cfg;
     }
 
