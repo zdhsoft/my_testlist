@@ -1,15 +1,19 @@
-const {getLogger} = require ('xmcommon');
+const { getLogger, datetimeUtils, utils } = require('xmcommon');
 const log = getLogger(__filename);
 const path = require('path');
 const fs = require('fs');
 const template = require('art-template');
+
+const TEMPLATE_DIR = 'template';
+const PROJECT_DIR  = 'project';
+
 
 /** 工程目录 */
 class XProjectConfig {
     /** 模板名称 */
     #templateName = 'sample';
     /** 目标目录 */
-    #destName = 'demo';
+    #destDir = 'demo';
     /** 工程配置名称 */
     #projectConfigName = 'demo.json'
     constructor(paramProjectConfigName) {
@@ -18,7 +22,10 @@ class XProjectConfig {
     }
 
     #init() {
-
+        let cfg = this.#loadConfig();
+        log.info(JSON.stringify(cfg, null, 2));
+        this.#destDir      = cfg.config.dest;
+        this.#templateName = cfg.config.template;
     }
 
     get templateName() {
@@ -26,17 +33,64 @@ class XProjectConfig {
     }
 
     get destName() {
-        return this.#destName;
+        return this.#destDir;
     }
 
     get projectConfigName() {
-        return this.#projectConfigName;
+        return path.join(process.cwd(), PROJECT_DIR, this.#projectConfigName);
     }
 
+    /**
+        * 加载配置信息
+        * @return
+    */
+    #loadConfig() {
+        let cfg = {
+            config: this.#getDefaultCfg(),
+            info  : this.#getDefaultInfo()
+        };
 
+        const config = require(this.projectConfigName);
+        if (utils.isNotNull(config?.info)) {
+            utils.dataAssign(cfg.info, config.info);
+        }
+        return cfg;
+    }
+
+    #getDefaultCfg() {
+        return {
+            /** 模板目录 */
+            template : 'ts_sample',
+            /** 输出目标目录 */
+            dest: 'dest',
+        };
+    }
+
+    #getDefaultInfo() {
+        let   d     = new Date();
+        const year  = `${d.getFullYear()}`.padStart(4, 0);
+        const month = `${d.getMonth() +1 }`.padStart(2, 0);
+        const day   = `${d.getDate()}`.padStart(2,0);
+        const date  = `${year}-${month}-${day}`;
+
+        return {
+            name   : 'demo',
+            author : '',
+            version: '0.0.1',
+            desc   : '',
+            license: '',
+            year,
+            month,
+            day,
+            date
+        }
+    }
 }
+
+let p = new XProjectConfig('demo.json');
+
 /** 模板配置文件名名称 */
-const TemplateConfigName = 'template.json';
+const TEMPLATE_CONFIG_NAME = 'template.json';
 class XTemplateConfig {
     /**
      * @type {string[]} 文件列表
@@ -67,7 +121,7 @@ class XTemplateConfig {
     }
 
     get templateConfigName() {
-        return path.join(process.cwd(), this.#templatePath, TemplateConfigName);
+        return path.join(process.cwd(), TEMPLATE_DIR, this.#templatePath, TEMPLATE_CONFIG_NAME);
     }
     /**
      * 加载配置信息
@@ -92,35 +146,50 @@ class XTemplateConfig {
     }
 }
 
-let tempCfg = new XTemplateConfig();
+let tempCfg = new XTemplateConfig(p.templateName);
 
 const projectConfig = require('./project/demo.json');
 log.info('--->' + JSON.stringify(projectConfig, null, 2));
 
 /** @type {string[]} 不存在的文件列表 */
 let notExistFile = [];
+let notExistDir = [];
 /** @type {string[]} 最终的文件列表 */
 let finalFileList = [];
-tempCfg.fileList.forEach(f =>
-{
-    const fullFileName = path.join(process.cwd(), tempCfg.templatePath, f);
+let finalDirList = [];
+tempCfg.fileList.forEach(f => {
+    const fullFileName = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
     if (fs.existsSync(fullFileName)) {
         finalFileList.push(fullFileName);
     } else {
         notExistFile.push(f);
     }
 });
-let finalDirList  = tempCfg.dirList.map(d=>path.join(process.cwd(), tempCfg.templatePath, d));
+
+tempCfg.dirList.forEach(d => {
+    const fullPath = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, d);
+    if (fs.existsSync(fullPath)) {
+        finalDirList.push(fullPath);
+    } else {
+        notExistDir.push(d);
+    }
+});
+
 
 if (notExistFile.length > 0) {
     log.info('模板中，下列文件不存在\n fileList:', JSON.stringify(notExistFile, null, 2));
+}
+
+if (notExistDir.length > 0) {
+    log.info('模板中，下列目录不存在\n dirList:', JSON.stringify(notExistDir, null, 2));
+}
+
+if (notExistDir.length > 0 || notExistFile.length > 0) {
     return -1;
 }
 
 log.info('最终目录列表', finalDirList);
-log.info('实际不存在的文件列表', notExistFile);
 log.info(finalFileList);
-
 
 
 /*

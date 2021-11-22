@@ -1,11 +1,13 @@
 {
     "config": {
-        "template": "sample",
-        "dest": "demo"
+        "template": "ts_sample",
+        "dest"    : "demo"
     },
     "info":{
-        "name": "demo",
-        "author": "祝冬华",
-        "version": "1.0.0"
+        "name"   : "demo",
+        "author" : "祝冬华",
+        "version": "1.0.0",
+        "desc"   : "这是一个演示工程",
+        "license": "深圳市链融科技有限公司版权所有"
     }
 }
