@@ -71,7 +71,7 @@ class XTemplateConfig {
     }
     /**
      * 加载配置信息
-     * @return {{dirList: string[], fileList: stringp[]}}
+     * @return {{dirList: string[], fileList: string[]}}
      */
     #loadConfig() {
         // log.info('...>>' + this.templateConfigName);
