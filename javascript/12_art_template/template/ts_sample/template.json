@@ -6,6 +6,8 @@
         ".vscode"
     ],
     "fileList": [
+        ".vscode/launch.json",
+        ".vscode/tasks.json",
         "package.json",
         "tsconfig.json",
         "src/main.ts",
