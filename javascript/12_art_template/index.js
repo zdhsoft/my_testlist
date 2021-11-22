@@ -4,6 +4,37 @@ const path = require('path');
 const fs = require('fs');
 const template = require('art-template');
 
+/** 工程目录 */
+class XProjectConfig {
+    /** 模板名称 */
+    #templateName = 'sample';
+    /** 目标目录 */
+    #destName = 'demo';
+    /** 工程配置名称 */
+    #projectConfigName = 'demo.json'
+    constructor(paramProjectConfigName) {
+        this.#projectConfigName = paramProjectConfigName;
+        this.#init();
+    }
+
+    #init() {
+
+    }
+
+    get templateName() {
+        return this.#templateName;
+    }
+
+    get destName() {
+        return this.#destName;
+    }
+
+    get projectConfigName() {
+        return this.#projectConfigName;
+    }
+
+
+}
 /** 模板配置文件名名称 */
 const TemplateConfigName = 'template.json';
 class XTemplateConfig {
@@ -59,22 +90,47 @@ class XTemplateConfig {
         log.info(this.#dirList);
         log.info(this.#fileList);
     }
-
-
 }
 
-let v = new XTemplateConfig();
+let tempCfg = new XTemplateConfig();
 
 const projectConfig = require('./project/demo.json');
 log.info('--->' + JSON.stringify(projectConfig, null, 2));
 
-v.fileList.forEach(f=>{
-    const fullName = path.join(process.cwd(), v.templatePath, f);
+/** @type {string[]} 不存在的文件列表 */
+let notExistFile = [];
+/** @type {string[]} 最终的文件列表 */
+let finalFileList = [];
+tempCfg.fileList.forEach(f =>
+{
+    const fullFileName = path.join(process.cwd(), tempCfg.templatePath, f);
+    if (fs.existsSync(fullFileName)) {
+        finalFileList.push(fullFileName);
+    } else {
+        notExistFile.push(f);
+    }
+});
+let finalDirList  = tempCfg.dirList.map(d=>path.join(process.cwd(), tempCfg.templatePath, d));
+
+if (notExistFile.length > 0) {
+    log.info('模板中，下列文件不存在\n fileList:', JSON.stringify(notExistFile, null, 2));
+    return -1;
+}
+
+log.info('最终目录列表', finalDirList);
+log.info('实际不存在的文件列表', notExistFile);
+log.info(finalFileList);
+
+
+
+/*
+tempCfg.fileList.forEach(f=>{
+    const fullName = path.join(process.cwd(), tempCfg.templatePath, f + '.k');
     const data = fs.readFileSync(fullName);
     const result = template.render(data.toString('utf-8'), projectConfig);
     log.info('--->' + fullName);
     log.info('--->' + result);
 });
-
+*/
 
 log.info('完成!!!');

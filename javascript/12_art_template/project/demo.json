@@ -1,3 +1,11 @@
 {
-    "name": "demo"
+    "config": {
+        "template": "sample",
+        "dest": "demo"
+    },
+    "info":{
+        "name": "demo",
+        "author": "祝冬华",
+        "version": "1.0.0"
+    }
 }
