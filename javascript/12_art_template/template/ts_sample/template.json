@@ -1,0 +1,17 @@
+{
+    "dirList": [
+        "dist",
+        "src",
+        "config",
+        ".vscode"
+    ],
+    "fileList": [
+        "package.json",
+        "tsconfig.json",
+        "src/main.ts",
+        ".prettierrc",
+        ".eslintrc.js",
+        ".gitignore",
+        "readme.md"
+    ]
+}

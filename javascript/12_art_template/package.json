@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^16.11.9",
-    "art-template": "^4.13.2",
-    "xmcommon": "^0.9.11"
+    "art-template": "^4.13.2"
   }
 }
