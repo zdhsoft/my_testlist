@@ -6,7 +6,7 @@ const template = require('art-template');
 
 const TEMPLATE_DIR = 'template';
 const PROJECT_DIR  = 'project';
-
+const OUT_DIR = 'out';
 
 /** 工程目录 */
 class XProjectConfig {
@@ -16,9 +16,11 @@ class XProjectConfig {
     #destDir = 'demo';
     /** 工程配置名称 */
     #projectConfigName = 'demo.json'
+
+    cfg = { config:{}, info: {}};
     constructor(paramProjectConfigName) {
         this.#projectConfigName = paramProjectConfigName;
-        this.#init();
+        this.cfg = this.#init();
     }
 
     #init() {
@@ -26,6 +28,11 @@ class XProjectConfig {
         log.info(JSON.stringify(cfg, null, 2));
         this.#destDir      = cfg.config.dest;
         this.#templateName = cfg.config.template;
+        return cfg;
+    }
+
+    get cfg() {
+        return this.cfg;
     }
 
     get templateName() {
@@ -157,6 +164,7 @@ let notExistDir = [];
 /** @type {string[]} 最终的文件列表 */
 let finalFileList = [];
 let finalDirList = [];
+
 tempCfg.fileList.forEach(f => {
     const fullFileName = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
     if (fs.existsSync(fullFileName)) {
@@ -191,15 +199,42 @@ if (notExistDir.length > 0 || notExistFile.length > 0) {
 log.info('最终目录列表', finalDirList);
 log.info(finalFileList);
 
+const lastProjectDest = path.join(process.cwd(), OUT_DIR, p.destName);
+if (fs.existsSync(lastProjectDest)) {
+    const bak_name = `${lastProjectDest}_${datetimeUtils.dateStringByFile(new Date(), false)}`;
+    fs.renameSync(lastProjectDest, bak_name);
+}
 
-/*
-tempCfg.fileList.forEach(f=>{
-    const fullName = path.join(process.cwd(), tempCfg.templatePath, f + '.k');
-    const data = fs.readFileSync(fullName);
-    const result = template.render(data.toString('utf-8'), projectConfig);
-    log.info('--->' + fullName);
-    log.info('--->' + result);
+const makeResult = utils.mkdirsSyncEx(lastProjectDest);
+if (!makeResult.ret) {
+    log.error(makeResult.msg);
+    return -2;
+}
+
+tempCfg.dirList.forEach(d => {
+    log.info('准备目录:' + d);
+    const fullPath = path.join(process.cwd(), OUT_DIR, p.destName, d);
+    const makeResult = utils.mkdirsSyncEx(fullPath);
+    if (!makeResult.ret) {
+        log.error(makeResult.msg);
+    }
 });
-*/
+
+
+
+tempCfg.fileList.forEach(f => {
+    log.info('生成文件:' + f);
+    const srcFile = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+    const destFile = path.join(process.cwd(), OUT_DIR, p.destName, f);
+    const destPath = path.dirname(destFile);
+    const makeResult = utils.mkdirsSyncEx(destPath);
+    if (!makeResult.ret) {
+        log.error(makeResult.msg);
+        return;
+    }
+    const data = fs.readFileSync(srcFile);
+    const result = template.render(data.toString('utf-8'), p.cfg.info);
+    fs.writeFileSync(destFile, result);
+});
 
 log.info('完成!!!');
