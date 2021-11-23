@@ -13,7 +13,9 @@
         "src/main.ts",
         ".prettierrc",
         ".eslintrc.js",
-        ".gitignore",
         "readme.md"
+    ],
+    "fileListByCopy": [
+        ".gitignore"
     ]
 }

@@ -6,55 +6,54 @@ const template = require('art-template');
 
 const TEMPLATE_DIR = 'template';
 const PROJECT_DIR  = 'project';
-const OUT_DIR = 'out';
+const OUT_DIR      = 'out';
 
-/** 工程目录 */
+/** 工程配置信息 */
 class XProjectConfig {
     /** 模板名称 */
-    #templateName = 'sample';
+    m_templateName = 'sample';
     /** 目标目录 */
-    #destDir = 'demo';
+    m_destDir = 'demo';
     /** 工程配置名称 */
-    #projectConfigName = 'demo.json'
+    m_projectConfigName = 'demo.json'
 
-    cfg = { config:{}, info: {}};
+    m_cfg = { config:{}, info: {}};
     constructor(paramProjectConfigName) {
-        this.#projectConfigName = paramProjectConfigName;
-        this.cfg = this.#init();
+        this.m_projectConfigName = paramProjectConfigName;
+        this.m_cfg = this._init();
     }
 
-    #init() {
-        let cfg = this.#loadConfig();
+    _init() {
+        let cfg = this._loadConfig();
         log.info(JSON.stringify(cfg, null, 2));
-        this.#destDir      = cfg.config.dest;
-        this.#templateName = cfg.config.template;
+        this.m_destDir      = cfg.config.dest;
+        this.m_templateName = cfg.config.template;
         return cfg;
     }
 
     get cfg() {
-        return this.cfg;
+        return this.m_cfg;
     }
 
     get templateName() {
-        return this.#templateName;
+        return this.m_templateName;
     }
 
     get destName() {
-        return this.#destDir;
+        return this.m_destDir;
     }
 
     get projectConfigName() {
-        return path.join(process.cwd(), PROJECT_DIR, this.#projectConfigName);
+        return path.join(process.cwd(), PROJECT_DIR, this.m_projectConfigName);
     }
 
     /**
         * 加载配置信息
-        * @return
     */
-    #loadConfig() {
+    _loadConfig() {
         let cfg = {
-            config: this.#getDefaultCfg(),
-            info  : this.#getDefaultInfo()
+            config: this._getDefaultCfg(),
+            info  : this._getDefaultInfo()
         };
 
         const config = require(this.projectConfigName);
@@ -67,17 +66,22 @@ class XProjectConfig {
         return cfg;
     }
 
-    #getDefaultCfg() {
+    _getDefaultCfg() {
         return {
             /** 模板目录 */
             template : 'ts_sample',
             /** 输出目标目录 */
             dest: 'dest',
+            /** 主类型 */
+            main_type: 'node',
+            /** 次类型 */
+            second_type: 'typescript'
         };
     }
 
-    #getDefaultInfo() {
+    _getDefaultInfo() {
         let   d     = new Date();
+        // 缺省的日期
         const year  = `${d.getFullYear()}`.padStart(4, 0);
         const month = `${d.getMonth() +1 }`.padStart(2, 0);
         const day   = `${d.getDate()}`.padStart(2,0);
@@ -97,69 +101,136 @@ class XProjectConfig {
     }
 }
 
-let p = new XProjectConfig('demo.json');
+let projectConfig = new XProjectConfig('demo.json');
 
 /** 模板配置文件名名称 */
 const TEMPLATE_CONFIG_NAME = 'template.json';
+
+/** 模板配置信息类 */
 class XTemplateConfig {
-    /**
-     * @type {string[]} 文件列表
-     */
-    #fileList = [];
-    /**
-     * @type {string[]} 目录列表
-     */
-    #dirList = [];
+    /** @type {string[]} 文件列表 */
+    m_fileList = [];
+    /** @type {string[]} 目录列表 */
+    m_dirList = [];
+    /** @type {string[]} 仅复制文件列表 */
+    m_fileListByCopy = [];
+    /** @type {string[]} 多余重复的文件 */
+    m_overFile = [];
+    /** @type {string[]} 多余重复的目录 */
+    m_overDir = [];
     /** 模板的根目录 */
-    #templatePath = './template';
+    m_templatePath = './template';
 
     constructor(paramTemplatePath) {
-        this.#templatePath = paramTemplatePath || './template';
-        this.#init();
+        this.m_templatePath = paramTemplatePath || './template';
+        this._init();
     }
 
     get fileList() {
-        return this.#fileList;
+        return this.m_fileList;
     }
 
     get dirList() {
-        return this.#dirList;
+        return this.m_dirList;
+    }
+
+    get fileListByCopy() {
+        return this.m_fileListByCopy;
     }
 
     get templatePath() {
-        return this.#templatePath;
+        return this.m_templatePath;
+    }
+
+    get overFile() {
+        return this.m_overFile;
+    }
+
+    get overDir() {
+        return this.m_overDir;
+    }
+
+    get hasOver() {
+        return this.m_overDir.length > 0 || this.m_overFile.length > 0;
     }
 
     get templateConfigName() {
-        return path.join(process.cwd(), TEMPLATE_DIR, this.#templatePath, TEMPLATE_CONFIG_NAME);
+        return path.join(process.cwd(), TEMPLATE_DIR, this.m_templatePath, TEMPLATE_CONFIG_NAME);
     }
     /**
      * 加载配置信息
-     * @return {{dirList: string[], fileList: string[]}}
+     * @return {{dirList: string[], fileList: string[], fileListByCopy: string[]}}
      */
-    #loadConfig() {
+    _loadConfig() {
         // log.info('...>>' + this.templateConfigName);
         return require(this.templateConfigName);
     }
 
-    #init() {
-        const cfg = this.#loadConfig();
-        this.#dirList = [];
-        this.#fileList = [];
+    _init() {
+        const cfg = this._loadConfig();
 
-        cfg?.dirList?.forEach(p => this.#dirList.push(p));
-        cfg?.fileList?.forEach(f => this.#fileList.push(f));
+        this.m_dirList        = [];
+        this.m_fileList       = [];
+        this.m_fileListByCopy = [];
+        this.m_overDir        = [];
+        this.m_overFile       = [];
 
-        // log.info(JSON.stringify(cfg, null, 2));
-        log.info(this.#dirList);
-        log.info(this.#fileList);
+        /** @type {Set<string>} */
+        let fileSet = new Set();
+        /** @type {Set<string>} */
+        let dirSet = new Set();
+
+
+        cfg?.dirList?.forEach(d => {
+            const dd = d.trim();
+            if (dirSet.has(dd)) {
+                this.m_overDir.push(dd);
+            } else {
+                this.m_dirList.push(dd);
+                dirSet.add(dd);
+            }
+        });
+
+        cfg?.fileList?.forEach( f => {
+            const ff = f.trim();
+            if (fileSet.has(ff)) {
+                this.m_overFile.push(ff);
+            } else {
+                this.m_fileList.push(ff);
+                fileSet.add(ff);
+            }
+        });
+
+        cfg?.fileListByCopy?.forEach( f => {
+            const ff = f.trim();
+            if (fileSet.has(ff)) {
+                this.m_overFile.push(ff);
+            } else {
+                this.m_fileListByCopy.push(ff);
+                fileSet.add(ff);
+            }
+        });
+
+        log.info('目录列表:', this.m_dirList);
+        log.info('要过滤文件列表:', this.m_fileList);
+        log.info('仅复制文件列表:', this.m_fileListByCopy);
+        if (this.m_overDir.length > 0) {
+            log.info('重复的目录列表:', this.m_overDir);
+        }
+
+        if (this.m_overFile.length > 0) {
+            log.info('重复的文件列表:', this.m_overFile);
+        }
     }
 }
 
-let tempCfg = new XTemplateConfig(p.templateName);
+let tempCfg = new XTemplateConfig(projectConfig.templateName);
 
-const projectConfig = require('./project/demo.json');
-log.info('--->' + JSON.stringify(projectConfig, null, 2));
+if (tempCfg.hasOver) {
+    log.error("存在重复的文件或目录！");
+    return -3;
+}
+
 
 /** @type {string[]} 不存在的文件列表 */
 let notExistFile = [];
@@ -176,6 +247,17 @@ tempCfg.fileList.forEach(f => {
         notExistFile.push(f);
     }
 });
+
+
+tempCfg.fileListByCopy.forEach(f => {
+    const fullFileName = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+    if (fs.existsSync(fullFileName)) {
+        finalFileList.push(fullFileName);
+    } else {
+        notExistFile.push(f);
+    }
+});
+
 
 tempCfg.dirList.forEach(d => {
     const fullPath = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, d);
@@ -199,10 +281,10 @@ if (notExistDir.length > 0 || notExistFile.length > 0) {
     return -1;
 }
 
-log.info('最终目录列表', finalDirList);
-log.info(finalFileList);
+log.info('最终目录列表：\n', finalDirList);
+log.info('最终文件列表：\n', finalFileList);
 
-const lastProjectDest = path.join(process.cwd(), OUT_DIR, p.destName);
+const lastProjectDest = path.join(process.cwd(), OUT_DIR, projectConfig.destName);
 if (fs.existsSync(lastProjectDest)) {
     const bak_name = `${lastProjectDest}_${datetimeUtils.dateStringByFile(new Date(), false)}`;
     fs.renameSync(lastProjectDest, bak_name);
@@ -216,8 +298,10 @@ if (!makeResult.ret) {
 
 tempCfg.dirList.forEach(d => {
     log.info('准备目录:' + d);
-    const fullPath = path.join(process.cwd(), OUT_DIR, p.destName, d);
+
+    const fullPath   = path.join(process.cwd(), OUT_DIR, projectConfig.destName, d);
     const makeResult = utils.mkdirsSyncEx(fullPath);
+
     if (!makeResult.ret) {
         log.error(makeResult.msg);
     }
@@ -226,18 +310,28 @@ tempCfg.dirList.forEach(d => {
 
 
 tempCfg.fileList.forEach(f => {
-    log.info('生成文件:' + f);
-    const srcFile = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
-    const destFile = path.join(process.cwd(), OUT_DIR, p.destName, f);
-    const destPath = path.dirname(destFile);
+    log.info('过滤文件:' + f);
+
+    const srcFile    = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+    const destFile   = path.join(process.cwd(), OUT_DIR, projectConfig.destName, f);
+    const destPath   = path.dirname(destFile);
     const makeResult = utils.mkdirsSyncEx(destPath);
+
     if (!makeResult.ret) {
         log.error(makeResult.msg);
         return;
     }
     const data = fs.readFileSync(srcFile);
-    const result = template.render(data.toString('utf-8'), p.cfg.info);
+    const result = template.render(data.toString('utf-8'), projectConfig.m_cfg.info);
     fs.writeFileSync(destFile, result);
 });
+
+tempCfg.fileListByCopy.forEach(f => {
+    log.info('复制文件:' + f);
+    const srcFile    = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+    const destFile   = path.join(process.cwd(), OUT_DIR, projectConfig.destName, f);
+    fs.copyFileSync(srcFile, destFile);
+});
+
 
 log.info('完成!!!');
