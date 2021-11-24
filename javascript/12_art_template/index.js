@@ -1,12 +1,15 @@
-const { getLogger, datetimeUtils, utils } = require('xmcommon');
+const { getLogger, datetimeUtils, utils, XCommonRet } = require('xmcommon');
 const log = getLogger(__filename);
 const path = require('path');
 const fs = require('fs');
 const template = require('art-template');
+const { Command } = require('commander');
 
 const TEMPLATE_DIR = 'template';
 const PROJECT_DIR  = 'project';
 const OUT_DIR      = 'out';
+
+const ret = new XCommonRet();
 
 /** 工程配置信息 */
 class XProjectConfig {
@@ -19,8 +22,19 @@ class XProjectConfig {
 
     m_cfg = { config:{}, info: {}};
     constructor(paramProjectConfigName) {
-        this.m_projectConfigName = paramProjectConfigName;
-        this.m_cfg = this._init();
+        let ext = path.extname(paramProjectConfigName);
+        if (utils.isNull(ext) || ext === '' ) {
+            this.m_projectConfigName = paramProjectConfigName + '.json';
+        } else {
+            this.m_projectConfigName = paramProjectConfigName;
+        }
+        const fullName = XProjectConfig._getFullProjectConfigName(this.m_projectConfigName);
+        if (!fs.existsSync(fullName)) {
+            ret.setError(-1, `${paramProjectConfigName}对应的文件名为${fullName}的文件不存在!`);
+        }
+        else {
+            this.m_cfg = this._init();
+        }
     }
 
     _init() {
@@ -45,6 +59,10 @@ class XProjectConfig {
 
     get projectConfigName() {
         return path.join(process.cwd(), PROJECT_DIR, this.m_projectConfigName);
+    }
+
+    static _getFullProjectConfigName(paramConfigName) {
+        return path.join(process.cwd(), PROJECT_DIR, paramConfigName);
     }
 
     /**
@@ -100,8 +118,6 @@ class XProjectConfig {
         }
     }
 }
-
-let projectConfig = new XProjectConfig('demo.json');
 
 /** 模板配置文件名名称 */
 const TEMPLATE_CONFIG_NAME = 'template.json';
@@ -214,6 +230,7 @@ class XTemplateConfig {
         log.info('目录列表:', this.m_dirList);
         log.info('要过滤文件列表:', this.m_fileList);
         log.info('仅复制文件列表:', this.m_fileListByCopy);
+
         if (this.m_overDir.length > 0) {
             log.info('重复的目录列表:', this.m_overDir);
         }
@@ -224,114 +241,160 @@ class XTemplateConfig {
     }
 }
 
-let tempCfg = new XTemplateConfig(projectConfig.templateName);
 
-if (tempCfg.hasOver) {
-    log.error("存在重复的文件或目录！");
-    return -3;
-}
+async function main() {
 
+    const program = new Command();
+    program.version('0.0.1', '-v, --version', '显示当前版本号')
+    .argument('<project_name>', '指创建一个指定project目录下指定工程配置的项目名称')
+    .action(async (project_name) => {
+        return await createProject(project_name);
+    }).exitOverride((err)=>{
+        if(err) {
+            ret.setError(-9, String(err));
+        }
+    });
 
-/** @type {string[]} 不存在的文件列表 */
-let notExistFile = [];
-let notExistDir = [];
-/** @type {string[]} 最终的文件列表 */
-let finalFileList = [];
-let finalDirList = [];
-
-tempCfg.fileList.forEach(f => {
-    const fullFileName = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
-    if (fs.existsSync(fullFileName)) {
-        finalFileList.push(fullFileName);
+    await program.parseAsync(process.argv);
+    if (ret.err !== 0) {
+        log.error(ret.getErrorInfo());
+        process.exitCode = ret.err;
     } else {
-        notExistFile.push(f);
+        process.exitCode = 0;
     }
-});
 
 
-tempCfg.fileListByCopy.forEach(f => {
-    const fullFileName = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
-    if (fs.existsSync(fullFileName)) {
-        finalFileList.push(fullFileName);
-    } else {
-        notExistFile.push(f);
+    // let opts = program.opts();
+    // if (opts.help) {
+    //     log.info(opts);
+    // } else {
+    //     log.info(opts);
+    // }
+    return 0;
+
+}
+
+async function createProject(paramProjectName) {
+
+    let projectConfig = new XProjectConfig(paramProjectName);
+    if (ret.isNotOK) {
+        return ret.err;
     }
-});
 
+    let tempCfg = new XTemplateConfig(projectConfig.templateName);
 
-tempCfg.dirList.forEach(d => {
-    const fullPath = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, d);
-    if (fs.existsSync(fullPath)) {
-        finalDirList.push(fullPath);
-    } else {
-        notExistDir.push(d);
+    if (tempCfg.hasOver) {
+        ret.setError(-3, "存在重复的文件或目录！");
+        log.error();
+        return ret.err;
     }
-});
 
 
-if (notExistFile.length > 0) {
-    log.info('模板中，下列文件不存在\n fileList:', JSON.stringify(notExistFile, null, 2));
-}
+    /** @type {string[]} 不存在的文件列表 */
+    let notExistFile = [];
+    let notExistDir = [];
+    /** @type {string[]} 最终的文件列表 */
+    let finalFileList = [];
+    let finalDirList = [];
 
-if (notExistDir.length > 0) {
-    log.info('模板中，下列目录不存在\n dirList:', JSON.stringify(notExistDir, null, 2));
-}
+    tempCfg.fileList.forEach(f => {
+        const fullFileName = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+        if (fs.existsSync(fullFileName)) {
+            finalFileList.push(fullFileName);
+        } else {
+            notExistFile.push(f);
+        }
+    });
 
-if (notExistDir.length > 0 || notExistFile.length > 0) {
-    return -1;
-}
 
-log.info('最终目录列表：\n', finalDirList);
-log.info('最终文件列表：\n', finalFileList);
+    tempCfg.fileListByCopy.forEach(f => {
+        const fullFileName = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+        if (fs.existsSync(fullFileName)) {
+            finalFileList.push(fullFileName);
+        } else {
+            notExistFile.push(f);
+        }
+    });
 
-const lastProjectDest = path.join(process.cwd(), OUT_DIR, projectConfig.destName);
-if (fs.existsSync(lastProjectDest)) {
-    const bak_name = `${lastProjectDest}_${datetimeUtils.dateStringByFile(new Date(), false)}`;
-    fs.renameSync(lastProjectDest, bak_name);
-}
 
-const makeResult = utils.mkdirsSyncEx(lastProjectDest);
-if (!makeResult.ret) {
-    log.error(makeResult.msg);
-    return -2;
-}
+    tempCfg.dirList.forEach(d => {
+        const fullPath = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, d);
+        if (fs.existsSync(fullPath)) {
+            finalDirList.push(fullPath);
+        } else {
+            notExistDir.push(d);
+        }
+    });
 
-tempCfg.dirList.forEach(d => {
-    log.info('准备目录:' + d);
 
-    const fullPath   = path.join(process.cwd(), OUT_DIR, projectConfig.destName, d);
-    const makeResult = utils.mkdirsSyncEx(fullPath);
+    if (notExistFile.length > 0) {
+        log.info('模板中，下列文件不存在\n fileList:', JSON.stringify(notExistFile, null, 2));
+    }
 
+    if (notExistDir.length > 0) {
+        log.info('模板中，下列目录不存在\n dirList:', JSON.stringify(notExistDir, null, 2));
+    }
+
+    if (notExistDir.length > 0 || notExistFile.length > 0) {
+        ret.setError(-1, '发现有不存在的文件或目录');
+        return ret.err;
+    }
+
+    log.info('最终目录列表：\n', finalDirList);
+    log.info('最终文件列表：\n', finalFileList);
+
+    const lastProjectDest = path.join(process.cwd(), OUT_DIR, projectConfig.destName);
+    if (fs.existsSync(lastProjectDest)) {
+        const bak_name = `${lastProjectDest}_${datetimeUtils.dateStringByFile(new Date(), false)}`;
+        fs.renameSync(lastProjectDest, bak_name);
+    }
+
+    const makeResult = utils.mkdirsSyncEx(lastProjectDest);
     if (!makeResult.ret) {
-        log.error(makeResult.msg);
+        ret.setError(-2, makeResult.msg);
+        return ret.err;
     }
-});
+
+    tempCfg.dirList.forEach(d => {
+        log.info('准备目录:' + d);
+
+        const fullPath = path.join(process.cwd(), OUT_DIR, projectConfig.destName, d);
+        const makeResult = utils.mkdirsSyncEx(fullPath);
+
+        if (!makeResult.ret) {
+            ret.setError(-4, makeResult.msg);
+            log.error(makeResult.msg);
+        }
+    });
 
 
 
-tempCfg.fileList.forEach(f => {
-    log.info('过滤文件:' + f);
+    tempCfg.fileList.forEach(f => {
+        log.info('过滤文件:' + f);
 
-    const srcFile    = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
-    const destFile   = path.join(process.cwd(), OUT_DIR, projectConfig.destName, f);
-    const destPath   = path.dirname(destFile);
-    const makeResult = utils.mkdirsSyncEx(destPath);
+        const srcFile = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+        const destFile = path.join(process.cwd(), OUT_DIR, projectConfig.destName, f);
+        const destPath = path.dirname(destFile);
+        const makeResult = utils.mkdirsSyncEx(destPath);
 
-    if (!makeResult.ret) {
-        log.error(makeResult.msg);
-        return;
-    }
-    const data = fs.readFileSync(srcFile);
-    const result = template.render(data.toString('utf-8'), projectConfig.m_cfg.info);
-    fs.writeFileSync(destFile, result);
-});
+        if (!makeResult.ret) {
+            ret.setError(-5, makeResult.msg);
+            log.error(makeResult.msg);
+            return;
+        }
+        const data = fs.readFileSync(srcFile);
+        const result = template.render(data.toString('utf-8'), projectConfig.m_cfg.info);
+        fs.writeFileSync(destFile, result);
+    });
 
-tempCfg.fileListByCopy.forEach(f => {
-    log.info('复制文件:' + f);
-    const srcFile    = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
-    const destFile   = path.join(process.cwd(), OUT_DIR, projectConfig.destName, f);
-    fs.copyFileSync(srcFile, destFile);
-});
+    tempCfg.fileListByCopy.forEach(f => {
+        log.info('复制文件:' + f);
+        const srcFile = path.join(process.cwd(), TEMPLATE_DIR, tempCfg.templatePath, f);
+        const destFile = path.join(process.cwd(), OUT_DIR, projectConfig.destName, f);
+        fs.copyFileSync(srcFile, destFile);
+    });
 
+    return 0;
+}
 
-log.info('完成!!!');
+main();
