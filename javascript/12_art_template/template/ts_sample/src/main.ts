@@ -1,6 +1,6 @@
 /*************************************************************************
- * Copyright(c) 2017-{{year}}, 深圳市链融科技股份有限公司
- * Shenzhen Lianrong Technology Co., Ltd.
+ * Copyright(c) 2017-{{year}}, xxxx有限公司
+ * xxxxxxxlimt compnay
  * All rights reserved.
  *
  * @filename main.ts
