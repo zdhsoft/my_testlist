@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { CatModule } from './cat/cat.module';
+import { FileModule } from './file/file.module';
 
 @Module({
     imports: [
@@ -20,6 +21,7 @@ import { CatModule } from './cat/cat.module';
         }),
         UserModule,
         CatModule,
+        FileModule,
     ],
     controllers: [AppController],
     providers: [AppService],

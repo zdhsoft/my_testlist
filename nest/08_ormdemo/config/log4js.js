@@ -5,37 +5,37 @@ module.exports = exports = {
     replaceConsole: true,
     appenders: {
         log: {
-            type       : 'file',             // 如果需要区分日期的，这个值可以改为datefile
-            filename   : './logs/log.log',
-            maxLogSize : 1024 * 50,
-            encoding   : 'utf-8',
-            backups    : 100,
-            compress   : true,  // 如果需要压缩，这个值改为true
+            type: 'file', // 如果需要区分日期的，这个值可以改为datefile
+            filename: './logs/log.log',
+            maxLogSize: 1024 * 50,
+            encoding: 'utf-8',
+            backups: 100,
+            compress: true, // 如果需要压缩，这个值改为true
             keepFileExt: true,
-            layout     : {
-                type: 'messagePassThrough'  //是直接跳过头部生成，我这里已经有自定义的头部生成
-            }
+            layout: {
+                type: 'messagePassThrough', //是直接跳过头部生成，我这里已经有自定义的头部生成
+            },
         },
         err: {
-            type       : 'file',
-            filename   : './logs/err.log',
-            maxLogSize : 1024 * 50,
-            encoding   : 'utf-8',
-            backups    : 100,
-            compress   : true,
+            type: 'file',
+            filename: './logs/err.log',
+            maxLogSize: 1024 * 50,
+            encoding: 'utf-8',
+            backups: 100,
+            compress: true,
             keepFileExt: true,
-            layout     : {
-                type: 'messagePassThrough'
-            }
+            layout: {
+                type: 'messagePassThrough',
+            },
         },
         console: {
             type: 'stdout',
-            layout: { type: "messagePassThrough"}
-        }
+            layout: { type: 'messagePassThrough' },
+        },
     },
     categories: {
         default: { appenders: ['log'], level: 'ALL' },
-        error  : { appenders: ['err'], level: 'ALL' },
-        console: { appenders: ['console'], level: 'ALL' }
-    }
-}
+        error: { appenders: ['err'], level: 'ALL' },
+        console: { appenders: ['console'], level: 'ALL' },
+    },
+};

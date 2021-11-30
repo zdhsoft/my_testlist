@@ -1,4 +1,10 @@
-import { Controller } from '@nestjs/common';
+import { Controller, HttpException, Post } from '@nestjs/common';
 
 @Controller('cat')
-export class CatController {}
+export class CatController {
+    @Post('count')
+    async Count() {
+        // throw new Error('aaaaaaaaaaaaa');
+        throw new HttpException('aaaaaaaaaaaaa', 399);
+    }
+}
