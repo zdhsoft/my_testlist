@@ -127,7 +127,6 @@ class XLogFor4js implements ILog {
  * @param paramConfigName 配置文件名（js文件）
  */
 function InitLog(paramConfigName: string) {
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const cfg = require(paramConfigName);
     log4js.configure(cfg);
 

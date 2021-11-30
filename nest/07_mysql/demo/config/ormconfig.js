@@ -1,0 +1,17 @@
+module.exports = exports = {
+    type: 'mysql',
+    host: 'localhost',
+    port: 3306,
+    username: 'game',
+    password: 'game123',
+    database: 'orm',
+    entities: ['src/orm/entity/*.ts'],
+    migrations: ['src/orm/migration/*.ts'],
+    subscribers: ['src/orm/subscriber/*.ts'],
+    timezone: 'UTC',
+    charset: 'utf8mb4',
+    multipleStatements: true,
+    dropSchema: false,
+    synchronize: false,
+    logging: true,
+};
