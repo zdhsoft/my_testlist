@@ -43,10 +43,7 @@ const styles = {
  * @param paramColorStyle 日志颜色
  * @return 上色后的日志
  */
-function colored(
-    msg: { head: string; info: string },
-    paramColorStyle?: number[],
-): string {
+function colored(msg: { head: string; info: string }, paramColorStyle?: number[]): string {
     if (paramColorStyle) {
         return `\x1B[${paramColorStyle[0]}m${msg.head}\x1B[${paramColorStyle[1]}m ${msg.info}`;
     } else {
@@ -127,6 +124,7 @@ class XLogFor4js implements ILog {
  * @param paramConfigName 配置文件名（js文件）
  */
 function InitLog(paramConfigName: string) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     const cfg = require(paramConfigName);
     log4js.configure(cfg);
 

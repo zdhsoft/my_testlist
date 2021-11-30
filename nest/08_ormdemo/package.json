@@ -24,10 +24,13 @@
     "@nestjs/common": "^8.2.3",
     "@nestjs/core": "^8.2.3",
     "@nestjs/platform-express": "^8.2.3",
+    "@nestjs/typeorm": "^8.0.2",
     "log4js": "^6.3.0",
+    "mysql2": "^2.3.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0",
+    "typeorm": "^0.2.41",
     "xmcommon": "^0.9.12"
   },
   "devDependencies": {
