@@ -136,7 +136,7 @@ function InitLog(paramConfigName: string) {
     LogManager.setCreateLog((paramTag: string) => new XLogFor4js(paramTag));
     LogManager.setDefaultLog(new XLogFor4js('default'));
 
-    const conLog = LogManager.getLogger('console');
+    const conLog = LogManager.getLogger('控制台');
 
     // 绑定控制台的日志
     console.log = conLog.info.bind(conLog);

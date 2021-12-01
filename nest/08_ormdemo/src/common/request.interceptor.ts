@@ -8,7 +8,7 @@ import { tap, map } from 'rxjs/operators';
 import { getLogger, XCommonRet } from 'xmcommon';
 import { IHttpRet } from './ret_utils';
 
-const log = getLogger(__filename);
+const log = getLogger('拦截器');
 let requestSeq = 0;
 
 @Injectable()
@@ -16,9 +16,6 @@ export class RequestInterceptor implements NestInterceptor {
     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
         const start = Date.now(); // 请求开始时间
         const host = context.switchToHttp();
-        // const ctx = host.switchToHttp();
-        // const response = ctx.getResponse();
-        // const request = ctx.getRequest();
 
         const request = host.getRequest();
         const seq = requestSeq++;
@@ -26,16 +23,17 @@ export class RequestInterceptor implements NestInterceptor {
         log.info(`[${seq}]==> ${urlInfo}`);
         return next
             .handle()
-            .pipe(tap(() => log.info(`[${seq}]<== ${urlInfo} ${Date.now() - start} ms`)))
             .pipe(
                 map((data) => {
                     if (data instanceof XCommonRet) {
+                        log.info('ret is XCommonRet');
                         return {
                             ret: data.err,
                             msg: data.msg,
                             data: data.data,
                         };
                     } else if (data === undefined) {
+                        log.error('--------- data is undefine!');
                         return data;
                     } else {
                         const r: IHttpRet = {
@@ -47,6 +45,7 @@ export class RequestInterceptor implements NestInterceptor {
                         return data;
                     }
                 }),
-            );
+            )
+            .pipe(tap(() => log.info(`[${seq}]<== ${urlInfo} ${Date.now() - start} ms`)));
     }
 }

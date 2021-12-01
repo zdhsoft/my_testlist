@@ -1,4 +1,4 @@
-import { XCommonRet } from 'xmcommon';
+import { utils, XCommonRet } from 'xmcommon';
 
 export interface IHttpRet {
     ret: number;
@@ -17,10 +17,11 @@ export class RetUtils {
     }
 
     public static byCommonRet(paramRet: XCommonRet): IHttpRet {
+        const data = utils.isNull(paramRet.data) ? undefined : paramRet.data;
         return {
             ret: paramRet.err,
             msg: paramRet.msg,
-            data: paramRet.data,
+            data,
         };
     }
 }
