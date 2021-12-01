@@ -30,8 +30,7 @@ export class UploadController {
 
     @Post('download')
     public download(@Res() res: Response) {
-        const filePath =
-            'd:/temp/测试.zip';
+        const filePath = 'd:/temp/测试.zip';
         res.download(filePath, (err) => {
             if (!err) {
                 console.log('success', 'download', filePath);
@@ -45,8 +44,7 @@ export class UploadController {
 
     @Post('view')
     public view(@Res() res: Response) {
-        const filePath =
-            'd:/temp/测试.jpg';
+        const filePath = 'd:/temp/测试.jpg';
         res.sendFile(filePath, (err) => {
             if (!err) {
                 console.log('success', 'view', filePath);
