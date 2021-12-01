@@ -12,7 +12,6 @@ export class FileController {
      * - 使用这个示例，要安装包: npm install @types/multer --save-dev
      */
     @Post('up')
-    @HttpCode(HttpStatus.OK)
     @UseInterceptors(FileInterceptor('file'))
     public up(@UploadedFile() file: Express.Multer.File, @Body() body) {
         const r = new XCommonRet<number>();
@@ -29,7 +28,6 @@ export class FileController {
      * - 使用这个示例，要安装包: npm install @types/multer --save-dev
      */
     @Post('upmult')
-    @HttpCode(HttpStatus.OK)
     @UseInterceptors(FilesInterceptor('file'))
     public upMult(@UploadedFiles() files: Express.Multer.File[], @Body() body) {
         const r = new XCommonRet<number>();
@@ -49,7 +47,6 @@ export class FileController {
      * - 使用这个示例，要安装包: npm install @types/multer --save-dev
      */
     @Post('upmultex')
-    @HttpCode(HttpStatus.OK)
     @UseInterceptors(FileFieldsInterceptor([{ name: 'file' }, { name: 'pic' }]))
     public upMultEx(@UploadedFiles() files: { file?: Express.Multer.File[]; pic?: Express.Multer.File[] }, @Body() body) {
         const r = new XCommonRet<number>();
@@ -75,7 +72,6 @@ export class FileController {
      * - 使用这个示例，要安装包: npm install @types/multer --save-dev
      */
     @Post('upany')
-    @HttpCode(HttpStatus.OK)
     @UseInterceptors(AnyFilesInterceptor())
     public upAny(@UploadedFiles() files: Express.Multer.File[], @Body() body) {
         const r = new XCommonRet<number>();
@@ -93,7 +89,6 @@ export class FileController {
 
     /** 文件下载示例 */
     @Post('download')
-    @HttpCode(HttpStatus.OK)
     public async download(@Res() res: Response) {
         const filePath = 'D:/temp/测试.zip';
         const [err] = await utils.WaitClassFunctionEx(res, 'download', filePath);
@@ -110,7 +105,6 @@ export class FileController {
     }
     /** 文件查看 */
     @Post('view')
-    @HttpCode(HttpStatus.OK)
     public async view(@Res() res: Response) {
         const filePath = 'D:/temp/测试.png';
         const [err] = await utils.WaitClassFunctionEx(res, 'sendFile', filePath);
