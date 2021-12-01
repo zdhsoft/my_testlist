@@ -26,7 +26,7 @@ export class RequestInterceptor implements NestInterceptor {
             .pipe(
                 map((data) => {
                     if (data instanceof XCommonRet) {
-                        log.info('ret is XCommonRet');
+                        // log.info('ret is XCommonRet');
                         return {
                             ret: data.err,
                             msg: data.msg,

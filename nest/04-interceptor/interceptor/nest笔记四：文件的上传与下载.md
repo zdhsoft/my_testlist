@@ -10,6 +10,97 @@ nest是基于express之上的，所以，其文件上传和下载的功能，实
 - Multer 无法处理非多部分格式（multipart/form-data）的数据
 - 使用之前，先安装定义包：$ npm i -D @types/multer
 - 官方参考：https://docs.nestjs.com/techniques/file-upload
+
+### 文件上传 nest有四种模式
+- 文件上传虽然有多种模式，但是提交的文件要求是一个字段对一个文件，否则不能识别
+如下图：虽然file字段对应多个文件，上传后这个字段不能被识别
+
+#### 单个字段单一文件上传
+- 例如form-data里面的 file字段上传了一个文件
+```typescript
+    @Post('up')
+    @HttpCode(HttpStatus.OK)
+    @UseInterceptors(FileInterceptor('file'))
+    public up(@UploadedFile() file: Express.Multer.File, @Body() body) {
+        const r = new XCommonRet<number>();
+        do {
+            //
+            delete file.buffer;
+            log.info(JSON.stringify(file, null, 2));
+            log.info(JSON.stringify(body, null, 2));
+        } while (false);
+        return r;
+    }
+```
+#### 单个字段多文件上传
+- 例如form-data里面的，有多个file字段，每个字段对应一个文件
+- 注意，这个时候 装饰器FileInterceptor => FilesInterceptor， UploadedFile => UploadedFiles 都是复数的形式
+```typescript
+   @Post('upmult')
+    @HttpCode(HttpStatus.OK)
+    @UseInterceptors(FilesInterceptor('file'))
+    public upMult(@UploadedFiles() files: Express.Multer.File[], @Body() body) {
+        const r = new XCommonRet<number>();
+        do {
+            let cnt = 0;
+            for (const f of files) {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            }
+            log.info(JSON.stringify(body, null, 2));
+        } while (false);
+        return r;
+    }
+```
+#### 多个字段，每个字段多文件上传
+- 例如form-data里面的，有多个file字段和多个pic字段，每个字段对应一个文件
+- 注意，这个时候，使用的装饰器又所不同 FilesInterceptor => FileFieldsInterceptor，UploadedFiles还是不变，不过配置类型变了 { file?: Express.Multer.File[]; pic?: Express.Multer.File[] }
+
+```typescript
+    @Post('upmultex')
+    @HttpCode(HttpStatus.OK)
+    @UseInterceptors(FileFieldsInterceptor([{ name: 'file' }, { name: 'pic' }]))
+    public upMultEx(@UploadedFiles() files: { file?: Express.Multer.File[]; pic?: Express.Multer.File[] }, @Body() body) {
+        const r = new XCommonRet<number>();
+        do {
+            let cnt = 0;
+            files?.file?.forEach((f) => {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            });
+            files?.pic?.forEach((f) => {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            });
+            log.info(JSON.stringify(body, null, 2));
+        } while (false);
+        return r;
+    }
+```
+#### 任意字段文件上传
+- 顾名思义所有的上传的字段，是文件的，都能够取到
+- 这个时候装饰器变成了AnyFilesInterceptor
+```typescript
+   @Post('upany')
+    @HttpCode(HttpStatus.OK)
+    @UseInterceptors(AnyFilesInterceptor())
+    public upAny(@UploadedFiles() files: Express.Multer.File[], @Body() body) {
+        const r = new XCommonRet<number>();
+        do {
+            let cnt = 0;
+            for (const f of files) {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            }
+            log.info(JSON.stringify(body, null, 2));
+        } while (false);
+        return r;
+    }
+```
 ## 实现的代码
 - 下面是实现的具体代码
 ```typescript

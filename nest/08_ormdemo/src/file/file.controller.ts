@@ -1,6 +1,6 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Res, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, HttpCode, HttpStatus, Post, Res, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { Response } from 'express';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor, FileFieldsInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { getLogger, utils, XCommonRet } from 'xmcommon';
 import { RetUtils } from 'src/common/ret_utils';
 
@@ -8,20 +8,89 @@ const log = getLogger(__filename);
 @Controller('file')
 export class FileController {
     /**
-     * 文件上传示例
+     * 文件上传示例 单个文件上传，上传的字段是file
      * - 使用这个示例，要安装包: npm install @types/multer --save-dev
      */
     @Post('up')
+    @HttpCode(HttpStatus.OK)
     @UseInterceptors(FileInterceptor('file'))
     public up(@UploadedFile() file: Express.Multer.File, @Body() body) {
         const r = new XCommonRet<number>();
         do {
             //
-            console.log(file);
-            console.log(body);
+            delete file.buffer;
+            log.info(JSON.stringify(file, null, 2));
+            log.info(JSON.stringify(body, null, 2));
         } while (false);
         return r;
     }
+    /**
+     * 多文件上传示例, 会存在多个file的文件字段。
+     * - 使用这个示例，要安装包: npm install @types/multer --save-dev
+     */
+    @Post('upmult')
+    @HttpCode(HttpStatus.OK)
+    @UseInterceptors(FilesInterceptor('file'))
+    public upMult(@UploadedFiles() files: Express.Multer.File[], @Body() body) {
+        const r = new XCommonRet<number>();
+        do {
+            let cnt = 0;
+            for (const f of files) {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            }
+            log.info(JSON.stringify(body, null, 2));
+        } while (false);
+        return r;
+    }
+    /**
+     * 多文件上传示例, 会存在多个file的文件字段和多个pic字段
+     * - 使用这个示例，要安装包: npm install @types/multer --save-dev
+     */
+    @Post('upmultex')
+    @HttpCode(HttpStatus.OK)
+    @UseInterceptors(FileFieldsInterceptor([{ name: 'file' }, { name: 'pic' }]))
+    public upMultEx(@UploadedFiles() files: { file?: Express.Multer.File[]; pic?: Express.Multer.File[] }, @Body() body) {
+        const r = new XCommonRet<number>();
+        do {
+            let cnt = 0;
+            files?.file?.forEach((f) => {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            });
+            files?.pic?.forEach((f) => {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            });
+            log.info(JSON.stringify(body, null, 2));
+        } while (false);
+        return r;
+    }
+
+    /**
+     * 多文件上传示例, 会存在多个file的文件字段。
+     * - 使用这个示例，要安装包: npm install @types/multer --save-dev
+     */
+    @Post('upany')
+    @HttpCode(HttpStatus.OK)
+    @UseInterceptors(AnyFilesInterceptor())
+    public upAny(@UploadedFiles() files: Express.Multer.File[], @Body() body) {
+        const r = new XCommonRet<number>();
+        do {
+            let cnt = 0;
+            for (const f of files) {
+                delete f.buffer;
+                cnt++;
+                log.info(`[${cnt}]=${JSON.stringify(f)}`);
+            }
+            log.info(JSON.stringify(body, null, 2));
+        } while (false);
+        return r;
+    }
+
     /** 文件下载示例 */
     @Post('download')
     @HttpCode(HttpStatus.OK)
