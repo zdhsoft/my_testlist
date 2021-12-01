@@ -35,6 +35,8 @@ export class RequestInterceptor implements NestInterceptor {
                             msg: data.msg,
                             data: data.data,
                         };
+                    } else if (data === undefined) {
+                        return data;
                     } else {
                         const r: IHttpRet = {
                             ret: -1,
@@ -42,7 +44,7 @@ export class RequestInterceptor implements NestInterceptor {
                             url: request.originalUrl,
                         };
                         log.error('返回错误:' + JSON.stringify(r));
-                        return r;
+                        return data;
                     }
                 }),
             );

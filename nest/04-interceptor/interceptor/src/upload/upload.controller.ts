@@ -31,7 +31,7 @@ export class UploadController {
     @Post('download')
     public download(@Res() res: Response) {
         const filePath =
-            'D:/work/svn_doc/lr/04-学习库/01-技术规范/01-开发规范/希为科技TypeScript代码规范.docx';
+            'd:/temp/测试.zip';
         res.download(filePath, (err) => {
             if (!err) {
                 console.log('success', 'download', filePath);
@@ -46,7 +46,7 @@ export class UploadController {
     @Post('view')
     public view(@Res() res: Response) {
         const filePath =
-            'D:/temp/企业微信截图_9df5fd96-30b0-4109-9b98-2fec7880fa07.png';
+            'd:/temp/测试.jpg';
         res.sendFile(filePath, (err) => {
             if (!err) {
                 console.log('success', 'view', filePath);
