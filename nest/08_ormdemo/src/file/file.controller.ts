@@ -1,6 +1,21 @@
-import { Body, Controller, HttpCode, HttpStatus, Post, Res, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    HttpCode,
+    HttpStatus,
+    Post,
+    Res,
+    UploadedFile,
+    UploadedFiles,
+    UseInterceptors,
+} from '@nestjs/common';
 import { Response } from 'express';
-import { AnyFilesInterceptor, FileFieldsInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
+import {
+    AnyFilesInterceptor,
+    FileFieldsInterceptor,
+    FileInterceptor,
+    FilesInterceptor,
+} from '@nestjs/platform-express';
 import { getLogger, utils, XCommonRet } from 'xmcommon';
 import { RetUtils } from 'src/common/ret_utils';
 
@@ -48,7 +63,10 @@ export class FileController {
      */
     @Post('upmultex')
     @UseInterceptors(FileFieldsInterceptor([{ name: 'file' }, { name: 'pic' }]))
-    public upMultEx(@UploadedFiles() files: { file?: Express.Multer.File[]; pic?: Express.Multer.File[] }, @Body() body) {
+    public upMultEx(
+        @UploadedFiles() files: { file?: Express.Multer.File[]; pic?: Express.Multer.File[] },
+        @Body() body,
+    ) {
         const r = new XCommonRet<number>();
         do {
             let cnt = 0;

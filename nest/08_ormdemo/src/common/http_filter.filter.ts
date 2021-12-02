@@ -12,7 +12,10 @@ export class HttpFilterFilter implements ExceptionFilter {
 
         const message = paramException.message;
         log.error('请求发生异常:', message);
-        const status = paramException instanceof HttpException ? (paramException as HttpException).getStatus() : HttpStatus.INTERNAL_SERVER_ERROR;
+        const status =
+            paramException instanceof HttpException
+                ? (paramException as HttpException).getStatus()
+                : HttpStatus.INTERNAL_SERVER_ERROR;
         const errorResponse = {
             msg: '请求异常:' + message,
             ret: '-1', // 自定义code
