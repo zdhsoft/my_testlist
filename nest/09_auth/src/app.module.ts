@@ -15,6 +15,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { LoginModule } from './login/login.module';
 
 @Module({
     imports: [
@@ -25,12 +28,54 @@ import { AppService } from './app.service';
             username: 'game',
             password: 'game123',
             database: 'orm',
-            entities: ['dist/**/*.entity{.ts,.js}'],
+            entities: ['dist/entify/*.js'],
             synchronize: false,
             logging: true,
         }),
+        AuthModule,
+        UserModule,
+        LoginModule,
     ],
     controllers: [AppController],
     providers: [AppService],
+    exports: [UserModule],
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3
+    3+636
 })
 export class AppModule {}
