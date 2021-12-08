@@ -8,16 +8,16 @@
  * @version: 1.0
  * ------------------------------------------------------------------------
  * version             author            reason             date
- * 1.0                 祝冬华       创建文件            2021-12-06
+ * 1.0                 祝冬华       创建文件            2021-12-08
  *************************************************************************/
 
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
 import { LoginModule } from './login/login.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
     imports: [
@@ -28,13 +28,13 @@ import { LoginModule } from './login/login.module';
             username: 'game',
             password: 'game123',
             database: 'orm',
-            entities: ['dist/entify/*.js'],
+            entities: ['dist/db/*.js'],
             synchronize: false,
             logging: true,
         }),
-        AuthModule,
-        UserModule,
         LoginModule,
+        UserModule,
+        AuthModule,
     ],
     controllers: [AppController],
     providers: [AppService],
