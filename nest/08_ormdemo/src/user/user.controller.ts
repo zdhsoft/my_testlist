@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { XCommonRet } from 'xmcommon';
 import { UserService } from './user.service';
 
@@ -8,6 +8,13 @@ export class UserController {
     @Post('all')
     // @HttpCode(200)
     async all() {
+        const r = new XCommonRet();
+        r.setData(await this.userService.findAll());
+        return r;
+    }
+    @Get('all')
+    // @HttpCode(200)
+    async all_get() {
         const r = new XCommonRet();
         r.setData(await this.userService.findAll());
         return r;

@@ -48,36 +48,34 @@ export class RequestInterceptor implements NestInterceptor {
         const urlInfo = `${req.method} ${req.url}`;
 
         log.info(`[${seq}]==> ${urlInfo}`);
-        return (
-            next
-                .handle()
-                // .pipe(
-                //     map((data) => {
-                //         /* 这里拦截POST返回的statusCode，它默认返回是201, 这里改为200 */
-                //         if (res.statusCode === HttpStatus.CREATED && req.method === 'POST') {
-                //             res.statusCode = HttpStatus.OK;
-                //         }
-                //         // 这里要求所有的请求返回，都是XCommonRet
-                //         if (data instanceof XCommonRet) {
-                //             return RetUtils.byCommonRet(data);
-                //         } else if (data === undefined) {
-                //             log.error('--------- data is undefine!');
-                //             return data;
-                //         } else {
-                //             const r: IHttpRet = {
-                //                 ret: -1,
-                //                 msg: '这个请求返回的不是XCommonRet对象！',
-                //                 url: req.originalUrl,
-                //             };
-                //             log.error('返回错误:' + JSON.stringify(r));
-                //             return data;
-                //         }
-                //     }),
-                // )
-                .pipe(
-                    // 这里打印请求处理完成的信息
-                    tap(() => log.info(`[${seq}]<== ${urlInfo} ${Date.now() - start} ms`)),
-                )
-        );
+        return next
+            .handle()
+            .pipe(
+                map((data) => {
+                    /* 这里拦截POST返回的statusCode，它默认返回是201, 这里改为200 */
+                    if (res.statusCode === HttpStatus.CREATED && req.method === 'POST') {
+                        res.statusCode = HttpStatus.OK;
+                    }
+                    // 这里要求所有的请求返回，都是XCommonRet
+                    if (data instanceof XCommonRet) {
+                        return RetUtils.byCommonRet(data);
+                    } else if (data === undefined) {
+                        log.error('--------- data is undefine!');
+                        return data;
+                    } else {
+                        const r: IHttpRet = {
+                            ret: -1,
+                            msg: '这个请求返回的不是XCommonRet对象！',
+                            url: req.originalUrl,
+                        };
+                        log.error('返回错误:' + JSON.stringify(r));
+                        return data;
+                    }
+                }),
+            )
+            .pipe(
+                // 这里打印请求处理完成的信息
+                tap(() => log.info(`[${seq}]<== ${urlInfo} ${Date.now() - start} ms`)),
+            );
     }
 }
