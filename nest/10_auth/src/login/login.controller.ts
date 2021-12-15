@@ -1,11 +1,18 @@
-import { Controller, Get, Post, Query, Req, Res } from '@nestjs/common';
-import { Request, Response } from 'express';
+import { Controller, Get, Post, Query, UseGuards, Request } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
+import { LocalGuard } from 'src/common/local.guard';
 @Controller('login')
 export class LoginController {
     constructor(private readonly userService: UserService) {
         //
     }
+
+    @UseGuards(LocalGuard)
+    @Post('/login')
+    async doLogin(@Request() req) {
+        return req.user;
+    }
+
     @Post('/info')
     info_post() {
         return 'post';

@@ -1,5 +1,6 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+
 @Entity('cat', { schema: 'orm' })
 export class Cat {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
