@@ -2,7 +2,6 @@
 using namespace std;
 class Test
 {
-private:
 	int m_v1;
 	int m_v2;
 public:
