@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Query, UseGuards, Request } from '@nestjs/common';
-import { UserService } from 'src/user/user.service';
+import { UserService } from 'src/api/user/user.service';
 import { LocalGuard } from 'src/common/local.guard';
-@Controller('login')
+@Controller('api/login')
 export class LoginController {
     constructor(private readonly userService: UserService) {
         //

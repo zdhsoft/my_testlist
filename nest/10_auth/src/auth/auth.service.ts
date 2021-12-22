@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserService } from 'src/user/user.service';
+import { UserService } from 'src/api/user/user.service';
 import { getLogger, XCommonRet } from 'xmcommon';
 import { User } from 'src/db/User';
 

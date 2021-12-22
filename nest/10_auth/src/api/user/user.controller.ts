@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Query, Req, Res } from '@nestjs/common';
 import { UserService } from './user.service';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { XCommonRet, getLogger } from 'xmcommon';
 const log = getLogger(__filename);
 
-@Controller('user')
+@Controller('api/user')
 export class UserController {
     constructor(private readonly userService: UserService) {
         //
