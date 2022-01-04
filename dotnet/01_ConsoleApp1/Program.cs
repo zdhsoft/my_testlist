@@ -14,6 +14,7 @@ namespace Simple
 
     class XTest : ITest
     {
+        private const string Format = "id:{0}, name:{1}, desc:{2}";
         private int m_id;
         private string m_name;
         private string m_description;
@@ -48,7 +49,7 @@ namespace Simple
 
         public override string ToString()
         {
-            return String.Format("id:{0}, name:{1}, desc:{2}", m_id, m_name, m_description);
+            return string.Format(Format, m_id, m_name, m_description);
 
         }
     }
