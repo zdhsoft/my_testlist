@@ -15,8 +15,13 @@ namespace com.zdhsoft.test
             {
                 Console.WriteLine("[" + i + "]=" + args[i]);
             }
-            string s = Console.ReadLine();
-            Console.WriteLine("read line:" + s);
+//            string s = Console.ReadLine();
+//            Console.WriteLine("read line:" + s);
+
+            Console.WriteLine("{0} + {1} = {2}",1,2,3);
+            int m = 940;
+            int j = 73;
+            Console.WriteLine(" {0,4}\n+{1,4}\n-----\n {2,4}", m, j, m+j);
             return 0;
         }
 
