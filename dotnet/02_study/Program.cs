@@ -22,6 +22,12 @@ namespace com.zdhsoft.test
             int m = 940;
             int j = 73;
             Console.WriteLine(" {0,4}\n+{1,4}\n-----\n {2,4}", m, j, m+j);
+#if DEBUG
+            Console.WriteLine("this is debug");
+#else
+            Console.WriteLine("this is not debug");
+#endif
+
             return 0;
         }
 
