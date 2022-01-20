@@ -1,0 +1,3 @@
+D:\zdhsoft\github\my_testlist\vs2022\first_for_2022\obj\Debug\first_for_2022.njsproj.AssemblyReference.cache
+D:\zdhsoft\github\my_testlist\vs2022\first_for_2022\obj\Debug\first_for_2022.njsproj.CoreCompileInputs.cache
+D:\zdhsoft\github\my_testlist\vs2022\first_for_2022\bin\Microsoft.NodejsTools.WebRole.dll
