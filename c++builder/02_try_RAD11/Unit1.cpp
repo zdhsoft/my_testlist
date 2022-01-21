@@ -7,10 +7,15 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TForm1 *Form1;
+TForm1* Form1;
 //---------------------------------------------------------------------------
-__fastcall TForm1::TForm1(TComponent* Owner)
-	: TForm(Owner)
+__fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject* Sender)
 {
+    ShowMessage("Hello C++ Builder 11");
+    this->Caption = "hello";
+    this->Button1->Caption = "hello button";
 }
 //---------------------------------------------------------------------------
+
