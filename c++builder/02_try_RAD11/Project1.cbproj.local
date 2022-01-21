@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022/01/21 10:26:34.707,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/01/21 10:26:34.970,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/01/21 10:28:01.167,D:\zdhsoft\github\my_testlist\c++builder\02_try_RAD11\Unit1.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2022/01/21 10:28:01.167,D:\zdhsoft\github\my_testlist\c++builder\02_try_RAD11\Unit1.cpp=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/01/21 10:28:01.167,D:\zdhsoft\github\my_testlist\c++builder\02_try_RAD11\Unit1.dfm=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/01/21 10:28:04.322,D:\zdhsoft\github\my_testlist\c++builder\02_try_RAD11\Project1PCH1.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/01/21 10:28:07.347,D:\zdhsoft\github\my_testlist\c++builder\02_try_RAD11\Project1.cbproj=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
