@@ -1,0 +1,34 @@
+{
+    "name": "reg",
+    "version": "1.0.0",
+    "description": "ts project",
+    "main": "./dist/main.js",
+    "scripts": {
+        "prebuild": "rimraf dist",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "lint": "eslint \"src/**/*.ts\"",
+        "lintfix": "eslint \"src/**/*.ts\" --fix",
+        "build": "npm run lint &&tsc",
+        "formatbuild": "npm run format && npm run build"
+    },
+    "keywords": [],
+    "author": "祝冬华",
+    "license": "ts_project",
+    "devDependencies": {
+        "@types/lodash": "^4.14.178",
+        "@types/node": "^8.10.66",
+        "@typescript-eslint/eslint-plugin": "^5.8.0",
+        "@typescript-eslint/parser": "^5.8.0",
+        "eslint": "^8.5.0",
+        "eslint-config-google": "^0.14.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "prettier": "^2.5.1",
+        "prettier-eslint": "^13.0.0",
+        "typescript": "^4.5.4"
+    },
+    "engines": {
+        "node": ">=8.0.0",
+        "npm": ">=6.0.0"
+    }
+}
