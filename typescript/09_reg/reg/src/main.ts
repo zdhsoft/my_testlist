@@ -32,3 +32,4 @@ t(CommonReg.simpleDate, '20090201');
 t(CommonReg.baseTime, '20:19:23');
 t(CommonReg.baseTime, '24:19:23');
 t(CommonReg.baseTime, '00:00:00');
+t(CommonReg.simpleTime, '010203');
