@@ -10,5 +10,7 @@
  * version             author            reason             date
  * 1.0                 祝冬华       创建文件            2022-02-14
  *************************************************************************/
-
-console.log('hello world!');
+function main() {
+    console.log('hello world!');
+}
+main();
