@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import { getLogger } from 'xmcommon';
+import { testOpt } from './opt';
 const log = getLogger(__filename);
 
 export const CONTROLLER_METADATA = 'controller';
@@ -29,7 +30,6 @@ class b {
         return 'setName';
     }
 }
-
 
 // export function createMethodDecorator(method: HttpMethod = 'get') {
 //     return (path = '/'): MethodDecorator =>
@@ -94,6 +94,7 @@ function test() {
 }
 
 function main() {
-    test();
+    // test();
+    testOpt();
 }
 main();
