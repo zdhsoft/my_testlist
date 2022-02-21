@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigUtils } from './init/config_utils';
+import { UserModule } from './fun/user/user.module';
 
 const TypeOrmConfig = ConfigUtils.buildMySQLOption();
 
@@ -20,6 +21,7 @@ const TypeOrmConfig = ConfigUtils.buildMySQLOption();
         //     logging: true,
         // }),
         TypeOrmModule.forRoot(TypeOrmConfig),
+        UserModule,
     ],
     controllers: [AppController],
     providers: [AppService],
