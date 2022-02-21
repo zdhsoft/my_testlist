@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserController } from './user.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from 'src/db/user.entity';
-import { Article } from 'src/db/article.entity';
-import { Attachment } from 'src/db/attachment.entity';
+import { User } from 'src/db/User';
+import { Article } from 'src/db/Article';
+import { Attachment } from 'src/db/Attachment';
 
 @Module({
     imports: [TypeOrmModule.forFeature([User, Article, Attachment])],
