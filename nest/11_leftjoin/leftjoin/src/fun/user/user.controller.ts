@@ -10,7 +10,18 @@ export class UserController {
         const r = new XCommonRet();
         do {
             //
-            await this.userService.getAttachment();
+            const data = await this.userService.getAttachment();
+            r.setOK(data);
+        } while (false);
+        return r;
+    }
+
+    @Get('/in')
+    async in() {
+        const r = new XCommonRet();
+        do {
+            const data = await this.userService.in();
+            r.setOK(data);
         } while (false);
         return r;
     }

@@ -3,11 +3,17 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Article } from 'src/db/Article';
 import { Attachment } from 'src/db/Attachment';
 import { User } from 'src/db/User';
-import { Repository } from 'typeorm';
+import { In, Repository, getConnection } from 'typeorm';
+
+import { getLogger } from 'xmcommon';
+const log = getLogger(__filename);
 
 @Injectable()
 export class UserService {
     constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {}
+    async in(): Promise<any> {
+        return this.userRepository.findOne(100);
+    }
 
     // 三张表关联查询
     async getAttachment(): Promise<any> {
