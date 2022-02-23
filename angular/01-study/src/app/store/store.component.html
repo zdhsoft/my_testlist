@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col bg-dark text-white">
+      <a class="navbar-brand">SPORTS STORE</a>
+    </div>
+  </div>
+  <div class="row text-white">
+    <div class="col-3 bg-info p-2">
+      {{categories.length}} Categories
+    </div>
+    <div class="col-9 p-2">
+      <div *ngFor="let product of products" class="card m-1 p-1 bg-dark">
+        <h4>
+          {{product.name}}
+          <span class="badge float-right">
+            {{product.price | currency: "USD" : "symbol" : "2.2-2"}}
+          </span>
+        </h4>
+        <div class="card-text bg-danger p-1">{{product.description}}</div>
+      </div>
+
+    </div>
+  </div>
+</div>
