@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Product} from "./product.model";
 import {StaticDataSource} from "./static.datasources";
+import {utils} from "xmcommon";
 
 @Injectable()
 export class ProductRepository {
@@ -16,8 +17,17 @@ export class ProductRepository {
   }
 
   getProducts(category?: string): Product[] {
-    return this.products
-      .filter(p => category === undefined || category === p.category);
+    const ret: Product[] = [];
+    if (utils.isNull(category)) {
+      ret.push(...this.products);
+    } else {
+      for(const p of this.products) {
+        if (p.category === category) {
+          ret.push(p);
+        }
+      }
+    }
+    return ret;
   }
 
   getProduct(id: number): Product | undefined {
