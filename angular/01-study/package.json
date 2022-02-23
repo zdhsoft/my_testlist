@@ -23,7 +23,6 @@
     "font-awesome": "^4.7.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
-    "xmcommon": "^0.9.18",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

@@ -38,8 +38,9 @@ async function readDir(paramDir: string) {
     const r = new XCommonRet();
     do {
         if (!utils.fileExists(paramDir)) {
-            r.setError(-1, `指定的目录不存在!`);
+            r.setError(-1, `指定的目录不存在:` + paramDir);
         }
+
     } while (false);
     return r;
 }

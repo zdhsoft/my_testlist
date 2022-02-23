@@ -5,7 +5,11 @@
     </div>
   </div>
   <div class="row text-white">
-    <div class="col-3 bg-info p-2">
+    <div class="col-1 bg-info p-2">
+      <button class="btn btn-block btn-outline-primary" (click)="changeCategory()">Home</button>
+      <button *ngFor="let cat of categories" class="btn btn-outline-primary btn-block"
+        [class.active]="cat === selectedCategory" (click)="changeCategory(cat)"
+      >{{cat}}</button><br>
       {{categories.length}} Categories
     </div>
     <div class="col-9 p-2">
@@ -17,6 +21,17 @@
           </span>
         </h4>
         <div class="card-text bg-danger p-1">{{product.description}}</div>
+      </div>
+      <div class="form-check-inline float-left mr-1">
+        <select  [ngModel]="productsPerPage" class="form-control" (ngModelChange)="changePageSize($event)">
+          <option value="3">3 pre page</option>
+          <option value="4">4 pre page</option>
+          <option value="6">6 pre page</option>
+          <option value="8">8 pre page</option>
+        </select>
+      </div>
+      <div class="btn-group float-right">
+        <button *ngFor="let page of pageNumbers" (click)="changePage(page)" class="btn btn-outline-primary" [class.active]="page === selectedPage">{{page}}</button>
       </div>
 
     </div>

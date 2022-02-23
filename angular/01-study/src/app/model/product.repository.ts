@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {Product} from "./product.model";
 import {StaticDataSource} from "./static.datasources";
-import {utils} from "xmcommon";
+import {XUtils} from "../../common/utils";
 
 @Injectable()
 export class ProductRepository {
@@ -11,14 +11,20 @@ export class ProductRepository {
   constructor(private dataSource: StaticDataSource) {
     dataSource.getProducts().subscribe(data => {
       this.products = data;
-      this.categories = data.map(p => p.category || '')
-        .filter((c, index, array) => array.indexOf(c) == index).sort();
+      const s = new Set<string>();
+      data.forEach((v) => {
+        if (XUtils.isNotNull(v.category)) {
+          s.add(v.category as string);
+        }
+      });
+      s.forEach((k) => this.categories.push(k));
+      this.categories.sort();
     });
   }
 
   getProducts(category?: string): Product[] {
     const ret: Product[] = [];
-    if (utils.isNull(category)) {
+    if (XUtils.isNull(category)) {
       ret.push(...this.products);
     } else {
       for(const p of this.products) {

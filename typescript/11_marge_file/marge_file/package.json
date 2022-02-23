@@ -32,6 +32,6 @@
         "npm": ">=6.0.0"
     },
     "dependencies": {
-        "xmcommon": "^0.9.18"
+        "xmcommon": "^0.9.19"
     }
 }
