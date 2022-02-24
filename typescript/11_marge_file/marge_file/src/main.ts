@@ -34,35 +34,120 @@ const log = getLogger(__filename);
 //     log.info('finish event');
 // });
 
+interface IFileInfo {
+    fullPath?: string;
+    baseName?: string;
+    extName?: string;
+    videoPath?: string;
+    orgExtName?: string;
+}
+
 async function readDir(paramDir: string) {
-    const r = new XCommonRet();
+    const r = new XCommonRet<IFileInfo[]>();
     do {
-        if (!utils.fileExists(paramDir)) {
+        if (!utils.fileExistsSync(paramDir)) {
             r.setError(-1, `指定的目录不存在:` + paramDir);
+            break;
         }
 
+        const list = fs.readdirSync(paramDir);
+        const m3u8List: IFileInfo[] = [];
+        list.forEach((f) => {
+            const basename = path.basename(f);
+            const extname = path.extname(f);
+            const lowExtName = extname.trim().toLowerCase();
+
+            if (lowExtName === '.m3u8') {
+                const b = basename.split('.');
+                const info: IFileInfo = {
+                    fullPath: path.join(paramDir, f),
+                    baseName: b[0],
+                    extName: lowExtName,
+                    orgExtName: extname,
+                    videoPath: path.join(paramDir, b[0]),
+                };
+                m3u8List.push(info);
+            }
+        });
+        m3u8List.forEach((v) => {
+            log.info('--->' + JSON.stringify(v));
+        });
+        r.setData(m3u8List);
     } while (false);
     return r;
 }
 
-async function readM3U8File(paramFileName: string) {
+async function readM3U8File(
+    paramFileName: string,
+    paramInfo: IFileInfo,
+    parmOutDir: string,
+) {
     do {
-        if (!utils.fileExists(paramFileName)) {
+        if (!utils.fileExistsSync(paramFileName)) {
             log.info('文件不存在:' + paramFileName);
             break;
         }
+        const dirname = paramFileName + '_contents';
+        if (!utils.fileExistsSync(dirname)) {
+            log.info('目录不存在:' + dirname);
+            break;
+        }
+
+        log.info('begin:' + paramFileName);
+
+        const sss = (paramInfo.baseName as string).split('-');
+        let bbname = paramInfo.baseName as string;
+        if (sss?.length > 1) {
+            const mm: string[] = [];
+            for (let i = 0; i < sss.length - 1; i++) {
+                mm.push(sss[i]);
+            }
+            bbname = mm.join('');
+        }
+        const outname = path.join(parmOutDir, bbname + '.mp4');
+
+        const fsout = fs.createWriteStream(outname);
+
         const data = fs.readFileSync(paramFileName, { encoding: 'utf8' });
         const t = data.split('\n');
 
-        const fileList: string[] = [];
+        //const fileList: string[] = [];
         t.forEach((v) => {
             const newV = v.trim();
+            if (newV.length <= 1) {
+                return;
+            }
             if (!newV.startsWith('#')) {
-                fileList.push(newV);
+                const s = newV.split('/');
+                const ss = s[s.length - 1];
+                const ff = path.join(dirname, ss);
+                log.info(ff, newV, ss);
+                const data = fs.readFileSync(ff);
+                fsout.write(data);
             }
         });
-        log.info(fileList);
+        await utils.WaitClassFunctionEx(fsout, 'end');
     } while (false);
 }
 
-readM3U8File('C:/adobeTemp/a.m3u8');
+const fileDir = 'g:/v';
+const outDir = 'C:/adobeTemp';
+async function main() {
+    const r = new XCommonRet();
+    do {
+        const listResult = await readDir(fileDir);
+        if (listResult.isNotOK) {
+            r.assignFrom(listResult);
+            break;
+        }
+        //
+        const list = listResult.data as IFileInfo[];
+        for (const f of list) {
+            await readM3U8File(f.fullPath as string, f, outDir);
+        }
+    } while (false);
+    return r;
+}
+main();
+
+// readM3U8File('C:/adobeTemp/a.m3u8');
