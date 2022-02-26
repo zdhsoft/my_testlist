@@ -106,6 +106,10 @@ async function readM3U8File(
         }
         const outname = path.join(parmOutDir, bbname + '.mp4');
 
+        if (utils.fileExistsSync(outname)) {
+            log.info('exits: ' + outname);
+            return;
+        }
         const fsout = fs.createWriteStream(outname);
 
         const data = fs.readFileSync(paramFileName, { encoding: 'utf8' });
@@ -121,9 +125,15 @@ async function readM3U8File(
                 const s = newV.split('/');
                 const ss = s[s.length - 1];
                 const ff = path.join(dirname, ss);
-                log.info(ff, newV, ss);
-                const data = fs.readFileSync(ff);
-                fsout.write(data);
+                try {
+                    // log.info(ff, newV, ss);
+                    if (utils.fileExistsSync(ff)) {
+                        const data = fs.readFileSync(ff);
+                        fsout.write(data);
+                    }
+                } catch (e) {
+                    log.info('----->' + String(e));
+                }
             }
         });
         await utils.WaitClassFunctionEx(fsout, 'end');
@@ -146,6 +156,11 @@ async function main() {
             await readM3U8File(f.fullPath as string, f, outDir);
         }
     } while (false);
+    if (r.isNotOK) {
+        log.info('exit:' + r.getErrorInfo());
+    } else {
+        log.info('finish alll!');
+    }
     return r;
 }
 main();
