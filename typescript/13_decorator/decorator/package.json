@@ -30,5 +30,8 @@
     "engines": {
         "node": ">=8.0.0",
         "npm": ">=6.0.0"
+    },
+    "dependencies": {
+        "reflect-metadata": "^0.1.13"
     }
 }
