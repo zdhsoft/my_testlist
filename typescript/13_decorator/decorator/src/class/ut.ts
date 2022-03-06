@@ -31,11 +31,13 @@ export interface ParseType {
     name: string | symbol;
 }
 
-export function handlerFactory(func: (...args: any[]) => any, paramList: ParamType[], parseList: ParseType[]) {
+export function handlerFactory(target: any, name: string, func: (...args: any[]) => any, paramList: ParamType[], parseList: ParseType[]) {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
             const args = extractParameters(req, res, next, paramList, parseList);
-            const result = await func(...args);
+            const c = new target();
+            const result = c[name](...args);
+            // const result = await func(...args);
 
             res.send(result);
         } catch (err) {

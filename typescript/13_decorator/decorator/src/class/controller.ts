@@ -3,13 +3,14 @@ import { Request, Response } from 'express';
 
 @Controller('/test')
 class Test {
+    private m_name = 100;
     constructor() {
         console.log('----------------------------->');
     }
 
     @Get('/hello')
     Hello(req: Request, res: Response) {
-        console.log('*************************');
+        console.log('*************************' + this.m_name);
         return 'hello test!';
     }
 

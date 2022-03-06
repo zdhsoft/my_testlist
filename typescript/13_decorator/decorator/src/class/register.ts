@@ -8,19 +8,20 @@ function register(rootPath: string, app: Express) {
     controllerList.forEach((controller) => {
         const { path: basePath, target: cTarget } = controller;
 
-        routeList
-            .filter(({ target, loaded }) => !loaded && target === (cTarget as any).prototype)
-            .forEach((route) => {
-                route.loaded = true;
-                const { name: funcName, type, path, func } = route;
-                const handler = handlerFactory(
-                    func,
-                    paramList.filter((param) => param.name === funcName),
-                    parseList.filter((parse) => parse.name === funcName),
-                );
+        const f = routeList.filter(({ target, loaded }) => !loaded && target === (cTarget as any).prototype);
+        f.forEach((route) => {
+            route.loaded = true;
+            const { name: funcName, type, path, func, target } = route;
+            const handler = handlerFactory(
+                target,
+                funcName as string,
+                func,
+                paramList.filter((param) => param.name === funcName),
+                parseList.filter((parse) => parse.name === funcName),
+            );
 
-                router[type](basePath + path, handler);
-            });
+            router[type](basePath + path, handler);
+        });
     });
     app.use(rootPath, router);
 }
