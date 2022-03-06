@@ -10,11 +10,11 @@ const s = new Map<string, { (a: number, b: number): IBase }>();
 // declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
 // declare type ParameterDecorator = (target: Object, propertyKey: string | symbol, parameterIndex: number) => void;
 
-class K(paramKey: string): ClassDecorator {
-    return (target: object) => {
-        Reflect.defineMetadata(SCOPE_OPTIONS_METADATA, options, target);
-      };
-}
+// export function k(options?: InjectableOptions): ClassDecorator {
+//     return (target: object) => {
+//       Reflect.defineMetadata(SCOPE_OPTIONS_METADATA, options, target);
+//     };
+//   }
 
 // 这个装饰器为类增加了key和create方法
 function M(paramKey: string) {
