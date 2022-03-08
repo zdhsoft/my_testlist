@@ -9,7 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Injectable = void 0;
 require("reflect-metadata");
+function Injectable(options = 'bbbbbbbbbbbbbbbbbb') {
+    return (target) => {
+        Reflect.defineMetadata('____OPTS___', options, target);
+    };
+}
+exports.Injectable = Injectable;
 let k = class k {
     hello() {
         return 'hello world';
@@ -22,9 +29,13 @@ __decorate([
     __metadata("design:returntype", String)
 ], k.prototype, "hello", null);
 k = __decorate([
+    Injectable(),
     Reflect.metadata('aaa', 'bbb')
 ], k);
+Reflect.defineMetadata('mmmmmm', 'sssssssssssssssssssssss', k);
 console.log(Reflect.getMetadata('aaa', k)); // 'A'
+console.log(Reflect.getMetadata('____OPTS___', k)); // 'A'
+console.log(Reflect.getMetadata('mmmmmm', k)); // 'A'
 console.log(Reflect.getMetadata('inMethod', new k(), 'hello')); // 'B'
 let A = class A {
     hello() {

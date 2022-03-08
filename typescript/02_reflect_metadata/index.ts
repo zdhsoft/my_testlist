@@ -1,4 +1,12 @@
 import 'reflect-metadata';
+
+
+export function Injectable(options = 'bbbbbbbbbbbbbbbbbb'): ClassDecorator {
+    return (target: object) => {
+        Reflect.defineMetadata('____OPTS___', options, target);
+    };
+}
+@Injectable()
 @Reflect.metadata('aaa','bbb')
 class k {
     @Reflect.metadata('inMethod', 'B')
@@ -7,8 +15,11 @@ class k {
     }
 }
 
+Reflect.defineMetadata('mmmmmm', 'sssssssssssssssssssssss', k);
 
 console.log(Reflect.getMetadata('aaa', k)); // 'A'
+console.log(Reflect.getMetadata('____OPTS___', k)); // 'A'
+console.log(Reflect.getMetadata('mmmmmm', k)); // 'A'
 console.log(Reflect.getMetadata('inMethod', new k(), 'hello')); // 'B'
 
 
