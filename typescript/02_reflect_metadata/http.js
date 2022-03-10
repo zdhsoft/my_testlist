@@ -45,7 +45,7 @@ exports.Controller = Controller;
 let XChatService = class XChatService {
     constructor() {
         //
-        console.log('hello');
+        console.log('XChatService create');
     }
     getName() {
         return 'name';
@@ -55,21 +55,32 @@ XChatService = __decorate([
     Injectable(),
     __metadata("design:paramtypes", [])
 ], XChatService);
+let XTestService = class XTestService {
+    constructor() {
+        //
+        console.log('XTestService create');
+    }
+};
+XTestService = __decorate([
+    Injectable(),
+    __metadata("design:paramtypes", [])
+], XTestService);
 let XTestController = class XTestController {
-    constructor(chatService) {
+    constructor(chatService, testService) {
         this.chatService = chatService;
+        this.testService = testService;
         //
     }
 };
 XTestController = __decorate([
     Controller('/'),
-    __metadata("design:paramtypes", [XChatService])
+    __metadata("design:paramtypes", [XChatService, XTestService])
 ], XTestController);
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     Module({
-        service: [XChatService],
+        service: [XChatService, XTestService],
         controller: [XTestController]
     })
 ], AppModule);
@@ -83,13 +94,33 @@ function init(appModule) {
         // const ret = Reflect.getMetadata(EnumMD.returnType, s);
         if (typeof type === 'function') {
             const serviceObj = new type();
+            Object.setPrototypeOf(serviceObj, type);
             serviceList.push(serviceObj);
         }
         console.log('service:****', JSON.stringify(opts));
     });
     v.controller?.forEach((s) => {
         const i = Reflect.getMetadata(EnumMD.controller, s);
-        console.log('controller:****', JSON.stringify(i));
+        const m = Reflect.getMetadata(EnumMD.paramTypes, s);
+        const type = Reflect.metadata(EnumMD.type, s);
+        const params = [];
+        m.forEach((p) => {
+            let found = false;
+            for (const pp of serviceList) {
+                const ppp = Object.getPrototypeOf(pp);
+                if (p === ppp) {
+                    found = true;
+                    params.push(pp);
+                    break;
+                }
+            }
+            if (!found) {
+                params.push(null);
+            }
+        });
+        const c = new type(...params);
+        controllerList.push(c);
+        console.log('controller:****', JSON.stringify(i), JSON.stringify(m));
     });
 }
 function main() {
