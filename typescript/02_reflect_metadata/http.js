@@ -27,14 +27,14 @@ function classFactory(_constructor) {
     const paramTypes = Reflect.getMetadata(EnumMD.paramTypes, _constructor);
     const OOO = {};
     const _oo = Object.getPrototypeOf(OOO);
-    const instance = [];
+    const args = [];
     for (const p of paramTypes) {
         let found = false;
         const _op = p.prototype;
         for (const s of serviceList) {
             const _os = Object.getPrototypeOf(s);
             if (_op === _os) {
-                instance.push(s);
+                args.push(s);
                 found = true;
                 break;
             }
@@ -42,14 +42,14 @@ function classFactory(_constructor) {
         if (!found) {
             if (_oo === _op) {
                 console.log("------", p.toString());
-                instance.push(p);
+                args.push(p);
             }
             else {
                 console.log('... not found!');
             }
         }
     }
-    const result = new _constructor(...instance);
+    const result = new _constructor(...args);
     return result;
 }
 function Injectable(paramOpts = {}) {
@@ -97,23 +97,33 @@ XTestService = __decorate([
     __metadata("design:paramtypes", [])
 ], XTestService);
 let XTestController = class XTestController {
-    constructor(chatService, testService, param = "ext param", k = 99) {
+    constructor(chatService, testService) {
         this.chatService = chatService;
         this.testService = testService;
-        console.log('chatService', chatService.getName());
-        console.log('testService', testService.getName());
+        console.log('XTestController:chatService', chatService.getName());
+        console.log('XTestController:testService', testService.getName());
     }
 };
 XTestController = __decorate([
     Controller('/'),
-    __metadata("design:paramtypes", [XChatService, XTestService, Object, Object])
+    __metadata("design:paramtypes", [XChatService, XTestService])
 ], XTestController);
+let XKKKController = class XKKKController {
+    constructor(chatService) {
+        this.chatService = chatService;
+        console.log('XKKKController:chatService', chatService.getName());
+    }
+};
+XKKKController = __decorate([
+    Controller('/kkk'),
+    __metadata("design:paramtypes", [XChatService])
+], XKKKController);
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     Module({
         service: [XChatService, XTestService],
-        controller: [XTestController]
+        controller: [XTestController, XKKKController]
     })
 ], AppModule);
 function init(appModule) {
@@ -122,8 +132,6 @@ function init(appModule) {
     v.service?.forEach((s) => {
         const r = classFactory(s);
         serviceList.push(r);
-        const opts = Reflect.getMetadata(EnumMD.injectable, s);
-        console.log('service:****', JSON.stringify(opts));
     });
     v.controller?.forEach((s) => {
         const r = classFactory(s);

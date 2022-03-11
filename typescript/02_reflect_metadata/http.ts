@@ -18,7 +18,7 @@ function classFactory<T>(_constructor: { new(...args: Array<any>): T }): T {
     const paramTypes: Array<any> = Reflect.getMetadata(EnumMD.paramTypes, _constructor);
     const OOO: object = {};
     const _oo = Object.getPrototypeOf(OOO);
-    const instance: object[] = [];
+    const args: object[] = [];
     for(const p of paramTypes) {
         let found = false;
         const _op = p.prototype;
@@ -26,7 +26,7 @@ function classFactory<T>(_constructor: { new(...args: Array<any>): T }): T {
             const _os = Object.getPrototypeOf(s);
 
             if (_op === _os) {
-                instance.push(s);
+                args.push(s);
                 found = true;
                 break;
             }
@@ -35,14 +35,14 @@ function classFactory<T>(_constructor: { new(...args: Array<any>): T }): T {
         if(!found) {
             if(_oo === _op) {
                 console.log("------", p.toString());
-                instance.push(p)
+                args.push(p)
             } else {
                 console.log('... not found!');
             }
         }
     }
 
-    const result = new _constructor(...instance);
+    const result = new _constructor(...args);
     return result;
 }
 
@@ -92,15 +92,21 @@ class XTestService {
 }
 @Controller('/')
 class XTestController {
-    constructor(private readonly chatService: XChatService, private readonly testService: XTestService, param = "ext param", k = 99) {
-        console.log('chatService', chatService.getName());
-        console.log('testService', testService.getName());
+    constructor(private readonly chatService: XChatService, private readonly testService: XTestService) {
+        console.log('XTestController:chatService', chatService.getName());
+        console.log('XTestController:testService', testService.getName());
     }
 }
 
+@Controller('/kkk')
+class XKKKController {
+    constructor(private readonly chatService: XChatService) {
+        console.log('XKKKController:chatService', chatService.getName());
+    }
+}
 @Module({
     service:[XChatService, XTestService],
-    controller:[XTestController]
+    controller:[XTestController, XKKKController]
 })
 class AppModule {
     //
@@ -112,8 +118,6 @@ function init(appModule: object) {
     v.service?.forEach((s) => {
         const r = classFactory(s);
         serviceList.push(r);
-        const opts = Reflect.getMetadata(EnumMD.injectable, s);
-        console.log('service:****', JSON.stringify(opts))
     });
 
     v.controller?.forEach((s)=>{
