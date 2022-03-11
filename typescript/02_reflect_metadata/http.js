@@ -23,10 +23,38 @@ var EnumMD;
 })(EnumMD || (EnumMD = {}));
 const serviceList = [];
 const controllerList = [];
+function classFactory(_constructor) {
+    const paramTypes = Reflect.getMetadata(EnumMD.paramTypes, _constructor);
+    const OOO = {};
+    const _oo = Object.getPrototypeOf(OOO);
+    const instance = [];
+    for (const p of paramTypes) {
+        let found = false;
+        const _op = p.prototype;
+        for (const s of serviceList) {
+            const _os = Object.getPrototypeOf(s);
+            if (_op === _os) {
+                instance.push(s);
+                found = true;
+                break;
+            }
+        }
+        if (!found) {
+            if (_oo === _op) {
+                console.log("------", p.toString());
+                instance.push(p);
+            }
+            else {
+                console.log('... not found!');
+            }
+        }
+    }
+    const result = new _constructor(...instance);
+    return result;
+}
 function Injectable(paramOpts = {}) {
     return (target) => {
         Reflect.defineMetadata(EnumMD.injectable, paramOpts, target);
-        Reflect.defineMetadata(EnumMD.type, target, target);
     };
 }
 exports.Injectable = Injectable;
@@ -60,21 +88,25 @@ let XTestService = class XTestService {
         //
         console.log('XTestService create');
     }
+    getName() {
+        return 'hahahahaha';
+    }
 };
 XTestService = __decorate([
     Injectable(),
     __metadata("design:paramtypes", [])
 ], XTestService);
 let XTestController = class XTestController {
-    constructor(chatService, testService) {
+    constructor(chatService, testService, param = "ext param", k = 99) {
         this.chatService = chatService;
         this.testService = testService;
-        //
+        console.log('chatService', chatService.getName());
+        console.log('testService', testService.getName());
     }
 };
 XTestController = __decorate([
     Controller('/'),
-    __metadata("design:paramtypes", [XChatService, XTestService])
+    __metadata("design:paramtypes", [XChatService, XTestService, Object, Object])
 ], XTestController);
 let AppModule = class AppModule {
 };
@@ -88,39 +120,16 @@ function init(appModule) {
     const v = Reflect.getMetadata(EnumMD.module, appModule);
     console.log(JSON.stringify(v));
     v.service?.forEach((s) => {
+        const r = classFactory(s);
+        serviceList.push(r);
         const opts = Reflect.getMetadata(EnumMD.injectable, s);
-        const type = Reflect.getMetadata(EnumMD.type, s);
-        // const param = Reflect.getMetadata(EnumMD.paramTypes, s);
-        // const ret = Reflect.getMetadata(EnumMD.returnType, s);
-        if (typeof type === 'function') {
-            const serviceObj = new type();
-            Object.setPrototypeOf(serviceObj, type);
-            serviceList.push(serviceObj);
-        }
         console.log('service:****', JSON.stringify(opts));
     });
     v.controller?.forEach((s) => {
-        const i = Reflect.getMetadata(EnumMD.controller, s);
-        const m = Reflect.getMetadata(EnumMD.paramTypes, s);
-        const type = Reflect.metadata(EnumMD.type, s);
-        const params = [];
-        m.forEach((p) => {
-            let found = false;
-            for (const pp of serviceList) {
-                const ppp = Object.getPrototypeOf(pp);
-                if (p === ppp) {
-                    found = true;
-                    params.push(pp);
-                    break;
-                }
-            }
-            if (!found) {
-                params.push(null);
-            }
-        });
-        const c = new type(...params);
-        controllerList.push(c);
-        console.log('controller:****', JSON.stringify(i), JSON.stringify(m));
+        const r = classFactory(s);
+        serviceList.push(r);
+        const path = Reflect.getMetadata(EnumMD.controller, s);
+        console.log('----path:' + path);
     });
 }
 function main() {
