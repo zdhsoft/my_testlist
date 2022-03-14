@@ -1,0 +1,4 @@
+*.user
+*.filters
+x64
+.vs
