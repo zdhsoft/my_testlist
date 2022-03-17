@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2022/03/17 15:44:57.091,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/03/17 15:44:57.331,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\File1.cpp</Transaction>
+    <Transaction>2022/03/17 15:46:10.846,D:\zdhsoft\github\my_testlist\c++builder\03_screen\main.cpp=C:\Users\rex\Documents\Embarcadero\Studio\Projects\File1.cpp</Transaction>
+    <Transaction>2022/03/17 15:46:14.234,D:\zdhsoft\github\my_testlist\c++builder\03_screen\Project1PCH1.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/03/17 15:46:33.654,D:\zdhsoft\github\my_testlist\c++builder\03_screen\PrScrnPCH1.h=D:\zdhsoft\github\my_testlist\c++builder\03_screen\Project1PCH1.h</Transaction>
+    <Transaction>2022/03/17 15:46:33.658,D:\zdhsoft\github\my_testlist\c++builder\03_screen\PrScrn.cbproj=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2022/03/17 15:54:37.750,=D:\zdhsoft\github\my_testlist\c++builder\03_screen\PrScrn.lib</Transaction>
+  </Transactions>
+</BorlandProject>
