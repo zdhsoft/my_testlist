@@ -1,3 +1,6 @@
+# nestjs系列笔记 
+[nestjs系列笔记](https://zdhsoft.blog.csdn.net/article/details/121746302)
+
 # nest笔记二：使用log4js替换nest默认日志
 - 个人比较喜欢log4js，nest自带的日志，时间格式又不是我想要的，所以我这里实现一个替换nest日志的日志
 ## 基本上要求
@@ -263,7 +266,3 @@ async function bootstrap() {
 bootstrap();
 ```
 - 到这里，就实现了对日志文件的全替换。
-## 相关文章列表
-- [nest笔记一:创建工程并配置vscode调试环境](https://zdhsoft.blog.csdn.net/article/details/121258677)
-- [nest笔记二:使用log4js替换nest默认日志](https://zdhsoft.blog.csdn.net/article/details/121359315)
-- [nest笔记三:使用全局拦截器打印请求日志](https://zdhsoft.blog.csdn.net/article/details/121393584)

@@ -1,3 +1,6 @@
+# nestjs系列笔记 
+[nestjs系列笔记](https://zdhsoft.blog.csdn.net/article/details/121746302)
+
 # nest记笔五：使用TypeORM连接mysql
 - 这个比较简单，在之前的例子中，实际上已经连上了数据库了
 ## 1. 连接配置TypeORM
