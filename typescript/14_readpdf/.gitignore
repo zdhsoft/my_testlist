@@ -27,3 +27,7 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 /package-lock.json
+F1040EZ.json
+t.txt
+raw.txt
+yarn.lock
