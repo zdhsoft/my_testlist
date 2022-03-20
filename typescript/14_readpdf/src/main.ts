@@ -1,14 +1,22 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const pdfreader = require('pdfreader');
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const PDFParser = require('pdf2json');
 const pdfParser = new PDFParser();
 import * as fs from 'fs';
-import _ from 'lodash';
-import { URL } from 'url';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const pdfText = require('pdf-text');
+const pdf_table_extractor = require('pdf-table-extractor');
 const pdffile = 'd:/生产问题/C107922_19370_20210303T154840_133560105_01.pdf';
+
+interface IExtractorPage {
+    page: number;
+    tables: string[];
+}
+interface IExtractorPDF {
+    pageTables: IExtractorPage[];
+    numPages: number;
+    currentPages: number;
+}
 
 interface IPageR {
     T: string;
@@ -50,14 +58,11 @@ function FilterT(pdf: IPDFJson) {
     pdf?.Pages?.forEach((page) => {
         page?.Texts?.forEach((text) => {
             text.R.forEach((R) => {
-                //
-                // URL.
                 const T = R?.T;
                 if (T !== undefined && T !== null) {
                     R.T = decodeURIComponent(R.T);
                     TextList.push(R.T);
                 }
-                // console.log(decodeURIComponent(R.T));
             });
         });
     });
@@ -86,5 +91,17 @@ pdfParser.on('data', (page: any) =>
 );
 pdfParser.on('error', (err: any) => console.error('Parser Error', err));
 
-const data = fs.readFileSync(pdffile);
-pdfParser.parseBuffer(data);
+// const data = fs.readFileSync(pdffile);
+// pdfParser.parseBuffer(data);
+
+//PDF parsed
+function success(result: any) {
+    console.log(JSON.stringify(result, null, 2));
+}
+
+//Error
+function error(err: any) {
+    console.error('Error: ' + err);
+}
+
+pdf_table_extractor(pdffile, success, error);

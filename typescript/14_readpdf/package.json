@@ -32,8 +32,7 @@
         "npm": ">=6.0.0"
     },
     "dependencies": {
-        "pdf-text": "^0.4.0",
-        "pdf2json": "^2.0.0",
-        "pdfreader": "^1.2.14"
+        "pdf-table-extractor": "^1.0.3",
+        "pdf2json": "^2.0.0"
     }
 }
