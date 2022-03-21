@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "pdf-table-extractor": "^1.0.3",
-        "pdf2json": "^2.0.0"
+        "pdf2json": "^2.0.0",
+        "xmcommon": "^0.9.21"
     }
 }
