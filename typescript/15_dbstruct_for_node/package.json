@@ -16,6 +16,7 @@
     "license": "ts_project",
     "devDependencies": {
         "@types/lodash": "^4.14.180",
+        "@types/mysql": "^2.15.21",
         "@types/node": "^16.11.26",
         "@typescript-eslint/eslint-plugin": "^5.16.0",
         "@typescript-eslint/parser": "^5.16.0",
@@ -32,6 +33,7 @@
         "npm": ">=6.0.0"
     },
     "dependencies": {
-        "mysql2": "^2.3.3"
+        "mysql": "^2.18.1",
+        "xmcommon": "^0.9.21"
     }
 }

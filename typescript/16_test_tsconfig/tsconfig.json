@@ -1,0 +1,42 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "composite": true,
+        "tsBuildInfoFile": "./build_file",
+        "declaration": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "lib": [
+            "es2020"
+        ],
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "ES2020",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictNullChecks": false,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "strictBindCallApply": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "diagnostics": true,
+        "esModuleInterop": true,
+        "types": [
+            "node", "lodash", "express", "express-session", "jest", "js-yaml", "multer"
+        ],
+        "noFallthroughCasesInSwitch": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
