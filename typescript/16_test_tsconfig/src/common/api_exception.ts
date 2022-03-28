@@ -9,8 +9,8 @@ export class APIException extends Error {
         super(paramErrMsg);
         this.m_ErrCode = paramErrorCode;
         this.name = 'APIException';
-        this.m_URL = paramURL;
-        this.m_Method = paramMethod;
+        this.m_URL = paramURL || '';
+        this.m_Method = paramMethod || '';
     }
 
     public get errCode() {

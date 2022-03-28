@@ -6,8 +6,7 @@ import { NestLogger } from './common/nest.logger';
 import { RequestInterceptor } from './common/request.interceptor';
 import { HttpFilterFilter } from './common/http_filter.filter';
 import { NestExpressApplication } from '@nestjs/platform-express';
-//import * as session from 'express-session';
-import session from 'express-session';
+import * as session from 'express-session';
 import * as path from 'path';
 import { AuthGuard } from './common/auth.guard';
 import { EnvUtils } from './env_utils';
@@ -47,7 +46,7 @@ async function bootstrap() {
         log.info('swagger url: /apidoc');
     }
 
-    await app.listen(globalConfig.port);
+    await app.listen(globalConfig.port as number);
     log.info(`开始侦听:${globalConfig.port}...`);
 }
 bootstrap();

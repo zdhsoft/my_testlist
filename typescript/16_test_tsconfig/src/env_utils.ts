@@ -59,8 +59,8 @@ function initEnv() {
     systemArgs.env = args.env;
 
     let envid = EnumRuntimeEnv.test;
-    if (utils.isString(systemArgs.env) && EnumRuntimeEnv[systemArgs.env] !== systemArgs.env) {
-        envid = systemArgs.env;
+    if (utils.isString(systemArgs.env) && EnumRuntimeEnv[systemArgs.env as EnumRuntimeEnv] !== systemArgs.env) {
+        envid = systemArgs.env as EnumRuntimeEnv;
     }
 
     env.env = envid;

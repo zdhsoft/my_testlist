@@ -7,8 +7,9 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "lib": [
-            "es2020"
+            "ES2020"
         ],
+        "moduleResolution":"node",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
@@ -17,16 +18,21 @@
         "outDir": "./dist",
         "baseUrl": "./",
         "incremental": true,
-        "skipLibCheck": true,
+        "skipLibCheck": true, //
         "strict": true,
-        "strictNullChecks": false,
-        "noImplicitAny": true,
+        "strictNullChecks": true, // 啟用嚴格的 null 檢查
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": true,
+        "noImplicitAny": true, // 在表達式和聲明上有隱含的 any類型時報錯
         "suppressImplicitAnyIndexErrors": true,
         "strictBindCallApply": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
         "diagnostics": true,
-        "esModuleInterop": true,
+        "explainFiles": true,
+        "esModuleInterop": false,
+        "newLine":"crlf",
+        // "typeRoots": ["@types"],
         "types": [
             "node", "lodash", "express", "express-session", "jest", "js-yaml", "multer"
         ],

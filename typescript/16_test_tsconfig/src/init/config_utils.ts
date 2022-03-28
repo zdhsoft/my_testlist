@@ -60,7 +60,7 @@ export class ConfigUtils {
      *  - undefined 配置不存在时，返回undefined
      *  - object 配置存在的时候，返回相应的对象
      */
-    public static getConfigByName<T = any>(paramName: string): T {
+    public static getConfigByName<T = any>(paramName: string): T | undefined {
         const retCfg = cfg[paramName];
         if (utils.isNotNull(retCfg)) {
             return _.cloneDeep(retCfg) as T;
@@ -158,8 +158,8 @@ export class ConfigUtils {
      * 生成mysql的配置，如果不存在，则返回undefined
      * @returns
      */
-    public static buildMySQLOption(): ILRConfigMySQL {
-        const mysqlOpts = cfg?.mysql;
+    public static buildMySQLOption(): ILRConfigMySQL | undefined {
+        const mysqlOpts = cfg?.mysql as ILRConfigMySQL;
         if (utils.isNull(mysqlOpts)) {
             return undefined;
         }
@@ -191,7 +191,9 @@ export class ConfigUtils {
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const mysql = require('mysql2/promise');
 
-                    const opts = this.initMySQLStoreOptions(sessionConfig.mysqlStoreOptions);
+                    const opts = this.initMySQLStoreOptions(
+                        sessionConfig?.mysqlStoreOptions as ILRSessionMySQLStoreOptions,
+                    );
                     const mysqlOpts = {
                         port: opts.port,
                         host: opts.host,
@@ -210,7 +212,7 @@ export class ConfigUtils {
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const FileStore = require('session-file-store')(session);
 
-                    store = new FileStore(sessionConfig.fileStoreOptions);
+                    store = new FileStore(sessionConfig?.fileStoreOptions);
                 }
                 break;
             case 'redis':
@@ -220,7 +222,7 @@ export class ConfigUtils {
 
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const redis = require('redis');
-                    const opts = this.initRedisOptions(sessionConfig.redisOptions);
+                    const opts = this.initRedisOptions(sessionConfig?.redisOptions as ILRSessionRedisStoreOptions);
                     const redisClient = redis.createClient(opts.redisOpts);
                     redisClient.connect();
 
@@ -264,8 +266,8 @@ export class ConfigUtils {
                 break;
             }
 
-            utils.dataAssign(localCfg, loadDefaultResult.data);
-            utils.dataAssign(localCfg, loadEnvResult.data);
+            utils.dataAssign(localCfg, loadDefaultResult.data as unknown as object);
+            utils.dataAssign(localCfg, loadEnvResult.data as unknown as object);
 
             utils.dataAssign(cfg, localCfg);
 
@@ -304,7 +306,7 @@ export class ConfigUtils {
     }
     /** 实始化runtime路径 */
     private static initRuntimePath() {
-        const rtPath = cfg.path?.runtime;
+        const rtPath = cfg.path?.runtime as string;
         if (!utils.isString(rtPath)) {
             return;
         }
@@ -345,7 +347,7 @@ export class ConfigUtils {
             }
 
             try {
-                const cfg = yaml.load(doc);
+                const cfg = yaml.load(doc) as ILRConfig;
                 ret.setOK(cfg);
             } catch (e) {
                 ret.setError(EnumErrorCode.PARSE_FILE_FAIL, `解析配置文件失败:${paramFileName}, err:${String(e)}`);

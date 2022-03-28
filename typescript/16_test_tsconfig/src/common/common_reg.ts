@@ -24,7 +24,7 @@ export class RegExpUtils {
             r = CommonRegExp.simpleDate.exec(v);
         }
         if (utils.isNotNull(r)) {
-            r.splice(0, 1);
+            r?.splice(0, 1);
         }
         return r;
     }
