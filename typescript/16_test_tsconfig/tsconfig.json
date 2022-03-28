@@ -1,7 +1,6 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "composite": true,
         "tsBuildInfoFile": "./build_file",
         "declaration": true,
         "removeComments": true,
@@ -18,21 +17,19 @@
         "outDir": "./dist",
         "baseUrl": "./",
         "incremental": true,
-        "skipLibCheck": true, //
+        "skipLibCheck": true,
         "strict": true,
-        "strictNullChecks": true, // 啟用嚴格的 null 檢查
+        "strictNullChecks": true,
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
-        "noImplicitAny": true, // 在表達式和聲明上有隱含的 any類型時報錯
+        "noImplicitAny": true,
         "suppressImplicitAnyIndexErrors": true,
         "strictBindCallApply": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
-        "diagnostics": true,
-        "explainFiles": true,
         "esModuleInterop": false,
         "newLine":"crlf",
-        // "typeRoots": ["@types"],
+        "typeRoots": ["@types"],
         "types": [
             "node", "lodash", "express", "express-session", "jest", "js-yaml", "multer"
         ],
