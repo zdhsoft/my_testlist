@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "tsBuildInfoFile": "./build_file",
+        // "tsBuildInfoFile": "./build_file",
         "declaration": true,
         "removeComments": true,
         "preserveConstEnums": true,

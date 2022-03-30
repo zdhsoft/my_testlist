@@ -8,7 +8,7 @@
         "format": "prettier --write \"src/**/*.ts\"",
         "lint": "eslint \"src/**/*.ts\"",
         "lintfix": "eslint \"src/**/*.ts\" --fix",
-        "build": "npm run lint &&tsc",
+        "build": "npm run lint && tsc && echo finish",
         "formatbuild": "npm run format && npm run build"
     },
     "keywords": [],
