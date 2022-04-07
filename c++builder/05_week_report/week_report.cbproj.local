@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/04/06 14:00:36.000.396,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/04/06 14:00:36.000.502,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/04/06 14:02:24.000.353,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp=D:\zdhsoft\CBC\week_report\form_main.cpp</Transaction>
+    <Transaction>2022/04/06 14:02:24.000.353,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\zdhsoft\CBC\week_report\form_main.dfm</Transaction>
+    <Transaction>2022/04/06 14:02:24.000.353,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.h=D:\zdhsoft\CBC\week_report\form_main.h</Transaction>
+    <Transaction>2022/04/06 14:02:27.000.077,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=D:\zdhsoft\CBC\week_report\Project1PCH1.h</Transaction>
+    <Transaction>2022/04/06 14:02:32.000.668,D:\zdhsoft\CBC\week_report\Project1PCH1.h=D:\zdhsoft\CBC\week_report\week_reportPCH1.h</Transaction>
+    <Transaction>2022/04/06 14:02:32.000.688,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1.cbproj=D:\zdhsoft\CBC\week_report\week_report.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
