@@ -140,8 +140,8 @@ async function readM3U8File(
     } while (false);
 }
 
-const fileDir = 'g:/v';
-const outDir = 'C:/adobeTemp';
+const fileDir = 'D:/zdhsoft/whs';
+const outDir = 'g:/adobeTemp';
 async function main() {
     const r = new XCommonRet();
     do {
