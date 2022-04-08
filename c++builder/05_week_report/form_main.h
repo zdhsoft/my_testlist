@@ -36,9 +36,12 @@ __published:	// IDE-managed Components
 	TToolButton *ToolButton3;
 	TPanel *PanelContainer;
 	TAction *ActionWeek;
-	TAction *Action2;
+	TAction *ActionDateTime;
 	TAction *Action3;
+	TTimer *Timer1;
 	void __fastcall ActionWeekExecute(TObject *Sender);
+	void __fastcall ActionDateTimeExecute(TObject *Sender);
+	void __fastcall Timer1Timer(TObject *Sender);
 private:	// User declarations
     TSubFormList m_SubFormList;
 	XFunctionFunForm * m_CurrActiveForm;

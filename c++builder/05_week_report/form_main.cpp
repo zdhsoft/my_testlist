@@ -55,3 +55,15 @@ void __fastcall TfrmMain::ActionWeekExecute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TfrmMain::ActionDateTimeExecute(TObject *Sender)
+{
+    //
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::Timer1Timer(TObject *Sender)
+{
+    //
+}
+//---------------------------------------------------------------------------
+

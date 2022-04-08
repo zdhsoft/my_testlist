@@ -2,8 +2,8 @@ object frmMain: TfrmMain
   Left = 0
   Top = 0
   Caption = 'frmMain'
-  ClientHeight = 543
-  ClientWidth = 770
+  ClientHeight = 583
+  ClientWidth = 1078
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,35 +14,41 @@ object frmMain: TfrmMain
   TextHeight = 15
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 524
-    Width = 770
+    Top = 564
+    Width = 1078
     Height = 19
-    Panels = <>
+    Panels = <
+      item
+        Width = 100
+      end
+      item
+        Width = 50
+      end>
   end
   object ToolBar1: TToolBar
     Left = 0
     Top = 0
-    Width = 770
+    Width = 1078
     Height = 56
     ButtonHeight = 54
-    ButtonWidth = 71
+    ButtonWidth = 78
     Caption = 'ToolBar1'
     Images = ImageList1
     ShowCaptions = True
     TabOrder = 1
+    ExplicitWidth = 770
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
       Action = ActionWeek
     end
     object ToolButton2: TToolButton
-      Left = 71
+      Left = 78
       Top = 0
-      Caption = 'ToolButton2'
-      ImageIndex = 1
+      Action = ActionDateTime
     end
     object ToolButton3: TToolButton
-      Left = 142
+      Left = 156
       Top = 0
       Caption = 'ToolButton3'
       ImageIndex = 2
@@ -51,11 +57,13 @@ object frmMain: TfrmMain
   object PanelContainer: TPanel
     Left = 0
     Top = 56
-    Width = 770
-    Height = 468
+    Width = 1078
+    Height = 508
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitWidth = 770
+    ExplicitHeight = 468
   end
   object MainMenu1: TMainMenu
     Left = 648
@@ -72,12 +80,14 @@ object frmMain: TfrmMain
     Left = 600
     Top = 72
     object ActionWeek: TAction
-      Caption = #22788#29702#21608#25253
+      Caption = #22788#29702#21608#25253'(&W)'
       ImageIndex = 0
       OnExecute = ActionWeekExecute
     end
-    object Action2: TAction
-      Caption = 'Action2'
+    object ActionDateTime: TAction
+      Caption = #26085#26399#26102#38388'(&D)'
+      ImageIndex = 1
+      OnExecute = ActionDateTimeExecute
     end
     object Action3: TAction
       Caption = 'Action3'
@@ -623,5 +633,10 @@ object frmMain: TfrmMain
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
       000000000000}
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 512
+    Top = 368
   end
 end
