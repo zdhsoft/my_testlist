@@ -3,11 +3,19 @@
 	<Transactions>
     <Transaction>2022/04/06 14:00:36.000.396,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
     <Transaction>2022/04/06 14:00:36.000.502,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
-    <Transaction>2022/04/06 14:02:24.000.353,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp=D:\zdhsoft\CBC\week_report\form_main.cpp</Transaction>
-    <Transaction>2022/04/06 14:02:24.000.353,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.dfm=D:\zdhsoft\CBC\week_report\form_main.dfm</Transaction>
-    <Transaction>2022/04/06 14:02:24.000.353,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.h=D:\zdhsoft\CBC\week_report\form_main.h</Transaction>
-    <Transaction>2022/04/06 14:02:27.000.077,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=D:\zdhsoft\CBC\week_report\Project1PCH1.h</Transaction>
-    <Transaction>2022/04/06 14:02:32.000.668,D:\zdhsoft\CBC\week_report\Project1PCH1.h=D:\zdhsoft\CBC\week_report\week_reportPCH1.h</Transaction>
-    <Transaction>2022/04/06 14:02:32.000.688,C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1.cbproj=D:\zdhsoft\CBC\week_report\week_report.cbproj</Transaction>
+    <Transaction>2022/04/06 14:02:24.000.353,D:\zdhsoft\CBC\week_report\form_main.cpp=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/04/06 14:02:24.000.353,D:\zdhsoft\CBC\week_report\form_main.dfm=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/04/06 14:02:24.000.353,D:\zdhsoft\CBC\week_report\form_main.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2022/04/06 14:02:27.000.077,D:\zdhsoft\CBC\week_report\Project1PCH1.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/04/06 14:02:32.000.668,D:\zdhsoft\CBC\week_report\week_reportPCH1.h=D:\zdhsoft\CBC\week_report\Project1PCH1.h</Transaction>
+    <Transaction>2022/04/06 14:02:32.000.688,D:\zdhsoft\CBC\week_report\week_report.cbproj=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2022/04/07 17:21:25.000.026,=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit2.pas</Transaction>
+    <Transaction>2022/04/07 17:21:48.000.045,=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit2.cpp</Transaction>
+    <Transaction>2022/04/07 17:22:11.000.316,D:\zdhsoft\github\my_testlist\c++builder\05_week_report\form_week.dfm=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit2.dfm</Transaction>
+    <Transaction>2022/04/07 17:22:11.000.316,D:\zdhsoft\github\my_testlist\c++builder\05_week_report\form_week.cpp=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit2.cpp</Transaction>
+    <Transaction>2022/04/07 17:22:11.000.316,D:\zdhsoft\github\my_testlist\c++builder\05_week_report\form_week.h=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit2.h</Transaction>
+    <Transaction>2022/04/07 17:36:34.000.822,=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit1.cpp</Transaction>
+    <Transaction>2022/04/07 17:37:04.000.525,D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit1.h=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\XFunctionFunForm.h</Transaction>
+    <Transaction>2022/04/07 17:37:04.000.525,D:\zdhsoft\github\my_testlist\c++builder\05_week_report\Unit1.cpp=D:\zdhsoft\github\my_testlist\c++builder\05_week_report\XFunctionFunForm.cpp</Transaction>
   </Transactions>
 </BorlandProject>
