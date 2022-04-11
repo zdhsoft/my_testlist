@@ -20,6 +20,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	frmWeek->Init();
 
 	m_SubFormList.push_back(frmWeek);
+    AnsiString s;
 }
 
 //---------------------------------------------------------------------------
@@ -63,7 +64,9 @@ void __fastcall TfrmMain::ActionDateTimeExecute(TObject *Sender)
 
 void __fastcall TfrmMain::Timer1Timer(TObject *Sender)
 {
-    //
+	//
+	const TDateTime &d = Now();
+	StatusBar1->Panels->Items[0]->Text = d.DateTimeString();
 }
 //---------------------------------------------------------------------------
 

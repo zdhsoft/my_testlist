@@ -19,7 +19,8 @@ object frmMain: TfrmMain
     Height = 19
     Panels = <
       item
-        Width = 100
+        Alignment = taCenter
+        Width = 150
       end
       item
         Width = 50
@@ -36,7 +37,6 @@ object frmMain: TfrmMain
     Images = ImageList1
     ShowCaptions = True
     TabOrder = 1
-    ExplicitWidth = 770
     object ToolButton1: TToolButton
       Left = 0
       Top = 0
@@ -62,8 +62,6 @@ object frmMain: TfrmMain
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
-    ExplicitWidth = 770
-    ExplicitHeight = 468
   end
   object MainMenu1: TMainMenu
     Left = 648
