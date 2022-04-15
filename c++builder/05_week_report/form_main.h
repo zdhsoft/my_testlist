@@ -44,11 +44,16 @@ __published:	// IDE-managed Components
 	TPopupMenu *PopupMenu1;
 	TMenuItem *N1;
 	TApplicationEvents *ApplicationEvents1;
+	TMenuItem *Action31;
+	TMenuItem *D1;
+	TAction *ActionAbout;
+	TMenuItem *N2;
 	void __fastcall ActionWeekExecute(TObject *Sender);
 	void __fastcall ActionDateTimeExecute(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall ApplicationEvents1Minimize(TObject *Sender);
 	void __fastcall N1Click(TObject *Sender);
+	void __fastcall ActionAboutExecute(TObject *Sender);
 private:	// User declarations
     TSubFormList m_SubFormList;
 	XFunctionFunForm * m_CurrActiveForm;

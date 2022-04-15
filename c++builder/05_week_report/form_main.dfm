@@ -11,6 +11,7 @@ object frmMain: TfrmMain
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
+  Position = poScreenCenter
   TextHeight = 15
   object StatusBar1: TStatusBar
     Left = 0
@@ -62,15 +63,26 @@ object frmMain: TfrmMain
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 2
+    ExplicitLeft = 32
+    ExplicitTop = 96
   end
   object MainMenu1: TMainMenu
     Left = 720
     Top = 72
     object F1: TMenuItem
       Caption = #25991#20214'(&F)'
+      object Action31: TMenuItem
+        Action = ActionWeek
+      end
+      object D1: TMenuItem
+        Action = ActionDateTime
+      end
     end
     object H1: TMenuItem
       Caption = #24110#21161'(&H)'
+      object N2: TMenuItem
+        Action = ActionAbout
+      end
     end
   end
   object ActionList1: TActionList
@@ -89,6 +101,10 @@ object frmMain: TfrmMain
     end
     object Action3: TAction
       Caption = 'Action3'
+    end
+    object ActionAbout: TAction
+      Caption = #20851#20110
+      OnExecute = ActionAboutExecute
     end
   end
   object ImageList1: TImageList
