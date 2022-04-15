@@ -70,3 +70,20 @@ void __fastcall TfrmMain::Timer1Timer(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TfrmMain::ApplicationEvents1Minimize(TObject *Sender)
+{
+	//
+	Hide();
+	WindowState = TWindowState::wsMinimized;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMain::N1Click(TObject *Sender)
+{
+	Show();
+	WindowState = TWindowState::wsNormal;
+    Application->BringToFront();
+}
+//---------------------------------------------------------------------------
+
+
