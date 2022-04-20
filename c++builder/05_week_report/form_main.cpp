@@ -5,22 +5,29 @@
 
 #include "form_main.h"
 #include "form_week.h"
+#include "form_datetime.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
+
+#define INITFORM(CLASS, OBJECT) OBJECT = new CLASS(PanelContainer); OBJECT->Parent = this->PanelContainer; OBJECT->Init(); m_SubFormList.push_back(OBJECT);
+
 TfrmMain *frmMain;
 //---------------------------------------------------------------------------
 __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	: TForm(Owner)
 {
 	m_CurrActiveForm = nullptr;
-	frmWeek = new TfrmWeek(PanelContainer);
-	frmWeek->Parent = this->PanelContainer;
+	INITFORM(TfrmWeek, frmWeek);
+    INITFORM(TfrmDateTime, frmDateTime);
+//
+//	frmWeek = new TfrmWeek(PanelContainer);
+//	frmWeek->Parent = this->PanelContainer;
 
-	frmWeek->Init();
-
-	m_SubFormList.push_back(frmWeek);
-    AnsiString s;
+//	frmWeek->Init();
+//
+//	m_SubFormList.push_back(frmWeek);
+//	AnsiString s;
 }
 
 //---------------------------------------------------------------------------
@@ -58,7 +65,7 @@ void __fastcall TfrmMain::ActionWeekExecute(TObject *Sender)
 
 void __fastcall TfrmMain::ActionDateTimeExecute(TObject *Sender)
 {
-    //
+    ShowLocalForm(frmDateTime, ActionDateTime);
 }
 //---------------------------------------------------------------------------
 
