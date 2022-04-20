@@ -8,12 +8,44 @@
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
 #include <XFunctionFunForm.h>
+#include <Vcl.ExtCtrls.hpp>
+
+enum EnumNowStatus {
+	Normal,
+    Stop,
+};
+
 //---------------------------------------------------------------------------
 class TfrmDateTime : public XFunctionFunForm
 {
 __published:	// IDE-managed Components
 	TLabel *Label1;
+	TTimer *Timer1;
+	TLabel *Label2;
+	TLabel *LabelTimestamp;
+	TButton *btnStartTimestamp;
+	TButton *btnStopTimestamp;
+	TButton *btnCopyTimestamp;
+	TLabel *Label3;
+	TEdit *edTimestampSecond;
+	TButton *btnConvertSecond;
+	TEdit *edTimestampResultSecond;
+	TLabel *Label4;
+	TEdit *edTimestampMillis;
+	TButton *btnConvertMillis;
+	TEdit *edTimestampResultMillis;
+	TButton *Button3;
+	TButton *Button4;
+	void __fastcall Timer1Timer(TObject *Sender);
+	void __fastcall btnStartTimestampClick(TObject *Sender);
+	void __fastcall btnStopTimestampClick(TObject *Sender);
+	void __fastcall btnCopyTimestampClick(TObject *Sender);
+	void __fastcall btnConvertSecondClick(TObject *Sender);
+	void __fastcall btnConvertMillisClick(TObject *Sender);
 private:	// User declarations
+	EnumNowStatus m_NowStatus = EnumNowStatus::Normal;
+private:
+    void flashTimeStamp(bool paramForce = false);
 public:		// User declarations
 	__fastcall TfrmDateTime(TComponent* Owner);
 	void __fastcall Init();

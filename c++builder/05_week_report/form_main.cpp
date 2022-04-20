@@ -20,14 +20,6 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	m_CurrActiveForm = nullptr;
 	INITFORM(TfrmWeek, frmWeek);
     INITFORM(TfrmDateTime, frmDateTime);
-//
-//	frmWeek = new TfrmWeek(PanelContainer);
-//	frmWeek->Parent = this->PanelContainer;
-
-//	frmWeek->Init();
-//
-//	m_SubFormList.push_back(frmWeek);
-//	AnsiString s;
 }
 
 //---------------------------------------------------------------------------
@@ -53,9 +45,6 @@ void __fastcall TfrmMain::ShowLocalForm(XFunctionFunForm * paramForm,TAction * p
 	}
 	if (paramAction != NULL) paramAction->Checked = true;
 }
-
-
-
 
 void __fastcall TfrmMain::ActionWeekExecute(TObject *Sender)
 {

@@ -4,8 +4,9 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
-USEFORM("form_week.cpp", frmWeek);
 USEFORM("form_main.cpp", frmMain);
+USEFORM("form_week.cpp", frmWeek);
+USEFORM("form_datetime.cpp", frmDateTime);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {

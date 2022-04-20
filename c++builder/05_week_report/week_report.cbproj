@@ -171,6 +171,12 @@
         <Icon_MainIcon>week_report_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="form_datetime.cpp">
+            <Form>frmDateTime</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>form_datetime.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
+        </CppCompile>
         <CppCompile Include="form_main.cpp">
             <Form>frmMain</Form>
             <FormType>dfm</FormType>
@@ -197,6 +203,7 @@
         </CppCompile>
         <FormResources Include="form_main.dfm"/>
         <FormResources Include="form_week.dfm"/>
+        <FormResources Include="form_datetime.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -317,7 +324,19 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName=".\Win64\Release\week_report.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>week_report.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="week.ini" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win64">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="week.ini" Configuration="Release" Class="ProjectFile">
                     <Platform Name="Win64">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
