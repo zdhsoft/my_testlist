@@ -1,16 +1,28 @@
 ﻿#include <stdio.h>
 #include <cstdlib>
+#include <cstdio>
+#include <iostream>
 #define FIRST_COST 6
 #define NEXT_COST 2
+
+class XA {
+
+};
+
 
 int main1(int argc, char** argv)
 {
     int weight, cost;
 
     printf("重量\t价格\n");
+    printf("aaa%d", 100);
+    printf("aaaa");
+    std::cout << 100 << 200 << 'a' << "aaaa" << std::endl;
+    std::cout << "hello" << "world" << std::endl;
     for (weight = 1, cost = FIRST_COST; weight <= 10; ++weight, cost = FIRST_COST + (weight - 1) * NEXT_COST)
+    {
         printf("%d\t¥%d\n", weight, cost);
-
+    }
     return 0;
 }
 
