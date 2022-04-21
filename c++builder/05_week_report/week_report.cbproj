@@ -201,9 +201,9 @@
             <DependentOn>XFunctionFunForm.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <FormResources Include="form_datetime.dfm"/>
         <FormResources Include="form_main.dfm"/>
         <FormResources Include="form_week.dfm"/>
-        <FormResources Include="form_datetime.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

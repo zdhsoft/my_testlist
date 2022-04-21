@@ -50,6 +50,7 @@ __published:	// IDE-managed Components
 	TMenuItem *N2;
 	TAction *ActionMD5;
 	TToolButton *ToolButton4;
+	TToolButton *ToolButton5;
 	void __fastcall ActionWeekExecute(TObject *Sender);
 	void __fastcall ActionDateTimeExecute(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);

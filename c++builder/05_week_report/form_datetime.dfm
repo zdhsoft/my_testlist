@@ -150,7 +150,7 @@ object frmDateTime: TfrmDateTime
   object Timer1: TTimer
     Interval = 200
     OnTimer = Timer1Timer
-    Left = 552
-    Top = 224
+    Left = 680
+    Top = 304
   end
 end
