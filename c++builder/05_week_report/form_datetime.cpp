@@ -73,3 +73,11 @@ void __fastcall TfrmDateTime::btnConvertMillisClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+
+void __fastcall TfrmDateTime::edTimestampSecondChange(TObject *Sender)
+{
+	//
+    edTimestampSecond->Text.ToIntDef(-1);
+}
+//---------------------------------------------------------------------------
+

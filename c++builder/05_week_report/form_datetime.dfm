@@ -89,6 +89,8 @@ object frmDateTime: TfrmDateTime
     Width = 161
     Height = 29
     TabOrder = 3
+    TextHint = #36755#20837#26102#38388#25139
+    OnChange = edTimestampSecondChange
   end
   object btnConvertSecond: TButton
     Left = 343
@@ -136,7 +138,6 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = #22797#21046
     TabOrder = 9
-    OnClick = btnCopyTimestampClick
   end
   object Button4: TButton
     Left = 743
