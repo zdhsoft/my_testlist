@@ -99,7 +99,7 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = '>>'
     TabOrder = 4
-    OnClick = btnConvertSecondClick
+    OnClick = edTimestampMillisChange
   end
   object edTimestampResultSecond: TEdit
     Left = 424
@@ -114,6 +114,8 @@ object frmDateTime: TfrmDateTime
     Width = 161
     Height = 29
     TabOrder = 6
+    TextHint = #36755#20837#26102#38388#25139
+    OnChange = edTimestampMillisChange
   end
   object btnConvertMillis: TButton
     Left = 343
@@ -122,7 +124,7 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = '>>'
     TabOrder = 7
-    OnClick = btnConvertMillisClick
+    OnClick = btnStartTimestampClick
   end
   object edTimestampResultMillis: TEdit
     Left = 424
@@ -131,22 +133,23 @@ object frmDateTime: TfrmDateTime
     Height = 29
     TabOrder = 8
   end
-  object Button3: TButton
+  object btTimestampResultCopy: TButton
     Left = 743
     Top = 99
     Width = 75
     Height = 33
     Caption = #22797#21046
     TabOrder = 9
+    OnClick = btTimestampResultCopyClick
   end
-  object Button4: TButton
+  object btTimestampMillisResultCopy: TButton
     Left = 743
     Top = 147
     Width = 75
     Height = 33
     Caption = #22797#21046
     TabOrder = 10
-    OnClick = btnCopyTimestampClick
+    OnClick = btTimestampMillisResultCopyClick
   end
   object Timer1: TTimer
     Interval = 200

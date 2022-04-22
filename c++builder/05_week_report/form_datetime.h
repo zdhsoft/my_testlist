@@ -34,8 +34,8 @@ __published:	// IDE-managed Components
 	TEdit *edTimestampMillis;
 	TButton *btnConvertMillis;
 	TEdit *edTimestampResultMillis;
-	TButton *Button3;
-	TButton *Button4;
+	TButton *btTimestampResultCopy;
+	TButton *btTimestampMillisResultCopy;
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall btnStartTimestampClick(TObject *Sender);
 	void __fastcall btnStopTimestampClick(TObject *Sender);
@@ -43,6 +43,9 @@ __published:	// IDE-managed Components
 	void __fastcall btnConvertSecondClick(TObject *Sender);
 	void __fastcall btnConvertMillisClick(TObject *Sender);
 	void __fastcall edTimestampSecondChange(TObject *Sender);
+	void __fastcall edTimestampMillisChange(TObject *Sender);
+	void __fastcall btTimestampResultCopyClick(TObject *Sender);
+	void __fastcall btTimestampMillisResultCopyClick(TObject *Sender);
 private:	// User declarations
 	EnumNowStatus m_NowStatus = EnumNowStatus::Normal;
 private:
