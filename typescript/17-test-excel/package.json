@@ -32,6 +32,6 @@
         "npm": ">=6.0.0"
     },
     "dependencies": {
-        "node-xlsx-ex": "^0.0.1"
+        "node-xlsx-ex": "^0.0.2"
     }
 }
