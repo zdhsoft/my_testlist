@@ -74,7 +74,7 @@ object frmMain: TfrmMain
     TabOrder = 2
   end
   object MainMenu1: TMainMenu
-    Left = 672
+    Left = 688
     Top = 72
     object F1: TMenuItem
       Caption = #25991#20214'(&F)'
@@ -121,11 +121,16 @@ object frmMain: TfrmMain
       ImageIndex = 8
       OnExecute = ActionMD5Execute
     end
+    object ActionExit: TAction
+      Caption = #36864#20986'(&X)'
+      ImageIndex = 4
+      OnExecute = ActionExitExecute
+    end
   end
   object ImageList1: TImageList
     Height = 32
     Width = 32
-    Left = 560
+    Left = 544
     Top = 72
     Bitmap = {
       494C01010A001800040020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
@@ -3769,10 +3774,13 @@ object frmMain: TfrmMain
       Caption = #36824#21407
       OnClick = N1Click
     end
+    object X1: TMenuItem
+      Action = ActionExit
+    end
   end
   object ApplicationEvents1: TApplicationEvents
     OnMinimize = ApplicationEvents1Minimize
-    Left = 800
-    Top = 80
+    Left = 768
+    Top = 72
   end
 end

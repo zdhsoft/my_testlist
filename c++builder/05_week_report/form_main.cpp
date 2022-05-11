@@ -102,3 +102,10 @@ void __fastcall TfrmMain::ActionMD5Execute(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TfrmMain::ActionExitExecute(TObject *Sender)
+{
+	//
+    Application->Terminate();
+}
+//---------------------------------------------------------------------------
+
