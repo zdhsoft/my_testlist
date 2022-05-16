@@ -84,6 +84,12 @@ object frmMain: TfrmMain
       object D1: TMenuItem
         Action = ActionDateTime
       end
+      object N3: TMenuItem
+        Caption = '-'
+      end
+      object X2: TMenuItem
+        Action = ActionExit
+      end
     end
     object H1: TMenuItem
       Caption = #24110#21161'(&H)'

@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {Product} from "./product.model";
 import {StaticDataSource} from "./static.datasources";
 import {XUtils} from "../../common/utils";
+import * as _ from 'lodash';
 
 @Injectable()
 export class ProductRepository {
@@ -15,6 +16,9 @@ export class ProductRepository {
       data.forEach((v) => {
         if (XUtils.isNotNull(v.category)) {
           s.add(v.category as string);
+        }
+        if (_.isNull(v.category)) {
+          console.log(v.category);
         }
       });
       s.forEach((k) => this.categories.push(k));
