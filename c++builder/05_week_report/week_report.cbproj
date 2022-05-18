@@ -6,9 +6,10 @@
         <AppType>Application</AppType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
-        <TargetedPlatforms>3</TargetedPlatforms>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
+        <TargetedPlatforms>1</TargetedPlatforms>
         <MainSource>week_report.cpp</MainSource>
+        <CC_Suffix Condition="'$(CC_Suffix)'==''">c</CC_Suffix>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -93,8 +94,7 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <Icon_MainIcon>week_report_Icon4.ico</Icon_MainIcon>
-        <UWP_CppLogo44>C:\Users\rex\Desktop\tools.png</UWP_CppLogo44>
-        <UWP_CppLogo150>C:\Users\rex\Desktop\tools.png</UWP_CppLogo150>
+        <ILINK_LibraryPath>D:\zdhsoft\github\my_testlist\c++builder\05_week_report\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -136,7 +136,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <LinkPackageImports>rtl.bpi;vcl.bpi</LinkPackageImports>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;vclx.bpi</LinkPackageImports>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)$(CC_SUFFIX)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -161,10 +161,20 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>week_report_Icon4.ico</Icon_MainIcon>
+        <VerInfo_Debug>true</VerInfo_Debug>
+        <VerInfo_PreRelease>true</VerInfo_PreRelease>
+        <VerInfo_Special>true</VerInfo_Special>
+        <VerInfo_Private>true</VerInfo_Private>
+        <VerInfo_DLL>true</VerInfo_DLL>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=;PrivateBuild=</VerInfo_Keys>
+        <BCC_InstructionSet>6</BCC_InstructionSet>
+        <BCC_ShowLSPMessages>true</BCC_ShowLSPMessages>
+        <BCC_NumberOfIndexingThreads>8</BCC_NumberOfIndexingThreads>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -210,6 +220,13 @@
             <DependentOn>form_week.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <None Include="PrScrn.h">
+            <BuildOrder>10</BuildOrder>
+        </None>
+        <LibFiles Include="PrScrn.lib" Condition="'$(Platform)'=='Win32'">
+            <BuildOrder>10</BuildOrder>
+            <IgnorePath>true</IgnorePath>
+        </LibFiles>
         <None Include="week.ini"/>
         <CppCompile Include="week_report.cpp">
             <BuildOrder>0</BuildOrder>
@@ -222,11 +239,11 @@
             <DependentOn>XFunctionFunForm.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <FormResources Include="form_week.dfm"/>
         <FormResources Include="form_datetime.dfm"/>
         <FormResources Include="form_main.dfm"/>
-        <FormResources Include="form_week.dfm"/>
-        <FormResources Include="form_ocr.dfm"/>
         <FormResources Include="form_md5.dfm"/>
+        <FormResources Include="form_ocr.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -294,9 +311,23 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png" Configuration="Debug" Class="UWP_CppLogo150">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo150x150.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png" Configuration="Debug" Class="UWP_CppLogo150">
                     <Platform Name="Win64">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo150x150.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png" Configuration="Debug" Class="UWP_CppLogo44">
+                    <Platform Name="Win32">
+                        <RemoteDir>Assets\</RemoteDir>
+                        <RemoteName>Logo44x44.png</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -348,6 +379,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName=".\Win32\Debug\week_report.tds" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win32">
+                        <RemoteName>week_report.tds</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName=".\Win64\Debug\week_report.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>week_report.exe</RemoteName>
@@ -371,6 +408,18 @@
                     <Platform Name="Win64">
                         <RemoteDir>Assets\</RemoteDir>
                         <RemoteName>Logo44x44.png</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="PrScrn.lib" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="week.ini" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -1199,7 +1248,7 @@
             </Deployment>
             <Platforms>
                 <Platform value="Win32">True</Platform>
-                <Platform value="Win64">True</Platform>
+                <Platform value="Win64">False</Platform>
             </Platforms>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>

@@ -4,11 +4,11 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
+USEFORM("form_week.cpp", frmWeek);
 USEFORM("form_datetime.cpp", frmDateTime);
 USEFORM("form_main.cpp", frmMain);
-USEFORM("form_week.cpp", frmWeek);
-USEFORM("form_ocr.cpp", frmOCR);
 USEFORM("form_md5.cpp", frmMD5);
+USEFORM("form_ocr.cpp", frmOCR);
 //---------------------------------------------------------------------------
 bool AppIsRuning() {
 	auto hmutex = CreateMutex(NULL, false, L"WeekResport1.0");

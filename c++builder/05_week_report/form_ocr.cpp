@@ -4,6 +4,7 @@
 #pragma hdrstop
 
 #include "form_ocr.h"
+#include "PrScrn.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -21,3 +22,10 @@ void __fastcall TfrmOCR::SaveChange()
 
 void __fastcall TfrmOCR::Init() {
 }
+
+void __fastcall TfrmOCR::Button1Click(TObject *Sender)
+{
+	//
+    PrScrn();
+}
+//---------------------------------------------------------------------------
