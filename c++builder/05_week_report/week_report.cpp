@@ -4,25 +4,12 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
+USEFORM("form_datetime.cpp", frmDateTime);
 USEFORM("form_main.cpp", frmMain);
 USEFORM("form_week.cpp", frmWeek);
-USEFORM("form_datetime.cpp", frmDateTime);
-
-//function AppIsRunning: Boolean;
-//var
-//  hmutex:hwnd;
-//  errno:integer;
-//begin
-//  Result := False;
-//
-//	hmutex:=createmutex(nil,false,pchar('RPMClient'));
-//	errno:=getlasterror;
-//	if errno=error_already_exists then
-//	begin
-//	Result := True;
-//	end;
-//end;
-
+USEFORM("form_ocr.cpp", frmOCR);
+USEFORM("form_md5.cpp", frmMD5);
+//---------------------------------------------------------------------------
 bool AppIsRuning() {
 	auto hmutex = CreateMutex(NULL, false, L"WeekResport1.0");
 	auto err = GetLastError();

@@ -6,6 +6,8 @@
 #include "form_main.h"
 #include "form_week.h"
 #include "form_datetime.h"
+#include "form_md5.h"
+#include "form_ocr.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -19,7 +21,9 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 {
 	m_CurrActiveForm = nullptr;
 	INITFORM(TfrmWeek, frmWeek);
-    INITFORM(TfrmDateTime, frmDateTime);
+	INITFORM(TfrmDateTime, frmDateTime);
+	INITFORM(TfrmOCR, frmOCR);
+	INITFORM(TfrmMD5, frmMD5);
 }
 
 //---------------------------------------------------------------------------
@@ -92,13 +96,13 @@ void __fastcall TfrmMain::ActionAboutExecute(TObject *Sender)
 
 void __fastcall TfrmMain::ActionOCRExecute(TObject *Sender)
 {
-	//
+	ShowLocalForm(frmOCR, ActionOCR);
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TfrmMain::ActionMD5Execute(TObject *Sender)
 {
-    //
+	ShowLocalForm(frmMD5, ActionMD5);
 }
 //---------------------------------------------------------------------------
 
