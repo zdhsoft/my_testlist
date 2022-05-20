@@ -1,4 +1,5 @@
 import { getLogger, Queue, Stack } from 'xmcommon';
+import { T } from './t';
 
 const log = getLogger(__filename);
 // const stack = new Stack<number>();
@@ -33,3 +34,13 @@ const t = ['aaa', ' aaa', 'aaa ', '中!！ 中a a \n\t\r'];
 t.forEach((v) => {
     log.info(`[${v}] => a:[${trimstring(v)}] , b:[${v.trim()}] c:{${v}}`);
 });
+
+const ttt: any = new T();
+const sss = JSON.stringify(ttt);
+
+log.info('--->' + sss);
+const m = JSON.parse(sss);
+log.info('--->' + typeof m.k + '\n' + JSON.stringify(m));
+for (const kkk in m) {
+    log.info(`**** ${kkk} => ${m[kkk]} => type ${typeof m[kkk]}`);
+}
