@@ -12,20 +12,23 @@ object frmOCR: TfrmOCR
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
+  OnPaint = FormPaint
+  OnResize = FormResize
+  OnShow = FormShow
   TextHeight = 15
-  object Label1: TLabel
-    Left = 224
-    Top = 112
-    Width = 24
-    Height = 15
-    Caption = 'OCR'
+  object Image1: TImage
+    Left = 8
+    Top = 55
+    Width = 713
+    Height = 482
   end
   object Button1: TButton
-    Left = 232
-    Top = 408
-    Width = 193
-    Height = 73
-    Caption = 'Button1'
+    Left = 8
+    Top = 8
+    Width = 233
+    Height = 41
+    Caption = #25130#22270
     TabOrder = 0
     OnClick = Button1Click
   end
