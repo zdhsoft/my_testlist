@@ -36,6 +36,16 @@ __published:	// IDE-managed Components
 	TEdit *edTimestampResultMillis;
 	TButton *btTimestampResultCopy;
 	TButton *btTimestampMillisResultCopy;
+	TLabel *Label5;
+	TLabel *Label6;
+	TEdit *edDateTimeSecond;
+	TEdit *edDateTimeMillis;
+	TButton *Button1;
+	TButton *Button2;
+	TEdit *edDTResultSecond;
+	TEdit *edDTResultMillis;
+	TButton *btDTResultSecondCopy;
+	TButton *btDTResultMillisCopy;
 	void __fastcall Timer1Timer(TObject *Sender);
 	void __fastcall btnStartTimestampClick(TObject *Sender);
 	void __fastcall btnStopTimestampClick(TObject *Sender);

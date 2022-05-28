@@ -1,0 +1,11 @@
+{
+  "name": "rulecfg",
+  "version": "0.0.1",
+  "description": "配置生成工具",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zdhsoft",
+  "license": "ISC"
+}

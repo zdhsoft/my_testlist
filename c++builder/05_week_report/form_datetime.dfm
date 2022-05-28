@@ -56,6 +56,20 @@ object frmDateTime: TfrmDateTime
     Height = 21
     Caption = 'Unix'#26102#38388#25139#65288#27627#31186#65289
   end
+  object Label5: TLabel
+    Left = 24
+    Top = 208
+    Width = 133
+    Height = 21
+    Caption = #26412#22320#26102#38388#65306'('#31186#65289#65306
+  end
+  object Label6: TLabel
+    Left = 24
+    Top = 248
+    Width = 149
+    Height = 21
+    Caption = #26412#22320#26102#38388#65306'('#27627#31186#65289#65306
+  end
   object btnStartTimestamp: TButton
     Left = 304
     Top = 51
@@ -149,6 +163,74 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = #22797#21046
     TabOrder = 10
+    OnClick = btTimestampMillisResultCopyClick
+  end
+  object edDateTimeSecond: TEdit
+    Left = 176
+    Top = 205
+    Width = 284
+    Height = 29
+    TabOrder = 11
+    TextHint = #31034#20363': 2022-05-18 22:00:00'
+    OnChange = edTimestampMillisChange
+  end
+  object edDateTimeMillis: TEdit
+    Left = 176
+    Top = 240
+    Width = 284
+    Height = 29
+    TabOrder = 12
+    TextHint = #31034#20363': 2022-05-18 22:00:00.999'
+    OnChange = edTimestampMillisChange
+  end
+  object Button1: TButton
+    Left = 466
+    Top = 203
+    Width = 75
+    Height = 33
+    Caption = '>>'
+    TabOrder = 13
+    OnClick = edTimestampMillisChange
+  end
+  object Button2: TButton
+    Left = 466
+    Top = 238
+    Width = 75
+    Height = 33
+    Caption = '>>'
+    TabOrder = 14
+    OnClick = btnStartTimestampClick
+  end
+  object edDTResultSecond: TEdit
+    Left = 547
+    Top = 205
+    Width = 190
+    Height = 29
+    TabOrder = 15
+  end
+  object edDTResultMillis: TEdit
+    Left = 547
+    Top = 240
+    Width = 190
+    Height = 29
+    TabOrder = 16
+  end
+  object btDTResultSecondCopy: TButton
+    Left = 743
+    Top = 201
+    Width = 75
+    Height = 33
+    Caption = #22797#21046
+    TabOrder = 17
+    OnClick = btTimestampResultCopyClick
+  end
+  object btDTResultMillisCopy: TButton
+    Left = 743
+    Top = 240
+    Width = 75
+    Height = 33
+    Caption = #22797#21046
+    TabOrder = 18
     OnClick = btTimestampMillisResultCopyClick
   end
   object Timer1: TTimer
