@@ -56,6 +56,8 @@ __published:	// IDE-managed Components
 	void __fastcall edTimestampMillisChange(TObject *Sender);
 	void __fastcall btTimestampResultCopyClick(TObject *Sender);
 	void __fastcall btTimestampMillisResultCopyClick(TObject *Sender);
+	void __fastcall edDateTimeSecondChange(TObject *Sender);
+	void __fastcall edDateTimeMillisChange(TObject *Sender);
 private:	// User declarations
 	EnumNowStatus m_NowStatus = EnumNowStatus::Normal;
 private:

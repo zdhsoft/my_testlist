@@ -190,6 +190,10 @@
         <Icon_MainIcon>week_report_Icon5.ico</Icon_MainIcon>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="dt.cpp">
+            <DependentOn>dt.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
         <CppCompile Include="form_datetime.cpp">
             <Form>frmDateTime</Form>
             <FormType>dfm</FormType>

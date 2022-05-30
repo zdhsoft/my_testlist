@@ -119,3 +119,18 @@ void __fastcall TfrmDateTime::btTimestampMillisResultCopyClick(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
+void __fastcall TfrmDateTime::edDateTimeSecondChange(TObject *Sender)
+{
+	//
+	auto dt = StrToDateTime(edDateTimeSecond->Text.c_str());
+    ShowMessage(dt);
+	// TDateTime dt = new TDateTime();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmDateTime::edDateTimeMillisChange(TObject *Sender)
+{
+    //
+}
+//---------------------------------------------------------------------------
+

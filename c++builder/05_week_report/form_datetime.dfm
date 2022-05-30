@@ -113,7 +113,7 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = '>>'
     TabOrder = 4
-    OnClick = edTimestampMillisChange
+    OnClick = edTimestampSecondChange
   end
   object edTimestampResultSecond: TEdit
     Left = 424
@@ -138,7 +138,7 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = '>>'
     TabOrder = 7
-    OnClick = btnStartTimestampClick
+    OnClick = edTimestampMillisChange
   end
   object edTimestampResultMillis: TEdit
     Left = 424
@@ -172,7 +172,7 @@ object frmDateTime: TfrmDateTime
     Height = 29
     TabOrder = 11
     TextHint = #31034#20363': 2022-05-18 22:00:00'
-    OnChange = edTimestampMillisChange
+    OnChange = edDateTimeSecondChange
   end
   object edDateTimeMillis: TEdit
     Left = 176
@@ -181,7 +181,7 @@ object frmDateTime: TfrmDateTime
     Height = 29
     TabOrder = 12
     TextHint = #31034#20363': 2022-05-18 22:00:00.999'
-    OnChange = edTimestampMillisChange
+    OnChange = edDateTimeMillisChange
   end
   object Button1: TButton
     Left = 466
@@ -190,7 +190,7 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = '>>'
     TabOrder = 13
-    OnClick = edTimestampMillisChange
+    OnClick = edDateTimeSecondChange
   end
   object Button2: TButton
     Left = 466
@@ -199,7 +199,7 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = '>>'
     TabOrder = 14
-    OnClick = btnStartTimestampClick
+    OnClick = edDateTimeMillisChange
   end
   object edDTResultSecond: TEdit
     Left = 547
