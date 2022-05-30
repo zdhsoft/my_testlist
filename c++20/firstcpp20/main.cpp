@@ -1,5 +1,8 @@
 #include <iostream>
 #include "a.h";
+
+import com.zdhsoft.reg;
+
 using namespace std;
 class Test
 {
@@ -40,6 +43,7 @@ private:
 int main(int argc, char* argv[]) {
 
 	test2017();
+	cout << "value form module:" << testReg() << endl;
 
 	constexpr int a = 9990'9909;
 	constexpr int b = 999'999;

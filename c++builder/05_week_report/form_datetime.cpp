@@ -4,6 +4,7 @@
 #pragma hdrstop
 #include <ctime>
 #include <Clipbrd.hpp>
+#include <regex>
 #include "form_datetime.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
