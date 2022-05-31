@@ -1,4 +1,4 @@
-#include <iostream>
+import <iostream>
 #include "a.h";
 
 import com.zdhsoft.reg;
