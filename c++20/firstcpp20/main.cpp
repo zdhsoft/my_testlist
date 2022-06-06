@@ -1,8 +1,6 @@
-import <iostream>
+#include <iostream>
 #include "a.h";
-
-import com.zdhsoft.reg;
-
+#include "testreg.h";
 using namespace std;
 class Test
 {
@@ -41,18 +39,21 @@ private:
 	}
 };
 int main(int argc, char* argv[]) {
+	testReg();
 
-	test2017();
-	cout << "value form module:" << testReg() << endl;
 
-	constexpr int a = 9990'9909;
-	constexpr int b = 999'999;
-
-	cout << "hello world for C++ 20" << endl;
-	cout << a << endl;
-	cout << "-------------------------------- test concept" << endl;
-
-	cout << "-------------------------------- test concept" << b <<endl;
+// 
+// 	test2017();
+// 	cout << "value form module:" << testReg() << endl;
+// 
+// 	constexpr int a = 9990'9909;
+// 	constexpr int b = 999'999;
+// 
+// 	cout << "hello world for C++ 20" << endl;
+// 	cout << a << endl;
+// 	cout << "-------------------------------- test concept" << endl;
+// 
+// 	cout << "-------------------------------- test concept" << b <<endl;
 
 	return 0;
 }

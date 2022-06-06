@@ -153,10 +153,11 @@
   <ItemGroup>
     <ClCompile Include="a.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="reg.ixx" />
+    <ClCompile Include="testreg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="a.h" />
+    <ClInclude Include="testreg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
