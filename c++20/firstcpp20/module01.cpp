@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <cstddef>
 #include <concepts>
 #include "module01.h"
 using namespace std;
 
-// 1 ÏÂÃædemoÀ´×ÔÎ¢Èí¹ÙÍø:
+// 1 ä¸‹é¢demoæ¥è‡ªå¾®è½¯å®˜ç½‘:
 // https://devblogs.microsoft.com/cppblog/c20-concepts-are-here-in-visual-studio-2019
 //-version-16-3/?utm_source=vs_developer_news&utm_medium=referral
 // This concept tests whether 'T::type' is a valid type
@@ -56,9 +56,9 @@ template<typename T, typename U> requires can_add<T, U>
 		return t + u;
 	}
 
-	// 2 ÏÂÃædemoÀ´×Ôhttps://blog.csdn.net/oLuoJinFanHua12/article/details/101319056
+	// 2 ä¸‹é¢demoæ¥è‡ªhttps://blog.csdn.net/oLuoJinFanHua12/article/details/101319056
 
-	//std::enable_ifÊµÏÖ
+	//std::enable_ifå®ç°
 	template <typename T>
 	void print_int0(std::enable_if_t<std::is_same_v<int, std::decay_t<T>>, T> v)
 	{
@@ -66,14 +66,14 @@ template<typename T, typename U> requires can_add<T, U>
 	}
 	void print_int0()
 	{
-		//print_int0(1);			// error C2660: ¡°print_int0¡±: º¯Êı²»½ÓÊÜ 1 ¸ö²ÎÊı
+		//print_int0(1);			// error C2660: â€œprint_int0â€: å‡½æ•°ä¸æ¥å— 1 ä¸ªå‚æ•°
 		print_int0<int>(1);
-		//print_int0<double>(1.0);    // error C2672: ¡°print_int0¡±: Î´ÕÒµ½Æ¥ÅäµÄÖØÔØº¯Êı
+		//print_int0<double>(1.0);    // error C2672: â€œprint_int0â€: æœªæ‰¾åˆ°åŒ¹é…çš„é‡è½½å‡½æ•°
 	}
 
-	// 2.1.ÏŞÖÆÖ»ÄÜ´òÓ¡intÀàĞÍ
+	// 2.1.é™åˆ¶åªèƒ½æ‰“å°intç±»å‹
 	template <class T>
-	concept IntLimit = std::is_same_v<int, std::decay_t<T>>; //ÖÆÔ¼TËúÏİºóµÄÀàĞÍ±ØĞëÓëintÏàÍ¬
+	concept IntLimit = std::is_same_v<int, std::decay_t<T>>; //åˆ¶çº¦Tå¡Œé™·åçš„ç±»å‹å¿…é¡»ä¸intç›¸åŒ
 
 	template <IntLimit T>
 	void print_int(T v)
@@ -84,11 +84,11 @@ template<typename T, typename U> requires can_add<T, U>
 	void concept_test01()
 	{
 		print_int(1);
-		//print_int(1.0); //error C2672: ¡°print_int¡±: Î´ÕÒµ½Æ¥ÅäµÄÖØÔØº¯Êı/error C7602: ¡°print_int¡±: Î´Âú×ã¹ØÁªÔ¼Êø
+		//print_int(1.0); //error C2672: â€œprint_intâ€: æœªæ‰¾åˆ°åŒ¹é…çš„é‡è½½å‡½æ•°/error C7602: â€œprint_intâ€: æœªæ»¡è¶³å…³è”çº¦æŸ
 	}
 
-	// 2.2 2.require¹Ø¼ü×Ö
-	// ÏŞ¶¨Ö»ÄÜµ÷ÓÃ´æÔÚname³ÉÔ±º¯ÊıµÄÀà
+	// 2.2 2.requireå…³é”®å­—
+	// é™å®šåªèƒ½è°ƒç”¨å­˜åœ¨nameæˆå‘˜å‡½æ•°çš„ç±»
 	class A
 	{
 	public:
@@ -104,7 +104,7 @@ template<typename T, typename U> requires can_add<T, U>
 	template <typename T>
 	concept NameLimit = requires(T a)
 	{
-		a.name();	// ÖÆÔ¼TµÄÊµÀıa±ØĞëÒªÓĞname³ÉÔ±º¯Êı
+		a.name();	// åˆ¶çº¦Tçš„å®ä¾‹aå¿…é¡»è¦æœ‰nameæˆå‘˜å‡½æ•°
 	};
 
 	template <NameLimit T>
@@ -118,15 +118,15 @@ template<typename T, typename U> requires can_add<T, U>
 		A a;
 		print_name(a);
 		//B b;
-		//print_name(b); // error C2672 : ¡°print_name¡±: Î´ÕÒµ½Æ¥ÅäµÄÖØÔØº¯Êı/error C7602: ¡°print_name¡±: Î´Âú×ã¹ØÁªÔ¼Êø
+		//print_name(b); // error C2672 : â€œprint_nameâ€: æœªæ‰¾åˆ°åŒ¹é…çš„é‡è½½å‡½æ•°/error C7602: â€œprint_nameâ€: æœªæ»¡è¶³å…³è”çº¦æŸ
 	}
 
-	// ÏŞ¶¨Ö»ÄÜµ÷ÓÃ·µ»ØÖµ¿ÉÒÔ×ª»»Îªstd::stringµÄº¯Êı
+	// é™å®šåªèƒ½è°ƒç”¨è¿”å›å€¼å¯ä»¥è½¬æ¢ä¸ºstd::stringçš„å‡½æ•°
 	template <typename T>
 	concept ReturnLimit = requires(T t)
 	{
-		{t()}->std::convertible_to<std::string>;	// º¯Êı·µ»ØÖµ±ØĞë¿ÉÒÔ×ª»»Îªstd::string
-		std::is_function<T>;						// T±ØĞëÎªº¯Êı
+		{t()}->std::convertible_to<std::string>;	// å‡½æ•°è¿”å›å€¼å¿…é¡»å¯ä»¥è½¬æ¢ä¸ºstd::string
+		std::is_function<T>;						// Tå¿…é¡»ä¸ºå‡½æ•°
 	};
 
 	template <ReturnLimit T>
@@ -156,10 +156,10 @@ template<typename T, typename U> requires can_add<T, U>
 		t = std::string_view("213");
 		print_string(&str1);
 		print_string(&str2);
-		//print_string(&str3); // error C2672: ¡°print_string¡±: Î´ÕÒµ½Æ¥ÅäµÄÖØÔØº¯Êı
+		//print_string(&str3); // error C2672: â€œprint_stringâ€: æœªæ‰¾åˆ°åŒ¹é…çš„é‡è½½å‡½æ•°
 	}
 
-	// 2.3 concept¿ÉÒÔºÍif constexpr½áºÏÊ¹ÓÃ
+	// 2.3 conceptå¯ä»¥å’Œif constexprç»“åˆä½¿ç”¨
 	class A3
 	{
 	public:

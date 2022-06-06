@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include "a.h";
 #include "testreg.h";
 using namespace std;
@@ -16,7 +16,7 @@ public:
 		m_v1 = m_v2 + paramV1;
 	}
 	/**
-	 * @return ·µ»Øv1µÄÖµ 
+	 * @return è¿”å›žv1çš„å€¼ 
 	 */
 	int get_v1() const
 	{

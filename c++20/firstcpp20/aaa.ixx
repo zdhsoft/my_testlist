@@ -1,3 +1,3 @@
-export module $safeitemname$;
+﻿export module $safeitemname$;
 
 export void MyFunc();
