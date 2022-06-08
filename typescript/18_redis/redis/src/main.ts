@@ -41,6 +41,17 @@ async function expire() {
     console.log(`${k2}: expire ${k}`);
 }
 
+async function testRedure() {
+    const s = ['1', '2', '3', '4', '5'];
+    const k = s.reduce((p: string[], curr: string, index: number) => {
+        const kk = `[${index}] = ${curr}` as never;
+        p.push(kk);
+        return p;
+    }, []);
+    console.info('----->' + JSON.stringify(k));
+
+}
+
 async function main() {
     const client = await getRedis();
     const s = client.set(k1, 1999, { EX: 2600 });
@@ -59,5 +70,5 @@ async function main() {
 
     await expire();
 }
-
-main();
+testRedure();
+// main();
