@@ -49,7 +49,6 @@ async function testRedure() {
         return p;
     }, []);
     console.info('----->' + JSON.stringify(k));
-
 }
 
 async function main() {
