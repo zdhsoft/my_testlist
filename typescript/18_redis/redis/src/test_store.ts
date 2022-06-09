@@ -6,10 +6,12 @@ const log = getLogger(__filename);
 
 async function initStore() {
     const opts: IRedisOptions = {
-        host: '127.0.0.1',
-        port: 6379,
-        ttl: 100,
-        db: 5,
+        url: 'redis://127.0.0.1:6379/6',
+        // socket: {
+        //     host: '127.0.0.1',
+        //     port: 6379,
+        // },
+        // database: 5,
     };
     const redisClient = redis.createClient(opts);
     await redisClient.connect();

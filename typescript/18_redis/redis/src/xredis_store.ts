@@ -1,5 +1,5 @@
 import { SessionData, Store } from 'express-session';
-import { RedisClientType, RedisClientOptions } from 'redis';
+import { RedisClientType } from 'redis';
 import { ISessionSerializer } from './session_serializer';
 import { utils } from 'xmcommon';
 
@@ -29,7 +29,7 @@ export interface IRedisStoreSocketOptions {
      *     - 重连间隔的毫少数
      *     - 关闭客户端并刷新内部命令队列
      */
-    reconnectStrategy? (retries: number): number | Error;
+    reconnectStrategy?(retries: number): number | Error;
 
     tls?: true | false;
     // 下面的配置，源于nodejs的CommonConnectionOptions,
