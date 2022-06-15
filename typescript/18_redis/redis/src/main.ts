@@ -10,8 +10,6 @@
  * version             author            reason             date
  * 1.0                 zdhsoft       创建文件            2022-03-28
  *************************************************************************/
-
-import { RedisClientType } from '@redis/client';
 import * as redis from 'redis';
 
 let c: any;
