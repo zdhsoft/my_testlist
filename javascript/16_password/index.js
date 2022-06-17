@@ -40,4 +40,9 @@ function createPassword(paramLength = 32) {
 for(let i = 0; i < 10; i++) {
     console.log('----------------------------------->' + i);
     createPassword(32);
+    console.log('**********');
+    createPassword(16);
 }
+
+
+createPassword(16);
