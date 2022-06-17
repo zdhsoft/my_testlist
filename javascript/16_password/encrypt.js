@@ -25,8 +25,16 @@ function decrypt(paramText, paramKey, paramIv) {
 }
 
 const text = '测试加密abcdefg';
-console.log(`原文：[${text}]`);
-const mi = encrypt(text, key, iv);
-console.log(`密文：[${mi}]`);
-const jm = decrypt(mi, key, iv);
-console.log(`解密:[${jm}]`);
+// console.log(`原文：[${text}]`);
+// const mi = encrypt(text, key, iv);
+// console.log(`密文：[${mi}]`);
+// const jm = decrypt(mi, key, iv);
+// console.log(`解密:[${jm}]`);
+
+const d = Date.now();
+for(let i = 0; i < 10000; i++) {
+    const mi = encrypt(text, key, iv);
+    const jm = decrypt(mi, key, iv);
+}
+const deta = Date.now() - d;
+console.log('aaa>' + deta + 'ms');
