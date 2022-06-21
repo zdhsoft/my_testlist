@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/06/08 13:20:09.000.391,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/06/08 13:20:09.000.327,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/06/21 18:35:53.000.831,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/06/21 18:35:53.000.969,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/06/21 18:46:29.304,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/06/21 18:46:29.433,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/06/21 18:47:00.707,D:\zdhsoft\github\my_testlist\c++builder\04_http_client\frmMain.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2022/06/21 18:47:00.707,D:\zdhsoft\github\my_testlist\c++builder\04_http_client\frmMain.cpp=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2022/06/21 18:47:00.707,D:\zdhsoft\github\my_testlist\c++builder\04_http_client\frmMain.dfm=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2022/06/21 18:47:03.509,D:\zdhsoft\github\my_testlist\c++builder\04_http_client\Project1PCH1.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2022/06/21 18:47:07.955,D:\zdhsoft\github\my_testlist\c++builder\04_http_client\httpClientPCH1.h=D:\zdhsoft\github\my_testlist\c++builder\04_http_client\Project1PCH1.h</Transaction>
+    <Transaction>2022/06/21 18:47:07.979,D:\zdhsoft\github\my_testlist\c++builder\04_http_client\httpClient.cbproj=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>
