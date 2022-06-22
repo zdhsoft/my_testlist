@@ -14,3 +14,10 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 {
 }
 //---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+	TStringList * s = new TStringList();
+	NetHTTPRequest1->Post("http://127.0.0.1:30001", s)->ContentAsString;
+	delete s;
+}
+//---------------------------------------------------------------------------

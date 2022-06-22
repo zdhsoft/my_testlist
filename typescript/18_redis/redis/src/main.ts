@@ -67,5 +67,12 @@ async function main() {
 
     await expire();
 }
-testRedure();
+// testRedure();
 // main();
+
+const s =
+    'eyJ1c2VySWQiOiJhZG1pbiIsIm5hbWUiOiLlubPlj7DnrqHnkIblkZgiLCJtb2JpbGUiOiIxODgyMDI0ODE4NCIsImFwcElkIjoicGxhdGZvcm0iLCJhcHBOYW1lIjoi5rex5Zyz5biC6ZO-6J6N56eR5oqA6IKh5Lu95pyJ6ZmQ5YWs5Y-4Iiwicm9sZSI6W10sIm9yZ1R5cGUiOjk5LCJleHBpcmUiOjE2NTU4Mjk5NDQsImlhdCI6MTY1NTgwMTE0NCwiZXhwIjoxNjU1ODI5OTQ0fQ';
+
+const k = Buffer.from(s, 'base64');
+const m = k.toString('utf-8');
+console.log('---' + m);
