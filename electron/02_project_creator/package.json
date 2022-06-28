@@ -18,23 +18,23 @@
   "author": "祝冬华",
   "license": "ts_project",
   "devDependencies": {
-    "@electron-forge/cli": "^6.0.0-beta.63",
-    "@electron-forge/maker-deb": "^6.0.0-beta.63",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.63",
-    "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
-    "@electron-forge/maker-zip": "^6.0.0-beta.63",
-    "@types/lodash": "^4.14.180",
-    "@types/node": "^16.11.26",
-    "@typescript-eslint/eslint-plugin": "^5.16.0",
-    "@typescript-eslint/parser": "^5.16.0",
-    "electron": "^15.0.0",
-    "eslint": "^8.12.0",
+    "@electron-forge/cli": "^6.0.0-beta.64",
+    "@electron-forge/maker-deb": "^6.0.0-beta.64",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.64",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
+    "@electron-forge/maker-zip": "^6.0.0-beta.64",
+    "@types/lodash": "^4.14.182",
+    "@types/node": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
+    "electron": "^19.0.6",
+    "eslint": "^8.18.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.6.1",
-    "prettier-eslint": "^13.0.0",
-    "typescript": "^4.6.3"
+    "eslint-plugin-prettier": "^4.1.0",
+    "prettier": "^2.7.1",
+    "prettier-eslint": "^15.0.1",
+    "typescript": "^4.7.4"
   },
   "mac": {
     "icon": "./app.ico"
@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "xmcommon": "^0.9.21"
+    "xmcommon": "^1.0.3"
   },
   "config": {
     "forge": {
