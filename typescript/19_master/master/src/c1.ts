@@ -2,10 +2,10 @@
 // import { MASTER } from './master';
 
 import { XCommonRet } from 'xmcommon';
-import { Singleton } from './master';
+import { MASTER } from './master';
 
 // @MASTER('t1')
-@Singleton
+@MASTER
 export class t1 {
     public constructor() {
         console.log('---------t1');
@@ -19,7 +19,7 @@ export class t1 {
     }
 }
 
-@Singleton
+@MASTER
 export class t2 {
     public name = 'this is t2';
     public initFlag = false;

@@ -32,6 +32,8 @@
         "npm": ">=6.0.0"
     },
     "dependencies": {
+        "@easy-two/singleton-decorator": "^1.0.0",
+        "react-singleton-decorator": "^1.0.4",
         "reflect-metadata": "^0.1.13",
         "xmcommon": "^1.0.3"
     }
