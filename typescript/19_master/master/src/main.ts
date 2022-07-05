@@ -20,4 +20,5 @@ const a1 = new t1();
 const a2 = new t1();
 const a3 = new t2();
 const a4 = new t2();
+a4.name = '9999999999999999999999999999999999999';
 console.log(a2.m, a1.m, a3, a4);
