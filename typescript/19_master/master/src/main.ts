@@ -8,7 +8,14 @@
  * @version: 1.0
  * ------------------------------------------------------------------------
  * version             author            reason             date
- * 1.0                 祝冬华       创建文件            2022-03-28
+ * 1.0                 zdhsoft       创建文件            2022-03-28
  *************************************************************************/
 
-console.log('hello world!');
+import { t1 } from './c1';
+import { initMaster } from './master';
+
+initMaster();
+
+const a1 = new t1();
+const a2 = new t1();
+console.log(a2.m, a1.m);
