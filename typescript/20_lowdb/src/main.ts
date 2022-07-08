@@ -17,20 +17,26 @@ const log = getLogger(__filename);
 
 const db = new JsonDB(new Config('./myDataBase', true, true, '/'));
 db.load();
-if (!db.exists('/test')) {
-    db.push('/test', 'cccccc');
-}
-if (!db.exists('/test1')) {
-    db.push('/test1', { fffa: 'aaa11111' });
-}
 
-for (let i = 0; i < 10; i++) {
-    db.push('/testx/array[]', { id: i + 100, v: 'this is value' + i, d: new Date() }, true);
-}
-const v = db.getIndex('/testx/array', 101);
+const v = db.filter('/', (e, i) => {
+    log.info(JSON.stringify([e, i]));
+    return true;
+});
+console.log(JSON.stringify(v, null, 2));
+// if (!db.exists('/test')) {
+//     db.push('/test', 'cccccc');
+// }
+// if (!db.exists('/test1')) {
+//     db.push('/test1', { fffa: 'aaa11111' });
+// }
 
-log.info('index:' + v);
-db.push('/now', new Date());
-db.save();
+// for (let i = 0; i < 10; i++) {
+//     db.push('/testx/array[]', { id: i + 100, v: 'this is value' + i, d: new Date() }, true);
+// }
+// const v = db.getIndex('/testx/array', 101);
+
+// log.info('index:' + v);
+// db.push('/now', new Date());
+// db.save();
 
 log.log('hello world!');
