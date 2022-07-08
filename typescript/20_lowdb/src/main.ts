@@ -16,8 +16,8 @@ import { getLogger } from 'xmcommon';
 const log = getLogger(__filename);
 
 const db = new JsonDB(new Config('./myDataBase', true, true, '/'));
-db.load();
-
+// db.load();
+db.push('/aaaaa', { name: 'zdhsoft', age: 18 });
 const v = db.filter('/', (e, i) => {
     log.info(JSON.stringify([e, i]));
     return true;
