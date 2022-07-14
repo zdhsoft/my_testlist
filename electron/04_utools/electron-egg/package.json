@@ -1,0 +1,122 @@
+{
+  "name": "ee",
+  "version": "2.1.6",
+  "description": "A fast, desktop software development framework",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . ",
+    "dev": "electron . --env=local",
+    "reload": "nodemon",
+    "test": "set DEBUG=* && electron . --env=local",
+    "build-w": "electron-builder -w --ia32",
+    "build-w-64": "electron-builder -w --x64",
+    "build-m": "electron-builder -m",
+    "build-m-arm64": "electron-builder -m --arm64",
+    "build-l": "electron-builder -l",
+    "rd": "ee-core rd --dist_dir=./frontend/dist",
+    "compress": "ee-core compress",
+    "restore": "ee-core restore",
+    "rebuild": "electron-rebuild",
+    "re-sqlite": "electron-rebuild -f -w better-sqlite3"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "electron/",
+      "main.js"
+    ],
+    "ignore": [],
+    "ext": "js,json",
+    "verbose": true,
+    "exec": "electron . --env=local --hot-reload=1",
+    "restartable": "hr",
+    "colours": true,
+    "events": {}
+  },
+  "build": {
+    "productName": "ee",
+    "appId": "com.electron.ee",
+    "copyright": "wallace5303",
+    "directories": {
+      "output": "out"
+    },
+    "asar": true,
+    "files": [
+      "**/*",
+      "!frontend/",
+      "!run/",
+      "!logs/",
+      "!data/"
+    ],
+    "extraResources": {
+      "from": "./build/extraResources/",
+      "to": "extraResources"
+    },
+    "electronDownload": {
+      "mirror": "https://npmmirror.com/mirrors/electron/"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "./build/icons/icon.ico",
+      "uninstallerIcon": "./build/icons/icon.ico",
+      "installerHeaderIcon": "./build/icons/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "EE框架"
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://github.com/wallace5303/electron-egg"
+      }
+    ],
+    "mac": {
+      "icon": "./build/icons/icon.icns",
+      "artifactName": "${productName}-macos-${version}.${ext}",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "./build/icons/icon.ico",
+      "artifactName": "${productName}-windows-${version}.${ext}",
+      "target": [
+        {
+          "target": "nsis"
+        }
+      ]
+    },
+    "linux": {
+      "icon": "./build/icons/icon.icns",
+      "artifactName": "${productName}-linux-${version}.${ext}",
+      "target": [
+        "deb"
+      ],
+      "category": "Utility"
+    }
+  },
+  "repository": "https://github.com/wallace5303/ee.git",
+  "keywords": [
+    "Electron"
+  ],
+  "author": "wallace5303, Inc <530353222@qq.com>",
+  "license": "Apache",
+  "devDependencies": {
+    "debug": "^4.3.3",
+    "electron": "^13.6.9",
+    "electron-builder": "^23.1.0",
+    "electron-rebuild": "^3.2.8",
+    "eslint": "^5.13.0",
+    "eslint-config-egg": "^7.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.7",
+    "ee-core": "^1.2.8",
+    "electron-is": "^3.0.0",
+    "lodash": "^4.17.21"
+  }
+}
