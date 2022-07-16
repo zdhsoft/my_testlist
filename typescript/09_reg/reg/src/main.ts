@@ -36,15 +36,21 @@ t(CommonReg.simpleTime, '010203');
 t(CommonReg.onlyDigit, '123');
 t(CommonReg.onlyDigit, '123aa');
 t(CommonReg.onlyDigit, '');
-
+console.log(
+    'onlyLowercase-------------------------------------------------------',
+);
 t(CommonReg.onlyLowercase, 'abc');
 t(CommonReg.onlyLowercase, '123aa');
 t(CommonReg.onlyLowercase, '');
 t(CommonReg.onlyLowercase, 'aA');
+console.log(
+    'onlyCapitalLetter-------------------------------------------------------',
+);
 t(CommonReg.onlyCapitalLetter, 'ABC');
 t(CommonReg.onlyCapitalLetter, 'ABC123');
 t(CommonReg.onlyCapitalLetter, '');
 t(CommonReg.onlyCapitalLetter, 'aA');
+console.log('integer-------------------------------------------------------');
 t(CommonReg.integer, '0');
 t(CommonReg.integer, '-0');
 t(CommonReg.integer, '123450');
@@ -52,3 +58,32 @@ t(CommonReg.integer, '+12345');
 t(CommonReg.integer, '');
 t(CommonReg.integer, '-1234560');
 t(CommonReg.integer, '012345');
+console.log('mobile_cn-------------------------------------------------------');
+t(CommonReg.mobile_cn, '01234511111');
+t(CommonReg.mobile_cn, '012345111112');
+t(CommonReg.mobile_cn, '');
+t(CommonReg.mobile_cn, '18820248184');
+t(CommonReg.mobile_cn, '+8618820248184');
+t(CommonReg.mobile_cn, '8618820248184');
+t(CommonReg.mobile_cn, '86-18820248184');
+t(CommonReg.mobile_cn, '086-18820248184');
+t(CommonReg.mobile_cn, '+86-18820248184');
+t(CommonReg.mobile_cn, '+8818820248184');
+console.log(
+    'mobile_other-------------------------------------------------------',
+);
+t(CommonReg.mobile_other, '01234511111');
+t(CommonReg.mobile_other, '012345111112');
+t(CommonReg.mobile_other, '');
+t(CommonReg.mobile_other, '18820248184');
+t(CommonReg.mobile_other, '+8618820248184');
+t(CommonReg.mobile_other, '8618820248184');
+t(CommonReg.mobile_other, '86-18820248184');
+t(CommonReg.mobile_other, '086-18820248184');
+t(CommonReg.mobile_other, '+86-18820248184');
+t(CommonReg.mobile_other, '+8818820248184');
+console.log('-------------------------------------------------------');
+t(CommonReg.mobile_cn_344, '+86188-2024-8184');
+t(CommonReg.mobile_cn_335, '+86188-202-48184');
+t(CommonReg.mobile_cn_443, '+861882-0248-184');
+console.log('-------------------------------------------------------');
