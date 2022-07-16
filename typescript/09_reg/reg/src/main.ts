@@ -17,7 +17,7 @@ function t(paramReg: RegExp, paramValue: string, paramPrompt = '') {
     const execResult = paramReg.exec(paramValue);
     const testResult = paramReg.test(paramValue);
     console.log(
-        `${paramPrompt} ${paramValue}=>${paramReg}=>${testResult}, ${JSON.stringify(
+        `${paramPrompt} [${paramValue}] => [${paramReg}] => ${testResult}, ${JSON.stringify(
             execResult,
         )}`,
     );
@@ -33,3 +33,22 @@ t(CommonReg.baseTime, '20:19:23');
 t(CommonReg.baseTime, '24:19:23');
 t(CommonReg.baseTime, '00:00:00');
 t(CommonReg.simpleTime, '010203');
+t(CommonReg.onlyDigit, '123');
+t(CommonReg.onlyDigit, '123aa');
+t(CommonReg.onlyDigit, '');
+
+t(CommonReg.onlyLowercase, 'abc');
+t(CommonReg.onlyLowercase, '123aa');
+t(CommonReg.onlyLowercase, '');
+t(CommonReg.onlyLowercase, 'aA');
+t(CommonReg.onlyCapitalLetter, 'ABC');
+t(CommonReg.onlyCapitalLetter, 'ABC123');
+t(CommonReg.onlyCapitalLetter, '');
+t(CommonReg.onlyCapitalLetter, 'aA');
+t(CommonReg.integer, '0');
+t(CommonReg.integer, '-0');
+t(CommonReg.integer, '123450');
+t(CommonReg.integer, '+12345');
+t(CommonReg.integer, '');
+t(CommonReg.integer, '-1234560');
+t(CommonReg.integer, '012345');
