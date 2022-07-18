@@ -10,6 +10,7 @@
         "lintfix": "eslint \"src/**/*.ts\" --fix",
         "build": "npm run lint &&tsc",
         "test": "jest",
+        "test-c": "jest --coverage",
         "formatbuild": "npm run format && npm run build"
     },
     "keywords": [],
