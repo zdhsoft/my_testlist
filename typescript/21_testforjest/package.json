@@ -1,0 +1,42 @@
+{
+    "name": "testforjest",
+    "version": "1.0.0",
+    "description": "ts project",
+    "main": "./dist/main.js",
+    "scripts": {
+        "prebuild": "rimraf dist",
+        "format": "prettier --write \"src/**/*.ts\"",
+        "lint": "eslint \"src/**/*.ts\"",
+        "lintfix": "eslint \"src/**/*.ts\" --fix",
+        "build": "npm run lint &&tsc",
+        "test": "jest",
+        "formatbuild": "npm run format && npm run build"
+    },
+    "keywords": [],
+    "author": "zdhsoft",
+    "license": "ts_project",
+    "devDependencies": {
+        "@babel/core": "^7.18.6",
+        "@babel/preset-env": "^7.18.6",
+        "@babel/preset-typescript": "^7.18.6",
+        "@types/jest": "^28.1.6",
+        "@types/lodash": "^4.14.182",
+        "@types/node": "^16.11.26",
+        "@typescript-eslint/eslint-plugin": "^5.30.5",
+        "@typescript-eslint/parser": "^5.30.5",
+        "babel-jest": "^28.1.3",
+        "eslint": "^8.19.0",
+        "eslint-config-google": "^0.14.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "jest": "^28.1.3",
+        "prettier": "^2.7.1",
+        "prettier-eslint": "^15.0.1",
+        "ts-jest": "^28.0.7",
+        "typescript": "^4.7.4"
+    },
+    "engines": {
+        "node": ">=10.0.0",
+        "npm": ">=6.0.0"
+    }
+}
