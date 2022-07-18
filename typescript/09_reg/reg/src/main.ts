@@ -87,3 +87,29 @@ t(CommonReg.mobile_cn_344, '+86188-2024-8184');
 t(CommonReg.mobile_cn_335, '+86188-202-48184');
 t(CommonReg.mobile_cn_443, '+861882-0248-184');
 console.log('-------------------------------------------------------');
+t(CommonReg.curreny_thousandth, '123,3.13');
+t(CommonReg.curreny_thousandth, '1,233.13');
+t(CommonReg.curreny_thousandth, '1,233.13345');
+t(CommonReg.curreny, '1233.13345');
+t(CommonReg.curreny, '1233.1334');
+t(CommonReg.curreny, '-1233.1334');
+t(CommonReg.curreny, '+1233.1334');
+console.log('rangeDate----------------------------------------------------');
+t(CommonReg.baseRangeDate, '2009-02-01 2009-02-01');
+t(CommonReg.baseRangeDate, '2009/02/01 2009/02/01');
+t(CommonReg.baseRangeDate, '2009\\02\\01 2009\\02\\01');
+t(CommonReg.baseRangeDate, '2009.02.01 2009.02.01');
+t(CommonReg.baseRangeDate, '2009 02 01 2009 02 01');
+function tttt() {
+    const f = '2009-02-01 2009-02-01';
+    const result = CommonReg.baseRangeDate.exec(f);
+    if (Array.isArray(result)) {
+        const begin = [result[1], result[2], result[3]].join('-');
+        const end = [result[4], result[5], result[6]].join('-');
+        const beginDate = new Date(begin);
+        const endDate = new Date(end);
+
+        console.log(begin, end, beginDate, endDate);
+    }
+}
+tttt();
