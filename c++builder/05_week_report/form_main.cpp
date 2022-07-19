@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #include <vcl.h>
 #pragma hdrstop
@@ -38,6 +38,7 @@ void __fastcall TfrmMain::ShowLocalForm(XFunctionFunForm * paramForm,TAction * p
 		if (paramForm != NULL)
 		{
 			paramForm->Show();
+
 		}
 	}
 	m_CurrActiveForm = paramForm;
@@ -52,7 +53,7 @@ void __fastcall TfrmMain::ShowLocalForm(XFunctionFunForm * paramForm,TAction * p
 
 void __fastcall TfrmMain::ActionWeekExecute(TObject *Sender)
 {
-  	ShowLocalForm(frmWeek, ActionWeek);
+	ShowLocalForm(frmWeek, ActionWeek);
 }
 //---------------------------------------------------------------------------
 
