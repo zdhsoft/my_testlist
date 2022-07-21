@@ -16,6 +16,7 @@ import { DetailModule } from './detail/detail.module';
 import { LoginModule } from './pages/login/login.module';
 import { AdminModule } from './pages/admin/admin.module';
 import { RuleModule } from './pages/rule/rule.module';
+import { DemoModule } from './pages/demo/demo.module';
 
 import { AppComponent } from './app.component';
 import { APP_CONFIG } from '../environments/environment';
@@ -34,19 +35,20 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
         HttpClientModule,
         CoreModule,
         SharedModule,
-        HomeModule,
-        DetailModule,
-        LoginModule,
-        AdminModule,
         AppRoutingModule,
-        RuleModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
                 useFactory: httpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        RuleModule,
+        HomeModule,
+        DetailModule,
+        LoginModule,
+        AdminModule,
+        DemoModule
     ],
     providers: [{ provide: 'APP_CONFIG', useValue: APP_CONFIG }],
     bootstrap: [AppComponent]

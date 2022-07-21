@@ -5,8 +5,9 @@
             "GO_TO_DETAIL": "去到细节"
         },
         "DETAIL": {
-          "TITLE": "这是细节",
-          "BACK_TO_HOME": "返回首页"
-      }
-    }
-  }
+            "TITLE": "这是细节",
+            "BACK_TO_HOME": "返回首页"
+        }
+    },
+    "TITLE": "CPS"
+}

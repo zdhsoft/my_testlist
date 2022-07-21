@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin.component';
-import { EnumRouterPath } from '../../routes.path';
+import { HerosComponent } from './heros.component';
+import { EnumRouterPath } from '../../../routes.path';
 
 const routes: Routes = [
     {
-        path: EnumRouterPath.admin,
-        component: AdminComponent
+        path: EnumRouterPath.heros,
+        component: HerosComponent
     }
 ];
 
@@ -16,4 +16,4 @@ const routes: Routes = [
     imports: [CommonModule, RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class DemoRoutingModule { }
