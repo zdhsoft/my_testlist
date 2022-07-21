@@ -1,0 +1,20 @@
+<div class="container">
+    <section class="left">
+      <img
+        src="assets/images/tiny.png"
+        image-loader
+        largeImageSrc="assets/images/login-cps.png"
+        fallback="assets/images/login-cps.png"
+        [width]="924"
+        alt="cps"
+      />
+    </section>
+    <section class="right">
+      <img src="assets/images/logo-black-full.png" alt="logo" />
+      <xn-login-form
+        class="form"
+        title="study electron"
+        (logged)="handleLogin()"
+      ></xn-login-form>
+    </section>
+  </div>
