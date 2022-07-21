@@ -15,6 +15,7 @@ import { HomeModule } from './home/home.module';
 import { DetailModule } from './detail/detail.module';
 import { LoginModule } from './pages/login/login.module';
 import { AdminModule } from './pages/admin/admin.module';
+import { RuleModule } from './pages/rule/rule.module';
 
 import { AppComponent } from './app.component';
 import { APP_CONFIG } from '../environments/environment';
@@ -38,6 +39,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
         LoginModule,
         AdminModule,
         AppRoutingModule,
+        RuleModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
