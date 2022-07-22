@@ -7,16 +7,21 @@ import { DetailRoutingModule } from './detail/detail-routing.module';
 import { LoginRoutingModule } from './pages/login/login-routing.module';
 import { DemoRoutingModule } from './pages/demo/heros/demo-routing.module';
 import { AdminRoutingModule } from './pages/admin/admin-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'home',
+        redirectTo: '/dashboard',
         pathMatch: 'full'
     },
     {
         path: '**',
         component: PageNotFoundComponent
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent
     }
 ];
 

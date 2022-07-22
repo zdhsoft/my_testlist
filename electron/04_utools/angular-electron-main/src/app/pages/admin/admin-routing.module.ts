@@ -12,7 +12,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    declarations: [],
+    declarations: [AdminComponent],
     imports: [CommonModule, RouterModule.forChild(routes)],
     exports: [RouterModule]
 })

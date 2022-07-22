@@ -6,7 +6,7 @@ import { EnumRouterPath } from '../routes.path';
 
 const routes: Routes = [
     {
-        path: 'home',
+        path: EnumRouterPath.home,
         component: HomeComponent
     }
 ];

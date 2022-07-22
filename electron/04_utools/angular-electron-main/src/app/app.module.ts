@@ -20,6 +20,7 @@ import { DemoModule } from './pages/demo/demo.module';
 
 import { AppComponent } from './app.component';
 import { APP_CONFIG } from '../environments/environment';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // import { AdminComponent } from './pages/admin/admin.component';
 // import { LoginComponent } from './pages/login/login.component';
@@ -28,7 +29,7 @@ import { APP_CONFIG } from '../environments/environment';
 const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, DashboardComponent],
     imports: [
         BrowserModule,
         FormsModule,
