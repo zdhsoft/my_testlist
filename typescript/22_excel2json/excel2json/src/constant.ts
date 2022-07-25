@@ -9,5 +9,4 @@ export enum EnumDataType {
     INT = 'int',
     NUMBER = 'number',
     STRING = 'string',
-
 }
