@@ -38,8 +38,13 @@ class XColumnInfo {
 
 class XTitleInfo {
     public columns: XColumnInfo[] = [];
+    public columnMap: Map<string, XColumnInfo> = new Map();
     public constructor() {
         //
+    }
+    public reset() {
+        this.columns = [];
+        this.columnMap.clear();
     }
 }
 
@@ -56,6 +61,7 @@ class XTableInfo {
         this.fileName = paramFileName;
         this.describe = paramDescribe;
         this.setTypes(paramTypes);
+        this.titleInfo = new XTitleInfo();
     }
 
     public setTypes(paramTypes: string) {
@@ -71,6 +77,18 @@ class XTableInfo {
         const r = new XCommonRet();
         do {
             //
+            if (!Array.isArray(paramSheetData)) {
+                //
+                r.setError(-21, `初始化表不是数组!`);
+                break;
+            }
+
+            if (paramSheetData.length < 2) {
+                r.setError(-22, `初始化表的表头小于2行!`);
+                break;
+            }
+
+
         } while (false);
         return r;
     }
