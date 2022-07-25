@@ -20,15 +20,14 @@ export enum EnumDataType {
 }
 
 const TypeSet = {
-    SetTypeAny: new Set<EnumDataType>();
-    SetTypeBool: new Set<EnumDataType>();
-    SetTypeInt: new Set<EnumDataType>();
-    SetTypeNumber: new Set<EnumDataType>();
-    SetTypeString: new Set<EnumDataType>();
-    SetTypeObject: new Set<EnumDataType>();
-    SetTypeArray: new Set<EnumDataType>();
-}
-
+    SetTypeAny: new Set<EnumDataType>(),
+    SetTypeBool: new Set<EnumDataType>(),
+    SetTypeInt: new Set<EnumDataType>(),
+    SetTypeNumber: new Set<EnumDataType>(),
+    SetTypeString: new Set<EnumDataType>(),
+    SetTypeObject: new Set<EnumDataType>(),
+    SetTypeArray: new Set<EnumDataType>(),
+};
 
 TypeSet.SetTypeAny.add(EnumDataType.ANY).add(EnumDataType.ARRAY_ANY);
 TypeSet.SetTypeBool.add(EnumDataType.BOOL).add(EnumDataType.ARRAY_BOOL);

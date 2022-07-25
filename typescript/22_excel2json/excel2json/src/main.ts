@@ -87,8 +87,6 @@ class XTableInfo {
                 r.setError(-22, `初始化表的表头小于2行!`);
                 break;
             }
-
-
         } while (false);
         return r;
     }
