@@ -9,4 +9,9 @@ export enum EnumDataType {
     INT = 'int',
     NUMBER = 'number',
     STRING = 'string',
+
+    ARRAY_ANY = 'array:any',
+    ARRAY_BOOL = 'array:bool',
+    ARRAY_INT = 'array:int',
+    ARRAT_STRUBG = 'array:string',
 }
