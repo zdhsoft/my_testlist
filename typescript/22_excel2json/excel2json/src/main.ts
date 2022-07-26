@@ -679,7 +679,6 @@ function initTable(paramTableInfoList: ITableInfo[], paramExcelData: any): XComm
                 r.addErrorPre(`初始化:${info.sheetName}:${info.describe}`);
             } else {
                 s.saveToFile(s.fileName);
-                // log.info('----->\n' + JSON.stringify(s, null, 2));
             }
             tableInfo.push(s);
         }
@@ -735,28 +734,6 @@ function doExcel(paramFileName: string, paramFullName: string) {
 }
 
 function main() {
-    log.info('begin:');
-    const r = new XCommonRet();
-    do {
-        const result = XExcelUtils.readExcelByFile(xlsxfile);
-        if (result.isNotOK) {
-            r.assignFrom(r);
-            return;
-        }
-        const excelData: any = result.data;
-        fs.writeFileSync(t, JSON.stringify(excelData, null, 2), 'utf-8');
-        // 初始化
-        const initResult = initTable(excelData[tablelist], excelData);
-        if (initResult.isNotOK) {
-            r.assignFrom(initResult);
-            break;
-        }
-    } while (false);
-    log.info(`finish!:${JSON.stringify(r)}`);
-    return r;
-}
-
-function boot() {
     console.log('excel转换成json 1.0');
     try {
         const opts = utils.options(process.argv);
@@ -776,4 +753,4 @@ function boot() {
     }
 }
 
-boot();
+main();
