@@ -3,6 +3,9 @@
     "version": "1.0.0",
     "description": "ts project",
     "main": "./dist/main.js",
+    "bin": {
+        "excel2json": "./bin/excel2json.js"
+    },
     "scripts": {
         "prebuild": "rimraf dist",
         "format": "prettier --write \"src/**/*.ts\"",
