@@ -466,6 +466,8 @@ class XTableInfo {
             utils.mkdirsSyncEx(filePath);
             const list: string[] = [];
             list.push('{\n');
+            list.push('    "describe": ' + JSON.stringify(this.describe) + ',\n');
+            list.push('    "sheetName": ' + JSON.stringify(this.sheetName) + ',\n');
             list.push('    "list":[\n');
             const outdata = this.outdata;
             const len = outdata.length;
