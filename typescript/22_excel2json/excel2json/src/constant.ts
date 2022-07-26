@@ -1,3 +1,5 @@
+import { utils } from 'xmcommon';
+
 export enum EnumOutType {
     CLIENT = 'c',
     SERVER = 's',
@@ -78,6 +80,25 @@ export class XTypeUtils {
 
     public static isArray(paramType: EnumDataType) {
         return TypeSet.SetTypeArray.has(paramType);
+    }
+
+    public static checkType(paramType: EnumDataBaseType, paramData: any) {
+        switch (paramType) {
+            case EnumDataBaseType.BOOL:
+                return utils.isBoolean(paramData);
+            case EnumDataBaseType.INT:
+                return utils.isInteger(paramData);
+            case EnumDataBaseType.STRING:
+                return utils.isString(paramData);
+            case EnumDataBaseType.NUMBER:
+                return utils.isNumber(paramData);
+            case EnumDataBaseType.OBJECT:
+                return utils.isObject(paramData);
+            case EnumDataBaseType.ANY:
+                return true;
+            default:
+                return false;
+        }
     }
 
     public static baseType(paramType: EnumDataType): EnumDataBaseType {

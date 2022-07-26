@@ -139,6 +139,8 @@ class XTitleInfo {
     }
 }
 
+
+
 class XTableInfo {
     public types: EnumOutType[];
     public sheetName: string;
@@ -147,6 +149,7 @@ class XTableInfo {
 
     public titleInfo: XTitleInfo;
     public data: any[];
+    public outdata: any[];
     public constructor(paramTypes: string, paramSheetName: string, paramFileName: string, paramDescribe = '') {
         this.types = [];
         this.sheetName = paramSheetName;
@@ -289,6 +292,12 @@ class XTableInfo {
             for (let rowIndex = 3; rowIndex < dataLength; rowIndex++) {
                 this.data.push(paramSheetData[rowIndex]);
             }
+
+            const makeResult = this.makeOutData();
+            if (makeResult.isNotOK) {
+                r.assignFrom(makeResult);
+                break;
+            }
         } while (false);
         return r;
     }
@@ -300,6 +309,135 @@ class XTableInfo {
             }
         }
         return false;
+    }
+
+    private makeOutData(): XCommonRet {
+        const r = new XCommonRet();
+        do {
+            const outData: any[] = [];
+            const data = this.data;
+
+            for (let i = 0; i < data.length; i++) {
+                const o = data[i];
+                const row = i + 3;
+                if (!utils.isObject(o)) {
+                    r.setError(-50, `第${row}行:${o}的数据不是有效对象!`);
+                    continue;
+                }
+
+                const newData: any = {};
+
+                for (const key in o) {
+                    const getResult = this.titleInfo.getColumnByKey(key);
+                    if (getResult.isNotOK) {
+                        r.assignFrom(getResult);
+                        r.addErrorPre(`未找到sheet:${this.sheetName},key:${key}的定义信息>`);
+                        continue;
+                    }
+                    const column = getResult.data as XColumnInfo;
+                    if (!this.isOut(column.outType)) {
+                        continue;
+                    }
+                    let value = o[key];
+                    const type = column.type;
+                    let newValue: any;
+
+                    if (column.isArray) {
+                        if (utils.isString(value)) {
+                            value = value.trim();
+                            if (utils.isEmpty(value)) {
+                                newValue = [];
+                            } else {
+                                const valueArray = utils.JsonParse<[]>(value) as any[];
+                                if (!Array.isArray(valueArray)) {
+                                    r.setError(-51, `第${row}行:${key}=${value}的数据不是有效数组!`);
+                                    break;
+                                }
+                                for (let valueIndex = 0; valueIndex < valueArray.length; valueIndex++) {
+                                    let item = valueArray[valueIndex];
+                                    if (type === EnumDataBaseType.STRING) {
+                                        if (
+                                            utils.isInteger(item) ||
+                                            utils.isBoolean(item) ||
+                                            utils.isNumber(item) ||
+                                            utils.isObject(item) ||
+                                            utils.isArray(item)
+                                        ) {
+                                            item = String(item);
+                                        } else if (utils.isString(value)) {
+                                            value = value.trim();
+                                        }
+                                    }
+                                    if (!XTypeUtils.checkType(type, item)) {
+                                        r.setError(
+                                            -52,
+                                            `第${row}行:${key}=${value}的第${valueIndex}个值为${item}, 不是指定的类型!`,
+                                        );
+                                        break;
+                                    }
+                                }
+                                if (r.isNotOK) {
+                                    break;
+                                }
+                                newValue = valueArray;
+                            }
+                        } else if (utils.isNull(value)) {
+                            newValue = [];
+                        } else {
+                            r.setError(-53, `第${row}行:${key}=${value}不是有效数组!`);
+                            break;
+                        }
+                    } else {
+                        if (type === EnumDataBaseType.STRING) {
+                            if (
+                                utils.isInteger(value) ||
+                                utils.isBoolean(value) ||
+                                utils.isNumber(value) ||
+                                utils.isObject(value) ||
+                                utils.isArray(value)
+                            ) {
+                                value = String(value);
+                            } else if (utils.isNull(value)) {
+                                value = '';
+                            } else if (utils.isString(value)) {
+                                value = value.trim();
+                            }
+                        } else if (type === EnumDataBaseType.INT || type === EnumDataBaseType.NUMBER) {
+                            if (utils.isNull(value)) {
+                                value = 0;
+                            } else if (utils.isString(value)) {
+                                if (value.trim() === '') {
+                                    value = 0;
+                                }
+                            }
+                        } else if (type === EnumDataBaseType.BOOL) {
+                            if (utils.isNull(value)) {
+                                value = false;
+                            } else if (utils.isString(value)) {
+                                if (value.trim() === '') {
+                                    value = false;
+                                }
+                            }
+                        }
+                        if (!XTypeUtils.checkType(type, value)) {
+                            r.setError(-54, `第${row}行:${key}=${value}不是指定的类型！`);
+                            break;
+                        }
+                        newValue = value;
+                    }
+                    newData[column.name] = newValue;
+                }
+                if (r.isNotOK) {
+                    break;
+                }
+                outData.push(newData);
+            }
+            if (r.isNotOK) {
+                break;
+            }
+            this.outdata = outData;
+        } while (false);
+        return r;
     }
 }
 
@@ -316,7 +454,7 @@ function initTable(paramTableInfoList: ITableInfo[], paramExcelData: any): XComm
         }
 
         for (const info of paramTableInfoList) {
-            log.info(`处理:${info.sheetName}:${info.describe}`);
+            log.info(`初始化:${info.sheetName}:${info.describe}`);
             const s = new XTableInfo(info.type, info.sheetName, info.filename, info.describe);
 
             const sheet = paramExcelData[info.sheetName];
@@ -352,12 +490,16 @@ function main() {
         }
         const excelData: any = result.data;
         fs.writeFileSync(t, JSON.stringify(excelData, null, 2), 'utf-8');
-
+        // 初始化
         const initResult = initTable(excelData[tablelist], excelData);
         if (initResult.isNotOK) {
             r.assignFrom(initResult);
             break;
         }
+        // // 输出
+        // for (const t of tableInfo) {
+        //     //
+        // }
     } while (false);
     log.info(`finish!:${JSON.stringify(r)}`);
     return r;
