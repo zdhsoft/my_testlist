@@ -12,7 +12,7 @@
  *************************************************************************/
 
 import fs from 'fs';
-// import path from 'path';
+import path from 'path';
 import { XExcelUtils } from './excel_utils';
 
 const xlsxfile = './testdata/Build.xlsx';
@@ -456,6 +456,37 @@ class XTableInfo {
         }
         return false;
     }
+    /** 保存到文件 */
+    public saveToFile(paramFileName: string) {
+        let filePath = path.dirname(paramFileName);
+        const baseName = path.basename(paramFileName);
+        filePath = path.resolve(filePath);
+        const fullName = path.join(filePath, baseName);
+        try {
+            utils.mkdirsSyncEx(filePath);
+            const list: string[] = [];
+            list.push('{\n');
+            list.push('    "list":[\n');
+            const outdata = this.outdata;
+            const len = outdata.length;
+            if (len > 0) {
+                const lastIndex = len - 1;
+                for (let idx = 0; idx < len; idx++) {
+                    const itemContent = JSON.stringify(outdata[idx]);
+                    const itemSplit = idx < lastIndex ? ',' : '';
+                    const item = ['        ', itemContent, itemSplit, '\n'];
+                    list.push(item.join(''));
+                }
+            }
+            list.push('    ]\n');
+            list.push('}\n');
+            const content = list.join('');
+            log.info('保存到文件:' + fullName);
+            fs.writeFileSync(fullName, content, 'utf8');
+        } catch (e) {
+            log.error(`保存到文件失败! filename:${paramFileName}, fullname:${fullName}, err:${e}`);
+        }
+    }
 
     private makeOutData(): XCommonRet {
         const r = new XCommonRet();
@@ -560,6 +591,26 @@ class XTableInfo {
                                 if (value.trim() === '') {
                                     value = 0;
                                 }
+                                if (type === EnumDataBaseType.INT) {
+                                    if (CommonReg.integer.test(value)) {
+                                        const n = Number.parseInt(value);
+                                        if (!Number.isNaN(n)) {
+                                            value = n;
+                                        }
+                                    }
+                                } else if (type === EnumDataBaseType.NUMBER) {
+                                    if (CommonReg.integer.test(value)) {
+                                        const n = Number.parseInt(value);
+                                        if (!Number.isNaN(n)) {
+                                            value = n;
+                                        }
+                                    } else if (CommonReg.decimal.test(value)) {
+                                        const n = Number.parseFloat(value);
+                                        if (!Number.isNaN(n)) {
+                                            value = n;
+                                        }
+                                    }
+                                }
                             }
                         } else if (type === EnumDataBaseType.BOOL) {
                             if (utils.isNull(value)) {
@@ -567,6 +618,12 @@ class XTableInfo {
                             } else if (utils.isString(value)) {
                                 if (value.trim() === '') {
                                     value = false;
+                                }
+                                const lowString = value.toLowerCase();
+                                if (lowString === 'false' || lowString === 'f' || lowString === '0') {
+                                    value = false;
+                                } else if (lowString === 'true' || lowString === 't' || lowString === '1') {
+                                    value = true;
                                 }
                             }
                         }
@@ -619,6 +676,7 @@ function initTable(paramTableInfoList: ITableInfo[], paramExcelData: any): XComm
                 r.assignFrom(initResult);
                 r.addErrorPre(`初始化:${info.sheetName}:${info.describe}`);
             } else {
+                s.saveToFile(s.fileName);
                 // log.info('----->\n' + JSON.stringify(s, null, 2));
             }
             tableInfo.push(s);
