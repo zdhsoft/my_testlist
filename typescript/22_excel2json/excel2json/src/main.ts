@@ -690,6 +690,50 @@ function initTable(paramTableInfoList: ITableInfo[], paramExcelData: any): XComm
     return r;
 }
 
+/** 读取指定文件列表 */
+function fileList(paramPath: string): string[] {
+    const itemlist = fs.readdirSync(paramPath);
+    const finalItem = itemlist.filter((item) => {
+        let ext = path.extname(item);
+        if (!utils.isString(ext)) {
+            return false;
+        }
+        ext = ext.toLowerCase();
+        if (!(ext === '.xlsx' || ext === '.xls')) {
+            return false;
+        }
+        const fullName = path.join(paramPath, item);
+        const stat = fs.statSync(fullName);
+        return stat.isFile();
+    });
+    return finalItem;
+}
+
+function doExcel(paramFileName: string, paramFullName: string) {
+    log.info('begin:' + paramFileName);
+    try {
+        const r = new XCommonRet();
+        do {
+            const result = XExcelUtils.readExcelByFile(paramFullName);
+            if (result.isNotOK) {
+                r.assignFrom(r);
+                return;
+            }
+            const excelData: any = result.data;
+            fs.writeFileSync(t, JSON.stringify(excelData, null, 2), 'utf-8');
+            // 初始化
+            const initResult = initTable(excelData[tablelist], excelData);
+            if (initResult.isNotOK) {
+                r.assignFrom(initResult);
+                break;
+            }
+        } while (false);
+        log.info(`finish! ${paramFileName}:\n${JSON.stringify(r)}\n-------------------------`);
+    } catch (e) {
+        log.error(`begin: ${paramFileName} 发生异常：${e}`);
+    }
+}
+
 function main() {
     log.info('begin:');
     const r = new XCommonRet();
@@ -707,18 +751,26 @@ function main() {
             r.assignFrom(initResult);
             break;
         }
-        // // 输出
-        // for (const t of tableInfo) {
-        //     //
-        // }
     } while (false);
     log.info(`finish!:${JSON.stringify(r)}`);
     return r;
 }
 
 function boot() {
+    console.log('excel转换成json 1.0');
     try {
-        main();
+        const opts = utils.options(process.argv);
+        const dir = (opts.args as any).dir as string;
+        if (utils.isNull(dir)) {
+            console.log('excel2json --dir <存放配置的目录>');
+            return;
+        }
+
+        const list = fileList(dir);
+        for (const item of list) {
+            const fullName = path.join(dir, item);
+            doExcel(item, fullName);
+        }
     } catch (e) {
         log.info(e);
     }
