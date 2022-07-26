@@ -18,7 +18,7 @@ import { XExcelUtils } from './excel_utils';
 const xlsxfile = './testdata/Build.xlsx';
 const t = './testdata/Build.json';
 import { getLogger, XCommonRet, utils } from 'xmcommon';
-import { EnumDataBaseType, EnumDataType, EnumOutType, XTypeUtils } from './constant';
+import { CommonReg, EnumDataBaseType, EnumDataType, EnumOutType, XTypeUtils } from './constant';
 const log = getLogger(__filename);
 
 interface ITableInfo {
@@ -139,7 +139,153 @@ class XTitleInfo {
     }
 }
 
+function parseArray(paramValue: unknown, paramDataType: EnumDataBaseType): XCommonRet<unknown[]> {
+    const r = new XCommonRet<unknown[]>();
+    do {
+        if (utils.isArray(paramValue)) {
+            r.setOK(paramValue);
+            break;
+        }
+        if (!utils.isString(paramValue)) {
+            r.setError(-1, `要解析的数字，不是字符串`);
+            break;
+        }
 
+        const v = paramValue.trim();
+        if (v === '') {
+            r.setOK([]);
+            break;
+        }
+        const first = v.at(0);
+        const last = v.at(-1);
+        if (first === '[' && last !== ']') {
+            r.setError(-2, `无效的数组格式，有"["开始，但不是"]"结尾: value:${paramValue}`);
+            break;
+        }
+        if (last === ']' && first !== '[') {
+            r.setError(-3, `无效的数组格式，有"]"结尾，但不是"["开始: value:${paramValue}`);
+            break;
+        }
+
+        let newValue: string;
+        if (first === '[') {
+            newValue = v.substring(1, v.length - 1);
+        } else {
+            newValue = v;
+        }
+        const list = newValue.split(',');
+        const final: unknown[] = [];
+        let idx = 0;
+        for (const item of list) {
+            const finalItem = item.trim();
+            switch (paramDataType) {
+                case EnumDataBaseType.ANY:
+                    final.push(finalItem);
+                    break;
+                case EnumDataBaseType.STRING:
+                    final.push(finalItem);
+                    break;
+                case EnumDataBaseType.BOOL:
+                    {
+                        const lowString = finalItem.toLowerCase();
+                        if (lowString === 'false' || lowString === '0' || lowString === 'f' || lowString === '') {
+                            final.push(false);
+                        } else if (lowString === 'true' || lowString === '1' || lowString === 't') {
+                            final.push(true);
+                        } else {
+                            r.setError(-3, `存在不可识别的bool类型${v}中的第${idx}个值:${lowString}`);
+                            break;
+                        }
+                    }
+                    break;
+                case EnumDataBaseType.INT:
+                    {
+                        if (finalItem === '') {
+                            final.push(0);
+                            break;
+                        }
+                        if (!CommonReg.integer.test(finalItem)) {
+                            r.setError(-5, `存在不是合法整数的数据类型${v}中的第${idx}个值:${finalItem}`);
+                            break;
+                        }
+                        const intV = Number.parseInt(finalItem);
+                        if (utils.isNaN(intV)) {
+                            r.setError(-5, `存在不是合法整数的数据类型${v}中的第${idx}个值:${finalItem}超出整数范围!`);
+                            break;
+                        }
+                        final.push(intV);
+                    }
+                    break;
+                case EnumDataBaseType.NUMBER:
+                    {
+                        if (finalItem === '') {
+                            final.push(0);
+                            break;
+                        }
+                        const intFlag = CommonReg.integer.test(finalItem);
+                        let numberFlag = false;
+                        if (!intFlag) {
+                            numberFlag = CommonReg.decimal.test(finalItem);
+                        }
+
+                        if (!(intFlag || numberFlag)) {
+                            r.setError(-6, `存在不是合法数字的数据类型${v}中的第${idx}个值:${finalItem}`);
+                            break;
+                        }
+
+                        if (intFlag) {
+                            const intV = Number.parseInt(finalItem);
+                            if (utils.isNaN(intV)) {
+                                r.setError(
+                                    -7,
+                                    `存在不是合法数字的数据类型${v}中的第${idx}个值:${finalItem}超出数字范围!`,
+                                );
+                                break;
+                            }
+                            final.push(intV);
+                        } else if (numberFlag) {
+                            const numberV = Number.parseFloat(finalItem);
+                            if (utils.isNaN(numberV)) {
+                                r.setError(
+                                    -8,
+                                    `存在不是合法数字的数据类型${v}中的第${idx}个值:${finalItem}超出数字范围!`,
+                                );
+                                break;
+                            }
+                            final.push(numberV);
+                        }
+                    }
+                    break;
+                case EnumDataBaseType.OBJECT:
+                    {
+                        if (finalItem === '') {
+                            final.push({});
+                            break;
+                        }
+                        const v = utils.JsonParse(finalItem);
+                        if (utils.isNull(v)) {
+                            r.setError(-9, `存在不是合举动对象的数据类型${v}中的第${idx}个值:${finalItem}!`);
+                            break;
+                        }
+                        final.push(v);
+                    }
+                    break;
+                default:
+                    r.setError(-4, `不可以识别的类型值${v}中的第${idx}个值:${finalItem}`);
+                    break;
+            }
+            if (r.isNotOK) {
+                break;
+            }
+            idx++;
+        }
+        if (r.isNotOK) {
+            break;
+        }
+        r.setOK(final);
+    } while (false);
+    return r;
+}
 
 class XTableInfo {
     public types: EnumOutType[];
@@ -348,7 +494,12 @@ class XTableInfo {
                             if (utils.isEmpty(value)) {
                                 newValue = [];
                             } else {
-                                const valueArray = utils.JsonParse<[]>(value) as any[];
+                                const covertResult = parseArray(value, type);
+                                if (covertResult.isNotOK) {
+                                    r.assignFrom(covertResult);
+                                    break;
+                                }
+                                const valueArray = covertResult.data as unknown[];
                                 if (!Array.isArray(valueArray)) {
                                     r.setError(-51, `第${row}行:${key}=${value}的数据不是有效数组!`);
                                     break;
