@@ -25,4 +25,6 @@ export enum EnumErrorCode {
     // NOT_EXIST_ENV = 10009,
     /** 你还没有登录 */
     NOT_LOGIN = 10010,
+    /** 事物发生异常 */
+    TRANSACTION_EXCEPTION = 10011,
 }
