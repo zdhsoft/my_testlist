@@ -29,7 +29,6 @@
         "noImplicitReturns": true,
         "esModuleInterop": true,
         "newLine":"crlf",
-        "typeRoots": ["@types"],
         "types": [
             "node"
         ],
