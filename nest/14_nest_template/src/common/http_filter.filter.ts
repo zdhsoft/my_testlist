@@ -1,13 +1,13 @@
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from '@nestjs/common';
 import { getLogger } from 'xmcommon';
-import { APIException } from './api_exception';
+import { XAPIException } from './api_exception';
 import { Request, Response } from 'express';
 import { EnumErrorCode } from '../error/error_code';
 
 const log = getLogger('HttpException');
 
 @Catch(Error)
-export class HttpFilterFilter implements ExceptionFilter {
+export class XHttpFilterFilter implements ExceptionFilter {
     catch(paramException: Error, paramHost: ArgumentsHost) {
         const ctx = paramHost.switchToHttp();
         const response = ctx.getResponse() as Response;
@@ -19,8 +19,8 @@ export class HttpFilterFilter implements ExceptionFilter {
         let retCode = EnumErrorCode.FAIL;
         let status = HttpStatus.OK;
 
-        if (paramException instanceof APIException) {
-            retCode = (paramException as APIException).errCode;
+        if (paramException instanceof XAPIException) {
+            retCode = (paramException as XAPIException).errCode;
         } else if (paramException instanceof HttpException) {
             status = (paramException as HttpException).getStatus();
         } else {

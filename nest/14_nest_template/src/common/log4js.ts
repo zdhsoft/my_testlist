@@ -45,29 +45,29 @@ const styles = {
 
 /**
  * 给日志的head上色
- * @param msg 日志消息
+ * @param paramMsg 日志消息
  * @param paramColorStyle 日志颜色
  * @return 上色后的日志
  */
-function colored(msg: { head: string; info: string }, paramColorStyle?: number[]): string {
+function colored(paramMsg: { head: string; info: string }, paramColorStyle?: number[]): string {
     if (paramColorStyle) {
-        return `\x1B[${paramColorStyle[0]}m${msg.head}\x1B[${paramColorStyle[1]}m ${msg.info}`;
+        return `\x1B[${paramColorStyle[0]}m${paramMsg.head}\x1B[${paramColorStyle[1]}m ${paramMsg.info}`;
     } else {
-        return `${msg.head} ${msg.info}`;
+        return `${paramMsg.head} ${paramMsg.info}`;
     }
 }
 
 /**
  * 生成日志
- * @param categoryName 类名名称
- * @param level 日志级别
- * @param data 日志参数内容
+ * @param paramCategoryName 类名名称
+ * @param paramLevel 日志级别
+ * @param paramData 日志参数内容
  * @return
  */
-function buildLog(categoryName: string, level: string, ...data: any[]) {
+function buildLog(paramCategoryName: string, paramLevel: string, ...paramData: any[]) {
     return {
-        head: `[${datetimeUtils.nowDateString()} ${level}][${categoryName}]`,
-        info: util.format(...data),
+        head: `[${datetimeUtils.nowDateString()} ${paramLevel}][${paramCategoryName}]`,
+        info: util.format(...paramData),
     };
 }
 

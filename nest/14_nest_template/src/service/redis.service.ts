@@ -13,12 +13,12 @@
 import { Injectable } from '@nestjs/common';
 import { RedisClientType } from '@redis/client';
 import { createClient } from 'redis';
-import { ConfigUtils } from '../init/config_utils';
+import { XConfigUtils } from '../init/config_utils';
 @Injectable()
 export class XRedisService {
     private m_RedisClient: RedisClientType;
     constructor() {
-        const redisOpts = ConfigUtils.buildRedisOption(ConfigUtils.getConfig().redis);
+        const redisOpts = XConfigUtils.buildRedisOption(XConfigUtils.getConfig().redis);
         const redisClient = createClient(redisOpts);
         redisClient.connect();
         this.m_RedisClient = redisClient as any;

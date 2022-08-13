@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ConfigUtils } from './init/config_utils';
+import { XAppController } from './app.controller';
+import { XAppService } from './app.service';
+import { XConfigUtils } from './init/config_utils';
 import { XRedisService } from './service/redis.service';
 
-const TypeOrmConfig = ConfigUtils.buildMySQLOption();
+const TypeOrmConfig = XConfigUtils.buildMySQLOption();
 
 @Module({
     imports: [
@@ -22,8 +22,8 @@ const TypeOrmConfig = ConfigUtils.buildMySQLOption();
         // }),
         TypeOrmModule.forRoot(TypeOrmConfig),
     ],
-    controllers: [AppController],
-    providers: [AppService, XRedisService],
+    controllers: [XAppController],
+    providers: [XAppService, XRedisService],
     exports: [XRedisService],
 })
-export class AppModule {}
+export class XAppModule {}

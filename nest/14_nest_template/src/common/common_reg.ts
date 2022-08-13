@@ -16,7 +16,7 @@ export const CommonRegExp = {
     simpleTime: /^([0-1]\d{1}|2[0-3])([0-5]\d{1})([0-5]\d{1})$/,
 };
 /** 正则表达式相关工具 */
-export class RegExpUtils {
+export class XRegExpUtils {
     public static date(paramValue: string | number) {
         const v = String(paramValue);
         let r = CommonRegExp.baseDate.exec(v);

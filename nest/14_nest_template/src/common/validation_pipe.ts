@@ -2,7 +2,7 @@ import { Injectable, PipeTransform, ArgumentMetadata, ValidationError } from '@n
 import { plainToClass } from 'class-transformer';
 import { validate } from 'class-validator';
 import { EnumErrorCode } from '../error/error_code';
-import { APIException } from './api_exception';
+import { XAPIException } from './api_exception';
 /**
  * 这是一个全局的参数验证管道，基于class-transformer
  * 如果失败，则会抛出APIException，对应的错误码是EnumErrorCode.QUERY_PARAM_INVALID_FAIL
@@ -10,12 +10,12 @@ import { APIException } from './api_exception';
  */
 
 @Injectable()
-export class ValidationPipe implements PipeTransform {
-    async transform(value: any, { metatype }: ArgumentMetadata) {
-        if (!metatype || !this.toValidate(metatype)) {
-            return value;
+export class XValidationPipe implements PipeTransform {
+    async transform(paramValue: any, { metatype: paramMetaType }: ArgumentMetadata) {
+        if (!paramMetaType || !this.toValidate(paramMetaType)) {
+            return paramValue;
         }
-        const object = plainToClass(metatype, value);
+        const object = plainToClass(paramMetaType, paramValue);
         const errors = await validate(object);
         const errorList: string[] = [];
         const errObjList: ValidationError[] = [...errors];
@@ -35,13 +35,13 @@ export class ValidationPipe implements PipeTransform {
             }
         } while (true);
         if (errorList.length > 0) {
-            throw new APIException(EnumErrorCode.QUERY_PARAM_INVALID_FAIL, '请求参数校验错误:' + errorList.join());
+            throw new XAPIException(EnumErrorCode.QUERY_PARAM_INVALID_FAIL, '请求参数校验错误:' + errorList.join());
         }
         return object;
     }
 
-    private toValidate(metatype: Function): boolean {
+    private toValidate(paramMetatype: Function): boolean {
         const types: Function[] = [String, Boolean, Number, Array, Object];
-        return !types.includes(metatype);
+        return !types.includes(paramMetatype);
     }
 }

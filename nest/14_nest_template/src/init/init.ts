@@ -1,9 +1,9 @@
-import { EnvUtils } from '../env_utils';
+import { XEnvUtils } from '../env_utils';
 import '../common/log4js';
-import { ConfigUtils } from './config_utils';
+import { XConfigUtils } from './config_utils';
 
 function runtimeInit() {
-    ConfigUtils.loadByEnv(EnvUtils.env);
+    XConfigUtils.loadByEnv(XEnvUtils.env);
 }
 
 runtimeInit();

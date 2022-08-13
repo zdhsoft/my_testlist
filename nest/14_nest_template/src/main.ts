@@ -1,37 +1,37 @@
 import './init/init';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { XAppModule } from './app.module';
 import { getLogger } from 'xmcommon';
-import { NestLogger } from './common/nest.logger';
-import { RequestInterceptor } from './common/request.interceptor';
-import { HttpFilterFilter } from './common/http_filter.filter';
+import { XNestLogger } from './common/nest.logger';
+import { XRequestInterceptor } from './common/request.interceptor';
+import { XHttpFilterFilter } from './common/http_filter.filter';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import session from 'express-session';
 import path from 'path';
-import { AuthGuard } from './common/auth.guard';
-import { EnvUtils } from './env_utils';
-import { ConfigUtils } from './init/config_utils';
-import { ValidationPipe } from './common/validation_pipe';
+import { XAuthGuard } from './common/auth.guard';
+import { XEnvUtils } from './env_utils';
+import { XConfigUtils } from './init/config_utils';
+import { XValidationPipe } from './common/validation_pipe';
 
 const log = getLogger(__filename);
-log.info('程序开始启动... 当前环境:' + EnvUtils.env + ' 开发环境:' + EnvUtils.isDev);
+log.info('程序开始启动... 当前环境:' + XEnvUtils.env + ' 开发环境:' + XEnvUtils.isDev);
 async function bootstrap() {
-    const globalConfig = ConfigUtils.getConfig();
+    const globalConfig = XConfigUtils.getConfig();
 
-    const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-        logger: new NestLogger(),
+    const app = await NestFactory.create<NestExpressApplication>(XAppModule, {
+        logger: new XNestLogger(),
     });
-    app.use(session(ConfigUtils.buildSessionOptions()));
+    app.use(session(XConfigUtils.buildSessionOptions()));
     // app.useStaticAssets(path.join(process.cwd(), 'public'), { prefix: '/static/' });
     app.useStaticAssets(path.join(process.cwd(), 'public'), {});
     app.setBaseViewsDir(path.join(process.cwd(), 'view')); // 放视图的文件
     app.setViewEngine('ejs');
-    app.useGlobalPipes(new ValidationPipe());
-    app.useGlobalInterceptors(new RequestInterceptor());
-    app.useGlobalFilters(new HttpFilterFilter());
-    app.useGlobalGuards(new AuthGuard());
+    app.useGlobalPipes(new XValidationPipe());
+    app.useGlobalInterceptors(new XRequestInterceptor());
+    app.useGlobalFilters(new XHttpFilterFilter());
+    app.useGlobalGuards(new XAuthGuard());
 
-    if (EnvUtils.isDev) {
+    if (XEnvUtils.isDev) {
         // 如果是开发模式，则加载文档
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const { DocumentBuilder, SwaggerModule } = require('@nestjs/swagger');

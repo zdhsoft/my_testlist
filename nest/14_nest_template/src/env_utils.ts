@@ -33,7 +33,7 @@ const env: IEnv = {
 const systemArgs: ISystemArgs = {};
 
 /** 全局变量工具类 */
-export class EnvUtils {
+export class XEnvUtils {
     public static getSystemArgs(): ISystemArgs {
         return _.clone(systemArgs);
     }

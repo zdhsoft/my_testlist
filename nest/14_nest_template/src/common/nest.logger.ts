@@ -5,20 +5,20 @@ const log = getLogger('nest');
 /**
  * nest的日志类
  */
-export class NestLogger implements LoggerService {
-    log(...msg: any[]) {
-        log.info(...msg);
+export class XNestLogger implements LoggerService {
+    log(...paramMsg: any[]) {
+        log.info(...paramMsg);
     }
-    error(...msg: any[]) {
-        log.error(...msg);
+    error(...paramMsg: any[]) {
+        log.error(...paramMsg);
     }
-    warn(...msg: any[]) {
-        log.warn(...msg);
+    warn(...paramMsg: any[]) {
+        log.warn(...paramMsg);
     }
-    debug(...msg: any[]) {
-        log.debug(...msg);
+    debug(...paramMsg: any[]) {
+        log.debug(...paramMsg);
     }
-    verbose(...msg: any[]) {
-        log.trace(...msg);
+    verbose(...paramMsg: any[]) {
+        log.trace(...paramMsg);
     }
 }

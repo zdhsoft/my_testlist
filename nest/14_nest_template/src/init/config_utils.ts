@@ -22,7 +22,7 @@ import {
 } from './config_def';
 import { getLogger, XCommonRet, utils } from 'xmcommon';
 import { EnumErrorCode } from '../error/error_code';
-import { EnumRuntimeEnv, EnvUtils } from '../env_utils';
+import { EnumRuntimeEnv, XEnvUtils } from '../env_utils';
 import { IRedisOptions, IRedisStoreOptions, IRedisStoreSocketOptions } from '../common/session/xsession_redis_option';
 
 const log = getLogger(__filename);
@@ -45,7 +45,7 @@ const cfg: ILRConfig = {};
 let runtimePath = path.join(process.cwd(), 'runtime');
 
 /** 配置相关的工具类 */
-export class ConfigUtils {
+export class XConfigUtils {
     /**
      * 取当前的配置
      * - 为了防止，取到的配置被人为修改，取的配置是被clone的配置!
@@ -161,7 +161,7 @@ export class ConfigUtils {
         const retOpts: IRedisStoreOptions = {};
         // prettier-ignore
         {
-            retOpts.prefix            = utils.stringOpts(opts.prefix, `session_${EnvUtils.env}`);
+            retOpts.prefix            = utils.stringOpts(opts.prefix, `session_${XEnvUtils.env}`);
             retOpts.scanCount         = utils.intOpts(opts.scanCount, 100);
             retOpts.ttl               = utils.intOpts(opts.ttl, 86400);
             retOpts.disableTTL        = utils.boolOpts(opts.disableTTL, false);

@@ -1,7 +1,7 @@
 import { IRedisOptions, IRedisStoreOptions } from '../common/session/xsession_redis_option';
 
 /** 会话类型 */
-export enum ILRConfigSessionType {
+export enum EnumLRConfigSessionType {
     /** 文件存储类型 */
     file = 'file',
     /** redis存放类型 */

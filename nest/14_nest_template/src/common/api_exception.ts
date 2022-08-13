@@ -1,7 +1,7 @@
 /**
  * API调用的默认异常
  */
-export class APIException extends Error {
+export class XAPIException extends Error {
     private m_ErrCode: number;
     private m_URL?: string;
     private m_Method?: string;

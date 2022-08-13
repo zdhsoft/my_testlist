@@ -20,7 +20,7 @@ export enum EnumErrType {
     ChangePassword = 5, // 修改密码
     ChangeInfo = 6, // 修改信息，名称和email
 }
-export interface XSessionError {
+export interface ISessionError {
     type: EnumErrType;
     account?: string;
     errorMsg?: string;
@@ -28,7 +28,7 @@ export interface XSessionError {
     email?: string;
 }
 
-export interface XSessionUser {
+export interface ISessionUser {
     id?: number;
     account?: string;
     name?: string;
@@ -38,10 +38,10 @@ export interface XSessionUser {
     env?: string;
 }
 
-export interface XSession extends session.Session {
-    error?: XSessionError;
+export interface ISession extends session.Session {
+    error?: ISessionError;
     isLogin?: boolean;
-    user?: XSessionUser;
+    user?: ISessionUser;
 }
 
 export const GlobalConst = {

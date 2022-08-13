@@ -16,7 +16,7 @@ export interface IHttpRet {
 /**
  * 返回值工具类
  */
-export class RetUtils {
+export class XRetUtils {
     /**
      * 生成返回对象
      * @param paramErr 错误码

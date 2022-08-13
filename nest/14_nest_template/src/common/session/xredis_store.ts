@@ -16,7 +16,7 @@ export interface IRedisStoreOptionsEx extends IRedisStoreOptions {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const noop = (_err?: any, _value?: any) => {
+const noop = (paramErr?: any, paramValue?: any) => {
     //
 };
 
@@ -24,15 +24,15 @@ const noop = (_err?: any, _value?: any) => {
 function PromiseCallBack(paramResult: Promise<any>, paramCallBack = noop) {
     paramResult
         .then(
-            (...args) => {
-                paramCallBack(undefined, ...args);
+            (...paramArgs) => {
+                paramCallBack(undefined, ...paramArgs);
             },
-            (err) => {
-                paramCallBack(err);
+            (paramErr) => {
+                paramCallBack(paramErr);
             },
         )
-        .catch((err) => {
-            paramCallBack(err);
+        .catch((paramErr) => {
+            paramCallBack(paramErr);
         });
 }
 /** 基于redis的session存储类 */
@@ -97,12 +97,12 @@ export class XRedisStore extends Store {
     get(paramSessionId: string, paramCallBack = noop): void {
         const r = this.m_Client.get(this.key(paramSessionId));
         r.then(
-            (value) => {
-                const s = utils.JsonParse(value as unknown as string);
+            (paramValue) => {
+                const s = utils.JsonParse(paramValue as unknown as string);
                 paramCallBack(undefined, s);
             },
-            (err) => {
-                paramCallBack(err, undefined);
+            (paramErr) => {
+                paramCallBack(paramErr, undefined);
             },
         );
     }
@@ -158,22 +158,22 @@ export class XRedisStore extends Store {
         if (this.m_DisableTouch || this.m_DisableTTL) return paramCallBack();
         const r = this.m_Client.expire(this.key(paramSessionId), this._getTTL(paramSession));
         r.then(
-            (ret) => {
+            (paramRet) => {
                 if (utils.isNotNull(paramCallBack)) {
-                    if (ret) {
+                    if (paramRet) {
                         paramCallBack(undefined, 'OK');
                     } else {
                         paramCallBack(undefined, 'EXPIRED');
                     }
                 }
             },
-            (err) => {
+            (paramErr) => {
                 if (utils.isNotNull(paramCallBack)) {
-                    paramCallBack(err);
+                    paramCallBack(paramErr);
                 }
             },
-        ).catch((reason: any) => {
-            paramCallBack(reason);
+        ).catch((paramReason: any) => {
+            paramCallBack(paramReason);
         });
     }
     /**
@@ -192,12 +192,12 @@ export class XRedisStore extends Store {
      */
     public clear(paramCallBack = noop): void {
         const r = this._getAllKeys();
-        const callback = (err?: any, keys?: string[]) => {
-            if (utils.isNotNull(err)) {
-                paramCallBack(err);
+        const callback = (paramErr?: any, paramKeys?: string[]) => {
+            if (utils.isNotNull(paramErr)) {
+                paramCallBack(paramErr);
             } else {
-                if (Array.isArray(keys) && keys!.length > 0) {
-                    const delR = this.m_Client.del(keys as string[]);
+                if (Array.isArray(paramKeys) && paramKeys!.length > 0) {
+                    const delR = this.m_Client.del(paramKeys as string[]);
                     PromiseCallBack(delR, paramCallBack);
                 } else {
                     paramCallBack(undefined, 0);
@@ -212,12 +212,12 @@ export class XRedisStore extends Store {
      */
     public length(paramCallBack = noop): void {
         const r = this._getAllKeys();
-        const callback = (err?: any, keys?: string[]) => {
-            if (utils.isNotNull(err)) {
-                paramCallBack(err);
+        const callback = (paramErr?: any, paramKeys?: string[]) => {
+            if (utils.isNotNull(paramErr)) {
+                paramCallBack(paramErr);
             } else {
-                if (Array.isArray(keys) && keys!.length > 0) {
-                    paramCallBack(undefined, keys!.length);
+                if (Array.isArray(paramKeys) && paramKeys!.length > 0) {
+                    paramCallBack(undefined, paramKeys!.length);
                 } else {
                     paramCallBack(undefined, 0);
                 }
@@ -232,13 +232,13 @@ export class XRedisStore extends Store {
     public ids(paramCallBack = noop) {
         const prefixLen = this.m_Prefix!.length;
         const r = this._getAllKeys();
-        const callback = (err?: any, keys?: string[]) => {
-            if (utils.isNotNull(err)) {
-                paramCallBack(err);
+        const callback = (paramErr?: any, paramKeys?: string[]) => {
+            if (utils.isNotNull(paramErr)) {
+                paramCallBack(paramErr);
             } else {
-                if (Array.isArray(keys) && keys!.length > 0) {
+                if (Array.isArray(paramKeys) && paramKeys!.length > 0) {
                     const retKeys: string[] = [];
-                    for (const k of keys) {
+                    for (const k of paramKeys) {
                         retKeys.push(k.substring(prefixLen));
                     }
                     paramCallBack(undefined, retKeys);
@@ -258,14 +258,14 @@ export class XRedisStore extends Store {
         const r = this._getAllKeys();
         let sessionKeys: string[] = [];
 
-        const mgetCallback = (err?: any, sessions?: string[]) => {
-            if (utils.isNotNull(err)) {
-                paramCallBack(err);
-            } else if (Array.isArray(sessions) && sessions.length > 0) {
+        const mgetCallback = (paramErr?: any, paramSessions?: string[]) => {
+            if (utils.isNotNull(paramErr)) {
+                paramCallBack(paramErr);
+            } else if (Array.isArray(paramSessions) && paramSessions.length > 0) {
                 const sd: any[] = [];
                 const serializer = this.m_Serializer;
-                for (let i = 0; i < sessions.length; i++) {
-                    const d = sessions[i];
+                for (let i = 0; i < paramSessions.length; i++) {
+                    const d = paramSessions[i];
                     if (utils.isNull(d)) {
                         continue;
                     }
@@ -282,12 +282,12 @@ export class XRedisStore extends Store {
             }
         };
 
-        const allkeyCallback = (err?: any, keys?: string[]) => {
-            if (utils.isNotNull(err)) {
-                paramCallBack(err);
-            } else if (Array.isArray(keys) && keys.length > 0) {
+        const allkeyCallback = (paramErr?: any, paramKeys?: string[]) => {
+            if (utils.isNotNull(paramErr)) {
+                paramCallBack(paramErr);
+            } else if (Array.isArray(paramKeys) && paramKeys.length > 0) {
                 //
-                sessionKeys = [...keys];
+                sessionKeys = [...paramKeys];
                 const mgetr = this.m_Client.mGet(sessionKeys);
                 PromiseCallBack(mgetr, mgetCallback);
             } else {
@@ -307,16 +307,16 @@ export class XRedisStore extends Store {
     /**
      * 扫描session id
      * - redis的光标说明，第一次开始的时候，传入后。调用scan后，每次都会返回新的光标, 在下次调用它的时候要传入。当返回的光标为0的时候，表示全部扫描完成。
-     * @param pattern id匹配模式
-     * @param cursor 当前光标
-     * @param count 每次扫描的数量
+     * @param paramPattern id匹配模式
+     * @param paramCursor 当前光标
+     * @param paramCount 每次扫描的数量
      * @returns
      */
-    private async _scanKeys(pattern: string, cursor = 0, count = 100) {
+    private async _scanKeys(paramPattern: string, paramCursor = 0, paramCount = 100) {
         const keys: any = {};
-        let currCursor = cursor;
+        let currCursor = paramCursor;
         do {
-            const r = await this.m_Client.scan(currCursor, { MATCH: pattern, COUNT: count });
+            const r = await this.m_Client.scan(currCursor, { MATCH: paramPattern, COUNT: paramCount });
             currCursor = r.cursor;
             for (const k of r.keys) {
                 keys[k] = true;
