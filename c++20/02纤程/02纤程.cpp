@@ -95,8 +95,6 @@ private:
 	Handle coroutine;
 };
 
-
-
 int main()
 {
     std::cout << "Hello World!\n";
