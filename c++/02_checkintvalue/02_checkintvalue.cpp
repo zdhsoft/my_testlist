@@ -4,6 +4,9 @@
 #include <iostream>
 // #pragma warning(disable : 4996)
 using namespace std;
+int addint(int a, int b) {
+    return a + b;
+}
 int main()
 {
     int v = 0x7fffffff;
@@ -13,6 +16,8 @@ int main()
     char test[128] = "";
     _itoa(v, test, 10);
     cout << test << " len = " << strlen(test) << endl;
+
+    cout << addint(1, 2) << endl;
 
 }
 
