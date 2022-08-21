@@ -2,10 +2,13 @@
 //
 
 #include <iostream>
+import hello;
+import mo.test.cpp;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Hello World!\n" << hello() << std::endl;
+    std::cout << "test:" << testadd(4, 5) << std::endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
