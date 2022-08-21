@@ -1,5 +1,7 @@
 export module hello;
 
-export int hello() {
-	return 9999;
+namespace mo::test::hello {
+	export int hello() {
+		return 9999;
+	}
 }

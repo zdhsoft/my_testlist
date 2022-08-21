@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-    cout << "Hello World! abc::::" << hello() << endl;
+    cout << "Hello World! abc::::" << mo::test::hello::hello() << endl;
     cout << "test:" << testadd(4, 5) << endl;
 }
 
