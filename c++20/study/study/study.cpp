@@ -1,14 +1,16 @@
 // study.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
+import std.core;
 import hello;
 import mo.test.cpp;
 
+using namespace std;
+
 int main()
 {
-    std::cout << "Hello World!\n" << hello() << std::endl;
-    std::cout << "test:" << testadd(4, 5) << std::endl;
+    cout << "Hello World! abc::::" << hello() << endl;
+    cout << "test:" << testadd(4, 5) << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
