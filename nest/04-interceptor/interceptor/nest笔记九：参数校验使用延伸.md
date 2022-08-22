@@ -38,6 +38,7 @@
 ### forbidNonWhitelisted 禁用非白名单的
 - 如果设置为 true，则非白名单属性会被检查出错误。
 - 如上例，一个age则返回属age是一个非必要的属错误。
+- 一般情况下，我会要求将不必要的参数都检查出来。减少不要的错误
 
 ### nest使用校验管道的具体实现
 ```typescript
@@ -61,8 +62,8 @@ export class ValidationPipe implements PipeTransform {
         }
         const object = plainToClass(paramMetatype, paramValue);
         const errors = await validate(object, {
-            whitelist: true, // 白名单
-            forbidNonWhitelisted: true, // 禁用非白名单属性
+            whitelist: true, // 白名单选项
+            forbidNonWhitelisted: true, // 禁用非白名单属性选项
             stopAtFirstError: true, // 碰到第一个错误就返回
             forbidUnknownValues: true, // 禁用未知的值
         });
