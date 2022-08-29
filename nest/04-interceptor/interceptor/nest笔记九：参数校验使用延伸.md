@@ -119,6 +119,47 @@ async function bootstrap() {
 }
 ```
 ## 对象中的数据校验
-- 如果某个属性是某个对象，并且对象中的属性也是需要校验的话，就需要使用装饰器
+- 如果某个属性是某个对象，并且对象中的属性也是需要校验的话，就需要使用装饰器 @ValidateNested， 如下例
+```typescript
+class SampleDetail {
+    @IsInt()
+    public id: number;
+    @IsString()
+    public name: string;
+}
+
+class Sample {
+    @IsString()
+    public caption: string;
+    @ValidateNested()
+    public detail: SampleDetail;
+}
+
+```
+- 结果并没有对detail的值进行校验，原因是类型中，我们是知道detail是SampleDetail类型，但通过参数传入后，它的原型并不是SampleDetail，这样就不能对detail的属性校验。翻了一下官方说明后，原来，使用ValidateNested后，还要对它类型转换。使用Type装饰器。然后，就可以生效了。如下class Sample的代码
+```typescript
+class Sample {
+    @IsString()
+    public caption: string;
+    @ValidateNested()
+    @Type(()=>SampleDetail)   //在这里加装饰器，就解决了。
+    public detail: SampleDetail;
+}
+```
+-
 ## 数组中，基本数据类型校验
-## 数组中，对象数据校验
+- 对于基本类型的数组，如整数，字符串等。如果仅用默认参数，发现它不并会检查每个元素，只是把整个数字对象拿去当基本类型校验，结果肯定是报错的。
+- 翻看官方文档后，发现基本数据类型校验装饰器还有一个参数each?: boolean，要把它设为true, 就可以了。下如示例：
+```typescript
+class Sample {
+    @IsString()
+    public caption: string;
+    @ValidateNested()
+    @Type(()=>SampleDetail)
+    public detail: SampleDetail;
+
+    @IsArray()
+    @IsInt({each: true})  //  使用each选项设为true以后，就可以检查数组中每个元素了
+    public ages: number[];
+}
+```
