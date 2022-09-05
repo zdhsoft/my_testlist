@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "ts project",
     "main": "./dist/main.js",
+    "bin": "bin/filecp",
     "scripts": {
         "prebuild": "rimraf dist",
         "format": "prettier --write \"src/**/*.ts\"",
