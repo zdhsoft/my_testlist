@@ -14,11 +14,13 @@ import { utils } from 'xmcommon';
 import path from 'path';
 import fs from 'fs';
 
-function printUsage() {
-    console.log('usage: --cfg 规则文件 --srcdir 源文件目录 --destdir 目标目录');
-}
+type TCfgType = { key: string; dir: string; line: string; code: number };
 
-const cfgList: { key: string; dir: string; line: string; code: number }[] = [];
+function printUsage() {
+    console.log('usage: [--cfg 规则文件] --srcdir 源文件目录 --destdir 目标目录');
+}
+let cfgListMode = false;
+const cfgList: TCfgType[] = [];
 
 function loadCfg(paramCfg: string, paramDest: string): boolean {
     let r = true;
@@ -69,12 +71,27 @@ function loadCfg(paramCfg: string, paramDest: string): boolean {
 }
 
 function findPath(paramFileName: string) {
-    for (const c of cfgList) {
-        if (paramFileName.includes(c.key)) {
-            return c;
+    if (cfgListMode) {
+        for (const c of cfgList) {
+            if (paramFileName.includes(c.key)) {
+                return c;
+            }
         }
+        return null;
+    } else {
+        const list = paramFileName.split('_');
+        if (list.length < 2) {
+            return null;
+        }
+        const key = list[1];
+        const ret: TCfgType = {
+            key,
+            line: paramFileName,
+            dir: key,
+            code: 0,
+        };
+        return ret;
     }
-    return null;
 }
 
 function doCopy(paramSrc: string, paramDest: string) {
@@ -94,6 +111,19 @@ function doCopy(paramSrc: string, paramDest: string) {
         const findResult = findPath(fileName);
         let destFile = path.join(paramDest, fileName);
         if (findResult !== null) {
+            const destdir = path.join(paramDest, findResult.dir);
+            if (utils.fileExistsSync(destdir)) {
+                if (!utils.isDirSync(destdir)) {
+                    console.log(`${destdir}不是目录，请确认！`);
+                    continue;
+                }
+            } else {
+                const rrr = utils.mkdirsSyncEx(destdir);
+                if (!rrr.ret) {
+                    console.log(`创建目录失败:${destdir}, 失败原因:${rrr.msg}`);
+                    continue;
+                }
+            }
             destFile = path.join(paramDest, findResult.dir, fileName);
         }
         console.log(`copy file:[${i + 1}:${list.length}], ${srcFile} => ${destFile}...`);
@@ -109,7 +139,7 @@ function main() {
     const cfg: string = args.args['cfg'];
     const srcdir: string = args.args['srcdir'];
     const destdir: string = args.args['destdir'];
-    if (utils.isNull(cfg) || utils.isNull(srcdir) || utils.isNull(destdir)) {
+    if (utils.isNull(srcdir) || utils.isNull(destdir)) {
         printUsage();
         return;
     }
@@ -125,8 +155,11 @@ function main() {
     }
 
     if (!utils.fileExistsSync(destdir)) {
-        console.log(`目录：${destdir}不存在!`);
-        return;
+        const rrr = utils.mkdirsSyncEx(destdir);
+        if (!rrr.ret) {
+            console.log(`创建目录${destdir}失败! msg:${rrr.msg}`);
+            return;
+        }
     }
 
     if (!utils.isDirSync(destdir)) {
@@ -134,19 +167,20 @@ function main() {
         return;
     }
 
-    if (!utils.fileExistsSync(cfg)) {
-        console.log(`文件：${cfg}不存在!`);
-        return;
+    if (utils.isNull(cfg)) {
+        cfgListMode = false;
+    } else {
+        cfgListMode = true;
+        if (!utils.isFileSync(cfg)) {
+            console.log(`${cfg}不是一个文件!`);
+            return;
+        }
+
+        if (!loadCfg(cfg, destdir)) {
+            return;
+        }
     }
 
-    if (!utils.isFileSync(cfg)) {
-        console.log(`${cfg}不是一个文件!`);
-        return;
-    }
-
-    if (!loadCfg(cfg, destdir)) {
-        return;
-    }
     doCopy(srcdir, destdir);
 }
 
