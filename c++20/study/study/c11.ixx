@@ -18,9 +18,18 @@ void foo(int&& v) {
 
 void testVector() {
 	const int intList[] = { 1, 2, 3, 4, 5 };
+
+	using T1 = decltype(intList);
+	const T1 v = { 9, 8, 6 };
 	std::vector<int> m = { 1, 2, 3, 4, 5 };
-	for (auto it = m.begin(); it != m.end(); ++it) {
+	std::vector<int> mm = { 9, 8, 7 };
+
+	for (auto && it = m.begin(); it != m.end(); ++it) {
 		cout << "testVector:" << *it << endl;
+	}
+
+	for (auto&& it = mm.begin(); it != mm.end(); ++it) {
+		cout << "kj:" << *it << endl;
 	}
 }
 export void c11() {
