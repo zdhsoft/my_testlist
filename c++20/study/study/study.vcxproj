@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="c11.ixx" />
+    <ClCompile Include="cmd.ixx" />
     <ClCompile Include="hello.ixx" />
     <ClCompile Include="study.cppm" />
     <ClCompile Include="test.ixx" />

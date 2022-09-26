@@ -7,6 +7,7 @@
 import hello;
 import mo.test.cpp;
 import c11;
+import mo.test.cmd;
 
 
 int main()
@@ -14,6 +15,7 @@ int main()
     std::cout << "Hello World! abc::::" << mo::test::hello::hello() << std::endl;
     std::cout << "test:" << testadd(4, 5) << std::endl;
     c11();
+    testcmd();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
