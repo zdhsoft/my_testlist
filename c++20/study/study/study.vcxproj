@@ -148,6 +148,10 @@
     <ClCompile Include="hello.ixx" />
     <ClCompile Include="study.cppm" />
     <ClCompile Include="test.ixx" />
+    <ClCompile Include="type.ixx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="note.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

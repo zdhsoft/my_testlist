@@ -8,14 +8,16 @@ import hello;
 import mo.test.cpp;
 import c11;
 import mo.test.cmd;
+import mo.test.type;
 
 
 int main()
 {
-    std::cout << "Hello World! abc::::" << mo::test::hello::hello() << std::endl;
-    std::cout << "test:" << testadd(4, 5) << std::endl;
-    c11();
-    testcmd();
+    //std::cout << "Hello World! abc::::" << mo::test::hello::hello() << std::endl;
+    //std::cout << "test:" << testadd(4, 5) << std::endl;
+    //c11();
+    // testcmd();
+    typeMain();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
