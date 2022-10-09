@@ -1,0 +1,4 @@
+{{#*inline "Index"}}
+Index:{{json Index}}
+{{/inline}}
+{{> Index}}
