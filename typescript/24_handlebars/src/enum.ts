@@ -4,6 +4,7 @@ enum enumTest {
     t3 = 3,
     t4 = 4,
     t5 = 1,
+    t6 = '6666666666666',
 }
 
 enum enumExt {
@@ -25,3 +26,4 @@ t(enumTest.t2);
 t(enumTest.t3);
 t(enumTest.t4);
 t(enumTest.t5);
+t(enumTest.t6);
