@@ -35,7 +35,7 @@ function main() {
     console.log(template(m));
 }
 main();
-
+g.getName();
 // fs.readFileSync()
 
 // console.log('hello world!');
