@@ -1,3 +1,18 @@
+export class M {
+    public getM() {
+        return 'm';
+    }
+}
+export class G {
+    public getName() {
+        return 'name';
+    }
+}
+
+declare global {
+    const g: G;
+}
+
 enum enumTest {
     t1 = 1,
     t2 = 2,
