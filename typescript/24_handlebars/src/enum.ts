@@ -35,9 +35,6 @@ interface ISample {
     getName(): string;
 }
 
-type TS = keyof ISample;
-let m: TS = 'name';
-
 type k = keyof G;
 type t = keyof enumTest;
 function t(paramKey: enumTest) {
