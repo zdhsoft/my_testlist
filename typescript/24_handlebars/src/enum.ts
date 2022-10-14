@@ -30,6 +30,8 @@ enum enumExt {
     t5 = 9999,
 }
 
+type k = keyof G;
+type t = keyof enumTest;
 function t(paramKey: enumTest) {
     const name = enumTest[paramKey];
     const ext = enumExt[name];
