@@ -9,5 +9,8 @@
   },
   "keywords": [],
   "author": "zdhsoft",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^21.1.1"
+  }
 }
