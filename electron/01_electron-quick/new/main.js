@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, nativeTheme } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem } = require('electron');
 const path = require('path');
 
 const createWindow = () => {
@@ -27,6 +27,18 @@ const createWindow = () => {
 app.whenReady().then(() => {
     createWindow()
 })
+
+const menu = new Menu()
+menu.append(new MenuItem({
+  label: 'Electron',
+  submenu: [{
+    role: 'help',
+    accelerator: process.platform === 'darwin' ? 'Alt+Cmd+I' : 'Alt+Shift+I',
+    click: () => { console.log('Electron rocks!') }
+  }]
+}))
+
+Menu.setApplicationMenu(menu)
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
