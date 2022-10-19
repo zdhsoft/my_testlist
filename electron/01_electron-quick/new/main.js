@@ -1,6 +1,9 @@
 const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem } = require('electron');
 const path = require('path');
 
+let progressInterval;
+const INCREMENT 
+
 const createWindow = () => {
     const win = new BrowserWindow({
         width: 800,
