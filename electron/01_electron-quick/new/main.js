@@ -2,7 +2,10 @@ const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem } = require('el
 const path = require('path');
 
 let progressInterval;
-const INCREMENT 
+const INCREMENT = 0.03;
+const INTERVAL_DELAY = 100;
+let c = 0;
+
 
 const createWindow = () => {
     const win = new BrowserWindow({
@@ -26,10 +29,26 @@ const createWindow = () => {
       ipcMain.handle('dark-mode:system', () => {
         nativeTheme.themeSource = 'system'
       })
+
+      progressInterval = setInterval(() => {
+        win.setProgressBar(c);
+        if (c < 2) {
+            c += INCREMENT
+        } else {
+            c = (-INCREMENT * 5) // reset to a bit less than 0 to show reset state
+        }
+    }, INTERVAL_DELAY);
+    app.on('before-quit', () => {
+        clearInterval(progressInterval)
+    });
+
 }
 app.whenReady().then(() => {
     createWindow()
-})
+});
+
+
+
 
 const menu = new Menu()
 menu.append(new MenuItem({
@@ -48,7 +67,7 @@ app.on('window-all-closed', () => {
 })
 
 app.whenReady().then(() => {
-    createWindow()
+    // createWindow()
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow()
