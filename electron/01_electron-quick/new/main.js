@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem } = require('electron');
+const { app, BrowserWindow, ipcMain, nativeTheme, Menu, MenuItem, Tray, nativeImage  } = require('electron');
 const path = require('path');
 
 let progressInterval;
@@ -43,8 +43,22 @@ const createWindow = () => {
     });
 
 }
+let tray
+
 app.whenReady().then(() => {
-    createWindow()
+    createWindow();
+    const icon = nativeImage.createFromPath('icon.png');
+    tray = new Tray(icon);
+    const contextMenu = Menu.buildFromTemplate([
+      { label: 'Item1', type: 'radio' },
+      { label: 'Item2', type: 'radio' },
+      { label: 'Item3', type: 'radio', checked: true },
+      { label: 'Item4', type: 'radio' }
+    ])
+
+    tray.setContextMenu(contextMenu);
+    tray.setToolTip('This is my application')
+    tray.setTitle('This is my title')
 });
 
 const dockMenu = Menu.buildFromTemplate([
@@ -61,7 +75,16 @@ const dockMenu = Menu.buildFromTemplate([
   { label: 'New Command...' }
 ])
 
-
+app.setUserTasks([
+  {
+    program: process.execPath,
+    arguments: '--new-window',
+    iconPath: process.execPath,
+    iconIndex: 0,
+    title: '新窗口',
+    description: '创建一个新窗口!',
+  }
+])
 
 const menu = new Menu()
 menu.append(new MenuItem({
