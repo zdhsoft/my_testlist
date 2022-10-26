@@ -17,6 +17,7 @@ int main()
     //std::cout << "test:" << testadd(4, 5) << std::endl;
     //c11();
     // testcmd();
+    printf("hello world!");
     typeMain();
 }
 
