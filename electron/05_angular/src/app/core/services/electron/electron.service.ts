@@ -30,6 +30,9 @@ export class ElectronService {
       this.xm = window.require('xmcommon');
       this.path = window.require('path');
 
+      const log = this.xm.getLogger(__filename);
+      log.info('--------------->xmcommon');
+
       this.childProcess = window.require('child_process');
       this.childProcess.exec('node -v', (error, stdout, stderr) => {
         if (error) {
