@@ -1,0 +1,68 @@
+
+    <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input formControlName="userName" placeholder="Username" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password" placeholder="Password" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <div nz-row class="login-form-margin">
+        <div nz-col [nzSpan]="12">
+          <label nz-checkbox formControlName="remember">
+            <span>Remember me</span>
+          </label>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <a class="login-form-forgot">Forgot password</a>
+        </div>
+      </div>
+      <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+      Or
+      <a>register now!</a>
+    </form>
+    <input nz-input placeholder="Basic usage" [(ngModel)]="value" />
+    <br />
+    <br />
+    <input nz-input placeholder="Basic usage" [(ngModel)]="value" [disabled]="true" />
+    <div class="example-input">
+      <input nz-input placeholder="large size" nzSize="large" />
+      <input nz-input placeholder="default size" nzSize="default" />
+      <input nz-input placeholder="small size" nzSize="small" />
+    </div>
+    <div>
+      <nz-input-group nzAddOnBefore="Http://" nzAddOnAfter=".com">
+        <input type="text" nz-input [(ngModel)]="inputValue" />
+      </nz-input-group>
+    </div>
+    <div>
+      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate" [nzAddOnAfter]="addOnAfterTemplate">
+        <input type="text" nz-input [(ngModel)]="inputValue" />
+      </nz-input-group>
+      <ng-template #addOnBeforeTemplate>
+        <nz-select [ngModel]="'Http://'">
+          <nz-option nzLabel="Http://" nzValue="Http://"></nz-option>
+          <nz-option nzLabel="Https://" nzValue="Https://"></nz-option>
+        </nz-select>
+      </ng-template>
+      <ng-template #addOnAfterTemplate>
+        <nz-select [ngModel]="'.com'">
+          <nz-option nzLabel=".com" nzValue=".com"></nz-option>
+          <nz-option nzLabel=".jp" nzValue=".jp"></nz-option>
+          <nz-option nzLabel=".cn" nzValue=".cn"></nz-option>
+          <nz-option nzLabel=".org" nzValue=".org"></nz-option>
+        </nz-select>
+      </ng-template>
+    </div>
+    <div>
+      <nz-input-group nzAddOnAfterIcon="setting">
+        <input type="text" nz-input [(ngModel)]="inputValue" />
+      </nz-input-group>
+    </div>

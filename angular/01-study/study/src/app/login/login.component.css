@@ -1,0 +1,23 @@
+
+      .login-form {
+        max-width: 300px;
+      }
+
+      .login-form-margin {
+        margin-bottom: 16px;
+      }
+
+      .login-form-forgot {
+        float: right;
+      }
+
+      .login-form-button {
+        width: 100%;
+      }
+      .example-input .ant-input {
+        width: 200px;
+        margin: 0 8px 8px 0;
+      }
+      div {
+        margin-bottom: 16px;
+      }

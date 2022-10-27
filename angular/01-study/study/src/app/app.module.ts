@@ -8,20 +8,25 @@ import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     MatSliderModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
+    DemoNgZorroAntdModule,
     HttpClientModule
   ],
   providers: [
