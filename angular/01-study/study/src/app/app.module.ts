@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
+import {ButtonModule} from "./button/button.module";
 
 registerLocaleData(zh);
 
@@ -27,7 +28,8 @@ registerLocaleData(zh);
     FormsModule,
     ReactiveFormsModule,
     DemoNgZorroAntdModule,
-    HttpClientModule
+    HttpClientModule,
+    ButtonModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }
