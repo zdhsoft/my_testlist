@@ -21,6 +21,14 @@
     "mac",
     "linux"
   ],
+  "mac": {
+    "icon": "build/icons/favicon.icns",
+    "artifactName": "${productName}_setup_${version}.${ext}"
+  },
+  "win": {
+    "icon": "build/icons/favicon.icon",
+    "artifactName": "${productName}_setup_${version}.${ext}"
+  },
   "main": "app/main.js",
   "private": true,
   "scripts": {

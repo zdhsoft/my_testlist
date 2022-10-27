@@ -10,6 +10,9 @@ function createWindow(): BrowserWindow {
 
   const size = screen.getPrimaryDisplay().workAreaSize;
 
+  const icon = path.join(__dirname, './dist/assets/icons/favicon.ico');
+  console.log('iconPath:' + icon);
+
   // Create the browser window.
   win = new BrowserWindow({
     x: 0,
@@ -21,6 +24,7 @@ function createWindow(): BrowserWindow {
       allowRunningInsecureContent: (serve),
       contextIsolation: false,  // false if you want to run e2e test with Spectron
     },
+    icon,
   });
 
   if (serve) {
