@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { DemoNgZorroAntdModule } from './ng-zorro-antd.module';
 import {ButtonModule} from "./button/button.module";
+import {MenuModule} from "./menu/menu.module";
 
 registerLocaleData(zh);
 
@@ -29,7 +30,8 @@ registerLocaleData(zh);
     ReactiveFormsModule,
     DemoNgZorroAntdModule,
     HttpClientModule,
-    ButtonModule
+    ButtonModule,
+    MenuModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }
