@@ -11,7 +11,47 @@ export class LoginComponent implements OnInit {
   validateForm!: UntypedFormGroup;
   value?: string;
   inputValue = 'hello 这是一个测试！';
-
+  options = [
+    {
+      value: 'zhejiang',
+      label: 'Zhejiang',
+      children: [
+        {
+          value: 'hangzhou',
+          label: 'Hangzhou',
+          children: [
+            {
+              value: 'xihu',
+              label: 'West Lake',
+              isLeaf: true
+            }
+          ]
+        },
+        {
+          value: 'ningbo',
+          label: 'Ningbo',
+          isLeaf: true
+        }
+      ]
+    },
+    {
+      value: 'jiangsu',
+      label: 'Jiangsu',
+      children: [
+        {
+          value: 'nanjing',
+          label: 'Nanjing',
+          children: [
+            {
+              value: 'zhonghuamen',
+              label: 'Zhong Hua Men',
+              isLeaf: true
+            }
+          ]
+        }
+      ]
+    }
+  ];
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
