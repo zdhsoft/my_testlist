@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from './button.component';
+import {NzButtonModule} from "ng-zorro-antd/button";
+import {FormsModule} from "@angular/forms";
+import {NzRadioModule} from "ng-zorro-antd/radio";
 
 
 
@@ -12,7 +15,10 @@ import { ButtonComponent } from './button.component';
     ButtonComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NzButtonModule,
+    FormsModule,
+    NzRadioModule
   ]
 })
 export class ButtonModule { }
