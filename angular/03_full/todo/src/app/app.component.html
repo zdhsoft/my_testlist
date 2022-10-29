@@ -1,6 +1,6 @@
 <h3 class="bg-primary text-center text-white p-2">
   {{ username }}'s To Do List
-  <h6 class="mt-1">{{ itemCount }} Incomplete Items</h6>
+  <h6 class="mt-1">{{ itemCount }} {{ showComplete ? "" : "Incomplete" }} Items</h6>
 </h3>
 <div class="container-fluid">
   <div class="row">
@@ -35,4 +35,12 @@
       </tr>
     </tbody>
   </table>
+</div>
+<div class="bg-secondary text-white text-center p-2">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" [(ngModel)]="showComplete" />
+    <label class="form-check-label" for="defaultCheck1">
+      Show Completed Tasks
+    </label>
+  </div>
 </div>
