@@ -31,9 +31,9 @@ export class StoreComponent implements OnInit {
     this.selectedPage = newPage;
   }
 
-  changePageSize(newSize: EventTarget | null) {
+  changePageSize(newSize: any) {
     console.log(JSON.stringify(newSize));
-    this.productsPerPage = Number(newSize);
+    this.productsPerPage = Number(newSize?.value);
     this.changePage(1);
   }
 
