@@ -32,6 +32,7 @@ export class StoreComponent implements OnInit {
   }
 
   changePageSize(newSize: EventTarget | null) {
+    console.log(JSON.stringify(newSize));
     this.productsPerPage = Number(newSize);
     this.changePage(1);
   }
