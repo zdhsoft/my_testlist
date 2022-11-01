@@ -3,3 +3,4 @@ debug
 .vs
 *.filters
 *.user
+cmake-build-debug
