@@ -1,0 +1,6 @@
+helloworld/x64
+debug
+.vs
+*.filters
+*.user
+cmake-build-debug
