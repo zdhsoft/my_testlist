@@ -9,7 +9,6 @@ export class CounterDirective {
 
     constructor(private container: ViewContainerRef,
         private template: TemplateRef<Object>) {
-            this.counter = 0;
     }
 
     @Input("counterOf")

@@ -4,10 +4,13 @@ import {
     Router
 } from "@angular/router";
 import { StoreComponent } from "./store/store.component";
+
 @Injectable()
 export class StoreFirstGuard {
     private firstNavigation = true;
+
     constructor(private router: Router) { }
+
     canActivate(route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): boolean {
         if (this.firstNavigation) {

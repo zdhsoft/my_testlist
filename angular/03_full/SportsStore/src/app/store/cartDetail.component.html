@@ -26,7 +26,7 @@
                         <td>
                             <input type="number" class="form-control-sm" style="width:5em" [value]="line.quantity"
                                 (change)="cart.updateQuantity(line.product,
-                                  $event.target)" />
+                                  $event.target.value)" />
                         </td>
                         <td>{{line.product.name}}</td>
                         <td class="text-right">
@@ -36,7 +36,7 @@
                             {{(line.lineTotal) | currency:"USD":"symbol":"2.2-2" }}
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.product.id || 0)">
+                            <button class="btn btn-sm btn-danger" (click)="cart.removeLine(line.product.id)">
                                 Remove
                             </button>
                         </td>
@@ -65,3 +65,4 @@
             </div>
         </div>
     </div>
+</div>
