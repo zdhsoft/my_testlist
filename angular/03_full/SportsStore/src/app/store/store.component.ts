@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
     templateUrl: "store.component.html"
 })
 export class StoreComponent {
-    public selectedCategory = null;
+    public selectedCategory: string | null | undefined = null;
     public productsPerPage = 4;
     public selectedPage = 1;
 
@@ -35,8 +35,8 @@ export class StoreComponent {
         this.selectedPage = newPage;
     }
 
-    changePageSize(newSize: number) {
-        this.productsPerPage = Number(newSize);
+    changePageSize(target: any) {
+        this.productsPerPage = Number(target?.value);
         this.changePage(1);
     }
 

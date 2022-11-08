@@ -13,7 +13,7 @@ export class ProductTableComponent {
         return this.repository.getProducts();
     }
 
-    deleteProduct(id: number) {
+    deleteProduct(id: any) {
         this.repository.deleteProduct(id);
     }
 }

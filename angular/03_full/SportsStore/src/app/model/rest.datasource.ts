@@ -13,10 +13,11 @@ const PORT = 3500;
 @Injectable()
 export class RestDataSource {
     baseUrl: string;
-    auth_token: string;
+    auth_token: string | null;
 
     constructor(private http: HttpClient) {
         this.baseUrl = `${PROTOCOL}://${location.hostname}:${PORT}/`;
+        this.auth_token = null;
     }
 
     getProducts(): Observable<Product[]> {
@@ -41,7 +42,7 @@ export class RestDataSource {
             product, this.getOptions());
     }
 
-    updateProduct(product): Observable<Product> {
+    updateProduct(product: Product): Observable<Product> {
         return this.http.put<Product>(`${this.baseUrl}products/${product.id}`,
             product, this.getOptions());
     }

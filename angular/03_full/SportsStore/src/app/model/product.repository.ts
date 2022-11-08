@@ -11,18 +11,18 @@ export class ProductRepository {
     constructor(private dataSource: RestDataSource) {
         dataSource.getProducts().subscribe(data => {
             this.products = data;
-            this.categories = data.map(p => p.category)
-                .filter((c, index, array) => array.indexOf(c) == index).sort();
+            this.categories = data.map(p => p.category || '')
+                .filter((c, index, array) => c !== '' && (array.indexOf(c) == index)).sort();
         });
     }
 
-    getProducts(category: string = null): Product[] {
+    getProducts(category: string | null | undefined = null): Product[] {
         return this.products
             .filter(p => category == null || category == p.category);
     }
 
     getProduct(id: number): Product {
-        return this.products.find(p => p.id == id);
+        return this.products.find(p => p.id == id) as Product;
     }
 
     getCategories(): string[] {

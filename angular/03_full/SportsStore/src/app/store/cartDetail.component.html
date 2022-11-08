@@ -28,7 +28,7 @@
                        style="width:5em"
                        [value]="line.quantity"
                        (change)="cart.updateQuantity(line.product,
-                                  $event.target.value)" />
+                                  $event.target)" />
               </td>
               <td>{{line.product.name}}</td>
               <td class="text-right">
@@ -39,7 +39,7 @@
               </td>
               <td class="text-center">
                 <button class="btn btn-sm btn-danger"
-                        (click)="cart.removeLine(line.product.id)">
+                        (click)="cart.removeLine(line.product)">
                   Remove
                 </button>
               </td>
@@ -69,4 +69,3 @@
       </div>
     </div>
   </div>
-  

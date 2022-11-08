@@ -14,13 +14,13 @@ export class OrderTableComponent {
         return this.repository.getOrders()
             .filter(o => this.includeShipped || !o.shipped);
     }
- 
+
     markShipped(order: Order) {
         order.shipped = true;
         this.repository.updateOrder(order);
     }
 
-    delete(id: number) {
+    delete(id: any) {
         this.repository.deleteOrder(id);
     }
 }

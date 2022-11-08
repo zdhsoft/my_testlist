@@ -16,3 +16,6 @@ for(const vv of v) {
         console.log(`   !!<${vv}>: is false`);
     }
 }
+
+const m = v.filter((c, index) => !!c);
+console.log('M' + JSON.stringify(m));
