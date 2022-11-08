@@ -1,22 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../model/auth.service";
+
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+    templateUrl: "admin.component.html"
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
 
+    constructor(private auth: AuthService,
+                private router: Router) { }
 
-  constructor(private auth: AuthService,
-    private router: Router) { }
-
-  logout() {
-    this.auth.clear();
-    this.router.navigateByUrl("/");
-  }
-  ngOnInit(): void {
-  }
-
+    logout() {
+        this.auth.clear();
+        this.router.navigateByUrl("/");
+    }
 }

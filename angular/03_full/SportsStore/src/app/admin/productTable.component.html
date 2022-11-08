@@ -1,10 +1,7 @@
 <table class="table table-sm table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Price</th>
+            <th>ID</th><th>Name</th><th>Category</th><th>Price</th>
             <th></th>
         </tr>
     </thead>
@@ -15,7 +12,8 @@
             <td>{{p.category}}</td>
             <td>{{p.price | currency:"USD":"symbol":"2.2-2"}}</td>
             <td>
-                <button class="btn btn-sm btn-warning m-1" [routerLink]="['/admin/main/products/edit', p.id]">
+                <button class="btn btn-sm btn-warning m-1"
+                        [routerLink]="['/admin/main/products/edit', p.id]">
                     Edit
                 </button>
                 <button class="btn btn-sm btn-danger" (click)="deleteProduct(p.id)">

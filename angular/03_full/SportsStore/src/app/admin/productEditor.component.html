@@ -1,5 +1,6 @@
-<div class="bg-primary p-2 text-white" [class.bg-warning]="editing" [class.text-dark]="editing">
-    <h5>{{editing ? "Edit" : "Create"}} Product</h5>
+<div class="bg-primary p-2 text-white" [class.bg-warning]="editing"
+     [class.text-dark]="editing">
+    <h5>{{editing  ? "Edit" : "Create"}} Product</h5>
 </div>
 <form novalidate #form="ngForm" (ngSubmit)="save(form)">
     <div class="form-group">
@@ -12,7 +13,8 @@
     </div>
     <div class="form-group">
         <label>Description</label>
-        <textarea class="form-control" name="description" [(ngModel)]="product.description">
+        <textarea class="form-control" name="description"
+                  [(ngModel)]="product.description">
         </textarea>
     </div>
     <div class="form-group">

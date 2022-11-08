@@ -7,12 +7,12 @@ import { AuthService } from "../model/auth.service";
     templateUrl: "auth.component.html"
 })
 export class AuthComponent {
-    public username: string = '';
-    public password: string = '';
-    public errorMessage: string = '';
+    public username: string;
+    public password: string;
+    public errorMessage: string;
 
     constructor(private router: Router,
-        private auth: AuthService) { }
+                private auth: AuthService) { }
 
     authenticate(form: NgForm) {
         if (form.valid) {
