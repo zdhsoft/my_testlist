@@ -11,6 +11,7 @@ export class AdminComponent {
                 private router: Router) { }
 
     logout() {
+        // 
         this.auth.clear();
         this.router.navigateByUrl("/");
     }
