@@ -11,8 +11,22 @@ export class ProductRepository {
     constructor(private dataSource: RestDataSource) {
         dataSource.getProducts().subscribe(data => {
             this.products = data;
-            this.categories = data.map(p => p.category || '')
-                .filter((c, index, array) => c !== '' && (array.indexOf(c) == index)).sort();
+            // console.log(JSON.stringify(data, null, 2));
+            const categorieSet = new Set<string>();
+            let idx = 0;
+            data.forEach((p) => {
+                if(p.category) {
+                    console.log('-----' + idx + ':' + p.category);
+                    idx++;
+                    categorieSet.add(p.category);
+                }
+            });
+            this.categories = [];
+            categorieSet.forEach(v=>this.categories.push(v));
+            this.categories.sort();
+
+            // this.categories = data.map(p => p.category || '')
+            //     .filter((c, index, array) => c !== '' && (array.indexOf(c) == index)).sort();
         });
     }
 
