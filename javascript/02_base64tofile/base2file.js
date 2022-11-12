@@ -55,7 +55,6 @@ function base2file(paramSrcFileName, paramOutFileName) {
     let destData = Buffer.from(base64String, 'base64');
     fs.writeFileSync(paramOutFileName, destData);
     console.log(`end!`)
-
 }
 
 function main() {
