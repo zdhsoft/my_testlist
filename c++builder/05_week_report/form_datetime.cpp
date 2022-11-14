@@ -128,9 +128,19 @@ void __fastcall TfrmDateTime::btTimestampMillisResultCopyClick(TObject *Sender)
 
 void __fastcall TfrmDateTime::edDateTimeSecondChange(TObject *Sender)
 {
+	std::wregex stRegDateTime(L"(\\d{4})-(0\\d{1}|1[0-2])-(0\\d{1}|[12]\\d{1}|3[01])\\s(0\\d{1}|1\\d{1}|2[0-3]):[0-5]\\d{1}:([0-5]\\d{1})");
+	std::wsmatch m;
+	auto r = std::regex_match(edDateTimeSecond->Text.c_str(), stRegDateTime);
+	// edDTResultSecond->Text = String(r);
+	zdh::utils::log(L"regrex_match:%s =>%d", edDateTimeSecond->Text.c_str(), r);
+	if (r) {
+		std::regex_search(std::wstring(edDateTimeSecond->Text.c_str()), m, stRegDateTime);
+	}
+
+// 	if (
 	//
-	auto dt = StrToDateTime(edDateTimeSecond->Text.c_str());
-    ShowMessage(dt);
+//	auto dt = StrToDateTime(edDateTimeSecond->Text.c_str());
+//    ShowMessage(dt);
 	// TDateTime dt = new TDateTime();
 }
 //---------------------------------------------------------------------------
