@@ -227,6 +227,14 @@
             <BuildOrder>10</BuildOrder>
             <IgnorePath>true</IgnorePath>
         </LibFiles>
+        <CppCompile Include="typedef.cpp">
+            <DependentOn>typedef.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="utils.cpp">
+            <DependentOn>utils.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
         <None Include="week.ini"/>
         <CppCompile Include="week_report.cpp">
             <BuildOrder>0</BuildOrder>
@@ -239,11 +247,11 @@
             <DependentOn>XFunctionFunForm.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <FormResources Include="form_md5.dfm"/>
         <FormResources Include="form_main.dfm"/>
         <FormResources Include="form_datetime.dfm"/>
         <FormResources Include="form_week.dfm"/>
         <FormResources Include="form_ocr.dfm"/>
-        <FormResources Include="form_md5.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

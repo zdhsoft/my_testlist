@@ -5,6 +5,7 @@
 #include <ctime>
 #include <Clipbrd.hpp>
 #include <regex>
+#include "utils.h"
 #include "form_datetime.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -91,12 +92,17 @@ void __fastcall TfrmDateTime::edTimestampSecondChange(TObject *Sender)
 
 void __fastcall TfrmDateTime::edTimestampMillisChange(TObject *Sender)
 {
-	std::time_t m = edTimestampMillis->Text.ToDouble();
-	if (m < 0) {
+	zdh::XLong stValue = 0;
+	const auto r = zdh::utils::TryStringToLong(edTimestampMillis->Text.c_str(), stValue);
+	if (!r) {
+        stValue = -1;
+    }
+	// std::time_t m = edTimestampMillis->Text.ToDouble();
+	if (stValue < 0) {
 		edTimestampResultMillis->Text = L"无效的时间戳";
 	} else {
-        std::time_t millis = m % 1000;
-		std::time_t t = m / 1000;
+        std::time_t millis = stValue % 1000;
+		std::time_t t = stValue / 1000;
 		auto * tm = localtime(&t);
 		String s;
 		s.sprintf(L"%04d-%02d-%02d %02d:%02d:%02d.%03d", tm->tm_year + 1900, tm->tm_mon + 1, tm->tm_mday, tm->tm_hour, tm->tm_min, tm->tm_sec, millis);
