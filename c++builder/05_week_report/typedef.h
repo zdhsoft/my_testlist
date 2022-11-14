@@ -4,31 +4,31 @@
 #define typedefH
 //---------------------------------------------------------------------------
 namespace zdh {
-    //»ù±¾Êı¾İÀàĞÍ¶¨Òå
-    typedef unsigned char           XByte;          ///<×Ö½ÚÀàĞÍ
-    typedef char                    XChar;          ///<×Ö·ûÀàĞÍ
-    typedef unsigned short          XWord;          ///<×ÖÀàĞÍ
-    typedef signed short            XShort;         ///<¶ÌÕûÊı
-    typedef wchar_t                 XWideChar;      ///<¿í×Ö·ûÀàĞÍ
+    //åŸºæœ¬æ•°æ®ç±»å‹å®šä¹‰
+    typedef unsigned char           XByte;          ///<å­—èŠ‚ç±»å‹
+    typedef char                    XChar;          ///<å­—ç¬¦ç±»å‹
+    typedef unsigned short          XWord;          ///<å­—ç±»å‹
+    typedef signed short            XShort;         ///<çŸ­æ•´æ•°
+    typedef wchar_t                 XWideChar;      ///<å®½å­—ç¬¦ç±»å‹
 
-    typedef unsigned int            XDWord;         ///<32Î»ÎŞ·ûºÅÕûÊı
-    typedef          int            XInt;           ///<32Î»ÓĞ·ûºÅÕûÊı
-    typedef unsigned long long      XDDWord;        ///<64Î»ÎŞ·ûºÅÕûÊı
-    typedef signed   long long      XLong;          ///<64Î»ÓĞ·ûºÅÕûÊı
-    typedef bool                    XBool;          ///<²¼¶ûÀàĞÍ
-    typedef float                   XFloat;         ///<µ¥¾«¶È¸¡µãÊı
-    typedef double                  XDouble;        ///<Ë«¾«¶È¸¡µãÊı
+    typedef unsigned int            XDWord;         ///<32ä½æ— ç¬¦å·æ•´æ•°
+    typedef          int            XInt;           ///<32ä½æœ‰ç¬¦å·æ•´æ•°
+    typedef unsigned long long      XDDWord;        ///<64ä½æ— ç¬¦å·æ•´æ•°
+    typedef signed   long long      XLong;          ///<64ä½æœ‰ç¬¦å·æ•´æ•°
+    typedef bool                    XBool;          ///<å¸ƒå°”ç±»å‹
+    typedef float                   XFloat;         ///<å•ç²¾åº¦æµ®ç‚¹æ•°
+    typedef double                  XDouble;        ///<åŒç²¾åº¦æµ®ç‚¹æ•°
 
-	typedef XByte					XUInt8;          ///<×Ö½ÚÀàĞÍ
-	typedef XChar                   XInt8;           ///<×Ö·ûÀàĞÍ
-	typedef XWord                   XUInt16;         ///<×ÖÀàĞÍ
-	typedef XShort                  XInt16;          ///<¶ÌÕûÊı
+	typedef XByte					XUInt8;          ///<å­—èŠ‚ç±»å‹
+	typedef XChar                   XInt8;           ///<å­—ç¬¦ç±»å‹
+	typedef XWord                   XUInt16;         ///<å­—ç±»å‹
+	typedef XShort                  XInt16;          ///<çŸ­æ•´æ•°
 
-	typedef XDWord					XUInt32;         ///<32Î»ÎŞ·ûºÅÕûÊı
-	typedef XInt					XInt32;          ///<32Î»ÓĞ·ûºÅÕûÊı
-	typedef XDDWord					XUInt64;         ///<64Î»ÎŞ·ûºÅÕûÊı
-	typedef XLong					XInt64;          ///<64Î»ÓĞ·ûºÅÕûÊı
-	//Ö¸ÕëÀàĞÍ¶¨Òå
+	typedef XDWord					XUInt32;         ///<32ä½æ— ç¬¦å·æ•´æ•°
+	typedef XInt					XInt32;          ///<32ä½æœ‰ç¬¦å·æ•´æ•°
+	typedef XDDWord					XUInt64;         ///<64ä½æ— ç¬¦å·æ•´æ•°
+	typedef XLong					XInt64;          ///<64ä½æœ‰ç¬¦å·æ•´æ•°
+	//æŒ‡é’ˆç±»å‹å®šä¹‰
 	typedef void *      Pointer;
 	typedef XByte *     PByte;
 	typedef XChar *     PChar;

@@ -8,16 +8,16 @@
 namespace zdh {
 	namespace utils {
 		//-----------------------------------------------------------------------------------------------------
-		///ÅĞ¶ÏÖ¸ÕëÖµÊÇ·ñÎª¿Õ
+		///åˆ¤æ–­æŒ‡é’ˆå€¼æ˜¯å¦ä¸ºç©º
 		template<class T>
 		inline bool IsNULL(const T * param_pointer)
 		{
 			return param_pointer == NULL || param_pointer == nullptr;
 		}
-        ///È¡×Ö·û´®µÄ³¤¶È
+        ///å–å­—ç¬¦ä¸²çš„é•¿åº¦
         /**
-            @param [in] paramValue ÒªÈ¡µÃ³¤¶ÈµÄ×Ö·û´®Ö¸Õë
-            @return ·µ»ØÈ¡µÃ³¤¶È
+            @param [in] paramValue è¦å–å¾—é•¿åº¦çš„å­—ç¬¦ä¸²æŒ‡é’ˆ
+            @return è¿”å›å–å¾—é•¿åº¦
         */
         template<class T>
         static XInt Length(const T * paramValue)
@@ -35,12 +35,12 @@ namespace zdh {
         }
         //----------------------------------------------------------------------------
         /**
-              ³¢ÊÔ½«×Ö·û´®×ª»»Îª64Î»ÓĞ·ûºÅÕûÊı£¬ÄÜ¹»×Ô¶¯Ê¶±ğÊ®½øÖÆºÍÊ®Áù½øÖÆÊı¡£
-              @param [in] paramNumberString ±»×ª»»µÄÊıÖµ×Ö·û´®
-              @param [out] paramValue ÓÃÓÚ±£´æ×ª»»ºóµÄÊıÖµ
-              @return ·µ»Ø³¢ÊÔ×ª»»µÄ×´Ì¬
-                - true ±íÊ¾×ª»»³É¹¦
-                - false ±íÊ¾×ª»»Ê§°Ü£¬Õâ¸öÊ±ºòaValueµÄÖµÎª0
+              å°è¯•å°†å­—ç¬¦ä¸²è½¬æ¢ä¸º64ä½æœ‰ç¬¦å·æ•´æ•°ï¼Œèƒ½å¤Ÿè‡ªåŠ¨è¯†åˆ«åè¿›åˆ¶å’Œåå…­è¿›åˆ¶æ•°ã€‚
+              @param [in] paramNumberString è¢«è½¬æ¢çš„æ•°å€¼å­—ç¬¦ä¸²
+              @param [out] paramValue ç”¨äºä¿å­˜è½¬æ¢åçš„æ•°å€¼
+              @return è¿”å›å°è¯•è½¬æ¢çš„çŠ¶æ€
+                - true è¡¨ç¤ºè½¬æ¢æˆåŠŸ
+                - false è¡¨ç¤ºè½¬æ¢å¤±è´¥ï¼Œè¿™ä¸ªæ—¶å€™aValueçš„å€¼ä¸º0
          */
         template<class T>
 		static bool TryStringToLong(const T * paramNumberString, XLong & paramValue)
@@ -57,7 +57,7 @@ namespace zdh {
             bool HexFlag = false;
 
             const T * p = paramNumberString;
-            //Ìø¹ı¿Õ¸ñ
+            //è·³è¿‡ç©ºæ ¼
             while(*p == ' ')
             {
                 p++;
@@ -93,7 +93,7 @@ namespace zdh {
             XLong lngValue = 0;
             if (HexFlag)
             {
-                // INT64µÄÊ®Áù½øÖÆ×Ö·û´®×î¶àÓĞ16¸ö×Ö½Ú
+                // INT64çš„åå…­è¿›åˆ¶å­—ç¬¦ä¸²æœ€å¤šæœ‰16ä¸ªå­—èŠ‚
                 if (Length(p) > 16)
                 {
                     return false;
@@ -127,7 +127,7 @@ namespace zdh {
             }
             else
             {
-                //  ÕûÊı×îĞ¡ÖµÊÇ -9223372036854775808LL (0x8000000000000000), ×î´óÖµÊÇ 9223372036854775807LL (0x7FFFFFFFFFFFFFFF)
+                //  æ•´æ•°æœ€å°å€¼æ˜¯ -9223372036854775808LL (0x8000000000000000), æœ€å¤§å€¼æ˜¯ 9223372036854775807LL (0x7FFFFFFFFFFFFFFF)
                 const XLong ABS_MIN_LONG_INT_DIV10 = 922337203685477580LL;
                 const XLong ABS_MIN_LONG_INT_MOD10 = 8LL;
                 const XLong ABS_MAX_LONG_INT_DIV10 = 922337203685477580LL;
@@ -158,12 +158,12 @@ namespace zdh {
                                 return false;
                             }
 
-                            // ÒòÎªĞèÒªintValueÊ¼ÖÕÊÇÕıÕûÊı, Æä×î´óÖµÊÇ 2147483647
-                            // Èç¹û´ËÊ±v=8, ½«µ¼ÖÂÆäÒç³ö
+                            // å› ä¸ºéœ€è¦intValueå§‹ç»ˆæ˜¯æ­£æ•´æ•°, å…¶æœ€å¤§å€¼æ˜¯ 2147483647
+                            // å¦‚æœæ­¤æ—¶v=8, å°†å¯¼è‡´å…¶æº¢å‡º
                             if (v == ABS_MIN_LONG_INT_MOD10)
                             {
-                                // Èç¹ûºóÃæÃ»ÓĞ×Ö·ûÁË, ËµÃ÷Õâ¸öÊÇ×îºóÒ»¸ö×Ö·û, ÄÇÃ´Õâ¸öÊıÊÇÕûĞÍ×îĞ¡Öµ
-                                // Ö®ËùÒÔÔÚÕâÀïÍË³ö, ÊÇÎªÁË·ÀÖ¹ÕûĞÍ×î´óÖµÒç³ö
+                                // å¦‚æœåé¢æ²¡æœ‰å­—ç¬¦äº†, è¯´æ˜è¿™ä¸ªæ˜¯æœ€åä¸€ä¸ªå­—ç¬¦, é‚£ä¹ˆè¿™ä¸ªæ•°æ˜¯æ•´å‹æœ€å°å€¼
+                                // ä¹‹æ‰€ä»¥åœ¨è¿™é‡Œé€€å‡º, æ˜¯ä¸ºäº†é˜²æ­¢æ•´å‹æœ€å¤§å€¼æº¢å‡º
                                 if (*(p+1) == 0)
                                 {
                                     paramValue = ABS_MIN_LONG_INT_VALUE;
