@@ -131,17 +131,17 @@ void __fastcall TfrmDateTime::edDateTimeSecondChange(TObject *Sender)
 	std::wregex stRegDateTime(L"(\\d{4})-(0\\d{1}|1[0-2])-(0\\d{1}|[12]\\d{1}|3[01])\\s(0\\d{1}|1\\d{1}|2[0-3]):[0-5]\\d{1}:([0-5]\\d{1})");
 	std::wsmatch m;
 	auto r = std::regex_match(edDateTimeSecond->Text.c_str(), stRegDateTime);
-	// edDTResultSecond->Text = String(r);
+	std::wstring ww(edDateTimeSecond->Text.c_str());
 	zdh::utils::log(L"regrex_match:%s =>%d", edDateTimeSecond->Text.c_str(), r);
-	if (r) {
-		std::regex_search(std::wstring(edDateTimeSecond->Text.c_str()), m, stRegDateTime);
-	}
+	while(std::regex_search(ww, m, stRegDateTime)) {
+        zdh::utils::log(m.str());
+    }
+//	if (std::regex_search(ww, m, stRegDateTime)) {
+//		for(size_t i = 0; i < m.size(); i++) {
+//            zdh::utils::log(L"%d:%s", i, m[i].str());
+//        }
+//	}
 
-// 	if (
-	//
-//	auto dt = StrToDateTime(edDateTimeSecond->Text.c_str());
-//    ShowMessage(dt);
-	// TDateTime dt = new TDateTime();
 }
 //---------------------------------------------------------------------------
 

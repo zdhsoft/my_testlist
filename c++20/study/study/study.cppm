@@ -9,6 +9,7 @@ import mo.test.cpp;
 import c11;
 import mo.test.cmd;
 import mo.test.type;
+import mo.test.reg;
 
 
 int main()
@@ -19,6 +20,7 @@ int main()
     // testcmd();
     printf("hello world!");
     typeMain();
+    testReg();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
