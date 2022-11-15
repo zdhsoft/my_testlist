@@ -5,9 +5,26 @@
 #include <regex>
 using namespace std;
 
+void testRegex() {
+	//regex stRegDateTime("(\\d{4})-(0\\d{1}|1[0-2])-(0\\d{1}|[12]\\d{1}|3[01])\\s(0\\d{1}|1\\d{1}|2[0-3]):[0-5]\\d{1}:([0-5]\\d{1})");
+	//^([1-2]\\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (20|21|22|23|[0-1]\\d):([0-5]\\d):([0-5]\\d)$
+	regex ss("^([1-2]\\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (20|21|22|23|[0-1]\\d):([0-5]\\d):([0-5]\\d)$");
+	string s = "2022-01-02 03:04:05";
+	smatch m;
+	
+	if (regex_search(s, m, ss)) {
+		std::cout << "matches for '" << s << "'\n";
+		std::cout << "Prefix: '" << m.prefix() << "'\n";
+		for (size_t i = 0; i < m.size(); ++i)
+			std::cout << i << ": " << m[i] << '\n';
+		std::cout << "Suffix: '" << m.suffix() << "\'\n\n";
+	}
+}
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    std::cout << "Hello World!\n" << endl;;
+    testRegex();
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
