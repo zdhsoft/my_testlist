@@ -125,23 +125,29 @@ void __fastcall TfrmDateTime::btTimestampMillisResultCopyClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-
+//	regex ss("^([1-2]\\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (20|21|22|23|[0-1]\\d):([0-5]\\d):([0-5]\\d)$");
+//	regex ss1("^([1-2]\\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (20|21|22|23|[0-1]\\d):([0-5]\\d):([0-5]\\d).(\\d{1,3})$");
 void __fastcall TfrmDateTime::edDateTimeSecondChange(TObject *Sender)
 {
-	std::wregex stRegDateTime(L"(\\d{4})-(0\\d{1}|1[0-2])-(0\\d{1}|[12]\\d{1}|3[01])\\s(0\\d{1}|1\\d{1}|2[0-3]):[0-5]\\d{1}:([0-5]\\d{1})");
+	std::wregex stRegDateTime(L"^([1-2]\\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (20|21|22|23|[0-1]\\d):([0-5]\\d):([0-5]\\d)$");
 	std::wsmatch m;
 	auto r = std::regex_match(edDateTimeSecond->Text.c_str(), stRegDateTime);
-	std::wstring ww(edDateTimeSecond->Text.c_str());
-	zdh::utils::log(L"regrex_match:%s =>%d", edDateTimeSecond->Text.c_str(), r);
-	while(std::regex_search(ww, m, stRegDateTime)) {
-        zdh::utils::log(m.str());
-    }
-//	if (std::regex_search(ww, m, stRegDateTime)) {
-//		for(size_t i = 0; i < m.size(); i++) {
-//            zdh::utils::log(L"%d:%s", i, m[i].str());
-//        }
-//	}
+	std::wstring ww(edDateTimeSecond->Text.Trim().c_str());
+	zdh::utils::log(L"regrex_match:%s =>%d",ww.c_str(), r);
+	if(std::regex_search(ww, m, stRegDateTime)) {
+		for (size_t i = 0; i < m.size(); ++i)  {
+			zdh::utils::log(L"%d:%s", i, m[i].str().c_str());
+		}
+		zdh::XInt nYear = 0, nMonth = 0, nDay = 0, nHour = 0, nMinute = 0, nSecond = 0;
+		zdh::utils::TryStringToInt(m[1].str().c_str(), nYear);
+		zdh::utils::TryStringToInt(m[2].str().c_str(), nMonth);
+		zdh::utils::TryStringToInt(m[3].str().c_str(), nDay);
+		zdh::utils::TryStringToInt(m[4].str().c_str(), nHour);
+		zdh::utils::TryStringToInt(m[5].str().c_str(), nMinute);
+		zdh::utils::TryStringToInt(m[6].str().c_str(), nSecond);
 
+        zdh::utils::log(L"解析后的日期:%04d-%02d-%02d %02d:%02d:%02d", nYear, nMonth, nDay, nHour, nMinute, nSecond);
+	}
 }
 //---------------------------------------------------------------------------
 
