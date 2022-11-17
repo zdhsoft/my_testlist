@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 #include <vcl.h>
 #pragma hdrstop
 
@@ -16,14 +16,43 @@ namespace zdh {
             OutputDebugStringW(s.c_str());
 		}
 		//----------------------------------------------------------------------------
-		///ÅĞ¶ÏÊÇ·ñÊÇÈòÄê
+		///è®¡ç®—æŒ‡å®šæ—¶é—´çš„æ¯«ç§’æ•°
 		/**
-		 * ÅĞ¶ÏÊÇ·ñÊÇÈòÄê
-		 * @param [in] paramYear ±»¼ì²éµÄÄê·İ£¬ÓĞĞ§µÄÄê·İÊÇ[MIN_YEAR_IN_DATETIME,MAX_YEAR_IN_DATETIME]Ö®¼ä£¬ÆäÖµÔÚ[1,9999]Ö®¼ä
-		 * @return ·µ»ØÅĞ¶Ï½á¶Ï
-		 *   - true ±íÊ¾ÊÇÈòÄê
-		 *   - false ±íÊ¾²»ÊÇÈòÄê
-		 * @exception XEXDateTimeError Èç¹ûÄê·İÎŞĞ§£¬ÔòÅ×³öÒì³£
+		 * è®¡ç®—æŒ‡å®šæ—¶é—´çš„æ¯«ç§’æ•°
+		 * @param [in] paramHour å°æ—¶ï¼Œå…¶å€¼åœ¨[0,23]ä¹‹é—´
+		 * @param [in] paramMinute åˆ†é’Ÿï¼Œå…¶å€¼åœ¨[0,59]ä¹‹é—´
+		 * @param [in] paramSecond ç§’ï¼Œå…¶å€¼åœ¨[0,59]ä¹‹é—´
+		 * @param [in] paramMillis æ¯«ç§’ï¼Œå…¶å€¼åœ¨[0,999]ä¹‹é—´
+		 * @return è¿”å›è®¡ç®—å‡ºæ¥çš„æ€»æ¯«ç§’æ•°
+		 * @exception XEXDateTimeError å¦‚æœé”™è¯¯ï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸ã€‚
+		 */
+		XInt CalcMillisByTime(XInt paramHour,XInt paramMinute, XInt paramSecond, XInt paramMillis)
+		{
+			if( paramHour < 0 || paramHour > 23 ){
+				return INVALID_TIMES;
+			}
+			if( paramMinute < 0 || paramMinute > 59 ){
+				return INVALID_TIMES;
+			}
+
+			if( paramSecond < 0 || paramSecond > 59 ){
+				return INVALID_TIMES;
+			}
+
+			if( paramMillis < 0 || paramMillis > 999 ){
+				return INVALID_TIMES;
+			}
+			return paramHour * MILLIS_PRE_HOUR + paramMinute * MILLIS_PRE_MINUTE + paramSecond * MILLIS_PRE_SECOND + paramMillis;
+		}
+		//----------------------------------------------------------------------------
+		///åˆ¤æ–­æ˜¯å¦æ˜¯é—°å¹´
+		/**
+		 * åˆ¤æ–­æ˜¯å¦æ˜¯é—°å¹´
+		 * @param [in] paramYear è¢«æ£€æŸ¥çš„å¹´ä»½ï¼Œæœ‰æ•ˆçš„å¹´ä»½æ˜¯[MIN_YEAR_IN_DATETIME,MAX_YEAR_IN_DATETIME]ä¹‹é—´ï¼Œå…¶å€¼åœ¨[1,9999]ä¹‹é—´
+		 * @return è¿”å›åˆ¤æ–­ç»“æ–­
+		 *   - true è¡¨ç¤ºæ˜¯é—°å¹´
+		 *   - false è¡¨ç¤ºä¸æ˜¯é—°å¹´
+		 * @exception XEXDateTimeError å¦‚æœå¹´ä»½æ— æ•ˆï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸
 		 */
 		XBool IsRawYear(XInt paramYear)
 		{
@@ -43,19 +72,19 @@ namespace zdh {
 		}
         //----------------------------------------------------------------------------
         /**
-        * ¼ÆËãÖ¸¶¨ÄêÔÂµÄÌìÊı
-        * @param [in] paramYear Ö¸¶¨µÄÄê·İ£¬ÓĞĞ§µÄÄê·İÊÇ[MIN_YEAR_IN_DATETIME,MAX_YEAR_IN_DATETIME]Ö®¼ä
-        * @param [in] paramMonth Ö¸¶¨µÄÔÂ·İ£¬ÓĞĞ§µÄÔÂ·İÊÇ[1,12]Ö®¼ä
-        * @param [in] paramCheck ¼ì²éÄêÔÂ±êÖ¾,
-        *     - true ±íÊ¾Òª¼ì²éparamYearºÍparamMonthÊÇ·ñÓĞĞ§
-        *     - false ±íÊ¾²»ĞèÒª¼ì²éparamYearºÍparamMonthÊÇ·ñÓĞĞ§
-        * @return ·µ»Ø¼ÆËã³öÀ´Ö¸¶¨ÔÂ·İµÄÌìÊı
-        * @exception XEDateTimeError Èç¹ûÄê·İ¡¢ÔÂ·İÎŞĞ§£¬ÔòÅ×³öÒì³£
+        * è®¡ç®—æŒ‡å®šå¹´æœˆçš„å¤©æ•°
+        * @param [in] paramYear æŒ‡å®šçš„å¹´ä»½ï¼Œæœ‰æ•ˆçš„å¹´ä»½æ˜¯[MIN_YEAR_IN_DATETIME,MAX_YEAR_IN_DATETIME]ä¹‹é—´
+        * @param [in] paramMonth æŒ‡å®šçš„æœˆä»½ï¼Œæœ‰æ•ˆçš„æœˆä»½æ˜¯[1,12]ä¹‹é—´
+        * @param [in] paramCheck æ£€æŸ¥å¹´æœˆæ ‡å¿—,
+        *     - true è¡¨ç¤ºè¦æ£€æŸ¥paramYearå’ŒparamMonthæ˜¯å¦æœ‰æ•ˆ
+        *     - false è¡¨ç¤ºä¸éœ€è¦æ£€æŸ¥paramYearå’ŒparamMonthæ˜¯å¦æœ‰æ•ˆ
+        * @return è¿”å›è®¡ç®—å‡ºæ¥æŒ‡å®šæœˆä»½çš„å¤©æ•°
+        * @exception XEDateTimeError å¦‚æœå¹´ä»½ã€æœˆä»½æ— æ•ˆï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸
         */
         XInt CalcMonthDays(XInt paramYear, XInt paramMonth, bool paramCheck)
         {
             XInt iRet;
-            if( paramCheck ) //Èç¹ûÒª¼ì²éÄêÔÂ
+            if( paramCheck ) //å¦‚æœè¦æ£€æŸ¥å¹´æœˆ
             {
                 if( paramYear < MIN_YEAR_IN_DATETIME || paramYear > MAX_YEAR_IN_DATETIME ) return INVALID_DAYS;
                 if( paramMonth < MIN_MONTH_IN_YEAR || paramMonth > MAX_MONTH_IN_YEAR ) return INVALID_DAYS;
@@ -73,20 +102,20 @@ namespace zdh {
 		}
 		//---------------------------------------------------------------------
         /**
-        * ¼ÆËã´ÓÔªÄê1ÔÂ1ÈÕ¿ªÊ¼µÄÌìÊı
-        * @param [in] paramYear Ö¸¶¨µÄÄê·İ£¬ÓĞĞ§µÄÄê·İÊÇ[MIN_YEAR_IN_DATETIME,MAX_YEAR_IN_DATETIME]Ö®¼ä
-        * @param [in] paramMonth Ö¸¶¨µÄÔÂ·İ£¬ÓĞĞ§µÄÔÂ·İÊÇ[1,12]Ö®¼ä
-		* @param [in] paramDay Ö¸¶¨µÄÈÕÆÚ£¬ÓĞĞ§µÄÈÕÆÚÊÇ[1,CalcMonthDays]Ö®¼ä
-		* @return ·µ»ØÖ¸¶¨ÈÕÆÚ´ÓÔªÄê1ÔÂ1ÈÕ¿ªÊ¼µÄÌìÊı
-		* @exception XEDateTimeError Èç¹ûÄê·İ¡¢ÔÂ·İ¡¢ÈÕÆÚÎŞĞ§£¬ÔòÅ×³öÒì³£
+        * è®¡ç®—ä»å…ƒå¹´1æœˆ1æ—¥å¼€å§‹çš„å¤©æ•°
+        * @param [in] paramYear æŒ‡å®šçš„å¹´ä»½ï¼Œæœ‰æ•ˆçš„å¹´ä»½æ˜¯[MIN_YEAR_IN_DATETIME,MAX_YEAR_IN_DATETIME]ä¹‹é—´
+        * @param [in] paramMonth æŒ‡å®šçš„æœˆä»½ï¼Œæœ‰æ•ˆçš„æœˆä»½æ˜¯[1,12]ä¹‹é—´
+		* @param [in] paramDay æŒ‡å®šçš„æ—¥æœŸï¼Œæœ‰æ•ˆçš„æ—¥æœŸæ˜¯[1,CalcMonthDays]ä¹‹é—´
+		* @return è¿”å›æŒ‡å®šæ—¥æœŸä»å…ƒå¹´1æœˆ1æ—¥å¼€å§‹çš„å¤©æ•°
+		* @exception XEDateTimeError å¦‚æœå¹´ä»½ã€æœˆä»½ã€æ—¥æœŸæ— æ•ˆï¼Œåˆ™æŠ›å‡ºå¼‚å¸¸
 		*/
 		XInt CalcDays(XInt paramYear, XInt paramMonth, XInt paramDay)
 		{
-			//¼ì²éÄê·İ
+			//æ£€æŸ¥å¹´ä»½
 			if( paramYear < MIN_YEAR_IN_DATETIME || paramYear > MAX_YEAR_IN_DATETIME ) return INVALID_DAYS;
-			//¼ì²éÔÂ·İ
+			//æ£€æŸ¥æœˆä»½
 			if( paramMonth < MIN_MONTH_IN_YEAR || paramMonth > MAX_MONTH_IN_YEAR ) return INVALID_DAYS;
-			//¼ì²éÈÕÆÚ
+			//æ£€æŸ¥æ—¥æœŸ
 			XInt aMonthDays = CalcMonthDays(paramYear, paramMonth, false);
 			if (aMonthDays == INVALID_DAYS) {
 				return INVALID_DAYS;
@@ -99,9 +128,27 @@ namespace zdh {
 			for(XInt i=1; i<paramMonth; i++) iDays += CalcMonthDays(paramYear, i, false);
 
 			paramYear --;
-			iDays += ( (paramYear*365) + (paramYear/4) - (paramYear/100) + (paramYear/400)); //¼ÓÉÏÍùÄêµÄÌìÊı
-			iDays += paramDay;                                                   //¼ÓÉÏµ±Ç°ÔÂµÄÌìÊı
+			iDays += ( (paramYear*365) + (paramYear/4) - (paramYear/100) + (paramYear/400)); //åŠ ä¸Šå¾€å¹´çš„å¤©æ•°
+			iDays += paramDay;                                                   //åŠ ä¸Šå½“å‰æœˆçš„å¤©æ•°
 			return iDays;
+		}
+
+		XLong CalcMillis(XInt paramYear , XInt paramMonth, XInt paramDay, XInt paramHour, XInt paramMinute, XInt paramSecond, XInt paramMillis) {
+			XLong days = CalcDays(paramYear, paramMonth, paramDay);
+			if (days == INVALID_DAYS) {
+                return INVALID_MILLIS;
+			}
+			XLong times = CalcMillisByTime(paramHour, paramMinute, paramSecond, paramMillis);
+			if (times == INVALID_TIMES) {
+				return INVALID_MILLIS;
+			}
+			return days * MILLIS_PRE_DAY64 + times;
+		}
+
+		XLong CalcTimestamp(XInt paramYear , XInt paramMonth, XInt paramDay, XInt paramHour, XInt paramMinute, XInt paramSecond, XInt paramMillis) {
+			XLong lngMillis = CalcMillis(paramYear, paramMonth, paramDay, paramHour, paramMinute, paramSecond, paramMillis);
+			XLong result = lngMillis - MILLIS_1970_1_1;
+			return result < 0 ? INVALID_MILLIS : (result + TIME_ZONE_CHINA_MILLIS);
 		}
 	}
 }

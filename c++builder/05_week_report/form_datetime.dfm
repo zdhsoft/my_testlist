@@ -190,7 +190,6 @@ object frmDateTime: TfrmDateTime
     Height = 33
     Caption = '>>'
     TabOrder = 13
-    OnClick = edDateTimeSecondChange
   end
   object Button2: TButton
     Left = 466

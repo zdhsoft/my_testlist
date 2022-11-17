@@ -4,9 +4,24 @@
 #define utilsH
 #include <cstdio>
 #include "typedef.h"
+#include "vcl.h"
 //---------------------------------------------------------------------------
 namespace zdh {
 	namespace utils {
+		const XLong MAX_MILLIS              = 315537984000000LL;    ///<最大的毫秒数
+		const XLong MIN_MILLIS              = 86400000LL;           ///<最小的毫秒数
+		const XLong MILLIS_PRE_DAY64        = 86400000LL;           ///<每天最大的毫秒数64位有符号整数
+		const XLong MAX_DURATION            = 315537897600000LL;    ///<最大的持续时间
+
+        const XInt TIME_ZONE_CHINA          = -480;                 ///<中国时间东八区
+		const XInt TIME_ZONE_CHINA_SECOND   = -480 * 60;                 ///<中国时间东八区
+		const XInt TIME_ZONE_CHINA_MILLIS   = -480 * 60000;                 ///<中国时间东八区
+
+		const XInt MILLIS_PRE_DAY           = 86400000;             ///<每天的毫秒数 24:00:00.000
+		const XInt MILLIS_PRE_HOUR          = 3600000;              ///<每小时毫秒数 01:00:00.000
+		const XInt MILLIS_PRE_MINUTE        = 60000;                ///<每分钟毫秒数 00:01:00.000
+		const XInt MILLIS_PRE_SECOND        = 1000;                 ///<每秒的毫秒数 00:00:01.000
+
 		const XInt MAX_YEAR_IN_DATETIME     = 9999;                 ///<最大的年份
 		const XInt MIN_YEAR_IN_DATETIME     = 1;                    ///<最小的年份,公元元年从公元1年开始
 		const XInt MAX_MONTH_IN_YEAR        = 12;                   ///<最大的月份
@@ -18,13 +33,90 @@ namespace zdh {
 		const XInt MAX_DAYS_IN_DATETIME     = 3652059;              ///<最大的日期数 9999-12-31
 		const XInt MIN_DAYS_IN_DATETIME     = 1;                    ///<最小的日期数 0-1-1
 
-		const XInt TIME_ZONE_CHINA          = -480;                 ///<中国时间东八区
-		const XInt INVALID_DAYS            = -1;                   ///< 无效的天数
+		const XInt DAYS_1970_1_1            = 719163;               ///<1970-1-1到公元元年的天数
+		const XLong MILLIS_1970_1_1         =  MILLIS_PRE_DAY64 * DAYS_1970_1_1;
+
+		const XInt INVALID_DAYS             = -1;                   ///< 无效的天数
+		const XInt INVALID_TIMES            = -1;
+        const XLong INVALID_MILLIS          = -1;
+
+		const XInt ERR_OK = 0;
+        const XInt ERR_FAIL = -1;
+
+		template<class T>
+		class XCommonRet {
+		private:
+			XInt m_Ret = ERR_OK;
+			String m_Msg;
+			T m_Data;
+		public:
+			XCommonRet(const XInt & paramRet = ERR_OK): m_Ret(paramRet) {
+				//
+			}
+			XCommonRet(const XInt & paramRet, const String & paramMsg):
+				m_Ret(paramRet), m_Msg(paramMsg) {
+				//
+			}
+			XCommonRet(const XInt & paramRet, const String & paramMsg, const T & paramData):
+				m_Ret(paramRet), m_Msg(paramMsg), m_Data(paramData) {
+				//
+			}
+
+			XInt & getRet() {
+                return m_Ret;
+			}
+
+			void setRet(const XInt & paramRet) {
+				m_Ret = paramRet;
+			}
+
+			String & getMsg() {
+				return m_Msg;
+			}
+
+			void setMsg(const String & paramMsg) {
+				m_Msg = paramMsg;
+            }
+
+			T & getData() {
+                return m_Data;
+			}
+
+			void setData(const T & paramData) {
+                m_Data = paramData;
+			}
+
+			bool getIsOK() {
+                return m_Ret == ERR_OK;
+			}
+
+			void setError(const XInt & paramRet, const wchar_t * format, ...) {
+				va_list paramList;
+				va_start(paramList, format);
+				m_Msg.vprintf(format, paramList);
+				m_Ret = paramRet;
+			}
+
+			void setOK(const T & paramData) {
+				m_Data = paramData;
+				m_Ret = ERR_OK;
+                m_Msg = "";
+			}
+			__property XInt Ret = { read = getRet, write = setRet };
+			__property String Msg = { read = getMsg, write = setMsg };
+			__property T Data = { read = getData, write = setData };
+			__property bool IsOK = { read = getIsOK };
+            __property void OK = { write = setOK };
+        };
+
 
 		void log(const wchar_t * format, ...);
 		XInt CalcDays(XInt paramYear, XInt paramMonth, XInt paramDay);
 		XInt CalcMonthDays(XInt paramYear, XInt paramMonth, bool paramCheck);
-        XBool IsRawYear(XInt paramYear);
+		XInt CalcMillisByTime(XInt paramHour,XInt paramMinute = 0, XInt paramSecond = 0,XInt paramMillis = 0);
+		XLong CalcMillis(XInt paramYear , XInt paramMonth = 1, XInt paramDay = 1, XInt paramHour = 0, XInt paramMinute = 0, XInt paramSecond = 0, XInt paramMillis = 0);
+		XBool IsRawYear(XInt paramYear);
+        XLong CalcTimestamp(XInt paramYear , XInt paramMonth, XInt paramDay, XInt paramHour, XInt paramMinute, XInt paramSecond, XInt paramMillis);
 		//-----------------------------------------------------------------------------------------------------
 		///判断指针值是否为空
 		template<class T>
