@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <MainSource>week_report.cpp</MainSource>
@@ -91,10 +91,11 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Debugger_CWD>.</Debugger_CWD>
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
         <Icon_MainIcon>week_report_Icon4.ico</Icon_MainIcon>
         <ILINK_LibraryPath>D:\zdhsoft\github\my_testlist\c++builder\05_week_report\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <UsePackages>false</UsePackages>
+        <DynamicRTL>false</DynamicRTL>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -134,13 +135,12 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\debug\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <LinkPackageImports>rtl.bpi;vcl.bpi;vclx.bpi</LinkPackageImports>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <ILINK_LibraryPath>$(BDSLIB)\$(PLATFORM)$(CC_SUFFIX)\debug;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <LinkPackageStatics>rtl.lib;vcl.lib;vclx.lib</LinkPackageStatics>
         <Icon_MainIcon>week_report_Icon4.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
@@ -171,10 +171,12 @@
         <VerInfo_DLL>true</VerInfo_DLL>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=;PrivateBuild=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=;PrivateBuild=</VerInfo_Keys>
         <BCC_InstructionSet>6</BCC_InstructionSet>
         <BCC_ShowLSPMessages>true</BCC_ShowLSPMessages>
         <BCC_NumberOfIndexingThreads>8</BCC_NumberOfIndexingThreads>
+        <VerInfo_Build>1</VerInfo_Build>
+        <LinkPackageStatics>rtl.lib;vcl.lib;vclx.lib</LinkPackageStatics>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -279,27 +281,10 @@
                     <Source Name="MainSource">week_report.cpp</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfs28.bpl">FastScript 1.9 Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxIntIO28.bpl">FastReport VCL Internet transports</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxIntIOIndy28.bpl">FastReport VCL Internet transports</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxHTML28.bpl">FastReport VCL HTMLView Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxPDF28.bpl">FastReport VCL PDF Component</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxTee28.bpl">FastReport VCL Tee Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfsTee28.bpl">FastScript 1.9 Tee Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxDB28.bpl">FastReport VCL DB Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfsDB28.bpl">FastScript 1.9 DB Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxADO28.bpl">FastReport VCL ADO Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfsADO28.bpl">FastScript 1.9 ADO Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxDBX28.bpl">FastReport VCL DBX Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k280.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcbofficexp280.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrx28.bpl">FastReport VCL Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxcs28.bpl">FastReport VCL Client/Server Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxe28.bpl">FastReport VCL Exports</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfrxIBX28.bpl">FastReport VCL IBX Components</Excluded_Packages>
-                    <Excluded_Packages Name="C:\Program Files (x86)\FastReport VCL Trial\LibD28\dclfsIBX28.bpl">FastScript 1.9 IBX Components</Excluded_Packages>
                 </Excluded_Packages>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="4">
