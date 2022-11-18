@@ -90,8 +90,9 @@ void __fastcall TfrmMain::N1Click(TObject *Sender)
 
 void __fastcall TfrmMain::ActionAboutExecute(TObject *Sender)
 {
+	// GetFileVersionInfo()
 	//
-    ShowMessage("hello week report 1.0");
+    ShowMessage("hello week report 1.1");
 }
 //---------------------------------------------------------------------------
 
