@@ -55,6 +55,8 @@ __published:	// IDE-managed Components
 	TMenuItem *X1;
 	TMenuItem *N3;
 	TMenuItem *X2;
+	TAction *ActionJSON;
+	TToolButton *ToolButton6;
 	void __fastcall ActionWeekExecute(TObject *Sender);
 	void __fastcall ActionDateTimeExecute(TObject *Sender);
 	void __fastcall Timer1Timer(TObject *Sender);
@@ -64,6 +66,7 @@ __published:	// IDE-managed Components
 	void __fastcall ActionOCRExecute(TObject *Sender);
 	void __fastcall ActionMD5Execute(TObject *Sender);
 	void __fastcall ActionExitExecute(TObject *Sender);
+	void __fastcall ActionJSONExecute(TObject *Sender);
 private:	// User declarations
     TSubFormList m_SubFormList;
 	XFunctionFunForm * m_CurrActiveForm;

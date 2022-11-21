@@ -8,6 +8,8 @@
 #include "form_datetime.h"
 #include "form_md5.h"
 #include "form_ocr.h"
+#include <System.JSON.hpp>
+#include "utils.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -112,6 +114,65 @@ void __fastcall TfrmMain::ActionExitExecute(TObject *Sender)
 {
 	//
     Application->Terminate();
+}
+//---------------------------------------------------------------------------
+
+void EnumJsonValues(TJSONValue *lpJsonValue, UnicodeString sKeyName)
+{
+  TJSONObject *lpJsonObject = dynamic_cast<TJSONObject *>(lpJsonValue);
+  if(lpJsonObject) // 结构体
+   {
+     for(int iPairIdx=0; iPairIdx<lpJsonObject->Count; iPairIdx++)
+      {
+        TJSONPair *lpPair = lpJsonObject->Pairs[iPairIdx]; // 第 iPairIdx 对键名/键值
+        UnicodeString sName = lpPair->JsonString->Value(); // 第 iPairIdx 对键名
+        TJSONValue *lpValue = lpPair->JsonValue;           // 第 iPairIdx 对键值
+
+        // 不知道 lpValue 这个值是什么类型的，进一步枚举值，需要递归
+        EnumJsonValues(lpValue, sKeyName.IsEmpty()?sName:sKeyName+L"."+sName);
+      }
+     return;
+   }
+  TJSONArray *lpJsonArray = dynamic_cast<TJSONArray *>(lpJsonValue);
+  if(lpJsonArray) // 数组
+   {
+     for(int i=0; i<lpJsonArray->Count; i++)               // 枚举数组里面每个元素
+      {
+        TJSONValue *lpValue = lpJsonArray->Items[i];       // 数组里面第 i 个元素
+
+        // 不知道 lpValue 这个值是什么类型的，进一步枚举值，需要递归
+        EnumJsonValues(lpValue, sKeyName+L"["+IntToStr(i)+L"]");
+      }
+     return;
+   }
+  // 既不是结构体，也不是数组，而是简单的单一值，可以直接输出
+  UnicodeString sKeyValue = lpJsonValue->Value(); // sKeyName 的值就是 lpJsonValue
+  //Memo2->Lines->Add(sKeyName + L" = " + sKeyValue);
+  zdh::utils::log(L"%s = %s", sKeyName.c_str(), sKeyValue.c_str());
+}
+
+void __fastcall TfrmMain::ActionJSONExecute(TObject *Sender)
+{
+	//
+	String s = "./package.json";
+
+	std::auto_ptr list(new TStringList());
+	list->LoadFromFile(s);
+	std::auto_ptr lpJson(TJSONObject::ParseJSONValue(list->Text));
+	if (lpJson.get() == nullptr || lpJson.get() == NULL) {
+		zdh::utils::log(L"加载的json:$s的结果为null", s.c_str());
+		return;
+	}
+	if(lpJson->Null) {
+		zdh::utils::log(L"加载的json:$s的属性为NULL", s.c_str());
+		return;
+	}
+	EnumJsonValues(lpJson.get(), L"");
+//	lpJson->GetValueA()
+//	TJSONObject * lpRoot = dynamic_cast<TJSONObject *>(lpJson.get());
+
+
+
 }
 //---------------------------------------------------------------------------
 

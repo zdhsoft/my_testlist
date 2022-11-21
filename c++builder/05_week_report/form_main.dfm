@@ -66,6 +66,11 @@ object frmMain: TfrmMain
       Top = 0
       Action = ActionAbout
     end
+    object ToolButton6: TToolButton
+      Left = 390
+      Top = 0
+      Action = ActionJSON
+    end
   end
   object PanelContainer: TPanel
     Left = 0
@@ -136,6 +141,11 @@ object frmMain: TfrmMain
       Caption = #36864#20986'(&X)'
       ImageIndex = 4
       OnExecute = ActionExitExecute
+    end
+    object ActionJSON: TAction
+      Caption = 'JSON'
+      ImageIndex = 7
+      OnExecute = ActionJSONExecute
     end
   end
   object ImageList1: TImageList
