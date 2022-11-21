@@ -51,25 +51,25 @@ object frmMain: TfrmMain
       Top = 0
       Action = ActionDateTime
     end
-    object ToolButton3: TToolButton
+    object ToolButton6: TToolButton
       Left = 156
+      Top = 0
+      Action = ActionJSON
+    end
+    object ToolButton3: TToolButton
+      Left = 234
       Top = 0
       Action = ActionOCR
     end
     object ToolButton4: TToolButton
-      Left = 234
+      Left = 312
       Top = 0
       Action = ActionMD5
     end
     object ToolButton5: TToolButton
-      Left = 312
-      Top = 0
-      Action = ActionAbout
-    end
-    object ToolButton6: TToolButton
       Left = 390
       Top = 0
-      Action = ActionJSON
+      Action = ActionAbout
     end
   end
   object PanelContainer: TPanel

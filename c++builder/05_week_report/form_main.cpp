@@ -8,6 +8,7 @@
 #include "form_datetime.h"
 #include "form_md5.h"
 #include "form_ocr.h"
+#include "form_json.h"
 #include <System.JSON.hpp>
 #include "utils.h"
 //---------------------------------------------------------------------------
@@ -26,6 +27,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	INITFORM(TfrmDateTime, frmDateTime);
 	INITFORM(TfrmOCR, frmOCR);
 	INITFORM(TfrmMD5, frmMD5);
+    INITFORM(TfrmJSON, frmJSON);
 }
 
 //---------------------------------------------------------------------------
@@ -151,28 +153,27 @@ void EnumJsonValues(TJSONValue *lpJsonValue, UnicodeString sKeyName)
   zdh::utils::log(L"%s = %s", sKeyName.c_str(), sKeyValue.c_str());
 }
 
-void __fastcall TfrmMain::ActionJSONExecute(TObject *Sender)
+void __fastcall TfrmMain::ActionJSONExecute(TObject* Sender)
 {
-	//
-	String s = "./package.json";
-
-	std::auto_ptr list(new TStringList());
-	list->LoadFromFile(s);
-	std::auto_ptr lpJson(TJSONObject::ParseJSONValue(list->Text));
-	if (lpJson.get() == nullptr || lpJson.get() == NULL) {
-		zdh::utils::log(L"加载的json:$s的结果为null", s.c_str());
-		return;
-	}
-	if(lpJson->Null) {
-		zdh::utils::log(L"加载的json:$s的属性为NULL", s.c_str());
-		return;
-	}
-	EnumJsonValues(lpJson.get(), L"");
-//	lpJson->GetValueA()
-//	TJSONObject * lpRoot = dynamic_cast<TJSONObject *>(lpJson.get());
-
-
-
+	ShowLocalForm(frmJSON, ActionJSON);
+//    //
+//    String s = "./package.json";
+//
+//    std::auto_ptr list(new TStringList());
+//    list->LoadFromFile(s);
+//    std::auto_ptr lpJson(TJSONObject::ParseJSONValue(list->Text));
+//	if (lpJson.get() == nullptr || lpJson.get() == NULL) {
+//        zdh::utils::log(L"加载的json:$s的结果为null", s.c_str());
+//        return;
+//    }
+//    if (lpJson->Null) {
+//        zdh::utils::log(L"加载的json:$s的属性为NULL", s.c_str());
+//        return;
+//    }
+//    EnumJsonValues(lpJson.get(), L"");
+    //	lpJson->GetValueA()
+    //	TJSONObject * lpRoot = dynamic_cast<TJSONObject *>(lpJson.get());
 }
 //---------------------------------------------------------------------------
+
 

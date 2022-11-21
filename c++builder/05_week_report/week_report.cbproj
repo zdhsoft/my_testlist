@@ -81,6 +81,7 @@
         <SanitizedProjectName>week_report</SanitizedProjectName>
         <VerInfo_Locale>2052</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <Custom_Styles>&quot;Aqua Light Slate|VCLSTYLE|$(BDSCOMMONDIR)\Styles\AquaLightSlate.vsf&quot;;Windows10|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10.vsf;&quot;Windows10 Dark|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Windows10Dark.vsf&quot;;Glossy|VCLSTYLE|$(BDSCOMMONDIR)\Styles\Glossy.vsf</Custom_Styles>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -159,7 +160,6 @@
         <TASM_Debugging>None</TASM_Debugging>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -170,14 +170,14 @@
         <VerInfo_Private>true</VerInfo_Private>
         <VerInfo_DLL>true</VerInfo_DLL>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2022.11.21.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=;PrivateBuild=;LastCompiledTime=2022-11-21 10:31:30</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=2022.11.21.6;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;SpecialBuild=;PrivateBuild=;LastCompiledTime=2022-11-21 23:15:21</VerInfo_Keys>
         <BCC_InstructionSet>6</BCC_InstructionSet>
         <BCC_ShowLSPMessages>true</BCC_ShowLSPMessages>
         <BCC_NumberOfIndexingThreads>8</BCC_NumberOfIndexingThreads>
-        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Build>6</VerInfo_Build>
         <LinkPackageStatics>rtl.lib;vcl.lib;vclx.lib</LinkPackageStatics>
         <VerInfo_MajorVer>2022</VerInfo_MajorVer>
+        <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
         <VerInfo_MinorVer>11</VerInfo_MinorVer>
         <VerInfo_Release>21</VerInfo_Release>
     </PropertyGroup>
@@ -200,6 +200,12 @@
             <FormType>dfm</FormType>
             <DependentOn>form_datetime.h</DependentOn>
             <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="form_json.cpp">
+            <Form>frmJSON</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>form_json.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
         </CppCompile>
         <CppCompile Include="form_main.cpp">
             <Form>frmMain</Form>
@@ -252,9 +258,10 @@
             <DependentOn>XFunctionFunForm.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <FormResources Include="form_md5.dfm"/>
         <FormResources Include="form_main.dfm"/>
+        <FormResources Include="form_json.dfm"/>
         <FormResources Include="form_datetime.dfm"/>
+        <FormResources Include="form_md5.dfm"/>
         <FormResources Include="form_week.dfm"/>
         <FormResources Include="form_ocr.dfm"/>
         <BuildConfiguration Include="Base">
@@ -350,10 +357,9 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName=".\Win32\Debug\week_report.tds" Configuration="Debug" Class="DebugSymbols"/>
-                <DeployFile LocalName=".\Win32\Debug\week_report.tds" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName=".\Win32\Release\week_report.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>week_report.tds</RemoteName>
+                        <RemoteName>week_report.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -367,6 +373,12 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="PrScrn.lib" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="week.ini" Configuration="Debug" Class="ProjectFile"/>
                 <DeployFile LocalName="week.ini" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
@@ -375,6 +387,12 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="week.ini" Configuration="Release" Class="ProjectFile"/>
+                <DeployFile LocalName="week.ini" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>
