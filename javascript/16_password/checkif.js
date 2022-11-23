@@ -15,7 +15,19 @@ for(const vv of v) {
     } else {
         console.log(`   !!<${vv}>: is false`);
     }
+
+    console.log('----------->>>', vv ?? '哈哈哈哈哈');
 }
 
 const m = v.filter((c, index) => !!c);
 console.log('M' + JSON.stringify(m));
+
+
+let a;
+let b = 0;
+let c = 1;
+a ??= 2;
+b ??= 2;
+c ??= 2;
+
+console.log(`a=${a}, b=${b}, c=${c}`);
