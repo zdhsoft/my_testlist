@@ -30,4 +30,10 @@ a ??= 2;
 b ??= 2;
 c ??= 2;
 
-console.log(`a=${a}, b=${b}, c=${c}`);
+let d = { a: 100, b:200, c:300, d: null};
+d.d ??= 99;
+d.a ??= 99;
+d.b ??= 99;
+d.c ??= 99;
+
+console.log(`a=${a}, b=${b}, c=${c}, d=${JSON.stringify(d)}`);
