@@ -73,7 +73,7 @@ object frmJSON: TfrmJSON
         BorderStyle = bsNone
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
-        Font.Height = -12
+        Font.Height = -14
         Font.Name = 'Consolas'
         Font.Style = []
         ParentFont = False
