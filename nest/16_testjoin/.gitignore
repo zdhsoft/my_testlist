@@ -40,3 +40,6 @@ config/final
 .vs
 runtime
 build_file
+db
+dist/db
+src/db
