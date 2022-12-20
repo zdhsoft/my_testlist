@@ -11,13 +11,22 @@
  * 1.0                  祝冬华             创建文件            2022-06-09
  *************************************************************************/
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import { RedisClientType } from '@redis/client';
 import { createClient } from 'redis';
+import { Repository } from 'typeorm';
+import { Account } from '../db/account';
+import { App } from '../db/app';
+import { User } from '../db/user';
 import { XConfigUtils } from '../init/config_utils';
 @Injectable()
 export class XRedisService {
     private m_RedisClient: RedisClientType;
-    constructor() {
+    constructor(
+        @InjectRepository(Account) private accountRepo: Repository<Account>,
+        @InjectRepository(App) private appRepo: Repository<App>,
+        @InjectRepository(User) private userRepo: Repository<User>,
+    ) {
         const redisOpts = XConfigUtils.buildRedisOption(XConfigUtils.getConfig().redis);
         const redisClient = createClient(redisOpts);
         redisClient.connect();
