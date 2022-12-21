@@ -40,8 +40,39 @@ export class XAppService {
             .getOne();
         return r;
     }
+
+    public async t4() {
+        const k: SelectApp = {
+            appName: true,
+            status: true,
+            orgAddress: true,
+            users: {
+                userName: true,
+                mobile: true,
+                userId: true,
+                email: true,
+            },
+        };
+        // const r = await this.appRepo
+        //     .createQueryBuilder('a')
+        //     .leftJoinAndSelect('a.user', 'user')
+        //     .where({ appId: 'platform' })
+        //     .getMany();
+        // return r;
+
+        const r = await this.appRepo.find({
+            select: k,
+            where: { appId: 'platform' },
+            relations: ['users'],
+            join: {
+                alias: 'a',
+            },
+        });
+        return r;
+    }
+
     public async t3() {
-        // 要置要返回的字段
+        // 要置要返回的字段 这里的方法，成功的实现了，三表join， 并指定了主表的别名，以及了left join表要返回的字段
         const k: SelectApp = {
             appName: true,
             status: true,
@@ -50,16 +81,31 @@ export class XAppService {
         const a: SelectAccount = {
             accountId: true,
             appId: true,
-            app: k, // 目前测试这个字段不生效
+            app: k,
+            user: {
+                userName: true,
+                userId: true,
+            },
         };
-        const r = await this.accountRepo
-            .createQueryBuilder('a')
-            // .setFindOptions({ select: a })
-            .leftJoin('a.app', 'b')
-            .select('appName, status, orgAddress, app')
-            .where({ appId: 'platform' })
-            .getOne();
+        const r = await this.accountRepo.find({
+            comment: 'hello this is comment',
+            select: a,
+            where: { appId: 'platform', app: { status: 2 } },
+            relations: ['app', 'user'],
+            // relationLoadStrategy: 'join',
+            join: {
+                alias: 'a',
+            },
+        });
         return r;
+        // const r = await this.accountRepo
+        //     .createQueryBuilder('a')
+        //     // .setFindOptions({ select: a })
+        //     .leftJoin('a.app', 'b')
+        //     .select('appName, status, orgAddress, app')
+        //     .where({ appId: 'platform' })
+        //     .getOne();
+        // return r;
     }
 
     public async getUserList() {

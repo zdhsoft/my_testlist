@@ -7,7 +7,7 @@ export class XAppController {
 
     @Get()
     async getHello() {
-        const result = await this.appService.t3();
+        const result = await this.appService.t4();
         return JSON.stringify(result, null, 2);
     }
 }
