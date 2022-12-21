@@ -26,7 +26,40 @@
 - 作者：zdhsoft
 - 日期：2022-12-19
 - 基于nestjs的后端系统
-- License: 
+- License:
+
+## 基于typeorm无外键联表查询
+### 建立关系
+#### OneToOne
+- 如果当前表与其它表，有一个1..1的关系，就可以用这个装饰器
+- 例如：
+```typescript
+    class Account {
+      // 每个Account都有对应一个UserId
+      @OneToOne((type=>User), (user)=>user.userId)
+      @JoinColumn({name: 'userId'})
+      public user: User;
+    }
+```
+- 使用它查询
+```typescript
+  async account_list() {
+    return await this.accountRepo.findOne({
+      select: {
+        accountId: true,
+        user: {
+          userName: true,
+          userId: true,
+        },
+        relations: ['user'],
+        where: {
+          accountId: 1999
+        },
+      }
+    })
+  }
+```
+### 如果是1对多的关系
 
 
 ## 1. Description
@@ -170,4 +203,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 - Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
 - Website - [https://nestjs.com](https://nestjs.com/)
 - Twitter - [@nestframework](https://twitter.com/nestframework)
-
