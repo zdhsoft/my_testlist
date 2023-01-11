@@ -41,8 +41,36 @@ namespace zdh {
         const XLong INVALID_MILLIS          = -1;
 
 		const XInt ERR_OK = 0;
-        const XInt ERR_FAIL = -1;
+		const XInt ERR_FAIL = -1;
 
+		//星期相关的常量
+		enum EnumWeekDay
+		{
+            WEEKDAY_INVALID             = -1,                       ///<无效的星期
+			WEEKDAY_SUNDAY              = 0,                        ///<星期日
+			WEEKDAY_MONDAY              = 1,                        ///<星期一
+			WEEKDAY_TUESDAY             = 2,                        ///<星期二
+			WEEKDAY_WEDNESDAY           = 3,                        ///<星期三
+			WEEKDAY_THURSDAY            = 4,                        ///<星期四
+			WEEKDAY_FRIDAY              = 5,                        ///<星期五
+			WEEKDAY_SATURDAY            = 6,                        ///<星期六
+		};
+
+		///日期结构体
+		struct SDate
+		{
+			XInt Year;  ///<年份
+			XInt Month; ///<月份
+			XInt Day;   ///<日期
+		};
+		///时间构构体
+		struct STime
+		{
+			XInt Hour;      ///<小时
+			XInt Minute;    ///<分
+			XInt Second;    ///<秒
+			XInt Millis;    ///<毫秒
+		};
 		template<class T>
 		class XCommonRet {
 		private:
@@ -116,19 +144,22 @@ namespace zdh {
 		XInt CalcMillisByTime(XInt paramHour,XInt paramMinute = 0, XInt paramSecond = 0,XInt paramMillis = 0);
 		XLong CalcMillis(XInt paramYear , XInt paramMonth = 1, XInt paramDay = 1, XInt paramHour = 0, XInt paramMinute = 0, XInt paramSecond = 0, XInt paramMillis = 0);
 		XBool IsRawYear(XInt paramYear);
-        XLong CalcTimestamp(XInt paramYear , XInt paramMonth, XInt paramDay, XInt paramHour, XInt paramMinute, XInt paramSecond, XInt paramMillis);
+		XLong CalcTimestamp(XInt paramYear , XInt paramMonth, XInt paramDay, XInt paramHour, XInt paramMinute, XInt paramSecond, XInt paramMillis);
+		XInt DaysToDate(XInt paramDays,XInt &paramYear,XInt &paramMonth,XInt & paramDay);
+        EnumWeekDay DaysToWeek(XInt paramDays);
+
 		//-----------------------------------------------------------------------------------------------------
-		///判断指针值是否为空
+        /** 判断是否为NULL */
 		template<class T>
 		inline bool IsNULL(const T * param_pointer)
 		{
 			return param_pointer == NULL || param_pointer == nullptr;
 		}
-        ///取字符串的长度
-        /**
-            @param [in] paramValue 要取得长度的字符串指针
-            @return 返回取得长度
-        */
+		/**
+		 *	取字符串的长度
+		 *  @param [in] paramValue 要取得长度的字符串指针
+		 *  @return 返回取得长度
+         */
         template<class T>
         static XInt Length(const T * paramValue)
         {

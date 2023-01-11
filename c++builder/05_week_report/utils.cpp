@@ -15,6 +15,53 @@ namespace zdh {
 			va_end(paramList);
             OutputDebugStringW(s.c_str());
 		}
+        //----------------------------------------------------------------------------
+        /**
+            将天数转换成年月日
+            @param [in] paramDays 要转换的天数
+            @param [out] paramYear 转换后的年份
+			@param [out] paramMonth 转换后的月份
+            @param [out] aday 转换后的天数
+        */
+		XInt DaysToDate(XInt paramDays,XInt &paramYear,XInt &paramMonth,XInt & paramDay)
+		{
+			if( paramDays < MIN_DAYS_IN_DATETIME || paramDays > MAX_DAYS_IN_DATETIME) {
+                return -1;
+            }
+            XInt N400 = paramDays / 146097; //400年的年数
+            XInt D = paramDays % 146097;
+            XInt N100 = D / 36524;      //100年的年数
+            D %= 36524;
+            XInt N4 = D / 1461;         //每四年的年数
+            D %= 1461;
+            XInt N = D / 365;           //具体年数
+            D %= 365;
+            XInt NYear = N400 * 400 + N100 * 100 + N4 * 4 + N;  //闰年的天数
+            XInt TDays = 0;
+
+            if( D > 0)
+            {
+                NYear ++;
+                paramYear = NYear;
+                for(XInt i=1; i<13; i++)
+                {
+                    TDays += CalcMonthDays(NYear, i, true);
+                    if( D <= TDays )
+                    {
+                        paramMonth = i;
+                        paramDay = D - TDays + CalcMonthDays(NYear, i, true);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                paramYear = NYear;
+                paramMonth = 12;
+                paramDay = (CalcDays(NYear,12,31) == paramDays)?31:30;
+			}
+            return 0;
+        }
 		//----------------------------------------------------------------------------
 		///计算指定时间的毫秒数
 		/**
@@ -149,6 +196,19 @@ namespace zdh {
 			XLong lngMillis = CalcMillis(paramYear, paramMonth, paramDay, paramHour, paramMinute, paramSecond, paramMillis);
 			XLong result = lngMillis - MILLIS_1970_1_1;
 			return result < 0 ? INVALID_MILLIS : (result + TIME_ZONE_CHINA_MILLIS);
+		}
+
+		EnumWeekDay DaysToWeek(XInt paramDays) {
+			if (paramDays < 0) {
+                return WEEKDAY_INVALID;
+            }
+			if (paramDays < WEEKDAY_SUNDAY || paramDays > WEEKDAY_SATURDAY) {
+				paramDays %= 7;
+				if (paramDays < 0) {
+                    paramDays += 7;
+                }
+			}
+			return (EnumWeekDay)paramDays;
 		}
 	}
 }

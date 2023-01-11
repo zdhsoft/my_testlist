@@ -18,7 +18,7 @@ object frmWeek: TfrmWeek
     Left = 0
     Top = 0
     Width = 912
-    Height = 81
+    Height = 119
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
@@ -29,10 +29,59 @@ object frmWeek: TfrmWeek
       Height = 21
       Caption = #36335#24452#65306
     end
+    object Label5: TLabel
+      Left = 143
+      Top = 47
+      Width = 82
+      Height = 18
+      Caption = #21608#25253#36335#24452':'
+    end
+    object Label6: TLabel
+      Left = 240
+      Top = 48
+      Width = 49
+      Height = 21
+      Caption = 'Label6'
+      Color = clRed
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -16
+      Font.Name = #24494#36719#38597#40657
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object Label7: TLabel
+      Left = 409
+      Top = 87
+      Width = 80
+      Height = 21
+      Caption = #36873#25321#26085#26399#65306
+    end
+    object Label8: TLabel
+      Left = 752
+      Top = 15
+      Width = 84
+      Height = 21
+      Caption = #36873#25321#30340#26085#26399':'
+    end
+    object Label9: TLabel
+      Left = 842
+      Top = 15
+      Width = 86
+      Height = 21
+      Caption = '2023-01-01'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clRed
+      Font.Height = -16
+      Font.Name = #24494#36719#38597#40657
+      Font.Style = []
+      ParentFont = False
+    end
     object Edit1: TEdit
       Left = 70
       Top = 12
-      Width = 811
+      Width = 676
       Height = 29
       TabOrder = 0
       Text = '.'
@@ -40,25 +89,63 @@ object frmWeek: TfrmWeek
     object Button1: TButton
       Left = 16
       Top = 43
-      Width = 97
+      Width = 121
       Height = 33
-      Caption = #36873#25321#30446#24405
+      Caption = #36873#25321#26681#30446#24405
       TabOrder = 1
       OnClick = Button1Click
+    end
+    object DateTimePicker1: TDateTimePicker
+      Left = 498
+      Top = 84
+      Width = 225
+      Height = 29
+      Date = 44936.000000000000000000
+      Format = 'yyyy-MM-dd'
+      Time = 0.741427037035464300
+      TabOrder = 2
+      OnChange = DateTimePicker1Change
+    end
+    object Button5: TButton
+      Left = 16
+      Top = 85
+      Width = 121
+      Height = 28
+      Caption = #19978#21608#20116
+      TabOrder = 3
+      OnClick = Button5Click
+    end
+    object Button6: TButton
+      Left = 143
+      Top = 85
+      Width = 122
+      Height = 28
+      Caption = #19979#21608#20116
+      TabOrder = 4
+      OnClick = Button6Click
+    end
+    object Button7: TButton
+      Left = 271
+      Top = 85
+      Width = 114
+      Height = 28
+      Caption = #26412#21608#20116
+      TabOrder = 5
+      OnClick = Button7Click
     end
   end
   object Panel2: TPanel
     Left = 0
-    Top = 81
+    Top = 119
     Width = 912
-    Height = 399
+    Height = 361
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
     object Splitter1: TSplitter
       Left = 249
       Top = 0
-      Height = 399
+      Height = 361
       ExplicitLeft = 256
       ExplicitTop = 288
       ExplicitHeight = 100
@@ -66,7 +153,7 @@ object frmWeek: TfrmWeek
     object Splitter2: TSplitter
       Left = 489
       Top = 0
-      Height = 399
+      Height = 361
       ExplicitLeft = 608
       ExplicitTop = 280
       ExplicitHeight = 100
@@ -74,7 +161,7 @@ object frmWeek: TfrmWeek
     object Splitter3: TSplitter
       Left = 705
       Top = 0
-      Height = 399
+      Height = 361
       ExplicitLeft = 792
       ExplicitTop = 288
       ExplicitHeight = 100
@@ -83,7 +170,7 @@ object frmWeek: TfrmWeek
       Left = 0
       Top = 0
       Width = 249
-      Height = 399
+      Height = 361
       Align = alLeft
       ItemHeight = 21
       TabOrder = 0
@@ -92,7 +179,7 @@ object frmWeek: TfrmWeek
       Left = 252
       Top = 0
       Width = 237
-      Height = 399
+      Height = 361
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 1
@@ -100,7 +187,7 @@ object frmWeek: TfrmWeek
         Left = 0
         Top = 65
         Width = 237
-        Height = 334
+        Height = 296
         Align = alClient
         ItemHeight = 21
         TabOrder = 0
@@ -136,7 +223,7 @@ object frmWeek: TfrmWeek
       Left = 492
       Top = 0
       Width = 213
-      Height = 399
+      Height = 361
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 2
@@ -170,7 +257,7 @@ object frmWeek: TfrmWeek
         Left = 0
         Top = 65
         Width = 213
-        Height = 334
+        Height = 296
         Align = alClient
         ItemHeight = 21
         TabOrder = 1
@@ -180,7 +267,7 @@ object frmWeek: TfrmWeek
       Left = 708
       Top = 0
       Width = 204
-      Height = 399
+      Height = 361
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 3
@@ -205,7 +292,7 @@ object frmWeek: TfrmWeek
         Left = 0
         Top = 65
         Width = 204
-        Height = 334
+        Height = 296
         Align = alClient
         ItemHeight = 21
         TabOrder = 1
