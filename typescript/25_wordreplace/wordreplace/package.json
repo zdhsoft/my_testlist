@@ -1,8 +1,11 @@
 {
-    "name": "wordreplace",
+    "name": "wr",
     "version": "1.0.0",
-    "description": "ts project",
+    "description": "word文档关键字批量替换工具",
     "main": "./dist/main.js",
+    "bin": {
+        "wr": "./bin/wr.js"
+    },
     "scripts": {
         "prebuild": "rimraf dist",
         "format": "prettier --write \"src/**/*.ts\"",
@@ -30,5 +33,11 @@
     "engines": {
         "node": ">=10.0.0",
         "npm": ">=6.0.0"
+    },
+    "dependencies": {
+        "docxtemplater": "^3.33.0",
+        "pizzip": "^3.1.4",
+        "xlsx": "^0.18.5",
+        "xmcommon": "^1.0.9"
     }
 }
