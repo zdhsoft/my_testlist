@@ -35,39 +35,34 @@ object frmMain: TfrmMain
     Width = 1078
     Height = 56
     ButtonHeight = 54
-    ButtonWidth = 78
+    ButtonWidth = 75
     Caption = 'ToolBar1'
     Images = ImageList1
     ShowCaptions = True
     TabOrder = 1
     ExplicitWidth = 1074
-    object ToolButton1: TToolButton
-      Left = 0
-      Top = 0
-      Action = ActionWeek
-    end
     object ToolButton2: TToolButton
-      Left = 78
+      Left = 0
       Top = 0
       Action = ActionDateTime
     end
     object ToolButton6: TToolButton
-      Left = 156
+      Left = 75
       Top = 0
       Action = ActionJSON
     end
     object ToolButton3: TToolButton
-      Left = 234
+      Left = 150
       Top = 0
       Action = ActionOCR
     end
     object ToolButton4: TToolButton
-      Left = 312
+      Left = 225
       Top = 0
       Action = ActionMD5
     end
     object ToolButton5: TToolButton
-      Left = 390
+      Left = 300
       Top = 0
       Action = ActionAbout
     end

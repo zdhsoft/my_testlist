@@ -32,7 +32,6 @@ __published:	// IDE-managed Components
 	TStatusBar *StatusBar1;
 	TToolBar *ToolBar1;
 	TImageList *ImageList1;
-	TToolButton *ToolButton1;
 	TToolButton *ToolButton2;
 	TToolButton *ToolButton3;
 	TPanel *PanelContainer;
