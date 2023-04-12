@@ -1,9 +1,10 @@
 import nodexlsx from 'node-xlsx';
 import fs from 'fs';
 import { getLogger } from 'xmcommon';
+import { invoice } from './invoice';
 
 const log = getLogger(__filename);
-async function main() {
+async function simpleExcel() {
     log.info('---->开始执行');
     const sheetOptions = {
         '!cols': [{ wch: 6 }, { wch: 30 }, { wch: 10 }, { wch: 15 }, { wch: 10 }, { wch: 10 }],
@@ -59,6 +60,10 @@ async function main() {
     fs.writeFileSync(outFileName, data);
     log.info('生成' + outFileName + ' ok!');
     process.exit(0);
+}
+
+async function main() {
+    await invoice();
 }
 
 main();
