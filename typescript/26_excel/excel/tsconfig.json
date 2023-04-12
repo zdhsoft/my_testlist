@@ -1,0 +1,45 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        // "tsBuildInfoFile": "./build_file", 与package中prebuild有冲突
+        "declaration": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "lib": [
+            "ES2021"
+        ],
+        "moduleResolution":"node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports": true,
+        "target": "ES2021",
+        "sourceMap": true,
+        "outDir": "./dist",
+        "baseUrl": "./",
+        "incremental": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true,
+        "strictPropertyInitialization": false,
+        "noImplicitAny": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "strictBindCallApply": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "esModuleInterop": true,
+        "newLine":"crlf",
+        "typeRoots": ["@types"],
+        "types": [
+            "node"
+        ],
+        "noFallthroughCasesInSwitch": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
