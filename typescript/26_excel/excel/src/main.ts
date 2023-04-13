@@ -1,4 +1,4 @@
-import nodexlsx from 'node-xlsx';
+import nodexlsx from '@zdhsoft/nodexlsx';
 import fs from 'fs';
 import { getLogger } from 'xmcommon';
 import { invoice } from './invoice';
@@ -63,7 +63,7 @@ async function simpleExcel() {
 }
 
 async function main() {
-    await invoice();
+    await simpleExcel();
 }
 
 main();
