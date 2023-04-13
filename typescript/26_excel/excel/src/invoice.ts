@@ -1,4 +1,5 @@
 import nodexlsx from 'node-xlsx';
+import s from 'xlsx-js-style';
 import fs from 'fs';
 import { getLogger } from 'xmcommon';
 
@@ -99,6 +100,7 @@ export async function invoice() {
     rows.push(title);
     rows.push(title1);
     rows.push(value);
+    s.
     const data = nodexlsx.build([{ name: 'xxxxxx', data: rows, options: sheetOptions }]);
     const outFileName = 'd:\\temp\\b.xlsx';
     fs.writeFileSync(outFileName, data);
