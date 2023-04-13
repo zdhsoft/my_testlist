@@ -46,6 +46,7 @@ async function simpleExcel() {
         },
         alignment: {
             horizontal: 'center',
+            
         },
     };
     const title = ['序号', '名称', '年级', '任课老师', '学生数量', '已报名数量'];
