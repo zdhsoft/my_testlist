@@ -23,19 +23,19 @@ async function simpleExcel() {
         border: {
             top: {
                 style: 'medium',
-                color: '#000',
+                color: { rgb: '00ff00' },
             },
             bottom: {
                 style: 'medium',
-                color: '#000',
+                color: 'ff0000',
             },
             left: {
                 style: 'medium',
-                color: '#000',
+                color: '0000ff',
             },
             right: {
-                style: 'medium',
-                color: '#000',
+                style: 'dashDot',
+                color: '#000000',
             },
         },
     };
@@ -46,7 +46,6 @@ async function simpleExcel() {
         },
         alignment: {
             horizontal: 'center',
-            
         },
     };
     const title = ['序号', '名称', '年级', '任课老师', '学生数量', '已报名数量'];

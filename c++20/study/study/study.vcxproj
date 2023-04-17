@@ -146,6 +146,7 @@
     <ClCompile Include="c11.ixx" />
     <ClCompile Include="cmd.ixx" />
     <ClCompile Include="hello.ixx" />
+    <ClCompile Include="md5.c" />
     <ClCompile Include="reg.ixx" />
     <ClCompile Include="study.cppm" />
     <ClCompile Include="test.ixx" />
