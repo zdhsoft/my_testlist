@@ -59,7 +59,7 @@ async function simpleExcel() {
     const outFileName = 'd:\\temp\\a.xlsx';
     fs.writeFileSync(outFileName, data);
     log.info('生成' + outFileName + ' ok!');
-    process.exit(0);
+    // process.exit(0);
 }
 
 async function main() {
