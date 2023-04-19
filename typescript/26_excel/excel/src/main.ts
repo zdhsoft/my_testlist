@@ -1,4 +1,4 @@
-import nodexlsx from '@zdhsoft/nodexlsx';
+import { CellStyle, nodexlsx } from '@zdhsoft/nodexlsx';
 import fs from 'fs';
 import { getLogger } from 'xmcommon';
 import { invoice } from './invoice';
@@ -13,13 +13,13 @@ async function simpleExcel() {
             { s: { c: 3, r: 0 }, e: { c: 5, r: 0 } },
         ],
     };
-    const s = {
+    const s: CellStyle = {
         alignment: {
             horizontal: 'center', // 水平居中
             vertical: 'center', // 垂直居中
         },
     };
-    const contentCellStyle = {
+    const contentCellStyle: CellStyle = {
         border: {
             top: {
                 style: 'medium',
@@ -27,15 +27,15 @@ async function simpleExcel() {
             },
             bottom: {
                 style: 'medium',
-                color: 'ff0000',
+                color: { rgb: '00ff00' },
             },
             left: {
                 style: 'medium',
-                color: '0000ff',
+                color: { rgb: '00ff00' },
             },
             right: {
                 style: 'dashDot',
-                color: '#000000',
+                color: { rgb: '00ff00' },
             },
         },
     };
@@ -48,7 +48,7 @@ async function simpleExcel() {
             horizontal: 'center',
         },
     };
-    const title = ['序号', '名称', '年级', '任课老师', '学生数量', '已报名数量'];
+    const title = ['序号', '名称', '年级', '任课老师', { v: '学生数量', s }, '已报名数量'];
     const title1 = [{ v: '天下无难事', s: headerStyle }, null, null, '右边', null];
     const value = [1, 'test', 9, { v: '张老师', s: contentCellStyle }, 10, 99];
     const rows: any[] = [];
@@ -64,6 +64,10 @@ async function simpleExcel() {
 
 async function main() {
     await simpleExcel();
+    await invoice();
 }
 
-main();
+const ss = main();
+ss.then().finally(() => {
+    console.log('nice');
+});

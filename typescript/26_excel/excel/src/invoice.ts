@@ -1,4 +1,4 @@
-import nodexlsx from 'node-xlsx';
+import { TCellType, WorkSheetOptions, nodexlsx } from '@zdhsoft/nodexlsx';
 
 import fs from 'fs';
 import { getLogger } from 'xmcommon';
@@ -6,7 +6,7 @@ import { getLogger } from 'xmcommon';
 const log = getLogger(__filename);
 
 export async function invoice() {
-    const sheetOptions = {
+    const sheetOptions: WorkSheetOptions = {
         '!cols': [
             { wch: 6 },
             { wch: 30 },
@@ -36,7 +36,7 @@ export async function invoice() {
             { s: { c: 14, r: 0 }, e: { c: 17, r: 0 } },
         ],
     };
-    const title = [
+    const title: TCellType[] = [
         '序号',
         '销售方',
         '电子发票专票',
@@ -56,7 +56,7 @@ export async function invoice() {
         null,
         null,
     ];
-    const title1 = [
+    const title1: TCellType[] = [
         null,
         null,
         '数量',
@@ -76,7 +76,7 @@ export async function invoice() {
         '税额',
         '数量',
     ];
-    const value = [
+    const value: TCellType[] = [
         1,
         '测试的销售方',
         10,
@@ -96,12 +96,12 @@ export async function invoice() {
         '222,222.00',
         10,
     ];
-    const rows: any[] = [];
+    const rows: TCellType[][] = [];
     rows.push(title);
     rows.push(title1);
     rows.push(value);
 
-    const data = nodexlsx.build([{ name: 'xxxxxx', data: rows, options: sheetOptions }]);
+    const data = nodexlsx.build([{ name: 'test', data: rows, options: sheetOptions }]);
     const outFileName = 'd:\\temp\\b.xlsx';
     fs.writeFileSync(outFileName, data);
     log.info('生成' + outFileName + ' ok!');
