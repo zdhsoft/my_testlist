@@ -32,7 +32,7 @@
         "npm": ">=6.0.0"
     },
     "dependencies": {
-        "@zdhsoft/nodexlsx": "^0.0.3",
+        "@zdhsoft/nodexlsx": "^0.0.5",
         "js-xlsx-style-node": "^1.1.2",
         "xlsx-js-style": "^1.2.0",
         "xmcommon": "^1.1.0"

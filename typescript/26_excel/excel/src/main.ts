@@ -1,4 +1,4 @@
-import { CellStyle, nodexlsx } from '@zdhsoft/nodexlsx';
+import aa, { CellStyle, nodexlsx } from '@zdhsoft/nodexlsx';
 import fs from 'fs';
 import { getLogger } from 'xmcommon';
 import { invoice } from './invoice';
