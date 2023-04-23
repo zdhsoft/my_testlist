@@ -51,6 +51,14 @@ object frmMD5: TfrmMD5
       Text = 'Edit1'
       OnChange = Edit1Change
     end
+    object cbCaption: TCheckBox
+      Left = 128
+      Top = 80
+      Width = 97
+      Height = 17
+      Caption = #36755#20986#32467#26524#22823#20889
+      TabOrder = 1
+    end
   end
   object Panel2: TPanel
     Left = 0
@@ -60,23 +68,21 @@ object frmMD5: TfrmMD5
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 584
-    ExplicitTop = 176
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object Memo1: TMemo
       Left = 0
       Top = 0
       Width = 748
       Height = 437
       Align = alClient
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -14
+      Font.Name = 'Consolas'
+      Font.Style = []
       Lines.Strings = (
         'Memo1')
+      ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 72
-      ExplicitTop = 193
-      ExplicitWidth = 457
-      ExplicitHeight = 260
     end
   end
 end

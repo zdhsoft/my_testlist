@@ -231,6 +231,9 @@
             <DependentOn>form_week.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <None Include="md5.h">
+            <BuildOrder>14</BuildOrder>
+        </None>
         <None Include="PrScrn.h">
             <BuildOrder>10</BuildOrder>
         </None>

@@ -21,6 +21,7 @@ __published:	// IDE-managed Components
 	TLabel *Label3;
 	TPanel *Panel1;
 	TPanel *Panel2;
+	TCheckBox *cbCaption;
 	void __fastcall Edit1Change(TObject *Sender);
 private:	// User declarations
 public:		// User declarations

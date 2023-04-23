@@ -59,20 +59,27 @@ namespace zdh {
 			return iRet;
 		}
 
-        template<class T = XDWord>
+        template<class T = XDWord, int N = 33>
         class XMD5Impl
         {
-        public:
-            void Init()
+		public:
+			XMD5Impl() {
+                Init();
+            }
+			void Init()
             {
                 m_Context.count[0] = 0;
                 m_Context.count[1] = 0;
                 m_Context.state[0] = 0x67452301L;
                 m_Context.state[1] = 0xefcdab89L;
                 m_Context.state[2] = 0x98badcfeL;
-                m_Context.state[3] = 0x10325476L;
+				m_Context.state[3] = 0x10325476L;
+				XChar * p = m_MD5Sum;
+				for(int i = 0; i < N; i++) {
+                    *p++ = 0;
+                }
             }
-            void Update(void* lpInput, T dwLength)
+			void Update(void* lpInput, T dwLength)
             {
                 XByte* pSrc = (XByte*)lpInput;
                 T i, index, partLen;
@@ -120,13 +127,17 @@ namespace zdh {
                 Update(bits, 8);
             }
             //取生成的MD5
-            XByte* GetMD5Binary(XByte paramMD5[16])
+			const XByte * GetMD5Binary(XByte paramMD5[16])
             {
                 Encode(paramMD5, m_Context.state, 16);
                 return paramMD5;
+			}
+
+			const XByte * GetMD5Binary() {
+				return GetMD5Binary(m_MD5Sum);
             }
             //取生成的MD5字符串
-            XChar* GetMD5String(XChar paramMD5[33], XBool paramCaption = true)
+			inline XChar* GetMD5String(XChar paramMD5[33], XBool paramCaption = true)
             {
                 XByte btMD5[16];
                 GetMD5Binary(btMD5);
@@ -139,6 +150,11 @@ namespace zdh {
                 }
                 *p = 0;
                 return paramMD5;
+			}
+			//取生成的MD5字符串
+			inline XChar* GetMD5String(XBool paramCaption = true)
+			{
+                return GetMD5String(m_MD5Sum, paramCaption);
             }
         private:
             void MD5MemSet(XByte* lpOutput, XByte btValue, T dwLength)
@@ -284,11 +300,12 @@ namespace zdh {
                 }
                 else
                 {
-                    return (XChar)( paramCaption? 'A':'a' + paramValue - 10);
+                    return (XChar)( (paramCaption? 'A':'a') + paramValue - 10);
                 }
             }
-        private:
-            XMD5Context<T> m_Context;
+		private:
+			zdh::XChar m_MD5Sum[N];
+			XMD5Context<T> m_Context;
         };
         template<class T>
         XByte* CreateMD5Binary(const T* paramData, XInt paramLength, XByte paramMD5[16])
