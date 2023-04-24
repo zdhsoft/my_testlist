@@ -62,17 +62,17 @@ object frmMD5: TfrmMD5
   end
   object Panel2: TPanel
     Left = 0
-    Top = 105
+    Top = 256
     Width = 748
-    Height = 437
-    Align = alClient
+    Height = 286
+    Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
     object Memo1: TMemo
       Left = 0
       Top = 0
       Width = 748
-      Height = 437
+      Height = 286
       Align = alClient
       DragCursor = crMultiDrag
       DragMode = dmAutomatic
@@ -85,6 +85,8 @@ object frmMD5: TfrmMD5
         'Memo1')
       ParentFont = False
       TabOrder = 0
+      ExplicitTop = 200
+      ExplicitHeight = 237
     end
   end
 end

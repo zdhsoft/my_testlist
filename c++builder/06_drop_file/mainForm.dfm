@@ -10,6 +10,7 @@ object Form1: TForm1
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Menu = MainMenu1
   OnCreate = FormCreate
   TextHeight = 15
   object Memo1: TMemo
@@ -21,5 +22,25 @@ object Form1: TForm1
     Lines.Strings = (
       'Memo1')
     TabOrder = 0
+  end
+  object MainMenu1: TMainMenu
+    Left = 608
+    Top = 128
+  end
+  object ActionList1: TActionList
+    Left = 720
+    Top = 152
+    object Action1: TAction
+      Caption = 'Action1'
+      OnExecute = Action1Execute
+    end
+    object Action2: TAction
+      Caption = 'Action2'
+      OnExecute = Action2Execute
+    end
+    object Action3: TAction
+      Caption = 'Action3'
+      OnExecute = Action3Execute
+    end
   end
 end

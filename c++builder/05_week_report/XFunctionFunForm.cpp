@@ -14,4 +14,6 @@ void __fastcall XFunctionFunForm::SaveChange()
 {
 	//
 }
-
+void __fastcall XFunctionFunForm::DropFileList(TStrings * paramDropFileList) {
+    //
+}

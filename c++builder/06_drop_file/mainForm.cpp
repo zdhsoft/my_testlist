@@ -37,3 +37,21 @@ void __fastcall TForm1::HandleDropFiles(TMessage &msg) {
     //  释放应用程序为传递文件名而开辟的内存空间
     DragFinish( HDROP(msg.WParam) );
 }
+void __fastcall TForm1::Action1Execute(TObject *Sender)
+{
+	//
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Action2Execute(TObject *Sender)
+{
+	//
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Action3Execute(TObject *Sender)
+{
+    //
+}
+//---------------------------------------------------------------------------
+

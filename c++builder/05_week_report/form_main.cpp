@@ -177,4 +177,32 @@ void __fastcall TfrmMain::ActionJSONExecute(TObject* Sender)
 //---------------------------------------------------------------------------
 
 
+void __fastcall TfrmMain::HandleDropFiles(TMessage &msg) {
+	wchar_t FileName[_MAX_PATH];
+	//   获得拖拉的文件数目，该功能由第二个参数决定
+	const int Sum = DragQueryFile(HDROP(msg.WParam), 0xFFFFFFFF, NULL, 0);
+
+    if(Sum > 0)
+	{
+        TStrings * pList = new TStringList();
+		for(int s = 0; s < Sum; s++) {
+			// 这里只要第一个文件
+			DragQueryFileW(HDROP(msg.WParam), s, FileName, _MAX_PATH);
+			pList->Add(FileName);
+			// 将文件路径显示于窗体上的Text控件
+			// Memo1->Lines->Add(FileName);
+		}
+		if (m_CurrActiveForm != nullptr && m_CurrActiveForm != NULL) {
+			m_CurrActiveForm->DropFileList(pList);
+		}
+        delete pList;
+    }
+    //  释放应用程序为传递文件名而开辟的内存空间
+	DragFinish( HDROP(msg.WParam) );
+}
+void __fastcall TfrmMain::FormCreate(TObject *Sender)
+{
+    DragAcceptFiles(Handle,true);
+}
+//---------------------------------------------------------------------------
 

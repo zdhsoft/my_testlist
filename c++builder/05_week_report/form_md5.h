@@ -28,6 +28,7 @@ public:		// User declarations
 	__fastcall TfrmMD5(TComponent* Owner);
 	void __fastcall SaveChange();
 	void __fastcall Init();
+    virtual void __fastcall DropFileList(TStrings * paramDropFileList);
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfrmMD5 *frmMD5;

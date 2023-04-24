@@ -66,13 +66,18 @@ __published:	// IDE-managed Components
 	void __fastcall ActionMD5Execute(TObject *Sender);
 	void __fastcall ActionExitExecute(TObject *Sender);
 	void __fastcall ActionJSONExecute(TObject *Sender);
+	void __fastcall FormCreate(TObject *Sender);
 private:	// User declarations
     TSubFormList m_SubFormList;
 	XFunctionFunForm * m_CurrActiveForm;
 private:
 	void __fastcall ShowLocalForm(XFunctionFunForm * paramForm,TAction * paramAction);
+	void __fastcall HandleDropFiles(TMessage &msg);
 public:		// User declarations
 	__fastcall TfrmMain(TComponent* Owner);
+    BEGIN_MESSAGE_MAP
+        MESSAGE_HANDLER(WM_DROPFILES,TMessage, HandleDropFiles)
+    END_MESSAGE_MAP(TForm)
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TfrmMain *frmMain;

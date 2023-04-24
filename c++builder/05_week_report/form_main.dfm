@@ -12,6 +12,7 @@ object frmMain: TfrmMain
   Font.Style = []
   Menu = MainMenu1
   Position = poScreenCenter
+  OnCreate = FormCreate
   TextHeight = 15
   object StatusBar1: TStatusBar
     Left = 0

@@ -21,7 +21,6 @@ void __fastcall TfrmMD5::SaveChange()
 {
 	//
 }
-
 //void __fastcall TfrmMD5::WMDropFiles (TWMDropFiles &message)
 //{
 //    Memo1->Lines->Add("WMDropFiles");
@@ -40,7 +39,8 @@ void __fastcall TfrmMD5::SaveChange()
 //	 //ProcessFile(FileLength) // <------ Whatever you want it to be...
 //	 } // end for
 //	 DragFinish((HDROP) message.Drop);
-//}
+//}
+
 void __fastcall TfrmMD5::Init() {
 }
 void __fastcall TfrmMD5::Edit1Change(TObject *Sender)
@@ -66,6 +66,9 @@ void __fastcall TfrmMD5::Edit1Change(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
+void __fastcall TfrmMD5::DropFileList(TStrings * paramDropFileList) {
+	Memo1->Lines->AddStrings(paramDropFileList);
+}
 
 
 
