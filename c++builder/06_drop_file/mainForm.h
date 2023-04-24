@@ -1,35 +1,21 @@
 ﻿//---------------------------------------------------------------------------
 
-#ifndef form_md5H
-#define form_md5H
+#ifndef mainFormH
+#define mainFormH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include <XFunctionFunForm.h>
-#include <Vcl.ExtCtrls.hpp>
-
 //---------------------------------------------------------------------------
-class TfrmMD5 : public XFunctionFunForm
+class TForm1 : public TForm
 {
 __published:	// IDE-managed Components
-	TLabel *Label1;
-	TLabel *Label2;
-	TEdit *Edit1;
-	TMemo *Memo1;
-	TLabel *Label3;
-	TPanel *Panel1;
-	TPanel *Panel2;
-	TCheckBox *cbCaption;
-	void __fastcall Edit1Change(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-	__fastcall TfrmMD5(TComponent* Owner);
-	void __fastcall SaveChange();
-	void __fastcall Init();
+	__fastcall TForm1(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TfrmMD5 *frmMD5;
+extern PACKAGE TForm1 *Form1;
 //---------------------------------------------------------------------------
 #endif

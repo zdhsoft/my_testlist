@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+  <Transactions>
+    <Transaction>2023/04/24 09:43:55.878,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023/04/24 09:43:56.098,=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2023/04/24 09:45:08.963,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\dropfilePCH1.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023/04/24 09:45:09.143,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\Unit1.cpp=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2023/04/24 09:45:09.143,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\Unit1.h=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.h</Transaction>
+    <Transaction>2023/04/24 09:45:09.143,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\Unit1.dfm=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2023/04/24 09:45:09.325,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\dropfile.cbproj=C:\Users\rex\Documents\Embarcadero\Studio\Projects\Project1.cbproj</Transaction>
+    <Transaction>2023/04/24 09:45:22.940,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\mainForm.dfm=D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\Unit1.dfm</Transaction>
+    <Transaction>2023/04/24 09:45:22.940,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\mainForm.cpp=D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\Unit1.cpp</Transaction>
+    <Transaction>2023/04/24 09:45:22.940,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\mainForm.h=D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\Unit1.h</Transaction>
+    <Transaction>2023/04/24 09:45:28.225,D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\dropfile.cbproj=D:\zdhsoft\github\my_testlist\c++builder\06_drop_file\dropfile.cbproj</Transaction>
+  </Transactions>
+</BorlandProject>

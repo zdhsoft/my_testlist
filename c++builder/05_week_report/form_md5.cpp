@@ -11,26 +11,6 @@
 #include "utils.h"
 
 TfrmMD5 *frmMD5;
-
-//void calcMD5(const char * paramFileName) {
-//	zdh::XMD5 stMD5;
-//	stMD5.Init();
-//	zdh::XChar buff[4096];
-//	zdh::XChar md5sum[33];
-//	std::ifstream inFile(paramFileName, std::ifstream::binary);
-//	if (!inFile) {
-//		std::cout << "error" << std::endl;
-//		return;
-//	}
-//	while (inFile.read(buff, 4096)) { //一直读到文件结束
-//		auto readedBytes = (int)inFile.gcount(); //看刚才读了多少字节
-//		stMD5.Update(buff, readedBytes);
-//	}
-//	stMD5.Finish();
-//	inFile.close();
-//	std::cout << stMD5.GetMD5String(md5sum, false) << std::endl;
-//}
-
 //---------------------------------------------------------------------------
 __fastcall TfrmMD5::TfrmMD5(TComponent* Owner)
 	: XFunctionFunForm(Owner)
@@ -42,6 +22,25 @@ void __fastcall TfrmMD5::SaveChange()
 	//
 }
 
+//void __fastcall TfrmMD5::WMDropFiles (TWMDropFiles &message)
+//{
+//    Memo1->Lines->Add("WMDropFiles");
+//	 UINT FileCount = DragQueryFile((HDROP) message.Drop, 0xFFFFFFFF, NULL,
+//	 0);
+//	 AnsiString FileName;
+//	 AnsiString FileExtension;
+//
+//	 int FileLength;
+//	 for(UINT ii=0; ii < FileCount; ii++)
+//	 {
+//		 FileName.SetLength(MAX_PATH);
+//		 FileLength = DragQueryFileA((HDROP)message.Drop, ii, FileName.c_str(), FileName.Length());
+//		 FileName.SetLength(FileLength);
+//         Memo1->Lines->Add(FileName);
+//	 //ProcessFile(FileLength) // <------ Whatever you want it to be...
+//	 } // end for
+//	 DragFinish((HDROP) message.Drop);
+//}
 void __fastcall TfrmMD5::Init() {
 }
 void __fastcall TfrmMD5::Edit1Change(TObject *Sender)
@@ -65,4 +64,10 @@ void __fastcall TfrmMD5::Edit1Change(TObject *Sender)
 //	Memo1->Lines->Add(stMD5.GetMD5String(true));
 }
 //---------------------------------------------------------------------------
+
+
+
+
+
+
 

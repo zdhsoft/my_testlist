@@ -74,6 +74,8 @@ object frmMD5: TfrmMD5
       Width = 748
       Height = 437
       Align = alClient
+      DragCursor = crMultiDrag
+      DragMode = dmAutomatic
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -14
