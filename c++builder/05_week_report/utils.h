@@ -38,7 +38,7 @@ namespace zdh {
 
 		const XInt INVALID_DAYS             = -1;                   ///< 无效的天数
 		const XInt INVALID_TIMES            = -1;
-        const XLong INVALID_MILLIS          = -1;
+		const XLong INVALID_MILLIS          = -1;
 
 		const XInt ERR_OK = 0;
 		const XInt ERR_FAIL = -1;
@@ -55,6 +55,43 @@ namespace zdh {
 			WEEKDAY_FRIDAY              = 5,                        ///<星期五
 			WEEKDAY_SATURDAY            = 6,                        ///<星期六
 		};
+
+
+
+		static String formatMemory(XLong paramBytes) {
+			/** 内存的容量常量定义 */
+			enum EnumMemorySize {
+				/** 1K字节数 1024 */
+				K = 1024,
+				/** 1M字节数 1048576 */
+				M = 1048576,
+				/** 1G字节数 1073741824 */
+				G = 1073741824,
+				/** 1T字节数 1099511627776 */
+				T = 1099511627776,
+				/** 1P字节数 */
+				P = 1125899906842624,
+			};
+			auto bytes = paramBytes;
+			String s;
+
+			if (bytes < 0) {
+                s = L"0";
+			} else if (bytes < K) {
+                s.sprintf(L"%lld", bytes);
+			} else if (bytes < M) {
+				s.printf(L"%.2fKB", double(bytes) / K);
+			} else if (bytes < G) {
+				s.printf(L"%.2fMB", double(bytes) / M);
+			} else if (bytes < T) {
+				s.printf(L"%.2fGB", double(bytes) / G);
+			} else if (bytes < P) {
+				s.printf(L"%.2fTB", double(bytes) / T);
+			} else {
+				s.printf(L"%.2fPB", double(bytes) / P);
+			}
+            return s;
+		}
 
 		///日期结构体
 		struct SDate

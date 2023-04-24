@@ -9,6 +9,7 @@
 #include <Vcl.Forms.hpp>
 #include <XFunctionFunForm.h>
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.ComCtrls.hpp>
 
 //---------------------------------------------------------------------------
 class TfrmMD5 : public XFunctionFunForm
@@ -22,6 +23,8 @@ __published:	// IDE-managed Components
 	TPanel *Panel2;
 	TCheckBox *cbCaption;
 	TMemo *Memo1;
+	TProgressBar *ProgressBar1;
+	TLabel *Label4;
 	void __fastcall Edit1Change(TObject *Sender);
 private:	// User declarations
 	void CalcFileMD5(const int paramIndex, const int paramFileCount, const String & paramFileName);

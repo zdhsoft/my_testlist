@@ -17,7 +17,7 @@ object frmMD5: TfrmMD5
     Left = 0
     Top = 0
     Width = 748
-    Height = 105
+    Height = 89
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
@@ -30,17 +30,23 @@ object frmMD5: TfrmMD5
     end
     object Label2: TLabel
       Left = 16
-      Top = 55
-      Width = 78
+      Top = 47
+      Width = 104
       Height = 15
-      Caption = #36873#25321#30340#25991#20214#65306
+      Caption = #27491#22312#22788#29702#30340#25991#20214#65306
     end
     object Label3: TLabel
       Left = 16
-      Top = 84
+      Top = 68
       Width = 39
       Height = 15
       Caption = #32467#26524#65306
+    end
+    object Label4: TLabel
+      Left = 126
+      Top = 47
+      Width = 3
+      Height = 15
     end
     object Edit1: TEdit
       Left = 100
@@ -52,28 +58,42 @@ object frmMD5: TfrmMD5
     end
     object cbCaption: TCheckBox
       Left = 312
-      Top = 82
+      Top = 68
       Width = 97
       Height = 17
       Caption = #36755#20986#32467#26524#22823#20889
       TabOrder = 1
     end
+    object ProgressBar1: TProgressBar
+      Left = 61
+      Top = 66
+      Width = 245
+      Height = 17
+      DoubleBuffered = True
+      Max = 1000
+      ParentDoubleBuffered = False
+      Smooth = True
+      MarqueeInterval = 0
+      Step = 2
+      TabOrder = 2
+      StyleName = 'Windows10'
+    end
   end
   object Panel2: TPanel
     Left = 0
-    Top = 105
+    Top = 89
     Width = 748
-    Height = 437
+    Height = 453
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = 256
-    ExplicitHeight = 286
+    ExplicitTop = 105
+    ExplicitHeight = 437
     object Memo1: TMemo
       Left = 0
       Top = 0
       Width = 748
-      Height = 437
+      Height = 453
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -81,11 +101,8 @@ object frmMD5: TfrmMD5
       Font.Name = 'Consolas'
       Font.Style = []
       ParentFont = False
+      ScrollBars = ssBoth
       TabOrder = 0
-      ExplicitLeft = 232
-      ExplicitTop = 112
-      ExplicitWidth = 185
-      ExplicitHeight = 89
     end
   end
 end
