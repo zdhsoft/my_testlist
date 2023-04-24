@@ -48,12 +48,11 @@ object frmMD5: TfrmMD5
       Width = 637
       Height = 23
       TabOrder = 0
-      Text = 'Edit1'
       OnChange = Edit1Change
     end
     object cbCaption: TCheckBox
-      Left = 128
-      Top = 80
+      Left = 312
+      Top = 82
       Width = 97
       Height = 17
       Caption = #36755#20986#32467#26524#22823#20889
@@ -62,31 +61,31 @@ object frmMD5: TfrmMD5
   end
   object Panel2: TPanel
     Left = 0
-    Top = 256
+    Top = 105
     Width = 748
-    Height = 286
-    Align = alBottom
+    Height = 437
+    Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitTop = 256
+    ExplicitHeight = 286
     object Memo1: TMemo
       Left = 0
       Top = 0
       Width = 748
-      Height = 286
+      Height = 437
       Align = alClient
-      DragCursor = crMultiDrag
-      DragMode = dmAutomatic
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
       Font.Height = -14
       Font.Name = 'Consolas'
       Font.Style = []
-      Lines.Strings = (
-        'Memo1')
       ParentFont = False
       TabOrder = 0
-      ExplicitTop = 200
-      ExplicitHeight = 237
+      ExplicitLeft = 232
+      ExplicitTop = 112
+      ExplicitWidth = 185
+      ExplicitHeight = 89
     end
   end
 end

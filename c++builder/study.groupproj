@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{67AE1B0D-D62B-4105-BC16-E039F339537E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="05_week_report\week_report.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="06_drop_file\dropfile.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="week_report">
+        <MSBuild Projects="05_week_report\week_report.cbproj"/>
+    </Target>
+    <Target Name="week_report:Clean">
+        <MSBuild Projects="05_week_report\week_report.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="week_report:Make">
+        <MSBuild Projects="05_week_report\week_report.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="dropfile">
+        <MSBuild Projects="06_drop_file\dropfile.cbproj"/>
+    </Target>
+    <Target Name="dropfile:Clean">
+        <MSBuild Projects="06_drop_file\dropfile.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="dropfile:Make">
+        <MSBuild Projects="06_drop_file\dropfile.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="week_report;dropfile"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="week_report:Clean;dropfile:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="week_report:Make;dropfile:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
