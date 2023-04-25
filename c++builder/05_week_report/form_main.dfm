@@ -85,7 +85,7 @@ object frmMain: TfrmMain
     object F1: TMenuItem
       Caption = #25991#20214'(&F)'
       object Action31: TMenuItem
-        Action = ActionWeek
+        Action = ActionMD5
       end
       object D1: TMenuItem
         Action = ActionDateTime

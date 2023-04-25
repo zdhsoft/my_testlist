@@ -12,7 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-
+#include <Clipbrd.hpp>
 namespace fs = std::filesystem;
 TfrmMD5 *frmMD5;
 //---------------------------------------------------------------------------
@@ -28,31 +28,6 @@ void __fastcall TfrmMD5::SaveChange()
 
 void __fastcall TfrmMD5::Init() {
 }
-void __fastcall TfrmMD5::Edit1Change(TObject *Sender)
-{
-	// Memo1->Lines->Clear();
-	System::UTF8String utf8(Edit1->Text);
-	zdh::XMD5 stMD5;
-	stMD5.Init();
-	stMD5.Update(utf8.c_str(), utf8.Length());
-	stMD5.Finish();
-	const String stMD5String(stMD5.GetMD5String(cbCaption->Checked));
-//	Memo1->Lines->Add(utf8);
-//	Memo1->Lines->Add(utf8.Length());
-	log(L"MD5:%s", stMD5String.c_str());
-	log(L"%s",Edit1->Text.c_str());
-
-	// Memo1->Lines->Add(stMD5.GetMD5String(cbCaption->Checked));
-//	UnicodeString str = L"天下无难事，只怕有心人";
-//	utf8 = str;
-//	stMD5.Init();
-//	Memo1->Lines->Add(utf8);
-//    Memo1->Lines->Add(utf8.Length());
-//	stMD5.Update(utf8.c_str(), utf8.Length());
-//	stMD5.Finish();
-//	Memo1->Lines->Add(stMD5.GetMD5String(true));
-}
-//---------------------------------------------------------------------------
 
 void TfrmMD5::CalcFileMD5(const int paramIndex, const int paramFileCount, const String & paramFileName) {
 
@@ -149,4 +124,37 @@ void __fastcall TfrmMD5::DropFileList(TStrings * paramDropFileList) {
 
 
 
+
+void __fastcall TfrmMD5::Button1Click(TObject *Sender)
+{
+	System::UTF8String utf8(Edit1->Text); // 将文字内容转成utf-8格式的
+	zdh::XMD5 stMD5;
+	stMD5.Init();
+	stMD5.Update(utf8.c_str(), utf8.Length());
+	stMD5.Finish();
+	const String stMD5String(stMD5.GetMD5String(cbCaption->Checked));   // 获取生成后的字符串
+    log(L"");
+	log(L"MD5:%s", stMD5String.c_str());
+	log(L"%s",Edit1->Text.c_str());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMD5::Button2Click(TObject *Sender)
+{
+	//
+    Memo1->Lines->Clear();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMD5::Button3Click(TObject *Sender)
+{
+    Clipboard()->AsText = Memo1->Text;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TfrmMD5::Edit1KeyPress(TObject *Sender, System::WideChar &Key)
+{
+    Memo1->Lines->Add(String((int)Key));
+}
+//---------------------------------------------------------------------------
 

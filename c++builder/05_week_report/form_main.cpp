@@ -96,7 +96,7 @@ void __fastcall TfrmMain::ActionAboutExecute(TObject *Sender)
 {
 	// GetFileVersionInfo()
 	//
-	ShowMessage("hello week report 1.2");
+	ShowMessage("hello week report 1.3!");
 }
 //---------------------------------------------------------------------------
 
@@ -202,7 +202,8 @@ void __fastcall TfrmMain::HandleDropFiles(TMessage &msg) {
 }
 void __fastcall TfrmMain::FormCreate(TObject *Sender)
 {
-    DragAcceptFiles(Handle,true);
+	DragAcceptFiles(Handle,true);
+    ShowLocalForm(frmDateTime, ActionDateTime);
 }
 //---------------------------------------------------------------------------
 

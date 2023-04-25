@@ -25,7 +25,13 @@ __published:	// IDE-managed Components
 	TMemo *Memo1;
 	TProgressBar *ProgressBar1;
 	TLabel *Label4;
-	void __fastcall Edit1Change(TObject *Sender);
+	TButton *Button1;
+	TButton *Button2;
+	TButton *Button3;
+	void __fastcall Button1Click(TObject *Sender);
+	void __fastcall Button2Click(TObject *Sender);
+	void __fastcall Button3Click(TObject *Sender);
+	void __fastcall Edit1KeyPress(TObject *Sender, System::WideChar &Key);
 private:	// User declarations
 	void CalcFileMD5(const int paramIndex, const int paramFileCount, const String & paramFileName);
 	void log(const wchar_t * format, ...);

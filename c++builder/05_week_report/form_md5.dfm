@@ -5,7 +5,7 @@ object frmMD5: TfrmMD5
   BorderStyle = bsNone
   Caption = 'frmMD5'
   ClientHeight = 542
-  ClientWidth = 748
+  ClientWidth = 800
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,8 +16,8 @@ object frmMD5: TfrmMD5
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 748
-    Height = 89
+    Width = 800
+    Height = 97
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
@@ -51,10 +51,11 @@ object frmMD5: TfrmMD5
     object Edit1: TEdit
       Left = 100
       Top = 18
-      Width = 637
+      Width = 589
       Height = 23
       TabOrder = 0
-      OnChange = Edit1Change
+      TextHint = #36755#20837#30340#25991#26412#65292#20250#20808#36716#25104'UTF-8'#30340#25991#26412#65292#20877#29983#25104'MD5'
+      OnKeyPress = Edit1KeyPress
     end
     object cbCaption: TCheckBox
       Left = 312
@@ -78,22 +79,50 @@ object frmMD5: TfrmMD5
       TabOrder = 2
       StyleName = 'Windows10'
     end
+    object Button1: TButton
+      Left = 695
+      Top = 17
+      Width = 75
+      Height = 25
+      Caption = #29983#25104'MD5'
+      TabOrder = 3
+      OnClick = Button1Click
+    end
+    object Button2: TButton
+      Left = 432
+      Top = 64
+      Width = 90
+      Height = 25
+      Caption = #28165#31354
+      TabOrder = 4
+      OnClick = Button2Click
+    end
+    object Button3: TButton
+      Left = 552
+      Top = 64
+      Width = 81
+      Height = 25
+      Caption = #20840#37096#22797#21046
+      TabOrder = 5
+      OnClick = Button3Click
+    end
   end
   object Panel2: TPanel
     Left = 0
-    Top = 89
-    Width = 748
-    Height = 453
+    Top = 97
+    Width = 800
+    Height = 445
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
     ExplicitTop = 105
+    ExplicitWidth = 748
     ExplicitHeight = 437
     object Memo1: TMemo
       Left = 0
       Top = 0
-      Width = 748
-      Height = 453
+      Width = 800
+      Height = 445
       Align = alClient
       Font.Charset = ANSI_CHARSET
       Font.Color = clWindowText
@@ -103,6 +132,7 @@ object frmMD5: TfrmMD5
       ParentFont = False
       ScrollBars = ssBoth
       TabOrder = 0
+      ExplicitTop = -2
     end
   end
 end
