@@ -94,8 +94,6 @@ void __fastcall TfrmMain::N1Click(TObject *Sender)
 
 void __fastcall TfrmMain::ActionAboutExecute(TObject *Sender)
 {
-	// GetFileVersionInfo()
-	//
 	ShowMessage("hello week report 1.3!");
 }
 //---------------------------------------------------------------------------
@@ -156,23 +154,6 @@ void EnumJsonValues(TJSONValue *lpJsonValue, UnicodeString sKeyName)
 void __fastcall TfrmMain::ActionJSONExecute(TObject* Sender)
 {
 	ShowLocalForm(frmJSON, ActionJSON);
-//    //
-//    String s = "./package.json";
-//
-//    std::auto_ptr list(new TStringList());
-//    list->LoadFromFile(s);
-//    std::auto_ptr lpJson(TJSONObject::ParseJSONValue(list->Text));
-//	if (lpJson.get() == nullptr || lpJson.get() == NULL) {
-//        zdh::utils::log(L"加载的json:$s的结果为null", s.c_str());
-//        return;
-//    }
-//    if (lpJson->Null) {
-//        zdh::utils::log(L"加载的json:$s的属性为NULL", s.c_str());
-//        return;
-//    }
-//    EnumJsonValues(lpJson.get(), L"");
-    //	lpJson->GetValueA()
-    //	TJSONObject * lpRoot = dynamic_cast<TJSONObject *>(lpJson.get());
 }
 //---------------------------------------------------------------------------
 
