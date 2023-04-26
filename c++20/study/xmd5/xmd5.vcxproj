@@ -130,6 +130,7 @@
     <ClCompile Include="xmd5.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="xhash.h" />
     <ClInclude Include="xmd5.h" />
     <ClInclude Include="xtype.h" />
   </ItemGroup>
