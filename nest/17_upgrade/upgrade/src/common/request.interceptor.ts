@@ -38,6 +38,8 @@ export class XRequestInterceptor implements NestInterceptor {
         const urlInfo = `${req.method} ${url}`;
 
         log.info(`[${seq}]==> ${urlInfo}`);
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         req['seq'] = seq;
         const isCheckAPI = url.startsWith(urlPrefix.API);
 
