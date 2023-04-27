@@ -4,6 +4,7 @@ import { XAppController } from './app.controller';
 import { XAppService } from './app.service';
 import { XConfigUtils } from './init/config_utils';
 import { XRedisService } from './service/redis.service';
+import { MockEnv } from './db/mock_env';
 
 const TypeOrmConfig = XConfigUtils.buildMySQLOption();
 
@@ -21,7 +22,9 @@ const TypeOrmConfig = XConfigUtils.buildMySQLOption();
         //     logging: true,
         // }),
         TypeOrmModule.forRoot(TypeOrmConfig),
+        TypeOrmModule.forFeature([MockEnv]),
     ],
+
     controllers: [XAppController],
     providers: [XAppService, XRedisService],
     exports: [XRedisService],

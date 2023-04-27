@@ -6,7 +6,7 @@ export class XAppController {
     constructor(private readonly appService: XAppService) {}
 
     @Get()
-    getHello(): string {
-        return this.appService.getHello();
+    async getHello() {
+        return await this.appService.getHello();
     }
 }
