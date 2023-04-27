@@ -1,5 +1,5 @@
 import { SessionData, Store } from 'express-session';
-import { RedisClientType } from 'redis';
+import Redis from 'ioredis';
 import { ISessionSerializer } from './session_serializer';
 import { utils } from 'xmcommon';
 import { IRedisStoreOptions } from './xsession_redis_option';
@@ -12,7 +12,7 @@ export interface IRedisStoreOptionsEx extends IRedisStoreOptions {
     /** 序列化对象，默认为JSON */
     serializer?  : ISessionSerializer;
     /** Redis Client 要确保已经连接 */
-    client?      : RedisClientType;
+    client?      : Redis;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -49,7 +49,7 @@ export class XRedisStore extends Store {
     /**
      * redis连接客户端
      */
-    private m_Client: RedisClientType;
+    private m_Client: Redis;
     /**
      * session超时的时间
      */
@@ -140,7 +140,9 @@ export class XRedisStore extends Store {
         }
 
         if (ttl > 0) {
-            const r = this.m_Client.set(this.key(paramSessionId), value, { EX: ttl });
+            // await redis.set("foo", "bar", "EX", 20);
+            // console.log(await redis.ttl("foo")); // a number smaller or equal to 20
+            const r = this.m_Client.set(this.key(paramSessionId), value, 'EX', ttl);
             PromiseCallBack(r, paramCallBack);
         } else {
             this.destroy(paramSessionId, paramCallBack);
@@ -288,7 +290,7 @@ export class XRedisStore extends Store {
             } else if (Array.isArray(paramKeys) && paramKeys.length > 0) {
                 //
                 sessionKeys = [...paramKeys];
-                const mgetr = this.m_Client.mGet(sessionKeys);
+                const mgetr = this.m_Client.mget(sessionKeys);
                 PromiseCallBack(mgetr, mgetCallback);
             } else {
                 sessionKeys = [];
@@ -314,14 +316,15 @@ export class XRedisStore extends Store {
      */
     private async _scanKeys(paramPattern: string, paramCursor = 0, paramCount = 100) {
         const keys: any = {};
-        let currCursor = paramCursor;
+        let currCursor = String(paramCursor);
         do {
-            const r = await this.m_Client.scan(currCursor, { MATCH: paramPattern, COUNT: paramCount });
-            currCursor = r.cursor;
-            for (const k of r.keys) {
+            // scan(cursor: string | number, patternToken: "MATCH", pattern: string, countToken: "COUNT", count: string | number, callback?: Callback<[cursor: string, elements: string[]]>): Promise<[cursor: string, elements: string[]]>
+            const [cursor, retKeys] = await this.m_Client.scan(currCursor, 'MATCH', paramPattern, 'COUNT', paramCount); //{ MATCH: paramPattern, COUNT: paramCount });
+            currCursor = cursor;
+            for (const k of retKeys) {
                 keys[k] = true;
             }
-        } while (currCursor !== 0);
+        } while (currCursor !== '0');
         return Object.keys(keys);
     }
 }

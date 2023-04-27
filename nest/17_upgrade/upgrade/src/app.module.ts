@@ -26,6 +26,8 @@ const TypeOrmConfig = XConfigUtils.buildMySQLOption();
     ],
 
     controllers: [XAppController],
+    // providers: [XAppService],
+    // exports: [],
     providers: [XAppService, XRedisService],
     exports: [XRedisService],
 })

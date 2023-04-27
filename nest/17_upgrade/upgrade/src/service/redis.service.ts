@@ -11,17 +11,35 @@
  * 1.0                  祝冬华             创建文件            2022-06-09
  *************************************************************************/
 import { Injectable } from '@nestjs/common';
-import { RedisClientType } from '@redis/client';
-import { createClient } from 'redis';
+import Redis from 'ioredis';
 import { XConfigUtils } from '../init/config_utils';
 @Injectable()
 export class XRedisService {
-    private m_RedisClient: RedisClientType;
+    private m_RedisClient: Redis;
     constructor() {
-        const redisOpts = XConfigUtils.buildRedisOption(XConfigUtils.getConfig().redis);
-        const redisClient = createClient(redisOpts);
-        redisClient.connect();
-        this.m_RedisClient = redisClient as any;
+        const opts = XConfigUtils.buildRedisOption(XConfigUtils.getConfig().redis);
+        let redis: Redis;
+
+        if (opts.url) {
+            redis = new Redis(opts.url);
+        } else if (opts.opts) {
+            redis = new Redis(opts.opts);
+        } else {
+            redis = new Redis();
+        }
+        redis.on('error', (paramError: Error) => {
+            if (paramError) {
+                if (paramError.name !== 'ECONNRESET') {
+                    console.error('getRedis >>>----------', JSON.stringify(paramError));
+                } else {
+                    // 因为这个日志，打出来非常多，所以就不用打印了
+                    // 大概是每隔65秒，会打印一次这个log，连接会ECONNRESET一次
+                    // log.error('----------ECONNRESET', JSON.stringify(error));
+                }
+            }
+        });
+
+        this.m_RedisClient = redis;
     }
 
     public async get(paramKey: string) {
@@ -30,7 +48,7 @@ export class XRedisService {
 
     public async set(paramKey: string, paramValue: string, paramTTL = -1) {
         if (paramTTL > 0) {
-            return this.m_RedisClient.set(paramKey, paramValue, { EX: paramTTL });
+            return this.m_RedisClient.set(paramKey, paramValue, 'EX', paramTTL);
         } else {
             return this.m_RedisClient.set(paramKey, paramValue);
         }

@@ -7,11 +7,11 @@
     - 配置加载完成后，会在config目录生成一个finalConfig.{环境名}.json和finalConfig.{环境名}.yaml，这个当前环境运行的最新配置
  */
 
-import * as yaml from 'js-yaml';
-import * as fs from 'fs';
-import * as path from 'path';
-import * as _ from 'lodash';
-
+import yaml from 'js-yaml';
+import fs from 'fs';
+import path from 'path';
+import _ from 'lodash';
+import { Redis, RedisOptions } from 'ioredis';
 import {
     ILRConfig,
     ILRConfigMySQL,
@@ -23,7 +23,7 @@ import {
 import { getLogger, XCommonRet, utils } from 'xmcommon';
 import { EnumErrorCode } from '../error/error_code';
 import { EnumRuntimeEnv, XEnvUtils } from '../env_utils';
-import { IRedisOptions, IRedisStoreOptions, IRedisStoreSocketOptions } from '../common/session/xsession_redis_option';
+import { IRedisOptions, IRedisStoreOptions } from '../common/session/xsession_redis_option';
 
 const log = getLogger(__filename);
 
@@ -171,32 +171,26 @@ export class XConfigUtils {
         return retOpts;
     }
     /** 构建基于redis存储配置 */
-    public static buildRedisOption(paramCfg?: IRedisOptions): IRedisOptions {
+    public static buildRedisOption(paramCfg?: IRedisOptions) {
         const opts: IRedisOptions = paramCfg || {};
-        const retOpts: IRedisOptions = {};
+        const retOpts: {
+            url?: string;
+            opts?: RedisOptions;
+        } = {};
 
-        // prettier-ignore
-        {
-            // 基本配置
-            retOpts.url      = opts.url;
-            retOpts.username = opts.username;
-            retOpts.password = opts.password;
-            retOpts.name     = opts.name;
-            retOpts.database = opts.database;
-        }
-
-        // prettier-ignore
-        if (utils.isNotNull(opts.socket)) {
-            const socket = opts.socket as IRedisStoreSocketOptions;
-            const retSocket: IRedisStoreSocketOptions =  { port: utils.intOpts(socket.port, 6379) };
-            retOpts.socket = retSocket;
-
-            retSocket.host           = utils.stringOpts(socket.host, 'localhost');
-            retSocket.family         = socket.family === 4 || socket.family === 6 ? socket.family : 0;
-            retSocket.path           = socket.path;
-            retSocket.connectTimeout = utils.intOpts(socket.connectTimeout, 5000);
-            retSocket.noDelay        = utils.boolOpts(socket.noDelay, true);
-            retSocket.keepAlive      = utils.intOpts(socket.keepAlive, 5000);
+        if (opts.url) {
+            retOpts.url = opts.url;
+        } else {
+            retOpts.opts = {};
+            if (opts.cfg?.username) {
+                retOpts.opts.username = opts.cfg?.username;
+            }
+            if (opts.cfg?.password) {
+                retOpts.opts.password = opts.cfg?.password;
+            }
+            retOpts.opts.host = utils.stringOpts(opts.cfg?.host, '127.0.0.1');
+            retOpts.opts.port = utils.intOpts(opts.cfg?.port, 6379);
+            retOpts.opts.db = utils.intOpts(opts.cfg?.database, 0);
         }
         return retOpts;
     }
@@ -245,12 +239,28 @@ export class XConfigUtils {
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     const { XRedisStore } = require('../common/session/xredis_store');
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    const redis = require('redis');
+                    let redis: Redis;
                     const opts = this.initSessionRedisOptions(sessionConfig?.redisOptions);
-                    const redisClient = redis.createClient(opts.redis);
+                    if (opts.redis.url) {
+                        redis = new Redis(opts.redis.url);
+                    } else if (opts.redis.opts) {
+                        redis = new Redis(opts.redis.opts);
+                    } else {
+                        redis = new Redis();
+                    }
+                    redis.on('error', (paramError: Error) => {
+                        if (paramError) {
+                            if (paramError.name !== 'ECONNRESET') {
+                                console.error('getRedis >>>----------', JSON.stringify(paramError));
+                            } else {
+                                // 因为这个日志，打出来非常多，所以就不用打印了
+                                // 大概是每隔65秒，会打印一次这个log，连接会ECONNRESET一次
+                                // log.error('----------ECONNRESET', JSON.stringify(error));
+                            }
+                        }
+                    });
 
-                    redisClient.connect();
-                    (opts.store as any).client = redisClient as any;
+                    (opts.store as any).client = redis as any;
                     (opts.store as any).serializer = JSON;
                     store = new XRedisStore(opts.store);
                 }
