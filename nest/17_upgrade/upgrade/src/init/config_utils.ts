@@ -11,8 +11,10 @@ import yaml from 'js-yaml';
 import fs from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import { Redis, RedisOptions } from 'ioredis';
-import {
+import type { Redis, RedisOptions } from 'ioredis';
+import type { XRedisStore } from '../common/session/xredis_store';
+import type { Store } from 'express-session';
+import type {
     ILRConfig,
     ILRConfigMySQL,
     ILRSessionMySQLStoreClumnNames,
@@ -23,7 +25,7 @@ import {
 import { getLogger, XCommonRet, utils } from 'xmcommon';
 import { EnumErrorCode } from '../error/error_code';
 import { EnumRuntimeEnv, XEnvUtils } from '../env_utils';
-import { IRedisOptions, IRedisStoreOptions } from '../common/session/xsession_redis_option';
+import type { IRedisOptions, IRedisStoreOptions } from '../common/session/xsession_redis_option';
 
 const log = getLogger(__filename);
 
@@ -199,7 +201,7 @@ export class XConfigUtils {
     public static buildSessionOptions(): any {
         const sessionConfig = cfg?.session;
         const type = sessionConfig?.type;
-        let store: any;
+        let store: Store | undefined = undefined;
         switch (type) {
             case 'mysql':
                 {
@@ -237,22 +239,25 @@ export class XConfigUtils {
             case 'redis':
                 {
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
-                    const { XRedisStore } = require('../common/session/xredis_store');
+                    const redisClass = require('ioredis');
+                    // eslint-disable-next-line @typescript-eslint/no-var-requires
+                    const { XRedisStore: RedisStore } = require('../common/session/xredis_store');
                     // eslint-disable-next-line @typescript-eslint/no-var-requires
                     let redis: Redis;
                     const opts = this.initSessionRedisOptions(sessionConfig?.redisOptions);
                     if (opts.redis.url) {
-                        redis = new Redis(opts.redis.url);
+                        redis = new redisClass(opts.redis.url);
                     } else if (opts.redis.opts) {
-                        redis = new Redis(opts.redis.opts);
+                        redis = new redisClass(opts.redis.opts);
                     } else {
-                        redis = new Redis();
+                        redis = new redisClass();
                     }
-                    redis.on('error', (paramError: Error) => {
+                    redis.on('error', (paramError: any) => {
                         if (paramError) {
-                            if (paramError.name !== 'ECONNRESET') {
-                                console.error('getRedis >>>----------', JSON.stringify(paramError));
+                            if (paramError.code !== 'ECONNRESET') {
+                                log.error('getRedis >>>----------', JSON.stringify(paramError));
                             } else {
+                                log.error('getRedis aaa >>>----------', JSON.stringify(paramError));
                                 // 因为这个日志，打出来非常多，所以就不用打印了
                                 // 大概是每隔65秒，会打印一次这个log，连接会ECONNRESET一次
                                 // log.error('----------ECONNRESET', JSON.stringify(error));
@@ -262,7 +267,7 @@ export class XConfigUtils {
 
                     (opts.store as any).client = redis as any;
                     (opts.store as any).serializer = JSON;
-                    store = new XRedisStore(opts.store);
+                    store = new RedisStore(opts.store) as XRedisStore;
                 }
                 break;
             default:
@@ -273,7 +278,7 @@ export class XConfigUtils {
             retOptions = _.cloneDeep(sessionConfig.options);
         }
         log.info('session options:' + JSON.stringify(retOptions));
-        if (utils.isNotNull(store)) {
+        if (store) {
             retOptions.store = store;
         }
 
