@@ -23,7 +23,6 @@
         "strictFunctionTypes": true,
         "strictPropertyInitialization": false,
         "noImplicitAny": true,
-        "suppressImplicitAnyIndexErrors": true,
         "strictBindCallApply": true,
         "forceConsistentCasingInFileNames": true,
         "noImplicitReturns": true,
