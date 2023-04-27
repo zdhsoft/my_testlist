@@ -31,7 +31,7 @@
 
 ## 1. Description
 
-### 1.1 环境说明
+### 1.1 开发环境说明
 - 这个工程默认使用vscode, 并已经集成了vscode运行所需要必要配置
 - 这里使用eslint对代码进行检查 具体配置查看 .eslintrc.js 使用npm run lint对代码做整检查
 - 这里使用prettier对代码进行格式化，具体配置看 .prettierrc  使用npm run format可以对整个项目代码格式化
@@ -81,6 +81,74 @@ import { ValidationPipe } from './common/validation_pipe';
 - 增加请求处理前后的日志打印和耗时打印，用于调试
 #### 1.3.7 集成swagger
 - 在开发模式下，集成了  http://xxxx/apidoc方式访问
+
+### 1.4 运行环境说明(envid)
+#### 1.4.1 运行环境与配置
+- 一般情况下，运行环境主要有两个，一个是测试运行环境，一个是生产运行环境，不同的环境要加载不同的配置
+- 在这里启动的时候，需要指明envid，告诉系统这次运行的是什么环境。
+  - 通过个envid可以加载config/env.xxx.ymal的配置文件
+  - 如envid='test',则会加载config/env.test.yaml
+  - 默认的envid是'local'，除此之外，还有一个缺省环境，对一些所有环境公有的配置，可以放到env.default.yaml中,  这样可以减少配置量。在实际的环境如果有同名的，则实际的配置会替换在default中的配置。
+  - 如果程序启动，需要指定环境id,则只要传入参数就可以，如下启动'test'环境。
+  ```bash
+  node dist/main.js --envid test 
+  ```
+#### 1.4.2 增加自定义环境说明 
+- 默认的工程，提供了四个默认环境与配置，分别是,default, test, local, production，这些环境都定义在EnumRuntimeEnv这个枚举中
+- 枚举等运行环境相关配置放在文件，src/env_utils.ts中
+```typescript
+/** 可以环境常量定义 */
+export enum EnumRuntimeEnv {
+    /** 缺省配置环境 */
+    default = 'default',
+    /** 测试 */
+    test = 'test',
+    /** 本地调试环境 */
+    local = 'local',
+    /** 生产环境 */
+    production = 'production',
+}
+```
+- 如果要新增加运行环境，第一步先在EnumRuntimeEnv增加新的枚举值，第二步，在config/增加一个新的配置文件。下示是示例增加一个simple环境
+```typescript
+// 第一步： 在EnumRuntimeEnv增加simple枚举值的定义，要求名称与值相同
+export enum EnumRuntimeEnv {
+  /** 缺省配置环境 */
+  default = 'default',
+  /** 测试 */
+  test = 'test',
+  /** 本地调试环境 */
+  local = 'local',
+  /** 生产环境 */
+  production = 'production',
+  /** 新增加的环境 */
+  simple = 'simple',
+}
+
+// 第二步：在config目录下，复制env.default.yaml，并改名为env.simple.yaml，
+// 第三步：再用编辑器编译env.simple.yaml文件，配置simple实际需要的配置
+// 第四步：启动的时候，带上启动参数： node dist/main.js --envid simple
+// 这样就实现了新增环境要求
+```
+- 如果有些环境，是要视步生产环境的，则只需要将EenumRuntimeEnv.simple加到生产环境id列表中去就可以了，在src/env_utils.ts中有一个生产环境id数组：production_env_list。如下增加
+```typescript
+/** 被视为生产环境的环境id数组 */
+const production_env_list = [EnumRuntimeEnv.production, EnumRuntimeEnv.simple];
+// 系统启动后，就可以看到取得当前系统环境定义
+/** 全局环境配置 */
+const env: IEnv = {
+  env: EnumRuntimeEnv.local,
+  /** 是否是开发环境 */
+  isDev: true,
+};
+// 使用的时候，在代码调用
+if(XEnvUtils.isDev) {
+  console.log('这是一个开发环境');
+} else {
+  console.log('这是一个生产环境');
+}
+```
+
 ## 2 安装依赖环境
 
 ```bash

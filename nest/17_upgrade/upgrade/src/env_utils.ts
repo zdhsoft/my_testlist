@@ -10,7 +10,11 @@ export enum EnumRuntimeEnv {
     local = 'local',
     /** 生产环境 */
     production = 'production',
+    /** 示例环境 */
+    simple = 'simple',
 }
+/** 被视为生产环境的环境id数组 */
+const production_env_list = [EnumRuntimeEnv.production, EnumRuntimeEnv.simple];
 /** 环境定义类型定义 */
 export interface IEnv {
     /** 当前环境id */
@@ -68,7 +72,7 @@ function initEnv() {
 
     env.env = envid;
     // 除了生产环境，其它都是开发环境
-    if (envid === EnumRuntimeEnv.production) {
+    if (production_env_list.includes(envid)) {
         env.isDev = false;
     } else {
         env.isDev = true;
