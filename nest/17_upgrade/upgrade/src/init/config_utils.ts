@@ -176,9 +176,12 @@ export class XConfigUtils {
     public static buildRedisOption(paramCfg?: IRedisOptions) {
         const opts: IRedisOptions = paramCfg || {};
         const retOpts: {
+            enabled?: boolean;
             url?: string;
             opts?: RedisOptions;
         } = {};
+
+        retOpts.enabled = utils.boolOpts(opts.enabled, true);
 
         if (opts.url) {
             retOpts.url = opts.url;

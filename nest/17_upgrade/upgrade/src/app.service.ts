@@ -5,8 +5,7 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class XAppService {
-    public constructor(@InjectRepository(MockEnv) private m_MockRepo: Repository<MockEnv>,) {
-    }
+    public constructor(@InjectRepository(MockEnv) private m_MockRepo: Repository<MockEnv>) {}
     async getHello() {
         const w: WhereMockEnv = {
             id: 1,

@@ -1,15 +1,3 @@
-/*************************************************************************
- * Copyright(c) 2017-2022, 深圳市链融科技股份有限公司
- * Shenzhen Lianrong Technology Co., Ltd.
- * All rights reserved.
- *
- * @filename redis.service.ts
- * @summary: 这里提供redis存取服务，这里只提供了get和set两个方法，其它功能，需要自行扩展
- * @version: 1.0
- * ------------------------------------------------------------------------
- * version             author            reason             date
- * 1.0                  祝冬华             创建文件            2022-06-09
- *************************************************************************/
 import { Injectable } from '@nestjs/common';
 import type Redis from 'ioredis';
 import { XConfigUtils } from '../init/config_utils';
@@ -19,11 +7,14 @@ const log = getLogger(__filename);
 @Injectable()
 export class XRedisService {
     private m_RedisClient: Redis;
+    private m_Enabled: boolean;
     constructor() {
         // eslint-disable-next-line @typescript-eslint/no-var-requires
         const redisClass = require('ioredis');
         const opts = XConfigUtils.buildRedisOption(XConfigUtils.getConfig().redis);
         let redis: Redis;
+
+        this.m_Enabled = opts.enabled === true;
 
         if (opts.url) {
             redis = new redisClass(opts.url);
@@ -48,15 +39,29 @@ export class XRedisService {
         this.m_RedisClient = redis;
     }
 
+    public get enabled() {
+        return this.m_Enabled;
+    }
+
     public async get(paramKey: string) {
-        return this.m_RedisClient.get(paramKey);
+        if (this.enabled) {
+            return this.m_RedisClient.get(paramKey);
+        } else {
+            log.error('for get:在配置文件redis中的enabled值为false, 表示redis未启用, 如果要使用，请配置为true');
+            return;
+        }
     }
 
     public async set(paramKey: string, paramValue: string, paramTTL = -1) {
-        if (paramTTL > 0) {
-            return this.m_RedisClient.set(paramKey, paramValue, 'EX', paramTTL);
+        if (this.enabled) {
+            if (paramTTL > 0) {
+                return this.m_RedisClient.set(paramKey, paramValue, 'EX', paramTTL);
+            } else {
+                return this.m_RedisClient.set(paramKey, paramValue);
+            }
         } else {
-            return this.m_RedisClient.set(paramKey, paramValue);
+            log.error('for set:在配置文件redis中的enabled值为false, 表示redis未启用, 如果要使用，请配置为true');
+            return;
         }
     }
 }

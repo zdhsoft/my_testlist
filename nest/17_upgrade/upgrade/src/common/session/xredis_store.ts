@@ -17,7 +17,7 @@ export interface IRedisStoreOptionsEx extends IRedisStoreOptions {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const noop = (paramErr?: any, paramValue?: any) => {
-    //
+    console.log(`redis call back: err:${paramErr}, value:${paramValue}`);
 };
 
 /** 将Promise转换成回调 */
@@ -92,10 +92,11 @@ export class XRedisStore extends Store {
     /**
      * 取session
      * @param paramSessionId 指定的sessionId
-     * @param paramCallBack 取到数据后的回调
+     * @param paramCallBack 取到数据后的回调`
      */
     get(paramSessionId: string, paramCallBack = noop): void {
         const r = this.m_Client.get(this.key(paramSessionId));
+        // PromiseCallBack(r, paramCallBack);
         r.then(
             (paramValue) => {
                 const s = utils.JsonParse(paramValue as unknown as string);

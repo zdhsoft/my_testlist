@@ -1,6 +1,8 @@
 // prettier-ignore
 /** RedisSession的选项 */
 export interface IRedisOptions {
+    /** 是否启用，默认是启用，true表示启用，false表示不启用 */
+    enabled?: boolean;
     /** 连接URL redis[s]://[[username][:password]@][host][:port][/db-number] */
     url?: string;
     /** 传统redis配置 */
