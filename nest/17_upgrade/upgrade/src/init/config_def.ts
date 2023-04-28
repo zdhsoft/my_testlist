@@ -1,4 +1,4 @@
-import { IRedisOptions, IRedisStoreOptions } from '../common/session/xsession_redis_option';
+import type { IRedisOptions, IRedisStoreOptions } from '../common/session/xsession_redis_option';
 
 /** 会话类型 */
 export enum EnumLRConfigSessionType {
