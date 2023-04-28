@@ -5,6 +5,7 @@ import { getLogger, XCommonRet } from 'xmcommon';
 import { IHttpRet, XRetUtils } from './ret_utils';
 import { Response, Request } from 'express';
 import { urlPrefix } from './constant';
+import { XCommUtils } from './commutils';
 
 const log = getLogger(__filename);
 /** 每次请求的记数器 */
@@ -41,7 +42,7 @@ export class XRequestInterceptor implements NestInterceptor {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         req['seq'] = seq;
-        const isCheckAPI = url.startsWith(urlPrefix.API);
+        const isCheckAPI = XCommUtils.hasStartsWith(url, urlPrefix.API);
 
         if (isCheckAPI) {
             return paramNext

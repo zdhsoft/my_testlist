@@ -3,6 +3,12 @@ export enum EnumErrorCode {
     OK = 0,
     /** 系统错误 */
     FAIL = 1,
+    /** master初始化失败 */
+    MASTER_INIT_FAILED = 5,
+    /** 事物异常 */
+    TRANSACTION_EXCEPTION = 6,
+    /** 没有实现 */
+    NOT_IMPLEMENTED = 7,
     /** 文件不存在 */
     FILE_NOT_EXISTS = 10000,
     /** 目录不存在 */

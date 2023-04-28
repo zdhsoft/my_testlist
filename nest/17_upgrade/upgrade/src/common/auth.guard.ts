@@ -5,6 +5,7 @@ import { Request } from 'express';
 import { ISession, urlPrefix } from './constant';
 import { XAPIException } from './api_exception';
 import { EnumErrorCode } from '../error/error_code';
+import { XCommUtils } from './commutils';
 
 // const log = getLogger(__filename);
 
@@ -16,16 +17,11 @@ export class XAuthGuard implements CanActivate {
         const url = req.path;
         let ret = false;
         do {
-            if (url.startsWith(urlPrefix.API)) {
-                if (url.startsWith(urlPrefix.LOCAL_API)) {
+            if (XCommUtils.hasStartsWith(url, urlPrefix.API)) {
+                if (XCommUtils.hasStartsWith(url, urlPrefix.IGNORE_API)) {
                     ret = true;
                 } else {
-                    if ((req.session as ISession)?.isLogin === true) {
-                        ret = true;
-                    } else {
-                        // 如果没有登录，则这里返回false
-                        ret = false;
-                    }
+                    ret = (req.session as ISession)?.isLogin === true;
                 }
             } else {
                 ret = true;

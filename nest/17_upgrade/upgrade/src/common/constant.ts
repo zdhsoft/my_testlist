@@ -1,13 +1,11 @@
-import session from 'express-session';
+import type session from 'express-session';
 
 /** URL 前缀 */
 export const urlPrefix = {
     /** 所有需要拦载的api前缀 */
-    API: '/api/',
-    /** 本地调用的api，这里不需要做用户登录验证 */
-    LOCAL_API: '/api/local/',
-    /** 需要检查的api */
-    CHECK_API: '/api/fun/',
+    API: ['/invoicemgr/'],
+    /** 忽略不做检查的api路径 */
+    IGNORE_API: ['/invoicemgr/users/pwd_login'],
 };
 
 export enum EnumErrType {
@@ -47,3 +45,13 @@ export interface ISession extends session.Session {
 export const GlobalConst = {
     admin: 'admin',
 };
+/** 数据库的别名 */
+export enum EnumDBAlias {
+    a = 'a',
+    b = 'b',
+    c = 'c',
+    d = 'd',
+    e = 'e',
+    f = 'f',
+    g = 'g',
+}
