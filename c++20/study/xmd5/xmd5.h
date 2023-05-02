@@ -2,8 +2,17 @@
 #ifndef _X_MD5_H_
 #define _X_MD5_H_
 #include "xtype.h"
+#include "xhash.h"
 namespace zdh
 {
+
+    class XHashMD5 : public IHash {
+    public:
+        virtual const char* hashName();
+		virtual void update(const void* paramData, const int paramDataBytes);
+		virtual const vector<unsigned char>& digest(vector<unsigned char>& paramDigestData);
+		virtual const string & digest(string& paramDigestString);
+    };
     namespace detail
     {
         const XDWord S11 = 7;

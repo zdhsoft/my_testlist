@@ -5,6 +5,31 @@
 #include <fstream>
 #include "xmd5.h"
 
+namespace zdh {
+
+	const char* XHashMD5::hashName()
+	{
+		return "md5";
+	}
+
+	void XHashMD5::update(const void* paramData, const int paramDataBytes)
+	{
+
+	}
+
+	const vector<unsigned char>& XHashMD5::digest(vector<unsigned char>& paramDigestData)
+	{
+		return paramDigestData;
+	}
+
+	const string & XHashMD5::digest(string& paramDigestString)
+	{
+		return paramDigestString;
+	}
+
+}
+
+
 void calcMD5(const char * paramFileName) {
     zdh::XMD5 stMD5;
     stMD5.Init();
