@@ -3,11 +3,25 @@
 #define _X_MD5_H_
 #include "xtype.h"
 #include "xhash.h"
+#include <cstddef>
 namespace zdh
 {
-
+    std::byte a;
     class XHashMD5 : public IHash {
+    private:
+		unsigned int m_State[4]; ///<用来存放XMD5的4个32位的链接变量。
+		unsigned int m_Count[2]; ///<用来记录计数的结果
     public:
+        XHashMD5() {
+            m_Count[0] = 0;
+            m_Count[1] = 0;
+
+            m_State[0] = 0x67452301L;
+			m_State[1] = 0xefcdab89L;
+			m_State[2] = 0x98badcfeL;
+			m_State[3] = 0x10325476L;
+        }
+    
         virtual const char* hashName();
 		virtual void update(const void* paramData, const int paramDataBytes);
 		virtual const vector<unsigned char>& digest(vector<unsigned char>& paramDigestData);
