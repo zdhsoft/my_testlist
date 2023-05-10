@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project ver="10" name="second_console" libEmbed="true" icon="..." ui="console" output="second_console.exe" CompanyName="单位名称" FileDescription="second_console" LegalCopyright="Copyright (C) 作者 2023" ProductName="second_console" InternalName="second_console" FileVersion="0.0.0.02" ProductVersion="0.0.0.02" publishDir="/dist/" dstrip="false">
+	<file name="main.aardio" path="main.aardio" comment="启动程序代码"/>
+	<folder name="资源文件" path="res" embed="true"/>
+</project>

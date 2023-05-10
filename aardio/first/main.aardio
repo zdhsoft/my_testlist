@@ -1,0 +1,14 @@
+import win.ui;
+/*DSG{{*/
+mainForm = win.form(text="first";right=757;bottom=467)
+mainForm.add(
+button={cls="button";text="Button";left=134;top=383;right=278;bottom=405;z=1}
+)
+/*}}*/
+
+mainForm.button.oncommand = function(id,event){
+	
+}
+
+mainForm.show();
+return win.loopMessage();
