@@ -1,0 +1,8 @@
+{
+  "/invoicemgr": {
+    "name": "local",
+    "target": "http://local.lrscft.com",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

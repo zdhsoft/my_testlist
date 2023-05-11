@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
+    "startlocal": "npm run ng serve -- --hmr --proxy-config=proxy/local.conf.json",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
