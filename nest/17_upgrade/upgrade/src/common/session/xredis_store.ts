@@ -84,7 +84,7 @@ export class XRedisStore extends Store {
             this.m_Serializer   = paramOpts.serializer || JSON;
             this.m_Client       = paramOpts.client;
             this.m_TTL          = paramOpts.ttl || 86400 ;
-            this.m_Prefix       = utils.stringOpts(paramOpts.prefix, 'session');
+            this.m_Prefix       = utils.stringOpts(paramOpts.prefix, 'session:');
             this.m_DisableTTL   = paramOpts.disableTTL || false;
             this.m_DisableTouch = paramOpts.disableTouch || false;
         }
@@ -329,3 +329,71 @@ export class XRedisStore extends Store {
         return Object.keys(keys);
     }
 }
+
+// import { Store } from "express-session";
+// import { Redis } from "ioredis";
+
+// interface RedisStoreOptions {
+//   client: Redis;
+//   prefix?: string;
+//   ttl?: number;
+// }
+
+// class RedisStore extends Store {
+//   client: Redis;
+//   prefix: string;
+//   ttl: number;
+
+//   constructor(options: RedisStoreOptions) {
+//     super();
+//     this.client = options.client;
+//     this.prefix = options.prefix ?? "session:";
+//     this.ttl = options.ttl ?? 86400; // Default TTL is one day
+//   }
+
+//   get = (sid: string, callback: (err?: any, session?: Express.SessionData | null) => void) => {
+//     const key = this.prefix + sid;
+//     this.client.get(key, (err, sessionData) => {
+//       if (err) {
+//         return callback(err);
+//       }
+
+//       if (!sessionData) {
+//         return callback(null, null);
+//       }
+
+//       let session;
+//       try {
+//         session = JSON.parse(sessionData.toString());
+//       } catch (err) {
+//         return callback(err);
+//       }
+
+//       return callback(null, session);
+//     });
+//   };
+
+//   set = (sid: string, session: Express.SessionData, callback?: (err?: any) => void) => {
+//     const key = this.prefix + sid;
+//     const ttl = this.ttl;
+
+//     const sessionData = JSON.stringify(session);
+
+//     if (callback) {
+//       this.client.setex(key, ttl, sessionData, callback);
+//     } else {
+//       this.client.setex(key, ttl, sessionData);
+//     }
+//   };
+
+//   destroy = (sid: string, callback?: (err?: any) => void) => {
+//     const key = this.prefix + sid;
+//     if (callback) {
+//       this.client.del(key, callback);
+//     } else {
+//       this.client.del(key);
+//     }
+//   };
+// }
+
+// export default RedisStore;
