@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { requestSign } from './utils';
-import { NzMessageService } from 'ng-zorro-antd/message';
+export interface IMsg<T = any> {
+  ret: number;
+  msg?: string;
+  data?: T;
+}
 
 export interface HeaderParam {
   key: string;
@@ -13,12 +17,10 @@ export interface HeaderParam {
   providedIn: 'root',
 })
 export class HttpService {
-  urlPrefix = '';
+  private urlPrefix = '';
+  private msg: IMsg = { ret: 0 }
 
-  constructor(
-    private http: HttpClient,
-    private msg: NzMessageService,
-  ) {}
+  constructor(private http: HttpClient) {}
 
   signInfo() {
     return requestSign();
@@ -132,48 +134,48 @@ export class HttpService {
     });
   }
 
-  /**
-   * 下载
-   * @param method 请求方法
-   * @param url 请求地址
-   * @param params 请求参数
-   * @param filename 文件名称
-   */
-  download(
-    method: 'get' | 'post',
-    url: string,
-    params: any,
-    filename = '文件'
-  ) {
-    this.request(method, url, params, undefined, 'blob')
-      .subscribe((res) => {
-        this.save(res, filename);
-      }, err => {
-        if (err instanceof Observable) {
-          err.subscribe((error: any) => {
-            this.msg.error(error || '下载失败');
-          });
-        } else {
-          this.msg.error(err.msg || '下载失败');
-        }
-      });
-  }
+  // /**
+  //  * 下载
+  //  * @param method 请求方法
+  //  * @param url 请求地址
+  //  * @param params 请求参数
+  //  * @param filename 文件名称
+  //  */
+  // download(
+  //   method: 'get' | 'post',
+  //   url: string,
+  //   params: any,
+  //   filename = '文件'
+  // ) {
+  //   this.request(method, url, params, undefined, 'blob')
+  //     .subscribe((res) => {
+  //       this.save(res, filename);
+  //     }, err => {
+  //       if (err instanceof Observable) {
+  //         err.subscribe((error: any) => {
+  //           this.msg.error(error || '下载失败');
+  //         });
+  //       } else {
+  //         this.msg.error(err.msg || '下载失败');
+  //       }
+  //     });
+  // }
 
-  /**
-   * 下载 blob对象文件
-   */
-  save(blob: Blob, filename: string) {
-    if (window.navigator.msSaveOrOpenBlob) {
-      window.navigator.msSaveOrOpenBlob(blob, filename);
-    } else {
-      const event = document.createEvent('MouseEvents');
-      event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
-      const link = document.createElement('a');
-      link.setAttribute('href', URL.createObjectURL(blob));
-      link.setAttribute('download', filename);
-      link.dispatchEvent(event);
-    }
-  }
+  // /**
+  //  * 下载 blob对象文件
+  //  */
+  // save(blob: Blob, filename: string) {
+  //   if (window.navigator.msSaveOrOpenBlob) {
+  //     window.navigator.msSaveOrOpenBlob(blob, filename);
+  //   } else {
+  //     const event = document.createEvent('MouseEvents');
+  //     event.initMouseEvent('click', true, true, window, 1, 0, 0, 0, 0, false, false, false, false, 0, null);
+  //     const link = document.createElement('a');
+  //     link.setAttribute('href', URL.createObjectURL(blob));
+  //     link.setAttribute('download', filename);
+  //     link.dispatchEvent(event);
+  //   }
+  // }
 
   private objectToQueryString(params: object | undefined) {
     return params
