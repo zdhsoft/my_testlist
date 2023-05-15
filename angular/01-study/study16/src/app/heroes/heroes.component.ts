@@ -11,7 +11,7 @@ import { MessageService } from '../message.service';
 export class HeroesComponent {
 
     heroes: Hero[] = [];
-    selectedHero?: Hero;
+//    selectedHero?: Hero;
 
     public constructor(
         private heroService: HeroService,
@@ -30,8 +30,8 @@ export class HeroesComponent {
         );
     }
 
-    public onSelect(hero: Hero): void {
-        this.selectedHero = hero;
-        this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-    }
+    // public onSelect(hero: Hero): void {
+    //     this.selectedHero = hero;
+    //     this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
+    // }
 }
