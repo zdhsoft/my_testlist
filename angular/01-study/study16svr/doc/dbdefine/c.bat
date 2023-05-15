@@ -1,0 +1,1 @@
+copy study\*.ts ..\..\src\db /Y
