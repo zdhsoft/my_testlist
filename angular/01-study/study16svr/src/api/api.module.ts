@@ -1,9 +1,12 @@
 import { Module } from '@nestjs/common';
-import { ApiService } from './api.service';
-import { ApiController } from './api.controller';
+import { XApiService } from './api.service';
+import { XApiController } from './api.controller';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Heroes } from '../db/heroes';
 
 @Module({
-  providers: [ApiService],
-  controllers: [ApiController]
+    imports: [TypeOrmModule.forFeature([Heroes])],
+    providers: [XApiService],
+    controllers: [XApiController],
 })
-export class ApiModule {}
+export class XApiModule {}

@@ -16,6 +16,10 @@ export class XRedisService {
 
         this.m_Enabled = opts.enabled === true;
 
+        if (!this.m_Enabled) {
+            return;
+        }
+
         if (opts.url) {
             redis = new redisClass(opts.url);
         } else if (opts.opts) {
