@@ -12,6 +12,7 @@ enum EnumAPI {
     add = '/api/add',
     del = '/api/del', // /api/del/:id
     update = '/api/update',
+    search = '/api/search'
 }
 
 export interface IRet<T = any> {
@@ -61,6 +62,31 @@ export class HeroService {
             catchError(this.handlerError<IRet<Hero[]>>('getHeroes', err))
         );
     }
+
+    public searchHeroes(paramName: string): Observable<IRet<Hero[]>> {
+        const name = paramName.trim();
+        if (name === '') {
+            const empty: IRet<Hero[]> = {
+                ret: 0,
+                data: []
+            };
+
+            return of(empty);
+        }
+        const err: IRet<Hero[]> = {
+            ret: -1,
+            msg: '发生错误',
+        };
+        return this.http.post<IRet<Hero[]>>(EnumAPI.search, { name: paramName }).pipe(
+            tap(_ => this.log('search heroes' + JSON.stringify(_))),
+            catchError(this.handlerError<IRet<Hero[]>>('searchHeroes', err))
+        );
+    }
+
+    public searchHeroesArray(paramName: string): Observable<Hero[]> {
+        return this.searchHeroes(paramName).pipe(map((paramRet) => paramRet.ret === 0 ? paramRet.data as Hero[] : []));
+    }
+
     private handlerError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
             // TODO: send the error to remote logging infrastructure

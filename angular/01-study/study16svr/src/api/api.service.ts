@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Heroes } from '../db/heroes';
+import { Heroes, WhereHeroes } from '../db/heroes';
 import { Repository } from 'typeorm';
 import { getLogger } from 'xmcommon';
+import { XTypeormUtils } from '../common/typeorm_utils';
 const log = getLogger(__filename);
 
 @Injectable()
@@ -31,5 +32,12 @@ export class XApiService {
         const result = await this.m_HeroesRepo.update({ id: paramId }, { name: paramNewName });
         log.info('--->update hero:' + JSON.stringify(result, null, 2));
         return result.affected;
+    }
+
+    public async searchHero(paramName: string) {
+        const w: WhereHeroes = {
+            name: XTypeormUtils.like(paramName),
+        };
+        return this.m_HeroesRepo.find({ where: w });
     }
 }

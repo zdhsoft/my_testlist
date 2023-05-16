@@ -75,4 +75,15 @@ export class XApiController {
         } while (false);
         return r;
     }
+
+    @Post('search')
+    public async searchHero(@Body() paramBody: { name: string }) {
+        const r = new XCommonRet();
+        do {
+            const list = this.apiServices.searchHero(paramBody.name);
+            r.setOK(list);
+            //
+        } while (false);
+        return r;
+    }
 }
