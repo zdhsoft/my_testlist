@@ -29,13 +29,17 @@ export class HeroesComponent {
             }
         );
     }
-
+    deleteHero(paramId: number): void {
+        this.heroService.delHero(paramId).subscribe((ret) => {
+            if (ret.ret === 0) {
+                this.getHeroes();
+            }
+        });
+    }
     addHero(paramName: string): void {
         this.heroService.addHero(paramName).subscribe((paramRet) => {
             if (paramRet.ret === 0) {
-                this.heroService.getHeroes().subscribe(paramList => {
-                    this.heroes = paramList.ret === 0? paramList.data as Hero[] : [];
-                })
+                this.getHeroes();
             }
         });
     }
