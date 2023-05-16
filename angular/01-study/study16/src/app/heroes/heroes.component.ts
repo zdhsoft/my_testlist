@@ -24,8 +24,8 @@ export class HeroesComponent {
     }
     getHeroes(): void {
         this.heroService.getHeroes().subscribe(
-            (heroes) => {
-                this.heroes = heroes;
+            (paramRet) => {
+                this.heroes = paramRet.ret === 0? paramRet.data as Hero[] : [];
             }
         );
     }

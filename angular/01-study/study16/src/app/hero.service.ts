@@ -3,64 +3,115 @@ import { Hero } from './heroes/hero';
 import { HEROES } from './heroes/mock-heroes';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-const heroesUrl = 'api/heroes';
-const heroUrl = 'api/hero';
-const heroSaveUrl = 'api/hero_save';
+enum EnumAPI {
+    heroes = '/api/heroes',
+    hero = '/api/hero',  // /api/hero/:id
+    add = '/api/add',
+    del = '/api/del', // /api/del/:id
+    update = '/api/update',
+}
+
+export interface IRet<T = any> {
+    ret: number;
+    msg?: string;
+    data?: T;
+}
+
+export interface IOptions {
+    headers?: HttpHeaders | { [header: string]: string | string[]; };
+    responseType?: 'arraybuffer'|'blob'|'json'|'text';
+}
+// options: {
+//     headers?: HttpHeaders | {
+//         [header: string]: string | string[];
+//     };
+//     context?: HttpContext;
+//     observe?: 'body';
+//     params?: HttpParams | {
+//         [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+//     };
+//     reportProgress?: boolean;
+//     responseType: 'arraybuffer';
+//     withCredentials?: boolean;
+// }
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class HeroService {
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService) {
-    //
-  }
-
-  getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(heroesUrl).pipe(
-        tap(_ => this.log('fetched heroes' + JSON.stringify(_))),
-        catchError(this.handlerError<Hero[]>('getHeroes', []))
-    );
-  }
-
-  getHero(id: number): Observable<Hero> {
-    return this.http.get<Hero>(`${heroUrl}/${id}`).pipe(
-        tap(_ => this.log('fetched hero' + JSON.stringify(_))),
-        catchError(this.handlerError<Hero>('getHero', {id: -1, name: 'aaa'}))
-    );
-  }
-
-  private handlerError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-        // TODO: send the error to remote logging infrastructure
-        console.error(error); // log to console instead
-
-        // TODO: better job of transforming error for user consumption
-        this.log(`${operation} failed: ${error.message}`);
-
-        // Let the app keep running by returning an empty result.
-        return of(result as T);
+    constructor(
+        private http: HttpClient,
+        private msgService: MessageService,
+    ) {
+        //
     }
-}
-/** PUT: update the hero on the server */
-updateHero(hero: Hero): Observable<any> {
-    return this.http.put(heroSaveUrl, hero, this.httpOptions).pipe(
-      tap(_ => this.log(`updated hero id=${hero.id}`)),
-      catchError(this.handleError<any>('updateHero'))
-    );
-  }
+    private log(paramMsg: string) {
+        console.log(paramMsg);
+        this.msgService.add(paramMsg);
+    }
+    public getHeroes(): Observable<IRet<Hero[]>> {
+        const err: IRet<Hero[]> = {
+            ret: -1,
+            msg: '发生错误',
+        };
+        return this.http.get<IRet<Hero[]>>(EnumAPI.heroes).pipe(
+            tap(_ => this.log('fetched heroes' + JSON.stringify(_))),
+            catchError(this.handlerError<IRet<Hero[]>>('getHeroes', err))
+        );
+    }
+    private handlerError<T>(operation = 'operation', result?: T) {
+        return (error: any): Observable<T> => {
+            // TODO: send the error to remote logging infrastructure
+            console.error(error); // log to console instead
 
-//   getHero(paramId: number) {
-//     const hero = HEROES.find(h => h.id === paramId)!;
-//     this.log(`HeroService: fetched hero id=${paramId}`);
-//     return of(hero);
-//   }
+            // TODO: better job of transforming error for user consumption
+            this.log(`${operation} failed: ${error.message}`);
 
-  private log(paramMsg: string) {
-    this.messageService.add(paramMsg);
-  }
+            // Let the app keep running by returning an empty result.
+            return of(result as T);
+        }
+    }
+    getHero(id: number): Observable<IRet<Hero>> {
+        const err: IRet<Hero> = {
+            ret: -1,
+            msg: '发生错误',
+        };
+        return this.http.get<IRet<Hero>>(`${EnumAPI.hero}/${id}`).pipe(
+            tap(_ => this.log('fetched hero' + JSON.stringify(_))),
+            catchError(this.handlerError<IRet<Hero>>('getHero', err))
+        );
+    }
 
+    addHero(name: string): Observable<IRet<number>> {
+        const err: IRet<number> = {
+            ret: -1,
+            msg: '发生错误',
+        };
+        return this.http.post<IRet<number>>(EnumAPI.add, {name}).pipe(
+            tap(_ => this.log('add hero' + JSON.stringify(_))),
+            catchError(this.handlerError<IRet<number>>('addHero', err))
+        );
+    }
+    delHero(id: number): Observable<IRet> {
+        const err: IRet<number> = {
+            ret: -1,
+            msg: '发生错误',
+        };
+        return this.http.get<IRet>(`${EnumAPI.del}/${id}`).pipe(
+            tap(_ => this.log('del hero' + JSON.stringify(_))),
+            catchError(this.handlerError<IRet>('delHero', err))
+        );
+    }
+    updateHero(id: number, newName: string): Observable<IRet> {
+        const err: IRet<number> = {
+            ret: -1,
+            msg: '发生错误',
+        };
+        return this.http.post<IRet>(EnumAPI.update, {id, newName}).pipe(
+            tap(_ => this.log('updateHero' + JSON.stringify(_))),
+            catchError(this.handlerError<IRet>('updateHero', err))
+        );
+    }
 }

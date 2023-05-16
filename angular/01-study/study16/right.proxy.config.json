@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://right.zdhsoft.cn",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
