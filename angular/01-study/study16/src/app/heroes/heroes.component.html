@@ -1,8 +1,17 @@
 <h2>我的英雄列表</h2>
 <ul class="heroes">
     <li *ngFor="let hero of heroes">
-      <a routerLink="/detail/{{hero.id}}">
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
-      </a>
+        <a routerLink="/detail/{{hero.id}}">
+            <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
     </li>
-  </ul>
+</ul>
+<div>
+    <label for="new-hero">新的英雄名称: </label>
+    <input id="new-hero" #heroName />
+
+    <!-- (click) passes input value to add() and then clears the input -->
+    <button type="button" class="add-button" (click)="addHero(heroName.value); heroName.value=''">
+        增加英雄
+    </button>
+</div>

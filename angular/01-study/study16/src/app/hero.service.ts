@@ -109,6 +109,7 @@ export class HeroService {
             ret: -1,
             msg: '发生错误',
         };
+        console.log('update hero');
         return this.http.post<IRet>(EnumAPI.update, {id, newName}).pipe(
             tap(_ => this.log('updateHero' + JSON.stringify(_))),
             catchError(this.handlerError<IRet>('updateHero', err))

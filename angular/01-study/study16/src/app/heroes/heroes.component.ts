@@ -4,9 +4,9 @@ import { HEROES } from './mock-heroes';
 import { HeroService } from '../hero.service';
 import { MessageService } from '../message.service';
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.css']
+    selector: 'app-heroes',
+    templateUrl: './heroes.component.html',
+    styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent {
 
@@ -28,6 +28,16 @@ export class HeroesComponent {
                 this.heroes = paramRet.ret === 0? paramRet.data as Hero[] : [];
             }
         );
+    }
+
+    addHero(paramName: string): void {
+        this.heroService.addHero(paramName).subscribe((paramRet) => {
+            if (paramRet.ret === 0) {
+                this.heroService.getHeroes().subscribe(paramList => {
+                    this.heroes = paramList.ret === 0? paramList.data as Hero[] : [];
+                })
+            }
+        });
     }
 
     // public onSelect(hero: Hero): void {

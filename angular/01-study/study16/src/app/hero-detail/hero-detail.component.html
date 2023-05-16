@@ -3,9 +3,11 @@
     <h2>{{hero.name | uppercase}} Details</h2>
     <div><span>id: </span>{{hero.id}}</div>
     <div>
-      <label for="hero-name">Hero name: </label>
-      <input id="hero-name" [(ngModel)]="hero.name" placeholder="name">
+        <label for="hero-name">Hero name: </label>
+        <input id="hero-name" [(ngModel)]="hero.name" placeholder="name"><br>
+        <button type="button" (click)="save()">保存修改</button> &nbsp;
+        <button type="button" (click)="deleteHero()">删除英雄</button>
     </div>
 
-  </div>
-  <button type="button" (click)="goBack()">go back</button>
+</div>
+<button type="button" (click)="goBack()">go back</button>

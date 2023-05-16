@@ -31,4 +31,13 @@ export class HeroDetailComponent {
     goBack(): void {
         this.location.back();
     }
+
+    save(): void {
+        console.log('--->save???' + JSON.stringify(this.hero));
+        this.heroService.updateHero(this.hero!.id, this.hero!.name).subscribe(() => this.goBack());
+    }
+
+    deleteHero(): void {
+        this.heroService.delHero(this.hero!.id).subscribe(() => this.goBack());
+    }
 }
