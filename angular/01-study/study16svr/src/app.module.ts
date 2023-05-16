@@ -4,6 +4,7 @@ import { XAppController } from './app.controller';
 import { XAppService } from './app.service';
 import { XConfigUtils } from './init/config_utils';
 import { XRedisService } from './service/redis.service';
+import { ApiModule } from './api/api.module';
 
 const TypeOrmConfig = XConfigUtils.buildMySQLOption();
 
@@ -21,6 +22,7 @@ const TypeOrmConfig = XConfigUtils.buildMySQLOption();
         //     logging: true,
         // }),
         TypeOrmModule.forRoot(TypeOrmConfig),
+        ApiModule,
     ],
     controllers: [XAppController],
     providers: [XAppService, XRedisService],
