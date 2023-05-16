@@ -3,9 +3,9 @@ import type session from 'express-session';
 /** URL 前缀 */
 export const urlPrefix = {
     /** 所有需要拦载的api前缀 */
-    API: ['/invoicemgr/'],
+    API: ['/api/'],
     /** 忽略不做检查的api路径 */
-    IGNORE_API: ['/invoicemgr/users/pwd_login'],
+    IGNORE_API: ['/api/'],
 };
 
 export enum EnumErrType {
