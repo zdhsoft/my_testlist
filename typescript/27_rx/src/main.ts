@@ -10,7 +10,7 @@
  * version             author            reason             date
  * 1.0                 zdhsoft      创建文件            2023-05-17
  *************************************************************************/
-import { Observable, debounceTime, distinctUntilChanged, of, switchMap, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, of, switchMap, Subject } from 'rxjs';
 
 const observable = of(1, 2, 3);
 
