@@ -1,3 +1,4 @@
+<nz-water-mark [nzContent]="['我是水印', '你不服吗？']">
 <h2>{{hero.name | uppercase}} Details</h2>
 <div><span>id: </span>{{hero.id}}</div>
 <div>
@@ -33,3 +34,6 @@
     <input type="text" nz-input [(ngModel)]="hero.name" />
   </nz-input-group>
 </div>
+
+  <div style="height: 500px"></div>
+</nz-water-mark>

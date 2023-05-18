@@ -16,6 +16,15 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { HeroesComponent } from './heroes/heroes.component';
 
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzWaterMarkModule } from 'ng-zorro-antd/water-mark';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { IconDefinition } from '@ant-design/icons-angular';
+import * as AllIcons from '@ant-design/icons-angular/icons';
+const antDesignIcons = AllIcons as {
+  [key: string]: IconDefinition;
+};
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 registerLocaleData(zh);
 
 @NgModule({
@@ -32,7 +41,10 @@ registerLocaleData(zh);
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
-    NzInputModule
+    NzInputModule,
+    NzWaterMarkModule,
+    NzIconModule.forRoot(icons),
+    NzSelectModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN }
