@@ -136,6 +136,9 @@
     <ClInclude Include="xmd5.h" />
     <ClInclude Include="xtype.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="simple.ts" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

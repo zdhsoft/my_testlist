@@ -6,31 +6,37 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
-        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>Ant Design Of Angular</h1>
-      </a>
+        <img src="assets/head.jpg" alt="logo">
+        <h1>发票管理系统</h1>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+      <li nz-submenu nzOpen nzTitle="发票管理" nzIcon="dashboard">
         <ul>
           <li nz-menu-item nzMatchRouter>
-            <a routerLink="/welcome">Welcome</a>
+            <a routerLink="/welcome">欢迎主页</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Monitor</a>
+            <a>进项管理</a>
           </li>
           <li nz-menu-item nzMatchRouter>
-            <a>Workplace</a>
+            <a>销项管理</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>发票查验</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a>Basic Form</a>
+      <li nz-submenu nzOpen nzTitle="个人管理" nzIcon="form">
+        <lr nz-submenu nzOpen nzTitle="企业管理" nzIcon="dashboard">
+          <li nz-menu-item nzMatchRouter nzIcon="copy">
+            <a>部门管理</a>
           </li>
-        </ul>
+        </lr>
+        <lr nz-submenu nzOpen nzTitle="人员管理" nzIcon="lock">
+          <li nz-menu-item nzMatchRouter>
+            <a>成员管理</a>
+          </li>
+        </lr>
       </li>
     </ul>
   </nz-sider>
