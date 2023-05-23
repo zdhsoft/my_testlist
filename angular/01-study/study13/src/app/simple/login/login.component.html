@@ -1,1 +1,73 @@
-<p>login works!</p>
+<div class="container">
+  <div class="company-info">无锡山水城市发展集团有限公司</div>
+  <div class="login">
+    <div class="portal-panel">
+      <div class="portal-login-box">
+        <div class="login-inner-box">
+          <div class="login-title">财务发票管理平台</div>
+          <div
+            class="login-form"
+            [ngStyle]="{ height: '320px' }"
+          >
+            <form (ngSubmit)="onLogin()" autocomplete="off">
+              <div class="txt">登录</div>
+              <div class="account">
+                <img src="assets/images/cellphone.png" alt="" />
+                <input
+                  maxlength="30"
+                  type="text"
+                  placeholder="登录账号"
+                  [(ngModel)]="account"
+                  name="account"
+                  autofocus
+                  [autocomplete]="isWebKit"
+                  (keyup)="onKeyUp()"
+                />
+              </div>
+              <div class="password" style="margin-top: 20px">
+                <img src="assets/images/lock.png" alt="" />
+                <input
+                  [(ngModel)]="password"
+                  type="password"
+                  placeholder="登录密码"
+                  name="password"
+                  maxlength="10"
+                />
+              </div>
+              <div>
+                <button type="submit">
+                  <span *ngIf="loading; else login">
+                    <i
+                      nz-icon
+                      nzType="loading"
+                      nzTheme="outline"
+                      style="margin-right: 12px"
+                    >
+                    </i
+                    >正在登录...</span
+                  >
+                  <ng-template #login>
+                    <span>登录</span>
+                  </ng-template>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <nz-footer class="footer">
+  <xn-global-footer
+    [links]="footer.links"
+    [copyright]="copyRightTemplate"
+  ></xn-global-footer>
+</nz-footer>
+
+<ng-template #copyRightTemplate>
+  <ng-container>
+    Copyright <i nz-icon nzType="copyright"></i> {{ footer.copyright }}
+  </ng-container>
+</ng-template> -->

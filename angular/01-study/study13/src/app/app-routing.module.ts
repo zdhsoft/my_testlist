@@ -64,6 +64,8 @@ const routes: Routes = [
         },
         {
           path: 'welcome',
+          canActivate: [AuthGuardService],
+          canActivateChild: [AuthGuardService],
           component: WelcomeComponent,
         }
       ]

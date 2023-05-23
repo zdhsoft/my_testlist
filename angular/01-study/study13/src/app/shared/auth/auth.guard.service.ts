@@ -9,7 +9,7 @@ export class AuthGuardService implements CanActivate {
 
   }
   private static unverified() {
-    const url = `${ProjectConst.HOME_URL}/user/login`;
+    const url = `${ProjectConst.HOME_URL}/simple/login`;
     window.open(url, '_self');
 
     return false;
@@ -19,7 +19,7 @@ export class AuthGuardService implements CanActivate {
     console.log('auth-guard.service 请求参数', activatedRoute.queryParams);
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    return true;
+    return AuthGuardService.unverified();
     // // this.getRouteParams(route);
     // // const r = AuthGuardService.unverified();
     // // console.log('canActivate:' + JSON.stringify(r));

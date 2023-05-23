@@ -1,1 +1,60 @@
-<p>welcome works!</p>
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+            nzCollapsible
+            nzWidth="256px"
+            nzBreakpoint="md"
+            [(nzCollapsed)]="isCollapsed"
+            [nzTrigger]="null">
+    <div class="sidebar-logo">
+        <img src="assets/head.jpg" alt="logo">
+        <h1>发票管理系统</h1>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="发票管理" nzIcon="dashboard">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/user/login">欢迎主页</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>进项管理</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>销项管理</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a>发票查验</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="个人管理" nzIcon="form">
+        <lr nz-submenu nzOpen nzTitle="企业管理" nzIcon="dashboard">
+          <li nz-menu-item nzMatchRouter nzIcon="copy">
+            <a>部门管理</a>
+          </li>
+        </lr>
+        <lr nz-submenu nzOpen nzTitle="人员管理" nzIcon="lock">
+          <li nz-menu-item nzMatchRouter>
+            <a>成员管理</a>
+          </li>
+        </lr>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+            <i class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
