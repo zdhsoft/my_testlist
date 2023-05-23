@@ -4,7 +4,6 @@ import { AuthGuardService } from './shared/auth/auth.guard.service';
 import { LoginComponent } from './simple/login/login.component';
 import { WelcomeComponent } from './simple/welcome/welcome.component';
 
-
 // const routes: Routes = [
 //   {
 //     path: 'user',
