@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { XCommRet } from '@zdhsoft/commret';
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    const r = new XCommRet<number>();
+    r.setError(-100);
+    console.log(r);
+  }
 
   ngOnInit() {
+    //
   }
 
 }
