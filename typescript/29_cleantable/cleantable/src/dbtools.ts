@@ -3,6 +3,7 @@ import mysql from 'mysql2';
 import { ERR } from './errorcode';
 import { config } from './config';
 import { getLogger } from 'xmcommon';
+import { XCommRet } from '@zdhsoft/commret';
 const log = getLogger(__filename);
 
 const dbconfig = {
@@ -43,10 +44,40 @@ export class DBTools {
         const [err, result, field] = await utils.WaitClassFunctionEx(pool, 'query', paramSQL, paramValues);
         log.info('SQL:' + paramSQL + ' Time:' + (Date.now() - b) + 'ms');
         if (utils.isNull(err)) {
-            return { code: ERR.ERR_OK, result: result as any, field, err: null };
+            const r = new XCommRet();
+            r.setOK({ result, field });
+            return r;
         } else {
+            const r = new XCommRet();
+            r.setError(ERR.ERR_FAIL, String(err));
             console.error(err);
-            return { code: ERR.ERR_FAIL, result: null, err, field: null };
+            return r;
         }
+    }
+
+    public static async cleanTable(paramTableName: string, paramCurrIndex: number, paramAllCount: number) {
+        const r = new XCommRet();
+        do {
+            log.info(`开始清理：${paramTableName}  => ${paramCurrIndex}/${paramAllCount}`);
+            const strDelete = `DELETE FROM ${paramTableName}`;
+            const strAdd = `ALTER TABLE ${paramTableName} ADD COLUMN ___k TINYINT ( 4 ) NOT NULL DEFAULT 0`;
+            const strDrop = `ALTER TABLE ${paramTableName} DROP COLUMN ___k;`;
+
+            const r1 = await DBTools.query(strDelete);
+            if (r1.isNotOK) {
+                log.error(r1);
+                break;
+            }
+
+            const r2 = await DBTools.query(strAdd);
+            if (r2.isNotOK) {
+                log.error(r2);
+            }
+            const r3 = await DBTools.query(strDrop);
+            if (r3.isNotOK) {
+                log.error(r2);
+            }
+        } while (false);
+        return r;
     }
 }
