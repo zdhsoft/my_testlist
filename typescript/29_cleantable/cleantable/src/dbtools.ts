@@ -78,6 +78,7 @@ export class DBTools {
                 log.error(r2);
             }
         } while (false);
+        log.info('');
         return r;
     }
 }
