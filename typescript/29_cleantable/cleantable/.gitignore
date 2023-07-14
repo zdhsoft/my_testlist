@@ -28,4 +28,4 @@ lerna-debug.log*
 *.sublime-workspace
 /package-lock.json
 build_file
-cleanTable.json
+cleanTable.js
