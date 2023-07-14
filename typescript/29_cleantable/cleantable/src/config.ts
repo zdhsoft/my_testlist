@@ -1,4 +1,5 @@
 export const config = {
+    // database: 'zszh_tiny',
     database: 'xnlr',
     host: 'localhost',
     port: 3306,

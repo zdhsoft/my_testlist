@@ -1,15 +1,16 @@
 import { DBTools } from './dbtools';
 import { getLogger } from 'xmcommon';
+import { cleanTable } from './cleanTable';
 const log = getLogger(__filename);
 
 async function main() {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const cleanTable = require('../cleanTable.json');
+    // const cleanTable = require('../cleanTable.json');
 
     log.log(JSON.stringify(cleanTable));
     log.log('hello world!');
 
-    const list = cleanTable?.cleanTable as string[];
+    const list = cleanTable;
     if (Array.isArray(list) && list.length > 0) {
         const cnt = list.length;
         for (let i = 0; i < cnt; i++) {
