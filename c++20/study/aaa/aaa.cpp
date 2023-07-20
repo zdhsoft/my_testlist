@@ -30,10 +30,35 @@ void testRegex() {
 	}
 }
 
+class A {
+private:
+	int m;
+public:
+	A() {
+		m = 0;
+	}
+	A(int mm) : m(mm) {}
+	~A() {
+		std::cout << "A的析构函数" << endl;
+	}
+};
+
+class B : public A{
+public:
+	B() {}
+	~B() {
+		std::cout << "B的析构函数" << endl;
+	}
+};
+
+
+
 int main()
 {
-    std::cout << "Hello World!\n" << endl;;
-    testRegex();
+	const A* a = new B();
+	delete a;
+//     std::cout << "Hello World!\n" << endl;;
+//     testRegex();
 }
 
 // 运行程序: Ctrl + F5 或调试 >“开始执行(不调试)”菜单
