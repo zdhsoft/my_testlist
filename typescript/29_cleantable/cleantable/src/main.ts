@@ -1,7 +1,32 @@
 import { DBTools } from './dbtools';
 import { getLogger } from 'xmcommon';
 import { cleanTable } from './cleanTable';
+import { XMCurrency } from 'xmcurrency';
 const log = getLogger(__filename);
+
+function test() {
+    const sumAmountIncludingTax = '130000.00';
+    const sumExcludingTaxAmount = '122641.51';
+
+    const c1 = new XMCurrency(sumAmountIncludingTax);
+    const c3 = c1.sub(sumExcludingTaxAmount);
+    console.log(c1.format(), c3.format());
+}
+
+test();
+
+// spec_elec
+// :
+// {count: "1", sumAmountIncludingTax: "130000.00", sumExcludingTaxAmount: "122641.51"}
+// count
+// :
+// "1"
+// sumAmountIncludingTax
+// :
+// "130000.00"
+// sumExcludingTaxAmount
+// :
+// "122641.51"
 
 async function main() {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -20,7 +45,7 @@ async function main() {
     log.info(`处理完成!`);
     process.exit(0);
 }
-main();
+// main();
 
 // delete from avenger_approvalloan;
 // ALTER TABLE avenger_approvalloan ADD COLUMN `___k` TINYINT ( 4 ) NOT NULL DEFAULT 0;

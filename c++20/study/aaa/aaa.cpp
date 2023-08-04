@@ -38,7 +38,7 @@ public:
 		m = 0;
 	}
 	A(int mm) : m(mm) {}
-	~A() {
+	virtual ~A() {
 		std::cout << "A的析构函数" << endl;
 	}
 };

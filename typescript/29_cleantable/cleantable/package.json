@@ -34,6 +34,7 @@
     "dependencies": {
         "@zdhsoft/commret": "^1.0.3",
         "mysql2": "^3.5.1",
-        "xmcommon": "^1.1.0"
+        "xmcommon": "^1.1.0",
+        "xmcurrency": "^1.0.5"
     }
 }
