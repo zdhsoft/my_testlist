@@ -55,7 +55,6 @@ object frmMD5: TfrmMD5
       Height = 23
       TabOrder = 0
       TextHint = #36755#20837#30340#25991#26412#65292#20250#20808#36716#25104'UTF-8'#30340#25991#26412#65292#20877#29983#25104'MD5'
-      OnKeyPress = Edit1KeyPress
     end
     object cbCaption: TCheckBox
       Left = 312
@@ -115,9 +114,6 @@ object frmMD5: TfrmMD5
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitTop = 105
-    ExplicitWidth = 748
-    ExplicitHeight = 437
     object Memo1: TMemo
       Left = 0
       Top = 0
@@ -132,7 +128,6 @@ object frmMD5: TfrmMD5
       ParentFont = False
       ScrollBars = ssBoth
       TabOrder = 0
-      ExplicitTop = -2
     end
   end
 end

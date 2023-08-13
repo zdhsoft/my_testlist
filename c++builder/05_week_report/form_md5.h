@@ -31,7 +31,6 @@ __published:	// IDE-managed Components
 	void __fastcall Button1Click(TObject *Sender);
 	void __fastcall Button2Click(TObject *Sender);
 	void __fastcall Button3Click(TObject *Sender);
-	void __fastcall Edit1KeyPress(TObject *Sender, System::WideChar &Key);
 private:	// User declarations
 	void CalcFileMD5(const int paramIndex, const int paramFileCount, const String & paramFileName);
 	void log(const wchar_t * format, ...);

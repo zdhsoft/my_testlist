@@ -152,9 +152,4 @@ void __fastcall TfrmMD5::Button3Click(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TfrmMD5::Edit1KeyPress(TObject *Sender, System::WideChar &Key)
-{
-    Memo1->Lines->Add(String((int)Key));
-}
-//---------------------------------------------------------------------------
 

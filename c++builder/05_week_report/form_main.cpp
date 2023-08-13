@@ -23,7 +23,7 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	: TForm(Owner)
 {
 	m_CurrActiveForm = nullptr;
-	INITFORM(TfrmWeek, frmWeek);
+	// INITFORM(TfrmWeek, frmWeek);
 	INITFORM(TfrmDateTime, frmDateTime);
 	INITFORM(TfrmOCR, frmOCR);
 	INITFORM(TfrmMD5, frmMD5);
@@ -94,7 +94,7 @@ void __fastcall TfrmMain::N1Click(TObject *Sender)
 
 void __fastcall TfrmMain::ActionAboutExecute(TObject *Sender)
 {
-	ShowMessage("hello week report 1.3!");
+	ShowMessage("hello week report 1.4!");
 }
 //---------------------------------------------------------------------------
 
