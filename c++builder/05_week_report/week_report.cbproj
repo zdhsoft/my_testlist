@@ -169,11 +169,11 @@
         <VerInfo_Private>true</VerInfo_Private>
         <VerInfo_DLL>true</VerInfo_DLL>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=zdhsoft;FileDescription=$(MSBuildProjectName);FileVersion=2023.8.13.30;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.4.0.0;Comments=;SpecialBuild=;PrivateBuild=;LastCompiledTime=2023-01-11 16:28:58</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=zdhsoft;FileDescription=$(MSBuildProjectName);FileVersion=2023.8.13.31;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.4.0.0;Comments=;SpecialBuild=;PrivateBuild=;LastCompiledTime=2023-01-11 16:28:58</VerInfo_Keys>
         <BCC_InstructionSet>6</BCC_InstructionSet>
         <BCC_ShowLSPMessages>true</BCC_ShowLSPMessages>
         <BCC_NumberOfIndexingThreads>8</BCC_NumberOfIndexingThreads>
-        <VerInfo_Build>30</VerInfo_Build>
+        <VerInfo_Build>31</VerInfo_Build>
         <LinkPackageStatics>rtl.lib;vcl.lib;vclx.lib</LinkPackageStatics>
         <VerInfo_MajorVer>2023</VerInfo_MajorVer>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
@@ -231,6 +231,12 @@
             <DependentOn>form_week.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <CppCompile Include="from_moive.cpp">
+            <Form>frmMoive</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>from_moive.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
+        </CppCompile>
         <None Include="md5.h">
             <BuildOrder>14</BuildOrder>
         </None>
@@ -267,6 +273,7 @@
         <FormResources Include="form_md5.dfm"/>
         <FormResources Include="form_week.dfm"/>
         <FormResources Include="form_ocr.dfm"/>
+        <FormResources Include="from_moive.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

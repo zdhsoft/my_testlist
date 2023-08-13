@@ -4,13 +4,14 @@
 #pragma hdrstop
 
 #include "form_main.h"
-#include "form_week.h"
+// #include "form_week.h"
 #include "form_datetime.h"
 #include "form_md5.h"
 #include "form_ocr.h"
 #include "form_json.h"
 #include <System.JSON.hpp>
 #include "utils.h"
+#include "from_moive.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -27,7 +28,8 @@ __fastcall TfrmMain::TfrmMain(TComponent* Owner)
 	INITFORM(TfrmDateTime, frmDateTime);
 	INITFORM(TfrmOCR, frmOCR);
 	INITFORM(TfrmMD5, frmMD5);
-    INITFORM(TfrmJSON, frmJSON);
+	INITFORM(TfrmJSON, frmJSON);
+	INITFORM(TfrmMoive, frmMoive);
 }
 
 //---------------------------------------------------------------------------
@@ -57,7 +59,7 @@ void __fastcall TfrmMain::ShowLocalForm(XFunctionFunForm * paramForm,TAction * p
 
 void __fastcall TfrmMain::ActionWeekExecute(TObject *Sender)
 {
-	ShowLocalForm(frmWeek, ActionWeek);
+	//ShowLocalForm(frmWeek, ActionWeek);
 }
 //---------------------------------------------------------------------------
 
@@ -189,4 +191,11 @@ void __fastcall TfrmMain::FormCreate(TObject *Sender)
 //---------------------------------------------------------------------------
 
 
+
+void __fastcall TfrmMain::ActionMoiveExecute(TObject *Sender)
+{
+	//
+	ShowLocalForm(frmMoive, ActionMoive);
+}
+//---------------------------------------------------------------------------
 

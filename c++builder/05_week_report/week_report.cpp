@@ -12,6 +12,7 @@ USEFORM("form_datetime.cpp", frmDateTime);
 USEFORM("form_md5.cpp", frmMD5);
 USEFORM("form_week.cpp", frmWeek);
 USEFORM("form_ocr.cpp", frmOCR);
+USEFORM("from_moive.cpp", frmMoive);
 //---------------------------------------------------------------------------
 bool AppIsRuning() {
 	auto hmutex = CreateMutex(NULL, false, L"WeekResport1.0");

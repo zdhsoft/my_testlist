@@ -62,8 +62,13 @@ object frmMain: TfrmMain
       Top = 0
       Action = ActionMD5
     end
-    object ToolButton5: TToolButton
+    object ToolButton1: TToolButton
       Left = 300
+      Top = 0
+      Action = ActionMoive
+    end
+    object ToolButton5: TToolButton
+      Left = 375
       Top = 0
       Action = ActionAbout
     end
@@ -142,6 +147,11 @@ object frmMain: TfrmMain
       Caption = 'JSON'
       ImageIndex = 7
       OnExecute = ActionJSONExecute
+    end
+    object ActionMoive: TAction
+      Caption = #30005#24433#31649#29702
+      ImageIndex = 5
+      OnExecute = ActionMoiveExecute
     end
   end
   object ImageList1: TImageList
