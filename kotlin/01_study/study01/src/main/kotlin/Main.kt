@@ -11,6 +11,10 @@ fun allsum(vararg a:Int): Int {
     return m;
 }
 
+// 这是一个单行注释
+
+/* 这是一个多行的
+   块注释。 */
 fun main(args: Array<String>) {
     println("Hello World!" + "zdhsoft")
     println("calc: 1 + 2 = " + sum(1,2))
