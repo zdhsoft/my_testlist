@@ -19,6 +19,10 @@ fun main(args: Array<String>) {
     println("Hello World!" + "zdhsoft")
     println("calc: 1 + 2 = " + sum(1,2))
     println("calc: 1 + 2 = " + allsum(1, 2, 3, 4, 5))
+    // 字符串模板
+    var a = 1999;
+    val s1 = "a is $a calc=${allsum(9,4,3,2)}";
+    println(s1);
 
 
     // Try adding program arguments via Run/Debug configuration.
