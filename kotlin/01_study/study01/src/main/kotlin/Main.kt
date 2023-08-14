@@ -11,6 +11,24 @@ fun allsum(vararg a:Int): Int {
     return m;
 }
 
+fun parseInt(str: String): Int? {
+    return str.toIntOrNull()
+}
+
+fun printProduct(arg1: String, arg2: String) {
+    val x = parseInt(arg1)
+    val y = parseInt(arg2)
+
+    // 直接使用 `x * y` 会导致错误, 因为它们可能为 null
+    if (x != null && y != null) {
+        // 在进行过 null 值检查之后, x 和 y 的类型会被自动转换为非 null 变量
+        println(x * y)
+    }
+    else {
+        println("'$arg1' or '$arg2' is not a number")
+    }
+}
+
 // 这是一个单行注释
 
 /* 这是一个多行的
@@ -34,6 +52,9 @@ fun main(args: Array<String>) {
     val ages2 = age?.toInt() ?: -1
 
     println("$age,$ages1,$ages2, $ages")
+    printProduct("6", "7")
+    printProduct("a", "7")
+    printProduct("a", "b")
     // Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     // println("Program arguments: ${args.joinToString()}")
