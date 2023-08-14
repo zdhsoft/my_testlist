@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { APP_CONFIG } from '../environments/environment';
+import { XCommRet } from '@zdhsoft/commret';
 
 @Component({
   selector: 'app-root',
@@ -24,5 +25,8 @@ export class AppComponent {
     } else {
       console.log('Run in browser');
     }
+
+    const r = new XCommRet();
+    r.setError(-1, 'aaa');
   }
 }
