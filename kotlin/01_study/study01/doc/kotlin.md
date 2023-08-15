@@ -166,8 +166,60 @@ fun main(args: Array<String>) {
     println(price)  // 求值结果为 $9.99
 }
 ```
+## 条件控制
+### IF 表达式
+- 一个 if 语句包含一个布尔表达式和一条或多条语句。
+```kotlin
+// 传统用法
+var max = a
+if (a < b) max = b
 
+// 使用 else
+var max: Int
+if (a > b) {
+    max = a
+} else {
+    max = b
+}
 
+// 作为表达式
+val max = if (a > b) a else b
+```
+- 我们也可以把 IF 表达式的结果赋值给一个变量。
+```kotlin
+val max = if (a > b) {
+    print("Choose a")
+    a
+} else {
+    print("Choose b")
+    b
+}
+```
+- 这也说明我也不需要像Java那种有一个三元操作符，因为我们可以使用它来简单实现：
+```kotlin
+val c = if (condition) a else b
+实例
+fun main(args: Array<String>) {
+    var x = 0
+    if(x>0){
+        println("x 大于 0")
+    }else if(x==0){
+        println("x 等于 0")
+    }else{
+        println("x 小于 0")
+    }
+
+    var a = 1
+    var b = 2
+    val c = if (a>=b) a else b
+    println("c 的值为 $c")
+}
+```
+输出结果为：
+```text
+x 等于 0
+c 的值为 2
+```
 ## java vs kotlin
 ### 什么是Kotlin？
 - Kotlin是一种可以在 Java 虚拟机 (JVM) 上运行的开源编程语言。该语言可以在许多平台上运行。
