@@ -55,6 +55,10 @@ fun main(args: Array<String>) {
     printProduct("6", "7")
     printProduct("a", "7")
     printProduct("a", "b")
+
+    for (i in 1..4) {
+        print(i)
+    }
     // Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     // println("Program arguments: ${args.joinToString()}")
