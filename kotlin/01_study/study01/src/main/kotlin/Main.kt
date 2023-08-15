@@ -60,6 +60,7 @@ fun main(args: Array<String>) {
         print(i)
     }
     xxmain();
+    datatype();
     // Try adding program arguments via Run/Debug configuration.
     // Learn more about running applications: https://www.jetbrains.com/help/idea/running-applications.html.
     // println("Program arguments: ${args.joinToString()}")
@@ -81,4 +82,17 @@ fun xxmain() {
         print(i)
     }
     println("\n----------------")
+}
+
+fun datatype() {
+    var oneMillion = 1_000_000
+    val creditCardNumber = 1234_5678_9012_3456L
+    val socialSecurityNumber = 999_99_9999L
+    val hexBytes = 0xFF_EC_DE_5E
+    val bytes = 0b11010010_01101001_10010100_10010010
+    println(oneMillion);
+    println(creditCardNumber);
+    println(socialSecurityNumber);
+    println(hexBytes);
+    println(bytes);
 }
