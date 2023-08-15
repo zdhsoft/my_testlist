@@ -34,7 +34,7 @@
 | Int    | 	32    |
 | Short  | 	16    |
 | Byte   | 	8     |
-
+### 类型转换
 每种数据类型都有下面的这些方法，可以转化为其它的类型：
 - toByte(): Byte
 - toShort(): Short
@@ -43,7 +43,27 @@
 - toFloat(): Float
 - toDouble(): Double
 - toChar(): Char
+### 位操作符
+对于Int和Long类型，还有一系列的位操作符可以使用，分别是：
+```kotlin
+//shl(bits) – 左移位 (Java’s <<)
+//shr(bits) – 右移位 (Java’s >>)
+//ushr(bits) – 无符号右移位 (Java’s >>>)
+//and(bits) – 与
+//or(bits) – 或
+//xor(bits) – 异或
+//inv() – 反向
+```
+### 字符
+和 Java 不一样，Kotlin 中的 Char 不能直接和数字操作，Char 必需是单引号 ' 包含起来的。比如普通字符 '0'，'a'。
+```kotlin
+fun check(c: Char) {
+    if (c == 1) { // 错误：类型不兼容
+        // ……
+    }
+}
 
+```
 ## java vs kotlin
 ### 什么是Kotlin？
 - Kotlin是一种可以在 Java 虚拟机 (JVM) 上运行的开源编程语言。该语言可以在许多平台上运行。
