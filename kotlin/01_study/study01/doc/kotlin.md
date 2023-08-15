@@ -108,6 +108,39 @@ val x: IntArray = intArrayOf(1, 2, 3)
 x[0] = x[1] + x[2]
 ```
 
+### 字符串
+- 和 Java 一样，String 是不可变的。方括号 [] 语法可以很方便的获取字符串中的某个字符，也可以通过 for 循环来遍历：
+```kotlin
+for (c in str) {
+    println(c)
+}
+```
+- Kotlin 支持三个引号 """ 扩起来的字符串，支持多行字符串，比如：
+```kotlin
+fun main(args: Array<String>) {
+    val text = """
+    多行字符串
+    多行字符串
+    """
+    println(text)   // 输出有一些前置空格
+}
+```
+- String 可以通过 trimMargin() 方法来删除多余的空白。
+```kotlin
+
+fun main(args: Array<String>) {
+    val text = """
+        |多行字符串
+        |菜鸟教程
+        |多行字符串
+        |Runoob
+    """.trimMargin()
+    println(text)    // 前置空格删除了
+}
+```
+- 默认 | 用作边界前缀，但你可以选择其他字符并作为参数传入，比如 trimMargin(">")。
+
+
 ## java vs kotlin
 ### 什么是Kotlin？
 - Kotlin是一种可以在 Java 虚拟机 (JVM) 上运行的开源编程语言。该语言可以在许多平台上运行。
