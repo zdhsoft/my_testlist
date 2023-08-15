@@ -1,3 +1,4 @@
+import java.math.BigDecimal
 
 fun sum(a: Int, b: Int): Int {   // Int 参数，返回值 Int
     return a + b
@@ -95,4 +96,8 @@ fun datatype() {
     println(socialSecurityNumber);
     println(hexBytes);
     println(bytes);
+
+    var m = oneMillion.toLong();
+    println(m);
+
 }

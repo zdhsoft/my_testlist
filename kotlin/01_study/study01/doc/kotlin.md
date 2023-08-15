@@ -24,6 +24,26 @@
     println(s1);
 ```
 
+## 基本数据类型
+### 数字
+| 类型     | 位宽度    |
+|:-------|:-------|
+| Double | 	64    |
+| Float  | 	32    |
+| Long   | 	64    |
+| Int    | 	32    |
+| Short  | 	16    |
+| Byte   | 	8     |
+
+每种数据类型都有下面的这些方法，可以转化为其它的类型：
+- toByte(): Byte
+- toShort(): Short
+- toInt(): Int
+- toLong(): Long
+- toFloat(): Float
+- toDouble(): Double
+- toChar(): Char
+
 ## java vs kotlin
 ### 什么是Kotlin？
 - Kotlin是一种可以在 Java 虚拟机 (JVM) 上运行的开源编程语言。该语言可以在许多平台上运行。
