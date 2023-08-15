@@ -220,6 +220,23 @@ fun main(args: Array<String>) {
 x 等于 0
 c 的值为 2
 ```
+### 使用区间
+- 使用 in 运算符来检测某个数字是否在指定区间内，区间格式为 x..y ：
+- 实例
+```kotlin
+fun main(args: Array<String>) {
+    val x = 5
+    val y = 9
+    if (x in 1..8) {
+        println("x 在区间内")
+    }
+}
+```
+- 输出结果为：
+```text
+x 在区间内
+```
+
 ## java vs kotlin
 ### 什么是Kotlin？
 - Kotlin是一种可以在 Java 虚拟机 (JVM) 上运行的开源编程语言。该语言可以在许多平台上运行。
