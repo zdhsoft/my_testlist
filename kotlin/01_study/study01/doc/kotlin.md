@@ -64,6 +64,50 @@ fun check(c: Char) {
 }
 
 ```
+
+字符字面值用单引号括起来: '1'。 特殊字符可以用反斜杠转义。 支持这几个转义序列：\t、 \b、\n、\r、\'、\"、\\ 和 \$。 编码其他字符要用 Unicode 转义序列语法：'\uFF00'。
+
+我们可以显式把字符转换为 Int 数字：
+```kotlin
+    fun decimalDigitValue(c: Char): Int {
+        if (c !in '0'..'9')
+            throw IllegalArgumentException("Out of range")
+        return c.toInt() - '0'.toInt() // 显式转换为数字
+    }
+```
+
+### 布尔
+- 布尔用 Boolean 类型表示，它有两个值：true 和 false。
+- 若需要可空引用布尔会被装箱。
+#### 内置的布尔运算有：
+- || – 短路逻辑或
+- && – 短路逻辑与
+- ! - 逻辑非
+### 数组
+- 数组用类 Array 实现，并且还有一个 size 属性及 get 和 set 方法，由于使用 [] 重载了 get 和 set 方法，所以我们可以通过下标很方便的获取或者设置数组对应位置的值。
+
+- 数组的创建两种方式：一种是使用函数arrayOf()；另外一种是使用工厂函数。如下所示，我们分别是两种方式创建了两个数组：
+```kotlin
+
+fun main(args: Array<String>) {
+//[1,2,3]
+val a = arrayOf(1, 2, 3)
+//[0,2,4]
+val b = Array(3, { i -> (i * 2) })
+
+    //读取数组内容
+    println(a[0])    // 输出结果：1
+    println(b[1])    // 输出结果：2
+}
+```
+- 如上所述，[] 运算符代表调用成员函数 get() 和 set()。
+- 注意: 与 Java 不同的是，Kotlin 中数组是不协变的（invariant）。
+- 除了类Array，还有ByteArray, ShortArray, IntArray，用来表示各个类型的数组，省去了装箱操作，因此效率更高，其用法同Array一样：
+```kotlin
+val x: IntArray = intArrayOf(1, 2, 3)
+x[0] = x[1] + x[2]
+```
+
 ## java vs kotlin
 ### 什么是Kotlin？
 - Kotlin是一种可以在 Java 虚拟机 (JVM) 上运行的开源编程语言。该语言可以在许多平台上运行。
