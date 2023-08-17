@@ -19,5 +19,20 @@ public class Main {
         int n2 = (int)d;
         System.out.println("" + n + " => " + f + " => " + d);
         System.out.println("" + n1 + ", " + n2 +" float存在精度丢失!");
+
+        Main t = new Main();
+        t.test();
+    }
+
+    private void test() {
+        String a = "Expletive";
+        String b = "deleted";
+        String c = "message";
+        String m = a + b + c;
+        System.out.println(m);
+
+        int age = 10;
+        String mm = "you age is " +age;
+        System.out.println(mm);
     }
 }
