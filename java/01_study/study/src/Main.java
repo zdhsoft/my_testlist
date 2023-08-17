@@ -11,5 +11,10 @@ public class Main {
         double y = Math.sqrt(x);
         double z = Math.pow(x, 2);
         System.out.println("" + y + "," + z);
+
+        int n = 123456789;
+        float f = n;
+        double d = n;
+        System.out.println("" + n + " => " + f + " => " + d);
     }
 }
