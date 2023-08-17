@@ -15,6 +15,9 @@ public class Main {
         int n = 123456789;
         float f = n;
         double d = n;
+        int n1 = (int)f;
+        int n2 = (int)d;
         System.out.println("" + n + " => " + f + " => " + d);
+        System.out.println("" + n1 + ", " + n2 +" float存在精度丢失!");
     }
 }
