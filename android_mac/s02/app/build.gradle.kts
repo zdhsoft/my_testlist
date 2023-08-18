@@ -35,6 +35,7 @@ android {
 }
 
 dependencies {
+    //-------------以下是加入下面的内容
     constraints {
         add("implementation", "org.jetbrains.kotlin:kotlin-stdlib-jdk7") {
             version {
@@ -47,6 +48,7 @@ dependencies {
             }
         }
     }
+    //-------------以上是增加的内容
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
