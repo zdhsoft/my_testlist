@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void goNextPage() {
         TextView tv_hello = findViewById(R.id.tv_hello);
-        tv_hello.setText("。。。3秒后进入下一个页面");
+        tv_hello.setText(R.string.prompt);
         new Handler().postDelayed(mGoNext, 3000);
     }
 
