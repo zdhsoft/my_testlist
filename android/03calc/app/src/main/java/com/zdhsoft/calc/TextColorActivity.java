@@ -1,53 +1,30 @@
 package com.zdhsoft.calc;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.view.View;
-
-import androidx.core.view.WindowCompat;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
-import com.zdhsoft.calc.databinding.ActivityTextColorBinding;
-
 public class TextColorActivity extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityTextColorBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_text_color);
 
-        binding = ActivityTextColorBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        TextView tv_code_system = findViewById(R.id.tv_code_system);
+        tv_code_system.setTextColor(Color.GREEN);
 
-        setSupportActionBar(binding.toolbar);
+        TextView tv_code_six = findViewById(R.id.tv_code_six);
+        tv_code_six.setTextColor(0x00ff00);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_text_color);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        TextView tv_code_eight = findViewById(R.id.tv_code_eight);
+        tv_code_eight.setTextColor(0xff00ff00);
 
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAnchorView(R.id.fab)
-                        .setAction("Action", null).show();
-            }
-        });
+        TextView tv_code_bg = findViewById(R.id.tv_code_background);
+        tv_code_bg.setBackgroundColor(Color.GREEN);      // 在代码中定义的色值
+        tv_code_bg.setBackgroundResource(R.color.green); // 颜色来自资源文件
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_text_color);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 }

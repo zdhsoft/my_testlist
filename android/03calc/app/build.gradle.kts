@@ -4,7 +4,8 @@ plugins {
 
 android {
     namespace = "com.zdhsoft.calc"
-    compileSdk = 33
+    compileSdk = 34
+
 
     defaultConfig {
         applicationId = "com.zdhsoft.calc"
@@ -12,7 +13,6 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -32,7 +32,18 @@ android {
 }
 
 dependencies {
-
+    constraints {
+        add("implementation", "org.jetbrains.kotlin:kotlin-stdlib-jdk7") {
+            version {
+                require("1.8.0")
+            }
+        }
+        add("implementation", "org.jetbrains.kotlin:kotlin-stdlib-jdk8") {
+            version {
+                require("1.8.0")
+            }
+        }
+    }
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
