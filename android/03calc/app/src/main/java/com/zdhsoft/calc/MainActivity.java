@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_text_view).setOnClickListener(this::onClick);
         findViewById(R.id.btn_text_size).setOnClickListener(this::onClick);
         findViewById(R.id.btn_text_color).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_view_border).setOnClickListener(this::onClick);
     }
 
     // @Override
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
             setView(TextSizeActivity.class);
         } else if(id == R.id.btn_text_color) {
             setView(TextColorActivity.class);
+        } else if(id == R.id.btn_view_border) {
+            setView(ViewBorderActivity.class);
         }
     }
 }
