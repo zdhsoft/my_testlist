@@ -8,6 +8,7 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.TextureView;
 import android.view.View;
 
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
     private Runnable mGoNext = new Runnable() {
         @Override
         public void run() {
+            Log.i("prompt", "切换到下一页");
             startActivity(new Intent(MainActivity.this, Main2Activity.class));
         }
     };
