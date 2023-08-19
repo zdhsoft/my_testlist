@@ -17,7 +17,8 @@ public class TextColorActivity extends AppCompatActivity {
         tv_code_system.setTextColor(Color.GREEN);
 
         TextView tv_code_six = findViewById(R.id.tv_code_six);
-        tv_code_six.setTextColor(0x00ff00);
+        // 将tv_code_six的文字颜色设置为透明的绿色，透明就是看不到
+        tv_code_six.setTextColor(0x6600ff00);
 
         TextView tv_code_eight = findViewById(R.id.tv_code_eight);
         tv_code_eight.setTextColor(0xff00ff00);
