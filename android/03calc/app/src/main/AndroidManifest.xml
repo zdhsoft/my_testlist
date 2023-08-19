@@ -13,6 +13,17 @@
         android:theme="@style/Theme.Calc"
         tools:targetApi="31">
         <activity
+            android:name=".TextColorActivity"
+            android:exported="false"
+            android:label="@string/title_activity_text_color"
+            android:theme="@style/Theme.Calc" />
+        <activity
+            android:name=".TextViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TextSizeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
