@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_text_size).setOnClickListener(this::onClick);
         findViewById(R.id.btn_text_color).setOnClickListener(this::onClick);
         findViewById(R.id.btn_view_border).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_view_margin).setOnClickListener(this::onClick);
         findViewById(R.id.btn_view_gravity).setOnClickListener(this::onClick);
     }
 
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
             setView(ViewBorderActivity.class);
         } else if(id == R.id.btn_view_gravity) {
             setView(ViewGravityActivity.class);
+        } else if(id == R.id.btn_view_margin) {
+            setView(ViewMarginActivity.class);
+        } else {
+            Log.d("prompt", "没有找到对应的窗口");
         }
     }
 }

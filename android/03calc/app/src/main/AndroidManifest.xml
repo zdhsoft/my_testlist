@@ -24,6 +24,9 @@
             android:name=".TextViewActivity"
             android:exported="false" />
         <activity
+            android:name=".ViewMarginActivity"
+            android:exported="false" />
+        <activity
             android:name=".TextSizeActivity"
             android:exported="false" />
         <activity
