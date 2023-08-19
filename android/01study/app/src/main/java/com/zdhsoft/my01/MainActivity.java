@@ -1,11 +1,14 @@
 package com.zdhsoft.my01;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Handler;
+import android.view.TextureView;
 import android.view.View;
 
 import androidx.core.view.WindowCompat;
@@ -18,6 +21,7 @@ import com.zdhsoft.my01.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -53,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
+    private void goNextPage() {
+        TextView tv_hello = findViewById(R.id.tv_hello);
+        tv_hello.setText("。。。3秒后进入下一个页面");
+        new Handler().postDelayed(mGoNext, 3000);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        goNextPage();
+    }
+
+    private Runnable mGoNext = new Runnable() {
+        @Override
+        public void run() {
+            startActivity(new Intent(MainActivity.this, Main2Activity.class));
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
