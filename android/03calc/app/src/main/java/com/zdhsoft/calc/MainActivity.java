@@ -45,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         } else if(id == R.id.btn_view_margin) {
             setView(ViewMarginActivity.class);
         } else if(id == R.id.btn_linear_weight) {
-            //s
+            setView(LinearWeightActivity.class);
         }else if (id == R.id.btn_linear_layout) {
-            //
+            setView(LinearLayoutActivity.class);
         } else {
             Log.d("prompt", "没有找到对应的窗口");
         }
