@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_view_gravity).setOnClickListener(this::onClick);
         findViewById(R.id.btn_linear_layout).setOnClickListener(this::onClick);
         findViewById(R.id.btn_linear_weight).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_grid_layout).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_relative_layout).setOnClickListener(this::onClick);
     }
 
     // @Override
