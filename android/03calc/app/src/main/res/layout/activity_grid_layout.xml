@@ -9,53 +9,77 @@
         android:id="@+id/textView19"
         android:layout_width="120dp"
         android:layout_height="60dp"
-        android:text="TextView" />
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#ff0000" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="120dp"
         android:layout_height="60dp"
-        android:text="TextView" />
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#00ff00" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="120dp"
         android:layout_height="60dp"
-        android:text="TextView" />
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#0000ff" />
 
     <TextView
         android:id="@+id/textView22"
         android:layout_width="120dp"
         android:layout_height="60dp"
-        android:text="TextView" />
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#ffcccc"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#ffaa33"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView24"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#ccffcc"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#ccccff"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#ccffff"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#ffcc00"
+        android:textSize="18sp" />
 </GridLayout>
