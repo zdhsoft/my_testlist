@@ -23,6 +23,8 @@
         <activity
             android:name=".TextViewActivity"
             android:exported="false" />
+        <activity android:name=".LinearWeightActivity" android:exported="false" />
+        <activity android:name=".LinearLayoutActivity" android:exported="false" />
         <activity
             android:name=".ViewMarginActivity"
             android:exported="false" />
