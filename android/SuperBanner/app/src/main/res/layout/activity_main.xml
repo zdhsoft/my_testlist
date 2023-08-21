@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/shadowPrimaryDark"
+   >
+    <TextView
+           android:id="@+id/demo1_title"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textSize="18sp"
+           android:text="经典效果:"
+           android:textStyle="bold"
+           android:textColor="@color/colorBlack"
+           android:layout_marginTop="20dp"
+           android:layout_marginLeft="6dp"
+           android:layout_marginBottom="2dp"
+           />
+    <com.banner.superbanner.SuperBanner
+        android:id="@+id/view_pager"
+        android:layout_below="@id/demo1_title"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+
+        />
+    <!--指示器的布局-->
+    <LinearLayout
+        android:id="@+id/indicator_ly"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignBottom="@id/view_pager"
+        android:gravity="center"
+        android:padding="8dp"
+        android:orientation="horizontal" />
+
+    <TextView
+        android:id="@+id/demo2_title"
+        android:layout_below="@id/indicator_ly"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="圆角+内边距+延时切换:"
+        android:textStyle="bold"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginBottom="2dp"
+        />
+    <com.banner.superbanner.SuperBanner
+        android:id="@+id/view_pager2"
+        android:layout_below="@id/demo2_title"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        />
+    <!-- android:clipChildren="false"-->
+    <!--指示器的布局-->
+    <LinearLayout
+        android:id="@+id/indicator_ly2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/view_pager2"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="8dp"
+        android:layout_alignRight="@id/view_pager"
+        android:padding="8dp"
+        android:orientation="horizontal" />
+    <!-- android:background="@color/shadowColorBlack"-->
+    <TextView
+        android:id="@+id/open"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="16sp"
+        android:text="看点刺激的"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:background="@color/shadowPrimaryDark2"
+        />
+</RelativeLayout>
