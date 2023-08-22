@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.zdhsoft.activity.CalculatorActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_linear_weight).setOnClickListener(this::onClick);
         findViewById(R.id.btn_grid_layout).setOnClickListener(this::onClick);
         findViewById(R.id.btn_relative_layout).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_calculator).setOnClickListener(this::onClick);
     }
 
     // @Override
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
             setView(LinearLayoutActivity.class);
         } else if(id == R.id.btn_grid_layout) {
             setView(GridLayoutActivity.class);
+        } else if(id == R.id.btn_calculator) {
+            setView(CalculatorActivity.class);
         } else {
             Log.d("prompt", "没有找到对应的窗口");
         }
