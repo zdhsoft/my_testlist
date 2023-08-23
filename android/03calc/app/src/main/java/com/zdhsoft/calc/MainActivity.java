@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.zdhsoft.activity.CalculatorActivity;
+import com.zdhsoft.activity.RelativeLayoutActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
             setView(GridLayoutActivity.class);
         } else if(id == R.id.btn_calculator) {
             setView(CalculatorActivity.class);
-
+        } else if(id == R.id.btn_relative_layout) {
+            setView(RelativeLayoutActivity.class);
         } else {
             Log.d("prompt", "没有找到对应的窗口");
         }
