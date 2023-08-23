@@ -27,6 +27,9 @@
             android:name=".TextViewActivity"
             android:exported="false" />
         <activity
+            android:name="com.zdhsoft.activity.CalculatorActivity"
+            android:exported="false" />
+        <activity
             android:name=".LinearWeightActivity"
             android:exported="false" />
         <activity

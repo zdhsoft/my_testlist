@@ -1,2 +1,4 @@
-package com.zdhsoft.calc.util;public class DateUtil {
+package com.zdhsoft.calc.util;
+
+public class DateUtil {
 }

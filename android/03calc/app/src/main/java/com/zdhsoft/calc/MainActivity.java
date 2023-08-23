@@ -27,6 +27,15 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_grid_layout).setOnClickListener(this::onClick);
         findViewById(R.id.btn_relative_layout).setOnClickListener(this::onClick);
         findViewById(R.id.btn_calculator).setOnClickListener(this::onClick);
+
+        findViewById(R.id.btn_scroll_view).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_button_style).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_button_click).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_button_longclick).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_button_enable).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_image_scale).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_image_button).setOnClickListener(this::onClick);
+        findViewById(R.id.btn_image_text).setOnClickListener(this::onClick);
     }
 
     // @Override
@@ -57,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             setView(GridLayoutActivity.class);
         } else if(id == R.id.btn_calculator) {
             setView(CalculatorActivity.class);
+
         } else {
             Log.d("prompt", "没有找到对应的窗口");
         }

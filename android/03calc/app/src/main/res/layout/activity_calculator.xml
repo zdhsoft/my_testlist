@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#eeeeee"
@@ -158,11 +159,11 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/btn_three"
+                    android:id="@+id/btn_one"
                     android:layout_width="90dp"
                     android:layout_height="75dp"
                     android:gravity="center"
-                    android:text="3"
+                    android:text="1"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
@@ -176,13 +177,20 @@
                     android:textSize="30sp" />
 
                 <Button
-                    android:id="@+id/btn_one"
+                    android:id="@+id/btn_three"
                     android:layout_width="90dp"
                     android:layout_height="75dp"
                     android:gravity="center"
-                    android:text="1"
+                    android:text="3"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
+
+                <ImageButton
+                    android:id="@+id/ib_sqrt"
+                    android:layout_width="90dp"
+                    android:layout_height="75dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/sqrt"/>
 
                 <Button
                     android:id="@+id/btn_reciprocal"
@@ -190,6 +198,33 @@
                     android:layout_height="75dp"
                     android:gravity="center"
                     android:text="1/x"
+                    android:textColor="@color/black"
+                    android:textSize="28sp" />
+
+                <Button
+                    android:id="@+id/btn_zero"
+                    android:layout_width="90dp"
+                    android:layout_height="75dp"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/btn_dot"
+                    android:layout_width="90dp"
+                    android:layout_height="75dp"
+                    android:gravity="center"
+                    android:text="."
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/btn_equal"
+                    android:layout_width="91dp"
+                    android:layout_height="75dp"
+                    android:gravity="center"
+                    android:text="="
                     android:textColor="@color/black"
                     android:textSize="30sp" />
             </GridLayout>
