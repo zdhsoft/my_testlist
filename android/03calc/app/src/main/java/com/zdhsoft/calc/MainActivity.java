@@ -9,9 +9,13 @@ import android.util.Log;
 import android.view.View;
 
 import com.zdhsoft.activity.ButtonClickActivity;
+import com.zdhsoft.activity.ButtonEnableActivity;
 import com.zdhsoft.activity.ButtonLongclickActivity;
 import com.zdhsoft.activity.ButtonStyleActivity;
 import com.zdhsoft.activity.CalculatorActivity;
+import com.zdhsoft.activity.ImageButtonActivity;
+import com.zdhsoft.activity.ImageScaleActivity;
+import com.zdhsoft.activity.ImageTextActivity;
 import com.zdhsoft.activity.RelativeLayoutActivity;
 import com.zdhsoft.activity.ScrollViewActivity;
 
@@ -81,6 +85,14 @@ public class MainActivity extends AppCompatActivity {
             setView(ButtonClickActivity.class);
         } else if(id == R.id.btn_button_longclick) {
             setView(ButtonLongclickActivity.class);
+        } else if(id == R.id.btn_button_enable) {
+            setView(ButtonEnableActivity.class);
+        } else if(id == R.id.btn_image_button) {
+            setView(ImageButtonActivity.class);
+        } else if(id == R.id.btn_image_scale) {
+            setView(ImageScaleActivity.class);
+        } else if(id == R.id.btn_image_text) {
+            setView(ImageTextActivity.class);
         } else {
             Log.d("prompt", "没有找到对应的窗口");
         }
