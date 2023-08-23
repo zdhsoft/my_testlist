@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.zdhsoft.activity.ButtonClickActivity;
+import com.zdhsoft.activity.ButtonLongclickActivity;
 import com.zdhsoft.activity.ButtonStyleActivity;
 import com.zdhsoft.activity.CalculatorActivity;
 import com.zdhsoft.activity.RelativeLayoutActivity;
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             setView(ButtonStyleActivity.class);
         } else if(id == R.id.btn_button_click) {
             setView(ButtonClickActivity.class);
+        } else if(id == R.id.btn_button_longclick) {
+            setView(ButtonLongclickActivity.class);
         } else {
             Log.d("prompt", "没有找到对应的窗口");
         }
