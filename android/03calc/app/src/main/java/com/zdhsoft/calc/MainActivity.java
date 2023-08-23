@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.zdhsoft.activity.ButtonStyleActivity;
 import com.zdhsoft.activity.CalculatorActivity;
 import com.zdhsoft.activity.RelativeLayoutActivity;
+import com.zdhsoft.activity.ScrollViewActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -69,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
             setView(CalculatorActivity.class);
         } else if(id == R.id.btn_relative_layout) {
             setView(RelativeLayoutActivity.class);
+        } else if(id == R.id.btn_scroll_view) {
+            setView(ScrollViewActivity.class);
+        } else if(id == R.id.btn_button_style) {
+            setView(ButtonStyleActivity.class);
         } else {
             Log.d("prompt", "没有找到对应的窗口");
         }

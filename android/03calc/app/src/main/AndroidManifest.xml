@@ -33,6 +33,12 @@
             android:name="com.zdhsoft.activity.RelativeLayoutActivity"
             android:exported="false" />
         <activity
+            android:name="com.zdhsoft.activity.ScrollViewActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.zdhsoft.activity.ButtonStyleActivity"
+            android:exported="false" />
+        <activity
             android:name=".LinearWeightActivity"
             android:exported="false" />
         <activity
