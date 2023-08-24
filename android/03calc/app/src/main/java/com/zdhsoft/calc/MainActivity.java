@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_image_scale).setOnClickListener(this::onClick);
         findViewById(R.id.btn_image_button).setOnClickListener(this::onClick);
         findViewById(R.id.btn_image_text).setOnClickListener(this::onClick);
+
+        // do finish!!! yes
     }
 
     // @Override
