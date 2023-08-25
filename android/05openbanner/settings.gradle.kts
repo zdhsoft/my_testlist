@@ -10,6 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            setUrl("https://maven.aliyun.com/nexus/content/groups/public/")
+        }
     }
 }
 
