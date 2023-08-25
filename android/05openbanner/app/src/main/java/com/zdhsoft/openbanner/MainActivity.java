@@ -11,7 +11,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.zdhsoft.openbanner.databinding.ActivityMainBinding;
-
+// 参考的博客
+// https://juejin.cn/post/7113195383215849508
+// https://gitee.com/android_locker/banner#step-1%E4%BE%9D%E8%B5%96banner
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
