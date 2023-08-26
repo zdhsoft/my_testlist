@@ -1,4 +1,4 @@
-package com.zdhsoft.openbanner3.bean;
+package com.zdhsoft.openbanner3.banner.bean;
 
 import com.zdhsoft.openbanner3.R;
 

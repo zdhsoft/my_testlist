@@ -1,11 +1,9 @@
 plugins {
     id("com.android.application")
 }
-
 android {
     namespace = "com.zdhsoft.openbanner3"
     compileSdk = 33
-
     defaultConfig {
         applicationId = "com.zdhsoft.openbanner3"
         minSdk = 24
@@ -26,15 +24,28 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-}
 
+}
+//apply(plugin = "com.jakewharton.butterknife")
+//apply(plugin = "om.android.library")
+//buildscript {
+//    repositories {
+//        mavenCentral()
+//        google()
+//    }
+//    dependencies {
+//        classpath("com.jakewharton:butterknife-gradle-plugin:10.2.3")
+//    }
+//}
 dependencies {
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("io.github.youth5201314:banner:2.2.2")
     implementation("com.github.bumptech.glide:glide:4.16.0")
-    implementation("com.jakewharton:butterknife:10.2.3")
+    // implementation("com.jakewharton:butterknife:10.2.3")
+    // annotationProcessor("com.jakewharton:butterknife-compiler:10.2.3")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("com.github.CarGuo.GSYVideoPlayer:GSYVideoPlayer:v8.4.0-release-jitpack")

@@ -12,7 +12,7 @@ import com.youth.banner.Banner;
 import com.youth.banner.adapter.BannerImageAdapter;
 import com.youth.banner.holder.BannerImageHolder;
 import com.youth.banner.indicator.CircleIndicator;
-import com.zdhsoft.openbanner3.bean.DataBean;
+import com.zdhsoft.openbanner3.banner.bean.DataBean;
 
 public class MainActivity extends AppCompatActivity {
 
