@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
@@ -41,7 +40,6 @@ import com.youth.banner.transformer.ScaleInTransformer;
 import com.youth.banner.util.BannerLifecycleObserverAdapter;
 import com.youth.banner.util.BannerUtils;
 import com.youth.banner.util.BannerLifecycleObserver;
-import com.youth.banner.util.LogUtils;
 import com.youth.banner.util.ScrollSpeedManger;
 import com.zdhsoft.openbanner.R;
 
@@ -268,7 +266,7 @@ public class Banner<T, BA extends BannerAdapter<T, ? extends RecyclerView.ViewHo
     @Override
     protected void dispatchDraw(Canvas canvas) {
         if (mBannerRadius > 0) {
-            canvas.saveLayer(new RectF(0, 0, canvas.getWidth(), canvas.getHeight()), mImagePaint, Canvas.ALL_SAVE_FLAG);
+            canvas.saveLayer(new RectF(0, 0, canvas.getWidth(), canvas.getHeight()), mImagePaint);
             super.dispatchDraw(canvas);
             //绘制外圆环边框圆环
             //默认四个角都设置
@@ -504,7 +502,7 @@ public class Banner<T, BA extends BannerAdapter<T, ? extends RecyclerView.ViewHo
         return mIsInfiniteLoop;
     }
 
-    public BannerAdapter getAdapter() {
+    public BannerAdapter<T, RecyclerView.ViewHolder> getAdapter() {
         return mAdapter;
     }
 
@@ -725,7 +723,7 @@ public class Banner<T, BA extends BannerAdapter<T, ? extends RecyclerView.ViewHo
      * @param isInfiniteLoop 是否支持无限循环
      * @return
      */
-    public Banner setAdapter(BA adapter,boolean isInfiniteLoop) {
+    public Banner setAdapter(BA adapter, boolean isInfiniteLoop) {
         mIsInfiniteLoop=isInfiniteLoop;
         setInfiniteLoop();
         setAdapter(adapter);
