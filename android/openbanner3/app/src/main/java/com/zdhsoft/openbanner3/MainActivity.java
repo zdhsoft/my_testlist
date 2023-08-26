@@ -3,6 +3,7 @@ package com.zdhsoft.openbanner3;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -52,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
 //                .setIndicator(new CircleIndicator(this));
 
         //—————————————————————————如果你想偷懒，而又只是图片轮播————————————————————————
-        banner.setAdapter(new BannerImageAdapter<DataBean>(DataBean.getTestData3()) {
+        banner.setAdapter(new BannerImageAdapter<DataBean>(DataBean.getTestData()) {
                     @Override
                     public void onBindView(BannerImageHolder holder, DataBean data, int position, int size) {
                         //图片加载自己实现
+                        Log.d(">>>>", "imageURL:" + data.imageUrl + ", dataType:" + data.viewType + ", imageRes:" + data.imageRes + ", title:" + data.title );
                         Glide.with(holder.itemView)
                                 .load(data.imageUrl)
                                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
