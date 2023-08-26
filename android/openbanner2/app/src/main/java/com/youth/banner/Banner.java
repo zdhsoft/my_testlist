@@ -250,7 +250,7 @@ public class Banner<T, BA extends BannerAdapter<T, ? extends RecyclerView.ViewHo
                 float endY = event.getY();
                 float distanceX = Math.abs(endX - mStartX);
                 float distanceY = Math.abs(endY - mStartY);
-                if (getViewPager2().getOrientation() == HORIZONTAL) {
+                if (getViewPager2().getOrientation() == ViewPager2.ORIENTATION_HORIZONTAL) {
                     mIsViewPager2Drag = distanceX > mTouchSlop && distanceX > distanceY;
                 } else {
                     mIsViewPager2Drag = distanceY > mTouchSlop && distanceY > distanceX;

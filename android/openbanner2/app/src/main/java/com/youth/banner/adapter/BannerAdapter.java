@@ -5,11 +5,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.youth.banner.R;
+
 import com.youth.banner.config.BannerConfig;
 import com.youth.banner.holder.IViewHolder;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.util.BannerUtils;
+import com.zdhsoft.openbanner.R;
 
 import java.util.ArrayList;
 import java.util.List;

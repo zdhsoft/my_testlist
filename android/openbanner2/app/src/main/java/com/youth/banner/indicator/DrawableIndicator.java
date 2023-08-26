@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
 
-import com.youth.banner.R;
+import com.zdhsoft.openbanner.R;
 
 
 /**

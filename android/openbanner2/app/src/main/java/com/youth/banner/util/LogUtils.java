@@ -2,7 +2,7 @@ package com.youth.banner.util;
 
 import android.util.Log;
 
-import com.youth.banner.BuildConfig;
+import com.youth.banner.config.BuildConfig;
 
 public class LogUtils {
     public static final String TAG = "banner_log";
