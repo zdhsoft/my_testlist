@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "openbanner"
-include ':app'
+include(":app")
+ 
