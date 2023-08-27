@@ -3,13 +3,13 @@ plugins {
     id("com.android.application") version "8.1.1" apply false
 }
 
-apply(plugin = "com.jakewharton.butterknife")
+// apply(plugin = "com.jakewharton.butterknife")
 // apply(plugin = "com.android.library")
 buildscript {
     repositories {
         gradlePluginPortal()
     }
     dependencies {
-        classpath("com.jakewharton:butterknife-gradle-plugin:10.2.3")
+        // classpath("com.jakewharton:butterknife-gradle-plugin:10.2.3")
     }
 }
