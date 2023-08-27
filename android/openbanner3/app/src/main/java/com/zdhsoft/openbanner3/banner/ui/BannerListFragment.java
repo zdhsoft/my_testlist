@@ -35,7 +35,7 @@ public class BannerListFragment extends Fragment implements IBindContent {
     }
 
     public void bindContent(@NonNull View view) {
-        recyclerView = (RecyclerView)view.findViewById(R.id.net_rv);
+        recyclerView = (RecyclerView)view.findViewById(R.id.net_rv_bbb);
         text = (TextView)view.findViewById(R.id.text);
     }
 

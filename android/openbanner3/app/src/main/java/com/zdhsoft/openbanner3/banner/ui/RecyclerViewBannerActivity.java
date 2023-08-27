@@ -18,7 +18,7 @@ public class RecyclerViewBannerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyclerview_banner);
 
-        recyclerView = findViewById(R.id.net_rv);
+        recyclerView = findViewById(R.id.net_rv_bbb);
         // ButterKnife.bind(this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MyRecyclerViewAdapter(this));
