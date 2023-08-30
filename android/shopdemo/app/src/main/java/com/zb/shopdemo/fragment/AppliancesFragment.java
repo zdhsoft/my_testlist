@@ -2,6 +2,8 @@ package com.zb.shopdemo.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.zb.shopdemo.R;
 import com.zb.shopdemo.adapter.RecyclerStagAdapter;
 import com.zb.shopdemo.bean.NewsInfo;
+import com.zb.shopdemo.widget.SpacesDecoration;
 
 import java.util.List;
 

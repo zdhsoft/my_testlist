@@ -1,6 +1,24 @@
 package com.zb.shopdemo.adapter;
 
 import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.zb.shopdemo.R;
+import com.zb.shopdemo.bean.NewsInfo;
+import com.zb.shopdemo.widget.RecyclerExtras.OnItemClickListener;
+import com.zb.shopdemo.widget.RecyclerExtras.OnItemLongClickListener;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+
+import java.util.List;
 
 public class RecyclerStagAdapter  extends RecyclerView.Adapter<ViewHolder>
         implements OnItemClickListener, OnItemLongClickListener  {
