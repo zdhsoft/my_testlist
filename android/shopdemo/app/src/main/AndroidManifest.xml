@@ -13,6 +13,9 @@
         android:theme="@style/Theme.Shopdemo"
         tools:targetApi="31">
         <activity
+            android:name=".DepartmentStoreActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
