@@ -1,5 +1,6 @@
 package com.zb.shopdemo.fragment;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +50,10 @@ public class DepartmentHomeFragment extends Fragment implements BannerPager.Bann
         Toolbar tl_head = mView.findViewById(R.id.tl_head);
         tl_head.setTitle("商城首页"); // 设置工具栏的标题文字
         mActivity.setSupportActionBar(tl_head); // 使用tl_head替换系统自带的ActionBar
+        ActionBar bar = mActivity.getActionBar();
+        if (bar != null) {
+            bar.hide();
+        }
         initBanner(); // 初始化广告轮播条
         initGrid(); // 初始化市场网格列表
         initCombine(); // 初始化猜你喜欢的商品展示网格
