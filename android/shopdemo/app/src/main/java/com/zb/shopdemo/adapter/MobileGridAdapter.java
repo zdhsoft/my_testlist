@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.zb.shopdemo.R;
 import com.zb.shopdemo.bean.GoodsInfo;
-import com.zb.shopdemo.util.Utils;
 import com.zb.shopdemo.widget.RecyclerExtras;
 import com.zb.shopdemo.widget.RecyclerExtras.OnItemClickListener;
 import com.zb.shopdemo.widget.RecyclerExtras.OnItemLongClickListener;
@@ -19,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import java.util.List;
 
-public class MobileGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements
+public class MobileGridAdapter extends RecyclerView.Adapter<ViewHolder> implements
         OnItemClickListener, OnItemLongClickListener {
     private final static String TAG = "MobileGridAdapter";
     private Context mContext; // 声明一个上下文对象
