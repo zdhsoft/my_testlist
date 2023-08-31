@@ -10,12 +10,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zb.shopdemo.R;
+import com.zb.shopdemo.adapter.RecyclerGridAdapter;
+import com.zb.shopdemo.bean.NewsInfo;
 import com.zb.shopdemo.util.Utils;
 import com.zb.shopdemo.widget.BannerPager;
+import com.zb.shopdemo.widget.SpacesDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
