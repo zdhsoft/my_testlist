@@ -1,4 +1,5 @@
 package com.zb.shopdemo.adapter;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,23 +10,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.zb.shopdemo.R;
+import com.zb.shopdemo.bean.NewsInfo;
+import com.zb.shopdemo.util.Utils;
+import com.zb.shopdemo.widget.RecyclerExtras.OnItemClickListener;
+import com.zb.shopdemo.widget.RecyclerExtras.OnItemLongClickListener;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
-import com.zb.shopdemo.R;
-import com.zb.shopdemo.bean.NewsInfo;
-import com.zb.shopdemo.widget.RecyclerExtras.OnItemClickListener;
-import com.zb.shopdemo.widget.RecyclerExtras.OnItemLongClickListener;
-
 import java.util.List;
+
 @SuppressLint("DefaultLocale")
-public class RecyclerGridAdapter extends RecyclerView.Adapter<ViewHolder> implements
+public class RecyclerCombineAdapter extends RecyclerView.Adapter<ViewHolder> implements
         OnItemClickListener, OnItemLongClickListener {
-    private final static String TAG = "RecyclerGridAdapter";
+    private final static String TAG = "RecyclerCombineAdapter";
     private Context mContext; // 声明一个上下文对象
     private List<NewsInfo> mGoodsList;
 
-    public RecyclerGridAdapter(Context context, List<NewsInfo> goodsList) {
+    public RecyclerCombineAdapter(Context context, List<NewsInfo> goodsList) {
         mContext = context;
         mGoodsList = goodsList;
     }
@@ -37,8 +39,8 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<ViewHolder> implem
 
     // 创建列表项的视图持有者
     public ViewHolder onCreateViewHolder(ViewGroup vg, int viewType) {
-        // 根据布局文件item_grid.xml生成视图对象
-        View v = LayoutInflater.from(mContext).inflate(R.layout.item_grid, vg, false);
+        // 根据布局文件item_combine.xml生成视图对象
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item_combine, vg, false);
         return new ItemHolder(v);
     }
 
@@ -47,6 +49,13 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<ViewHolder> implem
         ItemHolder holder = (ItemHolder) vh;
         holder.iv_pic.setImageResource(mGoodsList.get(position).pic_id);
         holder.tv_title.setText(mGoodsList.get(position).title);
+        ViewGroup.LayoutParams iv_param = holder.iv_pic.getLayoutParams();
+        if (position==0 || position==1) {
+            iv_param.height = Utils.dip2px(mContext, 130);
+        } else {
+            iv_param.height = Utils.dip2px(mContext, 60);
+        }
+        holder.iv_pic.setLayoutParams(iv_param);
         // 列表项的点击事件需要自己实现
         holder.ll_item.setOnClickListener(v -> {
             if (mOnItemClickListener != null) {
@@ -102,14 +111,14 @@ public class RecyclerGridAdapter extends RecyclerView.Adapter<ViewHolder> implem
 
     // 处理列表项的点击事件
     public void onItemClick(View view, int position) {
-        String desc = String.format("您点击了第%d项，栏目名称是%s", position + 1,
+        String desc = String.format("您点击了第%d项，推荐频道是%s", position + 1,
                 mGoodsList.get(position).title);
         Toast.makeText(mContext, desc, Toast.LENGTH_SHORT).show();
     }
 
     // 处理列表项的长按事件
     public void onItemLongClick(View view, int position) {
-        String desc = String.format("您长按了第%d项，栏目名称是%s", position + 1,
+        String desc = String.format("您长按了第%d项，推荐频道是%s", position + 1,
                 mGoodsList.get(position).title);
         Toast.makeText(mContext, desc, Toast.LENGTH_SHORT).show();
     }
