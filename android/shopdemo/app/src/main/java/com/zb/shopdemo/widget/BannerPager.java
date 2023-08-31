@@ -17,6 +17,7 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager.widget.ViewPager.SimpleOnPageChangeListener;
 
 import com.zb.shopdemo.R;
+import com.zb.shopdemo.util.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
