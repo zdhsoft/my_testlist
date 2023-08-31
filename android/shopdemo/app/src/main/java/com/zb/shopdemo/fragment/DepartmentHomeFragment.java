@@ -39,6 +39,8 @@ public class DepartmentHomeFragment extends Fragment implements BannerPager.Bann
         imageList.add(R.drawable.banner_3);
         imageList.add(R.drawable.banner_4);
         imageList.add(R.drawable.banner_5);
+        imageList.add(R.drawable.banner_5);
+        imageList.add(R.drawable.banner_2);
         return imageList;
     }
 
@@ -47,13 +49,13 @@ public class DepartmentHomeFragment extends Fragment implements BannerPager.Bann
         mActivity = (AppCompatActivity) getActivity();
         mView = inflater.inflate(R.layout.fragment_department_home, container, false);
         // 从布局文件中获取名叫tl_head的工具栏
-        Toolbar tl_head = mView.findViewById(R.id.tl_head);
-        tl_head.setTitle("商城首页"); // 设置工具栏的标题文字
-        mActivity.setSupportActionBar(tl_head); // 使用tl_head替换系统自带的ActionBar
-        ActionBar bar = mActivity.getActionBar();
-        if (bar != null) {
-            bar.hide();
-        }
+//        Toolbar tl_head = mView.findViewById(R.id.tl_head);
+//        tl_head.setTitle("商城首页"); // 设置工具栏的标题文字
+        // mActivity.setSupportActionBar(tl_head); // 使用tl_head替换系统自带的ActionBar
+//        ActionBar bar = mActivity.getActionBar();
+//        if (bar != null) {
+//            bar.hide();
+//        }
         initBanner(); // 初始化广告轮播条
         initGrid(); // 初始化市场网格列表
         initCombine(); // 初始化猜你喜欢的商品展示网格
