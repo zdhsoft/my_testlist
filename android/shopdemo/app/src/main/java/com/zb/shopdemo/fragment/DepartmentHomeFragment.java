@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.zb.shopdemo.R;
+import com.zb.shopdemo.adapter.MobileGridAdapter;
 import com.zb.shopdemo.adapter.RecyclerCombineAdapter;
 import com.zb.shopdemo.adapter.RecyclerGridAdapter;
+import com.zb.shopdemo.bean.GoodsInfo;
 import com.zb.shopdemo.bean.NewsInfo;
 import com.zb.shopdemo.util.Utils;
 import com.zb.shopdemo.widget.BannerPager;
