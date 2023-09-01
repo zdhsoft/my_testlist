@@ -41,6 +41,7 @@ public class DepartmentHomeFragment extends Fragment implements BannerPager.Bann
         imageList.add(R.drawable.banner_5);
         imageList.add(R.drawable.banner_5);
         imageList.add(R.drawable.banner_2);
+        imageList.add(R.drawable.banner_4);
         return imageList;
     }
 
