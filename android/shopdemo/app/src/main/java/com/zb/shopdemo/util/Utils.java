@@ -75,13 +75,13 @@ public class Utils {
         int cnt = paramG.getChildCount();
         for(int i = 0; i < cnt; ++i) {
             View item = paramG.getChildAt(i);
-            if (item == null) s
+            if (item == null) {
                 continue;
             }
             if (item.getId() == paramId) {
                 return i;
             }
-        }
+        };
         return -1;
     }
 
