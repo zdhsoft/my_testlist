@@ -47,7 +47,6 @@ public class Utils {
      * @return 返回找到的数据
      *  - null 表示没有找到的数据
      *  - not null 表示找到的对象
-     * @param <T>
      */
     public static View getButtonById(ViewGroup paramG, int paramId) {
         int cnt = paramG.getChildCount();
