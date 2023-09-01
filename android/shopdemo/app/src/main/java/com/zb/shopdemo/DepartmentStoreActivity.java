@@ -8,9 +8,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.zb.shopdemo.adapter.DepartmentPagerAdapter;
+import com.zb.shopdemo.util.Utils;
 
 public class DepartmentStoreActivity extends AppCompatActivity {
     private ViewPager vp_content; // 声明一个翻页视图对象
+    // 一个导航栏
     private RadioGroup rg_tabbar; // 声明一个单选组对象
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +35,9 @@ public class DepartmentStoreActivity extends AppCompatActivity {
         rg_tabbar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                for (int pos=0; pos<rg_tabbar.getChildCount(); pos++) {
-                    // 获得指定位置的单选按钮
-                    RadioButton tab = (RadioButton) rg_tabbar.getChildAt(pos);
-                    if (tab.getId() == checkedId) { // 正是当前选中的按钮
-                        vp_content.setCurrentItem(pos); // 设置翻页视图显示第几页
-                    }
+                int itemPos = Utils.getPosById(group, checkedId);
+                if (itemPos >= 0) {
+                    vp_content.setCurrentItem(itemPos);
                 }
             }
         });

@@ -3,6 +3,8 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 public class Utils {
@@ -36,6 +38,51 @@ public class Utils {
             screenWidth = dm.widthPixels;
         }
         return screenWidth; // 返回屏幕的宽度数值
+    }
+
+    /**
+     * 取一个指定id的view对象
+     * @param paramG 指定的ViewGroup
+     * @param paramId 指定的id
+     * @return 返回找到的数据
+     *  - null 表示没有找到的数据
+     *  - not null 表示找到的对象
+     * @param <T>
+     */
+    public static View getButtonById(ViewGroup paramG, int paramId) {
+        int cnt = paramG.getChildCount();
+        for(int i = 0; i < cnt; ++i) {
+            View item = paramG.getChildAt(i);
+            if(item == null) {
+                continue;
+            }
+            if (item.getId() == paramId) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * 取一个指定id的下标
+     * @param paramG 指定的ViewGroup
+     * @param paramId 指定的id
+     * @return
+     * - -1 表示没有找到
+     * - >= 0 表示对应的下标s
+     */
+    public static int getPosById(ViewGroup paramG, int paramId) {
+        int cnt = paramG.getChildCount();
+        for(int i = 0; i < cnt; ++i) {
+            View item = paramG.getChildAt(i);
+            if (item == null) s
+                continue;
+            }
+            if (item.getId() == paramId) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     // 获得屏幕的高度
