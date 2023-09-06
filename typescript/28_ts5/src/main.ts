@@ -12,15 +12,26 @@
  *************************************************************************/
 
 import { XCommRet } from '@zdhsoft/commret';
+import { test_banner_list } from './test';
 
-function s(): XCommRet<number> {
-    const r = new XCommRet<number>();
-    do {
-        //
-        r.setOK(1999);
-    } while (false);
-    return r;
+test_banner_list();
+
+async function main() {
+    await test_banner_list();
+
+    process.exit(0);
 }
 
-const r = s();
-console.log('hello world!' + JSON.stringify(r));
+main();
+
+// function s(): XCommRet<number> {
+//     const r = new XCommRet<number>();
+//     do {
+//         //
+//         r.setOK(1999);
+//     } while (false);
+//     return r;
+// }
+
+// const r = s();
+// console.log('hello world!' + JSON.stringify(r));

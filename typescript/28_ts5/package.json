@@ -32,6 +32,7 @@
         "npm": ">=6.0.0"
     },
     "dependencies": {
-        "@zdhsoft/commret": "^1.0.3"
+        "@zdhsoft/commret": "^1.0.3",
+        "axios": "^1.5.0"
     }
 }
