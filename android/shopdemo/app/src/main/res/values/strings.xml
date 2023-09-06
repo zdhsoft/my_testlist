@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">shopdemo</string>
+    <string name="app_name">商店演示</string>
+    <string name="navi_home">首页</string>
+    <string name="navi_group">分类</string>
+    <string name="navi_car">购物车</string>
+    <string name="navi_car1">购物车1</string>
+    <string name="navi_car2">购物车2</string>
 </resources>
