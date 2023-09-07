@@ -1,5 +1,5 @@
 import com.alibaba.fastjson.JSON;
-import com.google.gson.Gson;
+import com.zdhsoft.test.JsonBean;
 import okhttp3.*;
 
 import java.io.IOException;
@@ -26,7 +26,7 @@ public class testbanner {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Object o = JSON.parse(response.body().string());
+                JsonBean o = JSON.parseObject(response.body().string(), JsonBean.class);
                 System.out.println(o.toString());
 //                Gson g = new Gson();
 //                Object o = g.fromJson(response.body().toString());
