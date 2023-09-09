@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import java.io.IOException;
 
@@ -17,10 +18,12 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG = "MainActivity";
+    private TextView mTvText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mTvText = findViewById(R.id.tv_text);
     }
 
     public void onClick(View v) {
@@ -36,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                Log.i(TAG, response.body().string());
+                String body = response.body().string();
+                Log.i(TAG, body);
+                mTvText.setText(body);
             }
         });
 
