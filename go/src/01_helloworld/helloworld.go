@@ -57,9 +57,13 @@ func main() { // main函数，是程序执行的入口
 	ttt := TabInfo{Name: "1", Type: "football", Icon: "这既是icon"}
 	fmt.Println(ttt)
 
-	x := [...]TabInfo{{"1", "2", "3"}, {"2","3","4"}}
+	x := []TabInfo{{"1", "2", "3"}, {"2", "3", "4"}}
+	// x := append(x, []TabInfo{"4", "5", "6"})
 
 	fmt.Println(x, len(x))
+	for i := 0; i < len(x); i++ {
+		fmt.Println(x[i])
+	}
 
 }
 
