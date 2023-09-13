@@ -1,6 +1,20 @@
 package main
 
 import "fmt" // 导入内置 fmt 包
+type TabInfo struct {
+	// *
+	// @description tab的名称
+	// @example 足球
+	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	// *
+	// @description tab对应的列表类型
+	// @example football
+	Type string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	// *
+	// @description 图标
+	// @example https://...../icon.png
+	Icon string `protobuf:"bytes,3,opt,name=icon,proto3" json:"icon,omitempty"`
+}
 
 func main() { // main函数，是程序执行的入口
 	var outstr string = "Hello World! by outstr!"
@@ -39,6 +53,14 @@ func main() { // main函数，是程序执行的入口
 			break
 		}
 	}
+
+	ttt := TabInfo{Name: "1", Type: "football", Icon: "这既是icon"}
+	fmt.Println(ttt)
+
+	x := [...]TabInfo{{"1", "2", "3"}, {"2","3","4"}}
+
+	fmt.Println(x, len(x))
+
 }
 
 // Go语言的基本类型有：
