@@ -16,7 +16,7 @@ type TabInfo struct {
 	Icon string `protobuf:"bytes,3,opt,name=icon,proto3" json:"icon,omitempty"`
 }
 
-func main() { // main函数，是程序执行的入口
+func main_test() { // main函数，是程序执行的入口
 	var outstr string = "Hello World! by outstr!"
 	b := "aaaa"
 	fmt.Println(outstr) // 在终端打印 Hello World!
@@ -76,3 +76,8 @@ func main() { // main函数，是程序执行的入口
 // rune // int32 的别名 代表一个 Unicode 码
 // float32、float64
 // complex64、complex128
+
+func main() {
+	// main_test()
+	testjson()
+}
