@@ -18,8 +18,8 @@ type Live1 struct {
 	score string
 }
 
-func b2b(src []Live) []Live1 {
-	b := []Live1{}
+func b2b(src []*Live) []*Live1 {
+	b := []*Live1{}
 	i := 0
 	for i = 0; i < len(src); i++ {
 		v := src[i]
@@ -27,7 +27,7 @@ func b2b(src []Live) []Live1 {
 		k.age = v.age
 		k.name = v.score
 		k.score = v.name + ":" + strconv.Itoa((int)(v.score))
-		b = append(b, k)
+		b = append(b, &k)
 	}
 	return b
 }
@@ -48,12 +48,12 @@ func utils_football_score(home_scores string, away_scores string) (error, []int3
 }
 
 func to() {
-	lives := []Live{} // 创建一个空的Live数组
+	lives := []*Live{} // 创建一个空的Live数组
 
 	// 添加示例元素
-	lives = append(lives, Live{age: 25, name: "Alice", score: 80})
-	lives = append(lives, Live{age: 30, name: "Bob", score: 90})
-	lives = append(lives, Live{age: 35, name: "Charlie", score: 85})
+	lives = append(lives, &Live{age: 25, name: "Alice", score: 80})
+	lives = append(lives, &Live{age: 30, name: "Bob", score: 90})
+	lives = append(lives, &Live{age: 35, name: "Charlie", score: 85})
 
 	k := b2b(lives)
 
