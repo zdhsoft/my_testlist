@@ -15,6 +15,6 @@ func testPackage() {
 }
 
 func main() {
-	// test.TestPoint()
-	test.TestJson()
+	test.TestPoint()
+	// test.TestJson()
 }
