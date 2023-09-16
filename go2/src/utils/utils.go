@@ -1,8 +1,8 @@
 package xxxyyy
 
-type xxx struct {
+type Xxx struct {
 }
 
-func (c *xxx) Calc(a int, b int) int {
+func (c *Xxx) Calc(a int, b int) int {
 	return a + b
 }
