@@ -1,6 +1,7 @@
 package main
 
 import "fmt" // 导入内置 fmt 包
+import "common"
 type TabInfo struct {
 	// *
 	// @description tab的名称
