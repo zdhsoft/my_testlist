@@ -10,6 +10,14 @@ fun main(args: Array<String>) {
     var mm = sum(1,2);
     System.out.println(mm);
     System.out.println(mm.javaClass.name);
+
+    val ssss:(Int, Int) -> Int = { x, y -> x + y};
+    val kkkk = { x: Int, y: Int -> x + y};
+
+    System.out.println(ssss(99,100));
+    System.out.println(kkkk(1111,9999));
+
+
 }
 
 fun sum(x: Int, y: Int) = x + y;
