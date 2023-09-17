@@ -1,21 +1,25 @@
 fun main(args: Array<String>) {
-
+    println("size:${args.size} => ")
     for(a in args) {
-        System.out.println(a);
+        println(a);
     }
 
     //System.out.println("hello world");
     var k = testType();
-    System.out.println(k.javaClass.name);
+    println(k.javaClass.name);
     var mm = sum(1,2);
-    System.out.println(mm);
-    System.out.println(mm.javaClass.name);
+    println(mm);
+    println(mm.javaClass.name);
 
     val ssss:(Int, Int) -> Int = { x, y -> x + y};
     val kkkk = { x: Int, y: Int -> x + y};
 
-    System.out.println(ssss(99,100));
-    System.out.println(kkkk(1111,9999));
+    println(ssss(99,100));
+    println(kkkk(1111,9999));
+
+    args.forEach { x: String -> println("hello:$x") }
+
+    listOf(1,2,3,4,5).forEach { x -> println(x) }
 
 
 }
@@ -30,12 +34,12 @@ fun testType(): Int {
     var d = 13.9;
     var d2 = 10.1e6;
 
-    System.out.println(s.javaClass.name)
-    System.out.println(i.javaClass.name)
-    System.out.println(l.javaClass.name)
-    System.out.println(f.javaClass.name)
-    System.out.println(d.javaClass.name)
-    System.out.println(d2.javaClass.name)
+    println(s.javaClass.name)
+    println(i.javaClass.name)
+    println(l.javaClass.name)
+    println(f.javaClass.name)
+    println(d.javaClass.name)
+    println(d2.javaClass.name)
 
     return i+100;
 }
