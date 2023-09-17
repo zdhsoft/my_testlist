@@ -2,7 +2,12 @@ fun main() {
     //System.out.println("hello world");
     var k = testType();
     System.out.println(k.javaClass.name);
+    var mm = sum(1,2);
+    System.out.println(mm);
+    System.out.println(mm.javaClass.name);
 }
+
+fun sum(x: Int, y: Int) = x + y;
 
 fun testType(): Int {
     val s = "我是一个字符串";
