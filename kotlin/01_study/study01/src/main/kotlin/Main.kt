@@ -1,4 +1,9 @@
-fun main() {
+fun main(args: Array<String>) {
+
+    for(a in args) {
+        System.out.println(a);
+    }
+
     //System.out.println("hello world");
     var k = testType();
     System.out.println(k.javaClass.name);
