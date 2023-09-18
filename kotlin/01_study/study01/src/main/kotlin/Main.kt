@@ -4,6 +4,7 @@ fun main(args: Array<String>) {
         println(a);
     }
 
+
     //System.out.println("hello world");
     var k = testType();
     println(k.javaClass.name);
@@ -17,7 +18,7 @@ fun main(args: Array<String>) {
     println(ssss(99,100));
     println(kkkk(1111,9999));
 
-    args.forEach { x: String -> println("hello:$x") }
+    args.forEach { x: String -> println("hello:$x for macß") }
 
     listOf(1,2,3,4,5).forEach { x -> println(x) }
 
