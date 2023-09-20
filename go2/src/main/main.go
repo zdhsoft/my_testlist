@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"go2/simple/search"
 	"go2/src/common"
-	test "go2/src/test"
 	xxxyyy "go2/src/utils"
+	"log"
+	"os"
 )
 
 func testPackage() {
@@ -14,7 +16,12 @@ func testPackage() {
 	fmt.Println(c)
 }
 
+func init() {
+	log.SetOutput(os.Stdout)
+}
+
 func main() {
-	test.TestPoint()
+	search.Run("president")
+	// test.TestPoint()
 	// test.TestJson()
 }
