@@ -1,25 +1,31 @@
 fun main(args: Array<String>) {
+    mainex(args);
+}
+
+
+fun mainex(args: Array<String>) {
     println("size:${args.size} => ")
-    for(a in args) {
+    for (a in args) {
         println(a);
     }
+
 
     //System.out.println("hello world");
     var k = testType();
     println(k.javaClass.name);
-    var mm = sum(1,2);
+    var mm = sum(1, 2);
     println(mm);
     println(mm.javaClass.name);
 
-    val ssss:(Int, Int) -> Int = { x, y -> x + y};
-    val kkkk = { x: Int, y: Int -> x + y};
+    val ssss: (Int, Int) -> Int = { x, y -> x + y };
+    val kkkk = { x: Int, y: Int -> x + y };
 
-    println(ssss(99,100));
-    println(kkkk(1111,9999));
+    println(ssss(99, 100));
+    println(kkkk(1111, 9999));
 
-    args.forEach { x: String -> println("hello:$x") }
+    args.forEach { x: String -> println("hello:$x for macß") }
 
-    listOf(1,2,3,4,5).forEach { x -> println(x) }
+    listOf(1, 2, 3, 4, 5).forEach { x -> println(x) }
 
     println("value MON :${t(Day.MON)}")
     println("value TUE :${t(Day.TUE)}")
@@ -29,8 +35,8 @@ fun main(args: Array<String>) {
     println("value SAT :${t(Day.SAT)}")
     println("value SUN :${t(Day.SUN)}")
 
-    for(i: Int in 1..10) {
-        println(i*i+1)
+    for (i: Int in 1..10) {
+        println(i * i + 1)
     }
 }
 
@@ -51,7 +57,7 @@ fun testType(): Int {
     println(d.javaClass.name)
     println(d2.javaClass.name)
 
-    return i+100;
+    return i + 100;
 }
 
 enum class Day {
@@ -66,7 +72,7 @@ enum class Day {
 }
 
 fun t(d: Day): Int {
-    when(d) {
+    when (d) {
         Day.FRI -> return 5;
         Day.MON -> return 4;
         Day.TUE, Day.WEN -> return 9;
