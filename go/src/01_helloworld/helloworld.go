@@ -85,7 +85,8 @@ func main_test() { // main函数，是程序执行的入口
 func main() {
 	// main_test()
 	testjson()
-	testGo()
+	// testGo()
+	testArray()
 }
 
 /**
@@ -99,6 +100,32 @@ func task(name string, cnt int) {
 	}
 	fmt.Println(name + " done")
 }
+
+type P1 struct {
+	Name string
+	Age  int
+	Sex  bool
+}
+
+type P2 struct {
+	Name  string
+	Age   int
+	Money int
+}
+
+type P3 struct {
+	P1
+	P2
+}
+
+func testArray() {
+	var k = []int{11, 12, 13, 14, 15, 1, 2, 3, 4}
+	for m, v := range k {
+		fmt.Println(m, v)
+	}
+}
+
+
 
 func testGo() {
 	var wg sync.WaitGroup
