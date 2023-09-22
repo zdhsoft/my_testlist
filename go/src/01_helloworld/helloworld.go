@@ -90,6 +90,7 @@ func main() {
 	// testGo()
 	testArray()
 	testStringBuffer()
+	testMap()
 }
 
 /**
@@ -139,6 +140,23 @@ func testStringBuffer() {
 	s := fmt.Sprintf(">>>>%s%d%d", "aaaa", 1, 99)
 	fmt.Println(s)
 
+}
+
+func testMap() {
+	m := make(map[string]*int)
+	var a1 = 1
+	var a2 = 2
+	var a3 = 3
+	var a4 = 4
+	m["b"] = &a1
+	m["a"] = &a2
+	m["c"] = &a3
+	m["a1"] = &a4
+	fmt.Println(m)
+	for k, v := range m {
+		fmt.Println(k, *v, v)
+	}
+	fmt.Println("999", m["999"])
 }
 
 func testGo() {
