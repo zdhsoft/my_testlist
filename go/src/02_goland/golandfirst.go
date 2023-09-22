@@ -1,4 +1,5 @@
 package main
+
 import (
 	"fmt"
 	"os"
@@ -6,14 +7,14 @@ import (
 
 func main() { // main函数，是程序执行的入口
 	fmt.Println("Hello World!") // 在终端打印 Hello World!
-	printArgs();
+	printArgs()
 }
 
 // 打印命令行传入的参数
 func printArgs() {
-	fmt.Println("--------");
-	var s, sep string;
-	for i:=1; i < len(os.Args); i++ {
+	fmt.Println("--------")
+	var s, sep string
+	for i := 1; i < len(os.Args); i++ {
 		s += sep + os.Args[i]
 		sep = " "
 	}
@@ -24,6 +25,6 @@ func printArgs() {
 		s += sep + arg
 		sep = " "
 	}
-	fmt.Println(s);
+	fmt.Println(s)
 
 }

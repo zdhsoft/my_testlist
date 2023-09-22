@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt" // 导入内置 fmt 包
+	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
@@ -87,6 +89,7 @@ func main() {
 	testjson()
 	// testGo()
 	testArray()
+	testStringBuffer()
 }
 
 /**
@@ -125,7 +128,18 @@ func testArray() {
 	}
 }
 
+func testStringBuffer() {
+	var buff strings.Builder
 
+	buff.WriteString("aaaa")
+	buff.WriteString(strconv.Itoa(1))
+	buff.WriteString(strconv.Itoa(99))
+	fmt.Println(buff.String())
+
+	s := fmt.Sprintf(">>>>%s%d%d", "aaaa", 1, 99)
+	fmt.Println(s)
+
+}
 
 func testGo() {
 	var wg sync.WaitGroup
