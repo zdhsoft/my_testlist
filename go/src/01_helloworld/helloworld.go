@@ -1,7 +1,11 @@
 package main
 
-import "fmt" // 导入内置 fmt 包
-import "common"
+import (
+	"fmt" // 导入内置 fmt 包
+	"sync"
+	"time"
+)
+
 type TabInfo struct {
 	// *
 	// @description tab的名称
@@ -81,4 +85,38 @@ func main_test() { // main函数，是程序执行的入口
 func main() {
 	// main_test()
 	testjson()
+	testGo()
+}
+
+/**
+ * @param name string  任务名称
+ * @param cnt int 执行次数
+ */
+func task(name string, cnt int) {
+	for i := 0; i < cnt; i++ {
+		fmt.Println(name+":", i)
+		time.Sleep(500 * time.Millisecond)
+	}
+	fmt.Println(name + " done")
+}
+
+func testGo() {
+	var wg sync.WaitGroup
+	wg.Add(3)
+
+	go func() {
+		defer wg.Done()
+		task("task 1>>>", 10)
+	}()
+	go func() {
+		defer wg.Done()
+		task("task 2>>>", 15)
+	}()
+	go func() {
+		defer wg.Done()
+		task("task 3>>>", 20)
+	}()
+
+	wg.Wait()
+	fmt.Println(" all task is finish!")
 }

@@ -14,7 +14,7 @@ func Run(searchTerm string) {
 		log.Fatal(err)
 	}
 
-	results := make(clan * Result)
+	results := make(chan *Result)
 
 	var waitGroup sync.WaitGroup
 

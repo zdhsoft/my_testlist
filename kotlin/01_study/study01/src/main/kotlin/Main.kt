@@ -9,6 +9,9 @@ fun mainex(args: Array<String>) {
         println(a);
     }
 
+    for (i in 1..10 step 2) {
+
+    }
 
     //System.out.println("hello world");
     var k = testType();
