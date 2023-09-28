@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"go2/simple/search"
 	"go2/src/common"
 	xxxyyy "go2/src/utils"
 	"log"
@@ -23,7 +22,8 @@ func init() {
 func main() {
 	dir, err := os.Getwd()
 	fmt.Println("pwd:="+dir, err)
-	search.Run("president")
+	// search.Run("president")
 	// test.TestPoint()
 	// test.TestJson()
+	testPackage()
 }
