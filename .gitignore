@@ -17,3 +17,4 @@ typescript/16_test_tsconfig/build_file
 c++20/study/aaa/x64/Release/aaa.log
 delphi/01_study/study.identcache
 *.o
+/typescript/imclient/src/config.ts
