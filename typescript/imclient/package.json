@@ -33,6 +33,6 @@
     },
     "dependencies": {
         "@zdhsoft/commret": "^1.0.3",
-        "tencentcloud-sdk-nodejs": "^4.0.699"
+        "tencentcloud-sdk-nodejs": "latest"
     }
 }
