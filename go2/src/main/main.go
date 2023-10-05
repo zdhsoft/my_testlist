@@ -26,6 +26,10 @@ func main() {
 	// test.TestPoint()
 	// test.TestJson()
 	// testPackage()
-	str, now := common.TimeToStr()
-	fmt.Println("st :=" + str, now)
+	// str, now := common.TimeToStr()
+	// fmt.Println("st := " + str, now)
+
+	for i := 0; i < 100; i++ {
+		fmt.Println(i, common.CreateToken())
+	}
 }
