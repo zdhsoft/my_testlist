@@ -25,5 +25,7 @@ func main() {
 	// search.Run("president")
 	// test.TestPoint()
 	// test.TestJson()
-	testPackage()
+	// testPackage()
+	str, now := common.TimeToStr()
+	fmt.Println("st :=" + str, now)
 }

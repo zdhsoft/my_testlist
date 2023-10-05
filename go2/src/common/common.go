@@ -2,6 +2,7 @@ package common
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -14,6 +15,12 @@ const (
 
 func GetT() int {
 	return t
+}
+
+func TimeToStr() (string, int64) {
+	now := 4852163788 // time.Now().Unix()
+	str := strconv.FormatInt(int64(now), 36)
+	return str, int64(now)
 }
 
 func GetTime() (int64, int64) {
