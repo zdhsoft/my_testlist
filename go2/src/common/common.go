@@ -1,12 +1,12 @@
 package common
 
 import (
-	"crypto/rand"
-	"encoding/hex"
 	"fmt"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 var (
@@ -29,19 +29,21 @@ const (
 )
 
 func generateUUID() string {
-	uuid := make([]byte, 16)
-	_, err := rand.Read(uuid)
-	if err != nil {
-		// 处理错误
-		fmt.Println(err)
-		return ""
-	}
+	newUUID := uuid.New()
+	return newUUID.String()
+	// uuid := make([]byte, 16)
+	// _, err := rand.Read(uuid)
+	// if err != nil {
+	// 	// 处理错误
+	// 	fmt.Println(err)
+	// 	return ""
+	// }
 
-	// 设置版本和变种
-	uuid[6] = (uuid[6] & 0x0f) | 0x40
-	uuid[8] = (uuid[8] & 0x3f) | 0x80
+	// // 设置版本和变种
+	// uuid[6] = (uuid[6] & 0x0f) | 0x40
+	// uuid[8] = (uuid[8] & 0x3f) | 0x80
 
-	return hex.EncodeToString(uuid)
+	// return hex.EncodeToString(uuid)
 }
 
 func getTokenCnt(paramNow int64) int32 {
@@ -58,7 +60,7 @@ func getTokenCnt(paramNow int64) int32 {
 func StringPad(paramStr string, paramMaxLen int) string {
 	strLen := len(paramStr)
 	if strLen < paramMaxLen {
-		return strings.Repeat("0", paramMaxLen - strLen) + paramStr
+		return strings.Repeat("0", paramMaxLen-strLen) + paramStr
 	}
 	return paramStr
 }
