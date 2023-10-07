@@ -3,7 +3,6 @@ package test
 import (
 	"context"
 	"fmt"
-	"testing"
 	"time"
 
 	"github.com/go-redis/redis/v8"
@@ -44,6 +43,33 @@ func RedisDel(key string) error {
 	return nil
 }
 
+type kkk struct {
+	Key   string
+	value string
+	age   int
+}
+
 func TestRedis() {
+	k := &kkk{Key: "key", value: "value", age: 10}
+	err := RedisSet("key", k, time.Second*1000)
+	if err != nil {
+		panic(err)
+	}
+	val, err := RedisGet("key")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println("aaaaa", val)
+	// if val != "value" {
+	// 	panic("get value error")
+	// }
+	// err = RedisDel("key")
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// val, err = RedisGet("key")
+	// if err == nil || val != "" {
+	// 	panic("get value error")
+	// }
 	fmt.Println("aaaaa")
 }

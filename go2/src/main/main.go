@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go2/src/common"
+	"go2/src/test"
 	xxxyyy "go2/src/utils"
 	"log"
 	"net/http"
@@ -25,16 +26,17 @@ func init() {
 func main() {
 	dir, err := os.Getwd()
 	fmt.Println("pwd:="+dir, err)
-	// search.Run("president")
-	// test.TestPoint()
-	// test.TestJson()
-	// testPackage()
-	// str, now := common.TimeToStr()
-	// fmt.Println("st := " + str, now)
+	test.TestRedis()
+	// // search.Run("president")
+	// // test.TestPoint()
+	// // test.TestJson()
+	// // testPackage()
+	// // str, now := common.TimeToStr()
+	// // fmt.Println("st := " + str, now)
 
-	for i := 0; i < 100; i++ {
-		fmt.Println(i, common.CreateToken())
-	}
+	// for i := 0; i < 100; i++ {
+	// 	fmt.Println(i, common.CreateToken())
+	// }
 }
 
 func testEcho() {
