@@ -28,12 +28,13 @@ func RedisSet(key string, value interface{}, ttl time.Duration) error {
 	return nil
 }
 
-func RedisGet(key string) (string, error) {
-	val, err := cli.Get(context.Background(), key).Result()
-	if err != nil {
-		return "", err
-	}
-	return val, nil
+func RedisGet(key string) *redis.StringCmd {
+	return cli.Get(context.Background(), key)
+	// val, err := cli.Get(context.Background(), key).Result()
+	// if err != nil {
+	// 	return "", err
+	// }
+	// return val, nil
 }
 
 func RedisDel(key string) error {
@@ -60,15 +61,17 @@ func (g *kkk) UnmarshalBinary(data []byte) (err error) {
 
 func TestRedis() {
 	k := &kkk{Key: "key~~~", Value: "value~~~", Age: 10}
+
+	j := &kkk{}
 	err := RedisSet("key", k, time.Second*1000)
 	if err != nil {
 		panic(err)
 	}
-	val, err := RedisGet("key")
+	RedisGet("key").Scan(j)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("aaaaa", val)
+	//fmt.Println("aaaaa", json.Marshal(j))
 	// if val != "value" {
 	// 	panic("get value error")
 	// }
