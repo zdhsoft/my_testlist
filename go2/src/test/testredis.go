@@ -2,6 +2,7 @@ package test
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -44,13 +45,21 @@ func RedisDel(key string) error {
 }
 
 type kkk struct {
-	Key   string
-	value string
-	age   int
+	Key   string `json:"key"`
+	Value string `json:"value"`
+	Age   int    `json:"age"`
+}
+
+func (g *kkk) MarshalBinary() (data []byte, err error) {
+	return json.Marshal(g)
+}
+
+func (g *kkk) UnmarshalBinary(data []byte) (err error) {
+	return json.Unmarshal(data, g)
 }
 
 func TestRedis() {
-	k := &kkk{Key: "key", value: "value", age: 10}
+	k := &kkk{Key: "key~~~", Value: "value~~~", Age: 10}
 	err := RedisSet("key", k, time.Second*1000)
 	if err != nil {
 		panic(err)
