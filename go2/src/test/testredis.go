@@ -74,6 +74,12 @@ func TestRedis() {
 
 	fmt.Printf("%+v\n", j)
 	fmt.Println("===", j)
+	s := fmt.Sprintf("%+v", j)
+	fmt.Println("s === sprintf:", s)
+	jsonData, err := json.Marshal(j)
+	if err == nil {
+		fmt.Println("JSON:", string(jsonData))
+	}
 	// fmt.Println("aaaaa", json.Marshal(*j))
 	// if val != "value" {
 	// 	panic("get value error")
