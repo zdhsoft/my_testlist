@@ -71,7 +71,7 @@ func TestRedis() {
 	if err != nil {
 		panic(err)
 	}
-	//fmt.Println("aaaaa", json.Marshal(j))
+	// fmt.Println("aaaaa", json.Marshal(*j))
 	// if val != "value" {
 	// 	panic("get value error")
 	// }
