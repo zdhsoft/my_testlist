@@ -53,8 +53,9 @@ type kkk struct {
 
 type yyy struct {
 	kkk
-	MM  string `json:"mm"`
-	Yes bool   `json:"yes"`
+	MM  string   `json:"mm"`
+	Yes bool     `json:"yes"`
+	RR  []string `json:"rr"`
 }
 
 func (g *yyy) MarshalBinary() (data []byte, err error) {
@@ -86,11 +87,13 @@ func TestRedis() {
 		panic(err)
 	}
 
+	j.RR = append(j.RR, "1", "2", "3")
+
 	fmt.Printf("%+v\n", j)
 	fmt.Println("===", j)
 	s := fmt.Sprintf("%+v", j)
 	fmt.Println("s === sprintf:", s)
-	jsonData, err := json.Marshal(j)
+	jsonData, err := json.MarshalIndent(j, "", "    ")
 	if err == nil {
 		fmt.Println("JSON:", string(jsonData))
 	}
