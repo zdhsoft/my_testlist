@@ -51,6 +51,20 @@ type kkk struct {
 	Age   int    `json:"age"`
 }
 
+type yyy struct {
+	kkk
+	MM  string `json:"mm"`
+	Yes bool   `json:"yes"`
+}
+
+func (g *yyy) MarshalBinary() (data []byte, err error) {
+	return json.Marshal(g)
+}
+
+func (g *yyy) UnmarshalBinary(data []byte) (err error) {
+	return json.Unmarshal(data, g)
+}
+
 func (g *kkk) MarshalBinary() (data []byte, err error) {
 	return json.Marshal(g)
 }
@@ -62,7 +76,7 @@ func (g *kkk) UnmarshalBinary(data []byte) (err error) {
 func TestRedis() {
 	k := &kkk{Key: "key~~~", Value: "value~~~", Age: 10}
 
-	j := &kkk{}
+	j := &yyy{}
 	err := RedisSet("key", k, time.Second*1000)
 	if err != nil {
 		panic(err)
