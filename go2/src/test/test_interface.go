@@ -10,16 +10,16 @@ type b1 struct {
 	X int
 }
 
-func (this *b1) add(m int) int {
-	return this.X + m
+func (s *b1) add(m int) int {
+	return s.X + m
 }
 
 type b2 struct {
 	Y int
 }
 
-func (this *b2) add(m int) int {
-	return this.Y + m + 100
+func (s *b2) add(m int) int {
+	return s.Y + m + 100
 }
 
 type b3 struct {
