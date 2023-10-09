@@ -82,9 +82,11 @@ func TestRedis() {
 	if err != nil {
 		panic(err)
 	}
-	RedisGet("key").Scan(j)
-	if err != nil {
-		panic(err)
+	cmd := RedisGet("key~~")
+	if cmd.Err() != nil {
+		fmt.Println("error:", cmd.Err().Error())
+		return
+		// panic(cmd.Err())
 	}
 
 	j.RR = append(j.RR, "1", "2", "3")
