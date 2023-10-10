@@ -27,6 +27,7 @@ func main() {
 	dir, err := os.Getwd()
 	fmt.Println("pwd:="+dir, err)
 	test.TestJson2()
+	test.TestParam()
 	// test.TestRedis()
 	// // search.Run("president")
 	// // test.TestPoint()
