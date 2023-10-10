@@ -5,6 +5,23 @@ import (
 	"fmt"
 )
 
+type bbb struct {
+	BA string `json:"ba"`
+	BF int    `json:"ccc"`
+}
+
+type aaa[T interface{}] struct {
+	A string `json:"a"`
+	B *T     `json:"b"`
+}
+
+func TestJson2() {
+	a := aaa[bbb]{A: "a", B: &bbb{BA: "999", BF: 9991}}
+	fmt.Printf("%+v\n", a)
+	s, _ := json.MarshalIndent(a, "", "    ")
+	fmt.Println("aaaa:", string(s))
+}
+
 func TestJson() {
 	type bannerInfo struct {
 		/* pc端图片 */

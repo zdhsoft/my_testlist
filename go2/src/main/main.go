@@ -26,7 +26,8 @@ func init() {
 func main() {
 	dir, err := os.Getwd()
 	fmt.Println("pwd:="+dir, err)
-	test.TestRedis()
+	test.TestJson2()
+	// test.TestRedis()
 	// // search.Run("president")
 	// // test.TestPoint()
 	// // test.TestJson()
