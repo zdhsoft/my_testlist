@@ -1,6 +1,9 @@
 package test
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func t() (int, int) {
 	return 1, 2
@@ -30,7 +33,10 @@ func TestParam() {
 	cc.Ccc = 12
 	cc.Ddd = 14
 
+	t := time.Now().Unix()
+
 	fmt.Printf("aa: %+v\n", aa)
 	fmt.Printf("bb: %+v\n", bb)
 	fmt.Printf("cc: %+v\n", cc)
+	fmt.Printf("time: %d\n", t)
 }
