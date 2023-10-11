@@ -34,9 +34,10 @@ func TestParam() {
 	cc.Ddd = 14
 
 	t := time.Now().Unix()
+	t1 := time.Now()
 
 	fmt.Printf("aa: %+v\n", aa)
 	fmt.Printf("bb: %+v\n", bb)
 	fmt.Printf("cc: %+v\n", cc)
-	fmt.Printf("time: %d\n", t)
+	fmt.Printf("time: %d, %d\n", t, t1)
 }
