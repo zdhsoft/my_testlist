@@ -32,6 +32,6 @@ func TestInterface() {
 	fmt.Println("-->", p.add(1))
 	p = new(b2)
 	fmt.Println("-->", p.add(1))
-	// p = new(b3) // 这里报错
+	// p = new(b3) // 这里报错. 因为这里没事实现接口。
 	// fmt.Println("-->", p.add(1))
 }
