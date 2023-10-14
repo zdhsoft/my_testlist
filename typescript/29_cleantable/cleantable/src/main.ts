@@ -17,7 +17,22 @@ function test() {
     log.info(m);
 }
 
-test();
+function testforin() {
+    const paramUserIdList = ['123456'];
+    const list: { UserID: string }[] = [];
+    const list1: { UserID: string }[] = [];
+    for (const UserID of paramUserIdList) {
+        list.push({ UserID });
+    }
+    paramUserIdList.forEach((paramUserID) => list1.push({ UserID: paramUserID }));
+    const body = {
+        CheckItem: list,
+        CheckItem1: list1,
+    };
+    log.info('----', JSON.stringify(body, null, 2));
+}
+testforin();
+// test();
 
 // function test() {
 //     const sumAmountIncludingTax = '130000.00';
