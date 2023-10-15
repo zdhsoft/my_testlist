@@ -31,7 +31,15 @@ function testforin() {
     };
     log.info('----', JSON.stringify(body, null, 2));
 }
-testforin();
+
+function testcurrency() {
+    const cny = new XMCurrency(20013);
+    log.info('20013--->' + cny.Chinese());
+    cny.assign(1500050);
+    log.info('1500050--->' + cny.Chinese());
+}
+testcurrency();
+//testforin();
 // test();
 
 // function test() {
