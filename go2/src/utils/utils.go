@@ -1,4 +1,4 @@
-package xxxyyy
+package utils
 
 type Xxx struct {
 }
