@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"go2/src/common"
-	testhttp "go2/src/http"
 	"go2/src/test"
 	xxxyyy "go2/src/utils"
 	"log"
@@ -29,7 +28,8 @@ func main() {
 	fmt.Println("pwd:="+dir, err)
 	test.TestJson2()
 	test.TestParam()
-	testhttp.TestHttp()
+	// testhttp.TestHttp()
+	test.TestDT()
 	// test.TestRedis()
 	// // search.Run("president")
 	// // test.TestPoint()
