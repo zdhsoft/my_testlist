@@ -6,5 +6,10 @@ import (
 )
 
 func TestDT() {
-	fmt.Println("beijing timezone", utils.GetTimezone())
+
+	stUTC := utils.MakeDateTime()
+	stBeijing := utils.MakeBeijingDateTime()
+
+	fmt.Printf("utc:%d, beijing:%d", stUTC.GetTimestamp(), stBeijing.GetTimestamp())
+
 }

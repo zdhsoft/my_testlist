@@ -2,6 +2,7 @@ package utils
 
 import (
 	"fmt"
+	"time"
 )
 
 const (
@@ -36,7 +37,7 @@ func (t *TDateTime) IsUTC() bool {
 
 // 是否是北京时间
 func (t *TDateTime) IsBeijing() bool {
-	return t.dt_ype == DT_TYPE_BEIJING
+	return t.dt_type == DT_TYPE_BEIJING
 }
 
 func init() {
@@ -56,6 +57,14 @@ func (t *TDateTime) ToBeijing() *TDateTime {
 	return &st
 }
 
+func (t *TDateTime) SelfToBeijing() *TDateTime {
+	if t.IsUTC() {
+		t.dt_timestamp -= MILLIS_BY_TIMEZONE_BEIJING
+		t.dt_type = DT_TYPE_UTC
+	}
+	return t
+}
+
 func (t *TDateTime) ToUTC() *TDateTime {
 	st := TDateTime{dt_timestamp: t.dt_timestamp, dt_type: t.dt_type}
 	if st.IsBeijing() {
@@ -65,10 +74,28 @@ func (t *TDateTime) ToUTC() *TDateTime {
 	return &st
 }
 
+func (t *TDateTime) SelfToUTC() *TDateTime {
+	if t.IsBeijing() {
+		t.dt_timestamp += MILLIS_BY_TIMEZONE_BEIJING
+		t.dt_type = DT_TYPE_UTC
+	}
+	return t
+}
+
 func (t *TDateTime) GetTimestamp() int64 {
 	return t.dt_timestamp
 }
 
 func (t *TDateTime) GetType() int8 {
 	return t.dt_type
+}
+
+func MakeDateTime() *TDateTime {
+	st := TDateTime{dt_timestamp: time.Now().UnixMilli(), dt_type: DT_TYPE_UTC}
+	return &st
+}
+
+func MakeBeijingDateTime() *TDateTime {
+	st := TDateTime{dt_timestamp: time.Now().UnixMilli(), dt_type: DT_TYPE_UTC}
+	return st.SelfToBeijing()
 }
