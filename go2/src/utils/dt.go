@@ -143,3 +143,12 @@ func ParseDateTimeForBegin(date string) (int64, error) {
 	startTime, err := time.ParseInLocation("2006-1-2", date, loc)
 	return startTime.UnixMilli(), err
 }
+
+func ToLocalDateStringByMillis(paramMillis int64) string {
+	t := time.UnixMilli(paramMillis)
+	return t.Format("2006-1-2")
+}
+
+func ToLocalDateStringBySecond(paramSecond int64) string {
+	return ToLocalDateStringByMillis(paramSecond * MILLIS_BY_SECOND)
+}
