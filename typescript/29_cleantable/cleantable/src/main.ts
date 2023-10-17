@@ -37,6 +37,7 @@ function testcurrency() {
     log.info('20013--->' + cny.Chinese());
     cny.assign(1500050);
     log.info('1500050--->' + cny.Chinese());
+    log.info('timedtamp' + new Date().getTimezoneOffset());
 }
 testcurrency();
 //testforin();
