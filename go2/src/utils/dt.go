@@ -115,6 +115,11 @@ func MakeBeijingDateTime() *TDateTime {
 	return st.SelfToBeijing()
 }
 
+//// 去指定日期的北京时间
+//func MakeFromBeijingDate(paramDate string) *TDateTime {
+
+//}
+
 // 取当前时间戳(毫秒)
 func GetNowMillis() int64 {
 	return time.Now().UnixMilli()
@@ -123,4 +128,20 @@ func GetNowMillis() int64 {
 // 取当前时间戳(秒）
 func GetNowSecond() int64 {
 	return time.Now().Unix()
+}
+
+func GetDateTime(date string) int64 {
+	//获取当前时区
+	loc, _ := time.LoadLocation("Asia/Shanghai")
+
+	//日期当天0点时间戳(拼接字符串)
+	// startDate := date + "_00:00:00"
+	startTime, _ := time.ParseInLocation("2006-01-02", date, loc)
+
+	////日期当天23时59分时间戳
+	//endDate := date + "_23:59:59"
+	//endTime, _ := time.ParseInLocation("2006-01-02_15:04:05", endDate, loc)
+
+	//返回当天0点和23点59分的时间戳
+	return startTime.Unix()
 }
