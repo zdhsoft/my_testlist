@@ -10,6 +10,7 @@ func TestDT() {
 	stUTC := utils.MakeDateTime()
 	stBeijing := utils.MakeBeijingDateTime()
 
-	fmt.Printf("utc:%d, beijing:%d", stUTC.GetTimestamp(), stBeijing.GetTimestamp())
+	fmt.Printf("utc:%d, beijing:%d, beijing zero:%d\n", stUTC.GetTimestamp(), stBeijing.GetTimestamp(), stUTC.GetBeijingZeroTime().GetTimestamp())
+	fmt.Printf("%d, %d\n", utils.GetNowMillis(), utils.GetNowSecond())
 
 }

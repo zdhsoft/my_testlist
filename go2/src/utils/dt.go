@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -11,9 +10,9 @@ const (
 	MILLIS_BY_HOUR   = 60 * MILLIS_BY_MINUTE
 	MILLIS_BY_DAY    = MILLIS_BY_HOUR * 24
 	// 北京时间时区
-	TIMEZONE = 8
+	TIMEZONE_BEIJING = -8
 	// 北京时区的毫秒数
-	MILLIS_BY_TIMEZONE_BEIJING = TIMEZONE * MILLIS_BY_HOUR
+	MILLIS_BY_TIMEZONE_BEIJING = TIMEZONE_BEIJING * MILLIS_BY_HOUR
 	// DateTime类型 格林威治时间
 	DT_TYPE_UTC = 0
 	// DateTime类型 北京时间
@@ -41,13 +40,15 @@ func (t *TDateTime) IsBeijing() bool {
 }
 
 func init() {
-	fmt.Println("init datetime...")
+	// fmt.Println("init datetime...")
 }
 
-func GetTimezone() int {
-	return TIMEZONE
+// 取北京时区
+func GetBeijingTimezone() int {
+	return TIMEZONE_BEIJING
 }
 
+// 将时间变成北京时间戳
 func (t *TDateTime) ToBeijing() *TDateTime {
 	st := TDateTime{dt_timestamp: t.dt_timestamp, dt_type: t.dt_type}
 	if st.IsUTC() {
@@ -57,6 +58,7 @@ func (t *TDateTime) ToBeijing() *TDateTime {
 	return &st
 }
 
+// 将自己变成北京时间戳
 func (t *TDateTime) SelfToBeijing() *TDateTime {
 	if t.IsUTC() {
 		t.dt_timestamp -= MILLIS_BY_TIMEZONE_BEIJING
@@ -65,6 +67,7 @@ func (t *TDateTime) SelfToBeijing() *TDateTime {
 	return t
 }
 
+// 变成UTC时间戳
 func (t *TDateTime) ToUTC() *TDateTime {
 	st := TDateTime{dt_timestamp: t.dt_timestamp, dt_type: t.dt_type}
 	if st.IsBeijing() {
@@ -74,6 +77,7 @@ func (t *TDateTime) ToUTC() *TDateTime {
 	return &st
 }
 
+// 将自己变成UTC时间戳
 func (t *TDateTime) SelfToUTC() *TDateTime {
 	if t.IsBeijing() {
 		t.dt_timestamp += MILLIS_BY_TIMEZONE_BEIJING
@@ -82,20 +86,41 @@ func (t *TDateTime) SelfToUTC() *TDateTime {
 	return t
 }
 
+// 取对应北京0点的utc时间戳
+func (t *TDateTime) GetBeijingZeroTime() *TDateTime {
+	st := t.ToBeijing()
+	st.dt_timestamp -= st.dt_timestamp % MILLIS_BY_DAY
+	return st.ToUTC()
+}
+
+// 取当前时间的时间戳
 func (t *TDateTime) GetTimestamp() int64 {
 	return t.dt_timestamp
 }
 
+// 取当前时间的类型
 func (t *TDateTime) GetType() int8 {
 	return t.dt_type
 }
 
+// 生成当前时间的时间对象
 func MakeDateTime() *TDateTime {
 	st := TDateTime{dt_timestamp: time.Now().UnixMilli(), dt_type: DT_TYPE_UTC}
 	return &st
 }
 
+// 生成北京时间的时间对象
 func MakeBeijingDateTime() *TDateTime {
 	st := TDateTime{dt_timestamp: time.Now().UnixMilli(), dt_type: DT_TYPE_UTC}
 	return st.SelfToBeijing()
+}
+
+// 取当前时间戳(毫秒)
+func GetNowMillis() int64 {
+	return time.Now().UnixMilli()
+}
+
+// 取当前时间戳(秒）
+func GetNowSecond() int64 {
+	return time.Now().Unix()
 }
