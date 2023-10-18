@@ -46,3 +46,10 @@ func TestDT() {
 	fmt.Printf("5: %d, %s\n", dt5, err(err5))
 
 }
+
+func TestFor() {
+	s := "Hello"
+	for i, v := range s {
+		fmt.Printf("index: %d, value:%c \n", i, v)
+	}
+}
