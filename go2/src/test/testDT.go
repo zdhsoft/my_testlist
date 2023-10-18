@@ -52,4 +52,8 @@ func TestFor() {
 	for i, v := range s {
 		fmt.Printf("index: %d, value:%c \n", i, v)
 	}
+	s = "有中文会怎样？"
+	for i, v := range s {
+		fmt.Printf("index: %d, value:%c \n", i, v)
+	}
 }
