@@ -47,6 +47,24 @@ func TestDT() {
 
 }
 
+func IsInArray[T comparable](paramList []T, paramItem T) bool {
+	for _, v := range paramList {
+		if paramItem == v {
+			return true
+		}
+	}
+	return false
+}
+
+func TestIsIn() {
+	i := []int{1, 2, 3, 4, 5, 6, 7, 8}
+	t := []int{4, 5, 6, 7, 8, 9, 10, 11}
+	for _, ttt := range t {
+		r := IsInArray(i, ttt)
+		fmt.Printf("%d is in i ? %b\n", ttt, r)
+	}
+}
+
 func TestFor() {
 	s := "Hello"
 	for i, v := range s {

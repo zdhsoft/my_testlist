@@ -31,6 +31,8 @@ func main() {
 	// testhttp.TestHttp()
 	test.TestDT()
 	test.TestFor()
+	test.TestIsIn()
+
 	// test.TestRedis()
 	// // search.Run("president")
 	// // test.TestPoint()
