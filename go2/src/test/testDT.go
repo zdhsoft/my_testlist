@@ -56,4 +56,9 @@ func TestFor() {
 	for i, v := range s {
 		fmt.Printf("index: %d, value:%c \n", i, v)
 	}
+
+	m := map[string]string{"aaaa": "bbbb", "cccc": "看看看看看", "aaac": "aaaaaaaa", "aaab": "会是最后一个吗？"}
+	for k, v := range m {
+		fmt.Printf("key=%s, value=%s \n", k, v)
+	}
 }
