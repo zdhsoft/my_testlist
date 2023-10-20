@@ -3,6 +3,7 @@ import { getLogger } from 'xmcommon';
 import { cleanTable } from './cleanTable';
 import { XMCurrency } from 'xmcurrency';
 import crypto from 'crypto';
+import { k } from './config';
 const log = getLogger(__filename);
 // const hmac = crypto.createHmac("sha256", this.key);
 // return hmac.update(contentToBeSigned).digest('base64');
@@ -38,6 +39,13 @@ function testcurrency() {
     cny.assign(1500050);
     log.info('1500050--->' + cny.Chinese());
     log.info('timedtamp' + new Date().getTimezoneOffset());
+
+    let m = new k();
+    m.name = "hello";
+    m.sex = true;
+
+    log.info('aaaa:' + JSON.stringify(m, null, 2));
+
 }
 testcurrency();
 //testforin();

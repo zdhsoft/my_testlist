@@ -6,3 +6,24 @@ export const config = {
     user: 'game',
     password: 'game123',
 };
+
+interface xxx {
+    name: string;
+
+}
+
+interface xxx {
+    sex: boolean;
+}
+
+export class k implements xxx {
+    name: string;
+    sex: boolean;
+
+    public toString() {
+        return {
+            n: this.name,
+            s: this.sex,
+        }
+    }
+}
