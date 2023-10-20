@@ -36,3 +36,5 @@
 | double | 8 | none | 1.7E +/- 308 (15 digits) |
 | long double | same as double | none | Same as double |
 | wchar_t | 2 | __wchar_t | 0 to 65,535 |
+
+## vs2022终于安装好了，可以开始写C++了，66666666666
