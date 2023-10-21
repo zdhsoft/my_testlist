@@ -32,6 +32,7 @@ func main() {
 	test.TestDT()
 	test.TestFor()
 	test.TestIsIn()
+	test.TestMD5()
 
 	// test.TestRedis()
 	// // search.Run("president")
