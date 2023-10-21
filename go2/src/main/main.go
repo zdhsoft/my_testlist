@@ -33,6 +33,7 @@ func main() {
 	test.TestFor()
 	test.TestIsIn()
 	test.TestMD5()
+	test.TestSHA256()
 
 	// test.TestRedis()
 	// // search.Run("president")
