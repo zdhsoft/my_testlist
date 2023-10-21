@@ -14,6 +14,11 @@ func TestMD5() {
 	md5str := hex.EncodeToString(md5binary)
 	fmt.Println("aaaa:" + md5str)
 
+	hash2 := md5.New()
+	md5binary2 := hash2.Sum([]byte(data))
+	md5str2 := hex.EncodeToString(md5binary2[:])
+	fmt.Printf("cccc:%s len:%d, len2:%d\n", md5str2, len(md5binary), len(md5binary2))
+
 	data1 := "hello world,"
 	data2 := "test MD5"
 	hash1 := md5.New()
