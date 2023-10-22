@@ -25,7 +25,7 @@ func init() {
 
 func main() {
 	dir, err := os.Getwd()
-	fmt.Println("pwd:="+dir, err)
+	fmt.Println("在mac下运行了！pwd:="+dir, err)
 	test.TestJson2()
 	test.TestParam()
 	// testhttp.TestHttp()
