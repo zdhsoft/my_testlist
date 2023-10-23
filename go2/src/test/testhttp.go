@@ -1,10 +1,31 @@
 package test
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
+
+func testJSON() {
+	client := &http.Client{}
+	// data := make(map[string]interface{})
+	type s struct {
+		Name  string `json:"name"`
+		Age   int    `json:"age"`
+		Email string `json:"email"`
+	}
+	// data["name"] = "zhaofan"
+	// data["age"] = "23"
+
+	data := s{Name: "zhaofan", Age: 1999, Email: "test@163.com"}
+	bytesData, _ := json.Marshal(data)
+	req, _ := http.NewRequest("POST", "http://httpbin.org/post", bytes.NewReader(bytesData))
+	resp, _ := client.Do(req)
+	body, _ := io.ReadAll(resp.Body)
+	fmt.Println(string(body))
+}
 
 func TestHttp() {
 	fmt.Println("Test Http!")
@@ -14,10 +35,13 @@ func TestHttp() {
 		return
 	}
 	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 	fmt.Println("Body:" + string(body))
 	fmt.Printf("status: %d\n", (resp.StatusCode))
 	if resp.StatusCode == 200 {
 		fmt.Println("ok")
 	}
+
+	testJSON()
+
 }
