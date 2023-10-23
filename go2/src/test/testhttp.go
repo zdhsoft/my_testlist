@@ -8,6 +8,7 @@ import (
 	"net/http"
 )
 
+// 参考blog: https://www.cnblogs.com/zhaof/p/11346412.html
 func testJSON() {
 	client := &http.Client{}
 	// data := make(map[string]interface{})
