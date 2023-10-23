@@ -44,5 +44,16 @@ func TestHttp() {
 	}
 
 	testJSON()
+	testdirect()
 
+}
+
+func testdirect() {
+	data := make(map[string]interface{})
+	data["name"] = "zhaofan"
+	data["age"] = "23"
+	bytesData, _ := json.Marshal(data)
+	resp, _ := http.Post("http://httpbin.org/post", "application/json", bytes.NewReader(bytesData))
+	body, _ := io.ReadAll(resp.Body)
+	fmt.Println(string(body))
 }
