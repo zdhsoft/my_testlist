@@ -34,6 +34,7 @@ func main() {
 	test.TestIsIn()
 	test.TestMD5()
 	test.TestSHA256()
+	test.TestHttp()
 
 	// test.TestRedis()
 	// // search.Run("president")
