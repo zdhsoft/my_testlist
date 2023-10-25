@@ -37,6 +37,8 @@ func main() {
 	test.TestHttp()
 	test.TestCommonRet()
 
+	// 准备学习纤程
+
 	// test.TestRedis()
 	// // search.Run("president")
 	// // test.TestPoint()
