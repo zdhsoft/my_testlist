@@ -23,7 +23,7 @@ func RandList[T int | int32 | int64 | int16](recordCount T, randCount T) *[]T {
 			idxs[i] = i
 		}
 
-		for i := T(0); i < randCount; i++ {
+		for i := T(0); i < randCount && len(idxs) > 0; i++ {
 			idx := RandomIntScope(0, len(idxs)-1)
 			retList = append(retList, idxs[idx])
 			idxs = append(idxs[:idx], idxs[idx+1:]...)
@@ -50,6 +50,6 @@ func RandList[T int | int32 | int64 | int16](recordCount T, randCount T) *[]T {
 }
 
 func TestRandList() {
-	k := RandList[int](50, 5)
+	k := RandList[int](3, 5)
 	fmt.Println("dddddd:", *k)
 }
