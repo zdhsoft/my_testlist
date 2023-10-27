@@ -36,6 +36,7 @@ func main() {
 	test.TestSHA256()
 	test.TestHttp()
 	test.TestCommonRet()
+	test.TestRandList()
 
 	// 准备学习纤程
 
