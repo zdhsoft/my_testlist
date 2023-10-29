@@ -1,4 +1,4 @@
-# frist1
+# first_study
 
 This template should help get you started developing with Vue 3 in Vite.
 
