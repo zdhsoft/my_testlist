@@ -1,0 +1,7 @@
+{
+    "/invoicemgr": {
+      "target": "https://invtest.zszh-tech.com",
+      "secure": false,
+      "changeOrigin": true
+    }
+  }
