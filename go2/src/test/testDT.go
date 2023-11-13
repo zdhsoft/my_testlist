@@ -1,6 +1,7 @@
 package test
 
 import (
+	"encoding/json"
 	"fmt"
 	"go2/src/utils"
 	"strings"
@@ -97,4 +98,13 @@ func TestFor() {
 	for k, v := range m {
 		fmt.Printf("key=%s, value=%s \n", k, v)
 	}
+}
+
+func TestMapJSON() {
+	m := map[string]interface{}{}
+	m["a"] = 100
+	m["c"] = true
+	m["aaaa"] = "aaa"
+	b, _ := json.Marshal(m)
+	fmt.Printf(">>>>%s\n", string(b))
 }
