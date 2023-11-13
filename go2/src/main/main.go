@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"go2/src/common"
-	"go2/src/test"
+	"go2/src/utils"
 	xxxyyy "go2/src/utils"
 	"log"
 	"net/http"
@@ -24,19 +24,20 @@ func init() {
 }
 
 func main() {
-	dir, err := os.Getwd()
-	fmt.Println("在mac下运行了！pwd:="+dir, err)
-	test.TestJson2()
-	test.TestParam()
-	// testhttp.TestHttp()
-	test.TestDT()
-	test.TestFor()
-	test.TestIsIn()
-	test.TestMD5()
-	test.TestSHA256()
-	test.TestHttp()
-	test.TestCommonRet()
-	test.TestRandList()
+	utils.BuildXlsx()
+	// dir, err := os.Getwd()
+	// fmt.Println("在mac下运行了！pwd:="+dir, err)
+	// test.TestJson2()
+	// test.TestParam()
+	// // testhttp.TestHttp()
+	// test.TestDT()
+	// test.TestFor()
+	// test.TestIsIn()
+	// test.TestMD5()
+	// test.TestSHA256()
+	// test.TestHttp()
+	// test.TestCommonRet()
+	// test.TestRandList()
 
 	// 准备学习纤程
 

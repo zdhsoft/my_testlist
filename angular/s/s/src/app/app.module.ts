@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzIconService, NZ_ICONS } from 'ng-zorro-antd/icon';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { IconDefinition } from '@ant-design/icons-angular';
+import { AppRoutingModule } from './app-routing.module';
 
 registerLocaleData(zh);
 const antDesignIcons = AllIcons as {
@@ -26,6 +27,7 @@ const icons = Object.keys(antDesignIcons).map((key) => antDesignIcons[key]);
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
     BrowserAnimationsModule
   ],
   providers: [

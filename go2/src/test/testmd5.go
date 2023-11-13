@@ -37,6 +37,11 @@ func TestSHA256() {
 }
 
 func TestMD5() {
+
+	m := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	n := m[:6]
+	fmt.Println("Array ==> n:", n)
+
 	data := "hello world,test MD5"
 	hash := md5.New()
 	hash.Write([]byte(data))

@@ -1,4 +1,4 @@
-# first
+# vuestudy
 
 ## Project setup
 ```
