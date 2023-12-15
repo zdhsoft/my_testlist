@@ -14,4 +14,7 @@ fun main(args: Array<String>) {
 
     my.demo.testX()
     println("pi =" + my.demo.PI)
+
+    my.demo.testClass()
+    my.demo.testFor()
 }
