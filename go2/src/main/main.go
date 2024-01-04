@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"go2/src/common"
-	"go2/src/utils"
+	// "go2/src/utils"
 	xxxyyy "go2/src/utils"
 	"log"
 	"net/http"
@@ -24,7 +24,7 @@ func init() {
 }
 
 func main() {
-	utils.BuildXlsx()
+	// utils.BuildXlsx()
 	// dir, err := os.Getwd()
 	// fmt.Println("在mac下运行了！pwd:="+dir, err)
 	// test.TestJson2()
@@ -52,6 +52,18 @@ func main() {
 	// for i := 0; i < 100; i++ {
 	// 	fmt.Println(i, common.CreateToken())
 	// }
+
+	maxCnt := 0
+	// s := []int{1,2,3,4,5}
+	s := []int{}
+	cnt := len(s)
+
+	if cnt > maxCnt {
+		cnt = maxCnt
+	}
+	s = s[:cnt]
+
+	fmt.Println(s)
 }
 
 func testEcho() {
