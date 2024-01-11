@@ -3,65 +3,108 @@ package com.zdhsoft.ws
 import com.google.gson.annotations.SerializedName
 import kotlin.reflect.*
 
-
+/** websocket的消息id */
 object MsgId {
-    const val Simple = 0
-    const val LoginByToken = 10000
-    const val EnterRoom = 10001
-    const val LeaveRoom = 10002
+    /** 演示用消息id */
+    const val SIMPLE = 0
+    /** 登录 */
+    const val LOGIN_BY_TOKEN = 10000
+    /** 进入直播间 */
+    const val ENTER_ROOM = 10001
+    /** 离开直播间 */
+    const val LEAVE_ROOM = 10002
 }
-
-open class WSReply<T>(
+/** 统一返回类型 */
+data class WSReply<T>(
+    /** 错误码 "0" 表示成功, 其他表示错误 */
     @SerializedName("result_code")
     val code: String = "",
+    /** 返回信息 一般指错误信息 */
     @SerializedName("result_info")
     val info: String = "",
+    /** 返回的数据 */
     @SerializedName("data")
     val data: T? = null
 ) {
     val isSuccess: Boolean
         get() = code == "0"
 }
-
+/** sample 请求 */
 data class WSSampleRequest(var message: String = "", var sender: String = "", var timestamp: String = "")
-final data class WSSampleReplyData(var message: String = "", var sender: String = "", var timestamp: String = "")
+/** sample 响应数据 */
+data class WSSampleReplyData(var message: String = "", var sender: String = "", var timestamp: String = "")
 
-
+/** 登录请求 */
 data class WSCSLoginTokenRequest(var token: String = "")
+/** 用户信息 */
 data class WSUserInfoV2(
-    var app_id: String,
-    var user_id: String,
+    @SerializedName("app_id")
+    var appId: String,
+    @SerializedName("user_id")
+    var userId: String,
+    @SerializedName("name")
     var name: String,
-    var role_List: Array<String>,
-    var is_admin: Boolean,
+    @SerializedName("role_list")
+    var roleList: List<String>,
+    @SerializedName("is_admin")
+    var isAdmin: Boolean,
+    @SerializedName("account")
     var account: String,
-    var is_zb: Boolean,
-    var area_code: String,
+    @SerializedName("is_zb")
+    var isZb: Boolean,
+    @SerializedName("area_code")
+    var areaCode: String,
+    @SerializedName("mobile")
     var mobile: String,
+    @SerializedName("icon")
     var icon: String,
-    var login_token: String,
-    var is_prohibit: Boolean,
-    var modify_pwd_count: Int,
-    var create_time: Int,
-    var update_time: Int,
-    var is_cg: Boolean,
-    var is_guest: Boolean,
+    @SerializedName("login_token")
+    var loginToken: String,
+    @SerializedName("is_prohibit")
+    var isProhibit: Boolean,
+    @SerializedName("modify_pwd_count")
+    var modifyPwdCount: Int,
+    @SerializedName("create_time")
+    var createTime: Int,
+    @SerializedName("update_time")
+    var updateTime: Int,
+    @SerializedName("is_cg")
+    var isCg: Boolean,
+    @SerializedName("is_guest")
+    var isGuest: Boolean,
+    @SerializedName("cid")
     var cid: String,
 )
-
+/** 登录响应数据 */
 data class WSCSLoginTokenReplyData(var info: WSUserInfoV2)
+/** 进入直播间请求 */
+data class WSCSEnterRoomRequest(
+    @SerializedName("room_id")
+    var roomId: Int
+)
+/** 进入直播间响应数据 */
+data class WSCSEnterRoomReplyData(
+    @SerializedName("room_id")
+    var roomId: Int
+)
+/** 离开直播间请求 */
+data class WSCSLeaveRoomRequest(
+    @SerializedName("room_id")
+    var roomId: Int
+)
+/** 离开直播响应数据 */
+data class WSCSLeaveRoomReplyData(
+    @SerializedName("room_id")
+    var roomId: Int
+)
 
-data class WSCSEnterRoomRequest(var room_id: Int)
-data class WSCSEnterRoomReplyData(var room_id: Int)
-data class WSCSLeaveRoomRequest(var room_id: Int)
-data class WSCSLeaveRoomReplyData(var room_id: Int)
-
-fun GetReplyMap(): Map<Int, KType> {
-    val myMap: Map<Int, KType> = mapOf(
-        MsgId.Simple to typeOf<WSReply<WSSampleReplyData>>(),
-        MsgId.LoginByToken to typeOf<WSReply<WSCSLoginTokenReplyData>>(),
-        MsgId.EnterRoom to typeOf<WSReply<WSCSEnterRoomReplyData>>(),
-        MsgId.LeaveRoom to typeOf<WSReply<WSCSLeaveRoomReplyData>>()
+/** 取消息响应数据映射表 */
+fun getReplyMap(): Map<Int, KType> {
+    val msgIdReplyMap: Map<Int, KType> = mapOf(
+        MsgId.SIMPLE to typeOf<WSReply<WSSampleReplyData>>(),
+        MsgId.LOGIN_BY_TOKEN to typeOf<WSReply<WSCSLoginTokenReplyData>>(),
+        MsgId.ENTER_ROOM to typeOf<WSReply<WSCSEnterRoomReplyData>>(),
+        MsgId.LEAVE_ROOM to typeOf<WSReply<WSCSLeaveRoomReplyData>>()
     )
-    return myMap
+    return msgIdReplyMap
 }

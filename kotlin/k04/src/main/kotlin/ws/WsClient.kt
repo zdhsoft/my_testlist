@@ -4,34 +4,47 @@ import okhttp3.*
 import okio.ByteString
 import java.util.concurrent.TimeUnit
 import com.google.gson.Gson
-import com.zdhsoft.ws.GetReplyMap
+import com.zdhsoft.ws.getReplyMap
 import com.zdhsoft.ws.WSReply
 import kotlin.reflect.javaType
-
-enum class ClientStatus {
+/** ws链接状态 */
+enum class WSClientStatus {
+    /** 未设置值 */
     Unknown,
+    /** 链接中 */
     Connecting,
+    /** 链接成功 */
     Connected,
+    /** 链接断开 */
     Disconnected,
 }
-data class TextMessage(val type: Int, val body: String)
 
+/** Websocket 文本消息 */
+data class TextMessage(val type: Int, val body: String)
+/** 通用返回 */
 data class CommonRet(var ret: Int = 0, var msg: String = "")
 
+/** 消息回调接口 */
 interface IReplyCallBack {
-    fun Callback(rep: WSReply<Any>): Unit
+    /** 回调接口 */
+    fun callback(rep: WSReply<Any>): Unit
 }
 
+/** websocket 链接 客户端 */
 class WsClient(serverURL: String) {
+    /** okhttp链接客户端 */
     private var mOkHttpClient: OkHttpClient? = null
+    /** 请求 */
     private var mRequest: Request? = null
+    /** websocket链接对象 */
     private var mWebSocket: WebSocket? = null
-    private var mStatus = ClientStatus.Unknown
-    private var mReplyData = GetReplyMap()
+    /** 当前链接状态 */
+    private var mStatus = WSClientStatus.Unknown
+    /** 消息响应数据映射表 */
+    private var mReplyData = getReplyMap()
+    /** 消息回调映射表 */
     private var mReplyCallBack = mutableMapOf<Int, IReplyCallBack>()
     init {
-        println("Constructor --->")
-        println("WSClient init!!!!!!")
         //初始化okhttpClient
         val mBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         //设置读取超时时间
@@ -44,10 +57,9 @@ class WsClient(serverURL: String) {
         mBuilder.pingInterval(10, TimeUnit.SECONDS)
         mOkHttpClient = mBuilder.build()
         //初始化request
-        // mRequest = Request.Builder().url("ws://local.zdhsoft.com/ws/").build()
         mRequest = Request.Builder().url(serverURL).build()
     }
-
+    /** 注册消息回调 */
     fun registerCallBack(type: Int, callback: IReplyCallBack) : CommonRet {
         val ret = CommonRet()
         if (mReplyCallBack.contains(type)) {
@@ -58,33 +70,41 @@ class WsClient(serverURL: String) {
         }
        return ret
     }
-
-    fun getStatus(): ClientStatus {
+    /** 当前链接状态 */
+    fun getStatus(): WSClientStatus {
         return mStatus
     }
-
-    fun isConnected(): Boolean {
-        return mStatus == ClientStatus.Connected
+    /** 是否已经连接 */
+    fun isConnected(): Boolean  {
+        return mStatus == WSClientStatus.Connected
     }
-
-    private fun sendMessage(paramMessage: String) {
+    /** 发送文本消息 */
+    private fun sendTextMessage(paramMessage: String) {
         mWebSocket?.send(paramMessage)
     }
-
+    /** 发送指定的消息 */
     fun <T>sendMsg(type: Int, body: T) {
         val gson = Gson()
         val msg = TextMessage(type, gson.toJson(body))
         println("发送消息:type=$type, body:${msg.body}")
-        sendMessage(gson.toJson(msg))
+        sendTextMessage(gson.toJson(msg))
     }
+
+    fun close() {
+        if (isConnected()) {
+            mWebSocket?.close(1000, "主动关闭")
+        }
+    }
+
+    /** 连接 */
     @OptIn(ExperimentalStdlibApi::class)
     fun connect() {
-        mStatus = ClientStatus.Connecting
+        mStatus = WSClientStatus.Connecting
         mWebSocket = mOkHttpClient!!.newWebSocket(mRequest!!, object : WebSocketListener() {
             override fun onOpen(webSocket: WebSocket, response: Response) {
                 super.onOpen(webSocket, response)
                 println("socket 连接成功（需要自己切换到主线程）")
-                mStatus = ClientStatus.Connected
+                mStatus = WSClientStatus.Connected
             }
 
             override fun onMessage(webSocket: WebSocket, text: String) {
@@ -92,7 +112,7 @@ class WsClient(serverURL: String) {
                 val gson = Gson()
                 val msg = gson.fromJson(text, TextMessage::class.java)
 
-                val ktype = mReplyData.get(msg.type)
+                val ktype = mReplyData[msg.type]
                 if (ktype == null) {
                     println("没有找到msgId=${msg.type}的消息:${msg.body}")
                     return
@@ -105,7 +125,7 @@ class WsClient(serverURL: String) {
                 if (callBack == null) {
                     println("没有找到msgId=${msg.type}的消息:${msg.body} 的回调函数!")
                 } else {
-                    callBack.Callback(rep)
+                    callBack.callback(rep)
                 }
             }
 
@@ -121,14 +141,14 @@ class WsClient(serverURL: String) {
 
             override fun onClosed(webSocket: WebSocket, code: Int, reason: String) {
                 super.onClosed(webSocket, code, reason)
-                mStatus = ClientStatus.Disconnected
+                mStatus = WSClientStatus.Disconnected
                 println("onClosed：$code")
             }
 
             override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
                 super.onFailure(webSocket, t, response)
                 println("onFailure：$t")
-                mStatus = ClientStatus.Disconnected
+                mStatus = WSClientStatus.Disconnected
             }
         })
     }
